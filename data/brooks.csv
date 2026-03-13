@@ -1,0 +1,359 @@
+Conceito;Categoria;Subcategoria;Nivel_Prerequisito;Conhecimento_Atual;Objetivo;Data_Estudo;Tempo_Investido_hrs;Notas;
+Tipos de Gráficos;Fundamentos;Terminologia Base;Nenhum;0;10;;;5min/Diário/Semanal/Mensal;
+Tempos Gráficos;Fundamentos;Terminologia Base;Tipos de Gráficos;0;10;;;Relação entre timeframes;
+Como Mercados Funcionam;Fundamentos;Terminologia Base;Nenhum;0;10;;;Leilão de preços e probing;
+Definição Price Action;Fundamentos;Terminologia Base;Nenhum;0;10;;;Leitura pura do preço;
+Pain Trade;Fundamentos;Terminologia Base;Definição Price Action;0;10;;;Movimento que causa máxima dor;
+Média Móvel (MA);Fundamentos;Indicadores;Nenhum;0;10;;;EMA 20 períodos padrão Al Brooks;
+Corpo da Barra;Fundamentos;Anatomia da Barra;Tipos de Gráficos;0;10;;;Distância abertura-fechamento;
+Sombra da Barra;Fundamentos;Anatomia da Barra;Corpo da Barra;0;10;;;Cauda superior e inferior;
+Máxima e Mínima;Fundamentos;Anatomia da Barra;Corpo da Barra;0;10;;;Extremos da barra;
+Trend Bar;Fundamentos;Tipos de Barra;Corpo da Barra;0;10;;;Corpo grande com fechamento perto extremo;
+Doji;Fundamentos;Tipos de Barra;Corpo da Barra;0;10;;;Corpo pequeno indica indecisão;
+Inside Bar (i);Fundamentos;Tipos de Barra;Corpo da Barra;0;10;;;Máxima/mínima dentro barra anterior;
+Outside Bar (o);Fundamentos;Tipos de Barra;Corpo da Barra;0;10;;;Máxima/mínima engolfa barra anterior;
+Reversal Bar;Fundamentos;Tipos de Barra;Trend Bar;0;10;;;Barra com sombra longa contrária;
+Barra Grande/Média/Pequena;Fundamentos;Tamanho de Barra;Corpo da Barra;0;10;;;Relativo ao contexto recente;
+Barra de Tendência;Fundamentos;Classificação Funcional;Trend Bar;0;10;;;Barra alinhada com tendência;
+Barra TR;Fundamentos;Classificação Funcional;Doji;0;10;;;Barra de lateralidade;
+Barra de Sinal;Fundamentos;Classificação Funcional;Tipos de Barra;0;10;;;Barra que precede entrada;
+Barra de Entrada;Fundamentos;Classificação Funcional;Barra de Sinal;0;10;;;Onde executar ordem;
+Barra de Surpresa;Fundamentos;Classificação Funcional;Barra Grande;0;10;;;Movimento inesperado forte;
+Barra de Desistência;Fundamentos;Classificação Funcional;Trend Bar;0;10;;;Traders desistem da direção;
+Padrão ii (inside-inside);Fundamentos;Padrões de Barras;Inside Bar;0;10;;;2 inside bars consecutivas - compressão;
+Padrão ioi;Fundamentos;Padrões de Barras;Inside/Outside Bar;0;10;;;Inside-outside-inside;
+Padrão oo;Fundamentos;Padrões de Barras;Outside Bar;0;10;;;2 outside bars consecutivas;
+Higher High (HH);Fundamentos;Relação Entre Barras;Máxima e Mínima;0;10;;;Máxima acima da anterior;
+Higher Low (HL);Fundamentos;Relação Entre Barras;Máxima e Mínima;0;10;;;Mínima acima da anterior;
+Lower High (LH);Fundamentos;Relação Entre Barras;Máxima e Mínima;0;10;;;Máxima abaixo da anterior;
+Lower Low (LL);Fundamentos;Relação Entre Barras;Máxima e Mínima;0;10;;;Mínima abaixo da anterior;
+Equal High (EH);Fundamentos;Relação Entre Barras;Máxima e Mínima;0;10;;;Máxima igual à anterior;
+Equal Low (EL);Fundamentos;Relação Entre Barras;Máxima e Mínima;0;10;;;Mínima igual à anterior;
+Definição de Gap;Fundamentos;Gaps;Corpo da Barra;0;10;;;Espaço entre barras;
+MAG (Moving Average Gap);Fundamentos;Tipos de Gap;Definição Gap e MA;0;10;;;Gap entre preço e média móvel;
+EG (Exhaustion Gap);Fundamentos;Tipos de Gap;Definição Gap;0;10;;;Gap de exaustão - reversão provável;
+MG (Measuring Gap);Fundamentos;Tipos de Gap;Definição Gap;0;10;;;Gap de projeção - continuação;
+Gap de Corpo;Fundamentos;Tipos de Gap;Definição Gap;0;10;;;Gap entre corpos das barras;
+Micro Gap;Fundamentos;Tipos de Gap;Definição Gap;0;10;;;Gap minúsculo entre barras;
+Gap de Abertura;Fundamentos;Tipos de Gap;Definição Gap;0;10;;;Gap na abertura do dia;
+Gap como Força;Fundamentos;Significado Gap;Tipos de Gap;0;10;;;Indica pressão forte;
+Padrão Escada;Fundamentos;Significado Gap;MAG;0;10;;;Série de gaps na mesma direção;
+Swing High;Fundamentos;Linhas Horizontais;Higher High;0;10;;;Topo significativo;
+Swing Low;Fundamentos;Linhas Horizontais;Lower Low;0;10;;;Fundo significativo;
+Números Redondos;Fundamentos;Linhas Horizontais;Nenhum;0;10;;;Níveis psicológicos (00/50);
+Linha de Tendência;Fundamentos;Linhas Diagonais;Swing High/Low;0;10;;;Conecta pivots da tendência;
+Linha de Canal;Fundamentos;Linhas Diagonais;Linha de Tendência;0;10;;;Paralela à linha de tendência;
+MA como Linha Dinâmica;Fundamentos;Linhas Dinâmicas;Média Móvel;0;10;;;S/R móvel - EMA20;
+Equação do Trader;Fundamentos;Matemática;Nenhum;0;10;;;Edge = Prob x Reward - Risk;
+Edge (Vantagem);Fundamentos;Matemática;Equação do Trader;0;10;;;Expectativa matemática positiva;
+Probabilidade;Fundamentos;Matemática;Equação do Trader;0;10;;;Chance de sucesso do setup;
+Recompensa;Fundamentos;Matemática;Equação do Trader;0;10;;;Potencial de lucro;
+Risco;Fundamentos;Matemática;Equação do Trader;0;10;;;Potencial de perda (stop);
+Três Variáveis;Fundamentos;Matemática;Equação do Trader;0;10;;;Prob/Reward/Risk - ajustar 1 afeta outras;
+Z-score;Fundamentos;Matemática Avançada;Três Variáveis;0;10;;;Medida estatística de desvio;
+Probabilidade Alta (70-90%);Fundamentos;Níveis de Probabilidade;Probabilidade;0;10;;;Com tendência forte;
+Probabilidade Média (50-60%);Fundamentos;Níveis de Probabilidade;Probabilidade;0;10;;;Setup padrão;
+Probabilidade Baixa (40-50%);Fundamentos;Níveis de Probabilidade;Probabilidade;0;10;;;Contra-tendência ou scalp;
+Prob TR Alta perto Topo/Fundo;Fundamentos;Níveis de Probabilidade;Probabilidade;0;10;;;Reversão mais provável em extremos;
+Risco Fixo;Fundamentos;Tipos de Risco;Risco;0;10;;;Stop em valor fixo;
+Risco Variável;Fundamentos;Tipos de Risco;Risco;0;10;;;Stop baseado em estrutura;
+Risco Efetivo;Fundamentos;Tipos de Risco;Risco Variável;0;10;;;Risco real considerando contexto;
+Recompensa <2x (Pequena);Fundamentos;Níveis de Recompensa;Recompensa;0;10;;;Scalp;
+Recompensa 2-3x (Média);Fundamentos;Níveis de Recompensa;Recompensa;0;10;;;Swing padrão;
+Recompensa >3x (Grande);Fundamentos;Níveis de Recompensa;Recompensa;0;10;;;Swing excelente;
+Mínimo 2x para Swing;Fundamentos;Níveis de Recompensa;Recompensa;0;10;;;Regra para swing trade;
+Regra 80% - Reversões Falham;Fundamentos;Regras Estatísticas;Nenhum;0;10;;;80% das tentativas de reversão falham;
+Regra 80% - Rompimentos Falham;Fundamentos;Regras Estatísticas;Nenhum;0;10;;;80% dos breakouts falham;
+Regra 80% - Inércia;Fundamentos;Regras Estatísticas;Regra 80%;0;10;;;Mercado tende a continuar;
+Regra 70% - Teste de Canal;Fundamentos;Regras Estatísticas;Linha de Canal;0;10;;;70% testam linha oposta;
+Regra 40-60;Fundamentos;Regras Estatísticas;Probabilidade Média;0;10;;;Probabilidade média em TR;
+Operações Perfeitas Não Existem;Fundamentos;Mentalidade;Nenhum;0;10;;;Aceitar imperfeição;
+Disciplina;Psicologia;Traços de Sucesso;Nenhum;0;10;;;Seguir regras consistentemente;
+Paciência;Psicologia;Traços de Sucesso;Nenhum;0;10;;;Aguardar setup de qualidade;
+Confiança;Psicologia;Traços de Sucesso;Disciplina e Paciência;0;10;;;Confiança no sistema;
+Gestão de Medo;Psicologia;Estados Destrutivos;Nenhum;0;10;;;Controlar medo de perder;
+Gestão de Ambição;Psicologia;Estados Destrutivos;Nenhum;0;10;;;Não forçar trades;
+Gestão de FOMO;Psicologia;Estados Destrutivos;Nenhum;0;10;;;Fear of missing out;
+Evitar Decisões Estúpidas;Psicologia;Estados Destrutivos;Nenhum;0;10;;;Não operar por impulso;
+Aceitar Incerteza;Psicologia;Gestão Emocional;Nenhum;0;10;;;Resultado probabilístico;
+Não Vingar Perdas;Psicologia;Gestão Emocional;Aceitar Incerteza;0;10;;;Não revenge trading;
+Aprender com Perdas;Psicologia;Gestão Emocional;Não Vingar Perdas;0;10;;;Análise de erros;
+Não Comemorar Cedo;Psicologia;Gestão Emocional;Nenhum;0;10;;;Proteger lucros abertos;
+Proteger Ganhos;Psicologia;Gestão Emocional;Não Comemorar Cedo;0;10;;;Trailing stops;
+Falsas Crenças;Psicologia;Crenças Limitantes;Nenhum;0;10;;;Identificar e eliminar;
+Overtrading;Psicologia;Erros Comuns;Paciência;0;10;;;Operar demais;
+Revenge Trading;Psicologia;Erros Comuns;Não Vingar Perdas;0;10;;;Tentar recuperar perda;
+Gerenciamento Ruim;Psicologia;Erros Comuns;Disciplina;0;10;;;Não seguir plano;
+Quatro Fases do Mercado;Contexto;Ciclo de Mercado;Nenhum;0;10;;;Livro/Video;Tendência/Canal/TR/Rompimento
+Fase Tendência;Contexto;Fases;Quatro Fases;0;10;;;Livro/Video;Direção clara
+Fase Canal;Contexto;Fases;Quatro Fases;0;10;;;Livro/Video;Entre 2 linhas paralelas
+Fase Lateralidade (TR);Contexto;Fases;Quatro Fases;0;10;;;Livro/Video;Range-bound
+Fase Rompimento;Contexto;Fases;Quatro Fases;0;10;;;Livro/Video;Breakout
+Transição por Correção;Contexto;Transições;Quatro Fases;0;10;;;Livro/Video;Pullback evolui para TR
+Transição por Rompimento;Contexto;Transições;Quatro Fases;0;10;;;Livro/Video;BO inicia nova fase
+Inércia do Mercado;Contexto;Ciclo;Regra 80%;0;10;;;Livro/Video;Tendência continuar > reverter
+Mercados Resistem à Mudança;Contexto;Ciclo;Inércia;0;10;;;Livro/Video;Favor da continuação
+Probing Contínuo;Contexto;Ciclo;Como Mercados Funcionam;0;10;;;Livro/Video;Testar S/R constantemente
+Conceito Always In Direction;Contexto;Always In;Nenhum;0;10;;;Livro/Video;Framework central Al Brooks
+Always In Long (AIL);Contexto;Always In Direction;Conceito Always In;0;10;;;Livro/Video;Viés compra
+Always In Short (AIS);Contexto;Always In Direction;Conceito Always In;0;10;;;Livro/Video;Viés venda
+Estado Tendência (AI);Contexto;Always In Estado;Always In Direction;0;10;;;Livro/Video;AI clara
+Estado Lateralidade (AI);Contexto;Always In Estado;Always In Direction;0;10;;;Livro/Video;AI confusa
+Always In Clara;Contexto;Always In Clareza;Always In Direction;0;10;;;Livro/Video;Fácil determinar direção
+Always In Confusa;Contexto;Always In Clareza;Always In Direction;0;10;;;Livro/Video;Difícil determinar - TR
+BLSHS - Buy Low;Contexto;Always In BLSHS;Always In Confusa;0;10;;;Livro/Video;Comprar em baixo de TR
+BLSHS - Sell High;Contexto;Always In BLSHS;Always In Confusa;0;10;;;Livro/Video;Vender em topo de TR
+BLSHS - Scalp;Contexto;Always In BLSHS;Always In Confusa;0;10;;;Livro/Video;Entradas rápidas em TR
+Decisões Binárias;Contexto;Always In;Always In Direction;0;10;;;Livro/Video;Long ou Short - simplificar
+Estrutura de Tendência;Contexto;Tendência;HH/HL/LH/LL;0;10;;;Livro/Video;Swings/Pernas/Pivots
+Tendência Alta - Higher Lows;Contexto;Tendência Alta;Higher Low;0;10;;;Livro/Video;Série de HLs
+Compradores Controlam;Contexto;Tendência Alta;Tendência Alta HL;0;10;;;Livro/Video;Bulls no comando
+Micro Canal Alta;Contexto;Tendência Alta Tipos;Tendência Alta;0;10;;;Livro/Video;Mais forte - sem correção
+Canal Estreito Alta;Contexto;Tendência Alta Tipos;Tendência Alta;0;10;;;Livro/Video;Correções rasas
+Canal Amplo Alta;Contexto;Tendência Alta Tipos;Tendência Alta;0;10;;;Livro/Video;Correções profundas
+Correção Rasa;Contexto;Tendência Alta Tipos;Tendência Alta;0;10;;;Livro/Video;Sinal de força
+Tendência Baixa - Lower Highs;Contexto;Tendência Baixa;Lower High;0;10;;;Livro/Video;Série de LHs
+Vendedores Controlam;Contexto;Tendência Baixa;Tendência Baixa LH;0;10;;;Livro/Video;Bears no comando
+Micro Canal Baixa;Contexto;Tendência Baixa Tipos;Tendência Baixa;0;10;;;Livro/Video;Mais forte - sem correção
+Canal Estreito Baixa;Contexto;Tendência Baixa Tipos;Tendência Baixa;0;10;;;Livro/Video;Correções rasas
+Canal Amplo Baixa;Contexto;Tendência Baixa Tipos;Tendência Baixa;0;10;;;Livro/Video;Correções profundas
+Tendência Forte - Características;Contexto;Qualidade Tendência;Estrutura Tendência;0;10;;;Livro/Video;Barras grandes/gaps/micro canal
+Tendência Fraca - Características;Contexto;Qualidade Tendência;Estrutura Tendência;0;10;;;Livro/Video;Barras pequenas/dojis/overlap
+Quando Não Clara é TR;Contexto;Tendência;Always In Confusa;0;10;;;Livro/Video;Dúvida = lateralidade
+Rompimento Significa Mais Forte;Contexto;Tendência;Fase Rompimento;0;10;;;Livro/Video;BO indica força
+Tendências Tentam Reverter (80% falham);Contexto;Tendência;Regra 80%;0;10;;;Livro/Video;Maioria reversões falha
+Tendência da Abertura;Contexto;Tendência;Nenhum;0;10;;;Livro/Video;Definida nas primeiras barras
+Tendências Respeitam Correções Major;Contexto;Tendência;Estrutura Tendência;0;10;;;Livro/Video;Não quebram swings importantes
+Novas Tendências Começam em Antigas;Contexto;Tendência;Estrutura Tendência;0;10;;;Livro/Video;Reversão de tendência anterior
+Definição Canal;Contexto;Canais;Linha de Canal;0;10;;;Livro/Video;2 linhas paralelas
+2 Pontos Necessários;Contexto;Canais;Definição Canal;0;10;;;Livro/Video;Mínimo para traçar
+Canal Alta Estreito;Contexto;Tipos Canal;Definição Canal;0;10;;;Livro/Video;Alta com correções rasas
+Canal Alta Amplo;Contexto;Tipos Canal;Definição Canal;0;10;;;Livro/Video;Alta com correções profundas
+Canal Baixa Estreito;Contexto;Tipos Canal;Definição Canal;0;10;;;Livro/Video;Baixa com correções rasas
+Canal Baixa Amplo;Contexto;Tipos Canal;Definição Canal;0;10;;;Livro/Video;Baixa com correções profundas
+Micro Canal - Tendência Mais Forte;Contexto;Micro Canal;Canal Estreito;0;10;;;Livro/Video;Sem correções
+Micro Canal - Pode Ser Clímax;Contexto;Micro Canal;Micro Canal;0;10;;;Livro/Video;Insustentável
+Teste Linha Canal (70%);Contexto;Comportamento Canal;Regra 70%;0;10;;;Livro/Video;70% tocam linha oposta
+Overshoot;Contexto;Comportamento Canal;Definição Canal;0;10;;;Livro/Video;Rompe e volta
+Undershoot;Contexto;Comportamento Canal;Definição Canal;0;10;;;Livro/Video;Não alcança linha
+Evolução Canal para TR;Contexto;Comportamento Canal;Definição Canal e TR;0;10;;;Livro/Video;Canal amplo vira TR
+Como Traçar Canais;Contexto;Canais Prático;Linha de Canal;0;10;;;Livro/Video;Técnica de desenho
+Rompimentos Canal Geralmente Falham;Contexto;Rompimentos Canal;Regra 80%;0;10;;;Livro/Video;Maioria falha
+BO Início Tendência Mais Sucesso;Contexto;Rompimentos Canal;Rompimentos Canal;0;10;;;Livro/Video;Timing melhor
+Maioria Canais São Cunhas;Contexto;Canais;Definição Canal;0;10;;;Livro/Video;Linhas convergem
+Canal Amplo ou TR;Contexto;Canais;Canal Amplo e TR;0;10;;;Livro/Video;Difícil distinguir
+Toda TR tem Canal Alta e Baixa;Contexto;Canais e TR;Canal e TR;0;10;;;Livro/Video;Perspectivas diferentes
+Definição TR;Contexto;Lateralidade;Always In Confusa;0;10;;;Livro/Video;Trading Range
+TR - Correção vs Lateralidade;Contexto;Lateralidade;TR;0;10;;;Livro/Video;Diferença temporal
+TR - Confusão;Contexto;Lateralidade;TR;0;10;;;Livro/Video;Natureza da TR
+TR - Decepção;Contexto;Lateralidade;TR;0;10;;;Livro/Video;Frustra ambos lados
+TTR (Tight Trading Range);Contexto;Amplitude TR;TR;0;10;;;Livro/Video;TR estreita - compressão
+TR Ampla;Contexto;Amplitude TR;TR;0;10;;;Livro/Video;Range largo
+BOM (Breakout Mode);Contexto;Modos TR;TR;0;10;;;Livro/Video;Esperando rompimento
+LOM (Limit Order Market);Contexto;Modos TR;TR;0;10;;;Livro/Video;Fade extremos
+Posição no Topo TR;Contexto;Posição TR;TR;0;10;;;Livro/Video;Perto resistência
+Posição no Meio TR;Contexto;Posição TR;TR;0;10;;;Livro/Video;Zona neutra
+Posição no Fundo TR;Contexto;Posição TR;TR;0;10;;;Livro/Video;Perto suporte
+Metade Superior TR;Contexto;Posição TR;TR;0;10;;;Livro/Video;Viés venda
+Metade Inferior TR;Contexto;Posição TR;TR;0;10;;;Livro/Video;Viés compra
+TR Contém Setups Ambos Lados;Contexto;Características TR;TR;0;10;;;Livro/Video;Buy e sell signals
+Pernas na TR (não tendência);Contexto;Características TR;TR;0;10;;;Livro/Video;Movimentos dentro range
+Platôs;Contexto;Características TR;TR;0;10;;;Livro/Video;Consolidações horizontais
+Efeito Vácuo;Contexto;Comportamento TR;TR;0;10;;;Livro/Video;Atrai para meio do range
+Lógica Perversa;Contexto;Comportamento TR;TR;0;10;;;Livro/Video;Faz o oposto do esperado
+Não Aposte NO Rompimento;Contexto;Comportamento TR;Regra 80%;0;10;;;Livro/Video;80% falham
+Aposte CONTRA Rompimento;Contexto;Comportamento TR;Regra 80%;0;10;;;Livro/Video;Fade o BO
+Sinais Antecipados TR;Contexto;Lateralidade;TR Fraca;0;10;;;Livro/Video;Identificar cedo
+Toda TR é Bandeira Potencial;Contexto;Lateralidade;TR;0;10;;;Livro/Video;Pode continuar tendência
+TR Eventualmente Rompe;Contexto;Lateralidade;TR;0;10;;;Livro/Video;Questão de quando
+Definição Rompimento (BO);Contexto;Rompimentos;Nenhum;0;10;;;Livro/Video;Breakout
+Rompimento de Alta;Contexto;Tipos BO;Definição BO;0;10;;;Livro/Video;Bullish breakout
+Rompimento de Baixa;Contexto;Tipos BO;Definição BO;0;10;;;Livro/Video;Bearish breakout
+BO Forte - Gap;Contexto;Qualidade BO Forte;Definição BO e Gap;0;10;;;Livro/Video;Com gap
+BO Forte - Grande Barra;Contexto;Qualidade BO Forte;Definição BO;0;10;;;Livro/Video;Barra de impulso
+BO Forte - Follow-Through;Contexto;Qualidade BO Forte;Definição BO;0;10;;;Livro/Video;Continuidade após BO
+BO Forte - Continuidade;Contexto;Qualidade BO Forte;Definição BO;0;10;;;Livro/Video;Não volta
+BO Forte - Segunda Perna;Contexto;Qualidade BO Forte;Definição BO;0;10;;;Livro/Video;Leg1=Leg2
+BO Fraco - Características;Contexto;Qualidade BO Fraco;Definição BO;0;10;;;Livro/Video;Sem gap/pequeno/sem follow
+Resultado BO - Sucesso;Contexto;Resultado BO;Definição BO;0;10;;;Livro/Video;Inicia tendência
+Resultado BO - Falha (80%);Contexto;Resultado BO;Regra 80%;0;10;;;Livro/Video;Maioria falha
+Reversão é Rompimento;Contexto;Rompimentos;Definição BO;0;10;;;Livro/Video;BO da tendência anterior
+Lateralidade = BLSHS em BO;Contexto;Rompimentos;BLSHS;0;10;;;Livro/Video;Operar como TR
+BO Pode Começar Pequeno;Contexto;Rompimentos;Definição BO;0;10;;;Livro/Video;Não precisa ser explosivo
+Segunda Perna Comum BO;Contexto;Rompimentos;Definição BO;0;10;;;Livro/Video;TBTL
+Rompimentos de TR;Contexto;Rompimentos;TR e BO;0;10;;;Livro/Video;BO de range
+Teste de Rompimento;Contexto;Rompimentos;Definição BO;0;10;;;Livro/Video;Pullback ao ponto BO
+Falha BO - Retomada Tendência;Contexto;Falha BO;Resultado BO Falha;0;10;;;Livro/Video;Volta direção anterior
+Falha BO - Reversão;Contexto;Falha BO;Resultado BO Falha;0;10;;;Livro/Video;Inverte direção
+BO como EG ou MG;Contexto;Rompimentos;EG e MG;0;10;;;Livro/Video;Gaps após BO
+BO Fraco = TR em Breve;Contexto;Rompimentos;BO Fraco;0;10;;;Livro/Video;Sem força para continuar
+BO Geralmente Segue Armadilha;Contexto;Rompimentos;BO e Armadilhas;0;10;;;Livro/Video;Trap antes BO real
+Rompimento Tardio;Contexto;Rompimentos;Definição BO;0;10;;;Livro/Video;Final de tendência
+BO Início Tendência (melhor);Contexto;Rompimentos;Definição BO;0;10;;;Livro/Video;Melhor timing
+Definição Leg (Perna);Contexto;Legs e Swings;Estrutura Tendência;0;10;;;Livro/Video;Movimento direcional
+Primeira Perna;Contexto;Legs;Definição Leg;0;10;;;Livro/Video;Leg 1
+Segunda Perna;Contexto;Legs;Primeira Perna;0;10;;;Livro/Video;Leg 2
+Leg 1 = Leg 2;Contexto;Legs;Segunda Perna;0;10;;;Livro/Video;Movimento projetado
+Pivot Alto;Contexto;Pivots;Swing High;0;10;;;Livro/Video;Topo de swing
+Pivot Baixo;Contexto;Pivots;Swing Low;0;10;;;Livro/Video;Fundo de swing
+Correção (Pullback);Contexto;Correções;Estrutura Tendência;0;10;;;Livro/Video;Retração temporária
+Major High/Low;Contexto;Classificação Major;Pivot;0;10;;;Livro/Video;Pivots importantes
+Minor High/Low;Contexto;Classificação Minor;Pivot;0;10;;;Livro/Video;Pivots menores
+Contagem H1 L1;Contexto;Contagem Legs;Legs;0;10;;;Livro/Video;Primeira máxima/mínima
+Contagem H2 L2;Contexto;Contagem Legs;H1 L1;0;10;;;Livro/Video;Contra-tendência sai
+Contagem H3 L3;Contexto;Contagem Legs;H2 L2;0;10;;;Livro/Video;Terceira perna
+Contagem H4 L4;Contexto;Contagem Legs;H3 L3;0;10;;;Livro/Video;Atenção exaustão
+Tempos Gráficos Afetam Legs;Contexto;Legs;Tempos Gráficos;0;10;;;Livro/Video;HTF diferentes de LTF
+Correção Rasa (força);Contexto;Tipos Correção;Correção;0;10;;;Livro/Video;Sinal forte
+Correção Profunda (fraqueza);Contexto;Tipos Correção;Correção;0;10;;;Livro/Video;Sinal fraco
+Correção 50%;Contexto;Tipos Correção;Correção;0;10;;;Livro/Video;Metade do movimento
+Correção Sem Fim (vira TR);Contexto;Tipos Correção;Correção e TR;0;10;;;Livro/Video;Perde momento
+Correção Majoritária vs Minoritária;Contexto;Correções;Major e Minor;0;10;;;Livro/Video;Tamanho relativo
+Toda Correção é Bandeira Potencial;Contexto;Correções;Correção;0;10;;;Livro/Video;Pode continuar
+Matemática Melhora Depois BO;Contexto;Correções;BO;0;10;;;Livro/Video;Probabilidade aumenta
+Tipos de Pressão;Contexto;Pressão;Nenhum;0;10;;;Livro/Video;Compra/Venda/Equilíbrio
+Pressão - Manifestação;Contexto;Pressão;Tipos Pressão;0;10;;;Livro/Video;Gap/Barras/Sequência
+Compradores/Vendedores Fortes/Fracos;Contexto;Pressão;Tipos Pressão;0;10;;;Livro/Video;Força relativa
+Trapped Traders;Contexto;Pressão;Armadilhas;0;10;;;Livro/Video;Traders presos
+Emboscados;Contexto;Pressão;Trapped Traders;0;10;;;Livro/Video;Ambushed
+Desapontados;Contexto;Pressão;Nenhum;0;10;;;Livro/Video;Disappointed bulls/bears
+Definição S/R;Contexto;Suporte e Resistência;Nenhum;0;10;;;Livro/Video;Zonas de decisão
+S/R Controlam Preço;Contexto;S/R;Definição S/R;0;10;;;Livro/Video;Não notícias
+Tipos de S/R;Contexto;S/R;Definição S/R;0;10;;;Livro/Video;Swing/MA/Números/Canal
+S/R de HTF Mais Importante;Contexto;S/R Origem;HTF;0;10;;;Livro/Video;Timeframe maior > menor
+S/R Testado vs Não Testado;Contexto;S/R Nível;Definição S/R;0;10;;;Livro/Video;História do nível
+S/R Respeitado vs Violado;Contexto;S/R Reação;Definição S/R;0;10;;;Livro/Video;Resultado do teste
+Teste S/R - Sucesso/Falha;Contexto;S/R Teste;Definição S/R;0;10;;;Livro/Video;Hold ou break
+Segunda Tentativa;Contexto;S/R Teste;Teste S/R;0;10;;;Livro/Video;Teste duplo
+Teste Tardio;Contexto;S/R Teste;Teste S/R;0;10;;;Livro/Video;Tarde no dia
+Compra/Venda em Fechamento;Contexto;S/R;Nenhum;0;10;;;Livro/Video;BTC/STC
+Teste de BO;Contexto;S/R;BO e S/R;0;10;;;Livro/Video;Pullback ao ponto breakout
+Compradores Precisam HL;Contexto;S/R;Higher Low;0;10;;;Livro/Video;Para continuar alta
+Vendedores Precisam LH;Contexto;S/R;Lower High;0;10;;;Livro/Video;Para continuar baixa
+Clímax Sempre Termina em S/R;Contexto;S/R;Clímax;0;10;;;Livro/Video;Exaustão em nível
+Movimentos Projetados (MM);Contexto;MM;Leg1=Leg2;0;10;;;Livro/Video;Measured moves
+MM - Perna 1 = Perna 2;Contexto;MM;Legs;0;10;;;Livro/Video;Projeção igual
+MM - Altura TR;Contexto;MM;TR;0;10;;;Livro/Video;Range como alvo
+MM - Altura BO;Contexto;MM;BO;0;10;;;Livro/Video;Tamanho breakout
+MM - Uso para Alvos;Contexto;MM;MM;0;10;;;Livro/Video;Targets
+MM - Uso para Stops;Contexto;MM;MM;0;10;;;Livro/Video;Proteção
+Definição Barra de Sinal;Padrões;Barras de Sinal;Barra de Sinal;0;10;;;Livro/Video;Barra que precede entrada
+Barra de Entrada;Padrões;Barras de Sinal;Barra de Sinal;0;10;;;Livro/Video;Onde executar
+Qualidade de Sinal - Forte;Padrões;Barras de Sinal;Barra de Sinal;0;10;;;Livro/Video;Corpo grande/fechamento extremo
+Qualidade de Sinal - Fraca;Padrões;Barras de Sinal;Barra de Sinal;0;10;;;Livro/Video;Corpo pequeno/sombra grande
+Sinais Ruins (evitar);Padrões;Barras de Sinal;Qualidade Sinal;0;10;;;Livro/Video;Contra contexto
+Confirmação - Primeiro Sinal;Padrões;Confirmação;Barra de Sinal;0;10;;;Livro/Video;Primeira tentativa
+Confirmação - Segundo Sinal (melhor);Padrões;Confirmação;Primeiro Sinal;0;10;;;Livro/Video;Mais confiável
+Confirmação - Terceiro Sinal;Padrões;Confirmação;Segundo Sinal;0;10;;;Livro/Video;Muito tarde?
+Sinal Com Tendência (melhor);Padrões;Contexto Sinal;Tendência;0;10;;;Livro/Video;Probabilidade alta
+Sinal Contra Tendência;Padrões;Contexto Sinal;Tendência;0;10;;;Livro/Video;Precisa muito forte
+Sinal Em TR;Padrões;Contexto Sinal;TR;0;10;;;Livro/Video;BLSHS
+Barra de Sinal Pequena;Padrões;Barras de Sinal;Barra de Sinal;0;10;;;Livro/Video;Pode ser excelente
+Definição Setup;Padrões;Setups;Contexto + Sinal;0;10;;;Livro/Video;Contexto + Barra sinal
+Setup Fraco (precisa mais);Padrões;Setups;Definição Setup;0;10;;;Livro/Video;Baixa probabilidade
+Apostar Contra Setups Fracos;Padrões;Setups;Setup Fraco;0;10;;;Livro/Video;Fade
+Contagem de Barras;Padrões;Contagem;Nenhum;0;10;;;Livro/Video;H1-H4
+TBTL (Ten Bars Two Legs);Padrões;Contagem;Contagem Barras;0;10;;;Livro/Video;~10 barras 2 pernas
+Reversões Consecutivas H4/L4;Padrões;Contagem;H4 L4;0;10;;;Livro/Video;Após 4 pernas
+Bull Flag - Definição;Padrões;Continuação - Bandeiras;Tendência Alta;0;10;;;Livro/Video;Correção em alta
+Topo Duplo como Bull Flag;Padrões;Bull Flag;Bull Flag e Duplo;0;10;;;Livro/Video;DT em correção alta
+Cunha como Bull Flag;Padrões;Bull Flag;Bull Flag e Cunha;0;10;;;Livro/Video;Wedge down em alta
+Canal Baixa como Bull Flag;Padrões;Bull Flag;Bull Flag e Canal;0;10;;;Livro/Video;Bear channel em alta
+Bear Flag - Definição;Padrões;Continuação - Bandeiras;Tendência Baixa;0;10;;;Livro/Video;Correção em baixa
+Fundo Duplo como Bear Flag;Padrões;Bear Flag;Bear Flag e Duplo;0;10;;;Livro/Video;DB em correção baixa
+Cunha como Bear Flag;Padrões;Bear Flag;Bear Flag e Cunha;0;10;;;Livro/Video;Wedge up em baixa
+Canal Alta como Bear Flag;Padrões;Bear Flag;Bear Flag e Canal;0;10;;;Livro/Video;Bull channel em baixa
+Bandeiras Finais - Definição;Padrões;Bandeiras;Bandeiras;0;10;;;Livro/Video;Última antes TR
+Bandeiras Finais - Rasa;Padrões;Bandeiras Finais;Bandeiras Finais;0;10;;;Livro/Video;Correção pequena
+Bandeiras Finais - Com ii;Padrões;Bandeiras Finais;Bandeiras Finais e ii;0;10;;;Livro/Video;Inside bars
+Bandeiras Prematuras;Padrões;Bandeiras;Bandeiras;0;10;;;Livro/Video;Muito cedo
+Correções como Bandeiras;Padrões;Continuação - Correções;Correção;0;10;;;Livro/Video;Toda correção é bandeira potencial
+Correção Rasa;Padrões;Correções;Correção;0;10;;;Livro/Video;Forte
+Correção Profunda;Padrões;Correções;Correção;0;10;;;Livro/Video;Fraca
+Triângulos - Alta;Padrões;Continuação - Triângulos;Nenhum;0;10;;;Livro/Video;Ascending triangle
+Triângulos - Baixa;Padrões;Triângulos;Nenhum;0;10;;;Livro/Video;Descending triangle
+Triângulos - Simétrico;Padrões;Triângulos;Nenhum;0;10;;;Livro/Video;Symmetrical triangle
+Triângulos - Expandido;Padrões;Triângulos;Nenhum;0;10;;;Livro/Video;Expanding triangle
+Triângulos - Reversão ou Continuação;Padrões;Triângulos;Triângulos;0;10;;;Livro/Video;Ambos possíveis
+Triângulos - Aparência Ruim;Padrões;Triângulos;Triângulos;0;10;;;Livro/Video;Raramente limpos
+MTR - Definição;Padrões;Reversão Majoritária;Nenhum;0;10;;;Livro/Video;Major Trend Reversal
+MTR - Padrão Mais Importante;Padrões;MTR;MTR Definição;0;10;;;Livro/Video;Setup principal
+MTR - Majoritária vs Minoritária;Padrões;MTR;MTR Definição;0;10;;;Livro/Video;Tamanho do swing
+MTR - LH para Topos;Padrões;MTR Tipos;Lower High;0;10;;;Livro/Video;Lower high em topo
+MTR - HL para Fundos;Padrões;MTR Tipos;Higher Low;0;10;;;Livro/Video;Higher low em fundo
+MTR - MAG Comum;Padrões;MTR Componentes;MAG;0;10;;;Livro/Video;Gap da média
+MTR - Topo/Fundo Duplo (maioria);Padrões;MTR Componentes;Duplos;0;10;;;Livro/Video;Maioria tem duplo
+MTR - Sucesso;Padrões;MTR;MTR Definição;0;10;;;Livro/Video;Inverte tendência
+MTR - Falha (80%);Padrões;MTR;Regra 80%;0;10;;;Livro/Video;Maioria falha
+MTR na Abertura;Padrões;MTR;MTR e Abertura;0;10;;;Livro/Video;Comum primeira hora
+MTR - Entrada Antecipada;Padrões;MTR;MTR;0;10;;;Livro/Video;Antes completar
+TTR pode ser MTR;Padrões;MTR;TTR;0;10;;;Livro/Video;Compressão antes reversão
+Cunha - Definição;Padrões;Reversão - Cunha;Canal Convergente;0;10;;;Livro/Video;Wedge
+Cunha - 3 Pushes;Padrões;Cunha;Definição Cunha;0;10;;;Livro/Video;Três empurrões
+Como Traçar Cunha;Padrões;Cunha;Definição Cunha;0;10;;;Livro/Video;Técnica desenho
+Cunha Clássica;Padrões;Tipos Cunha;Definição Cunha;0;10;;;Livro/Video;Padrão limpo
+Cunha Parabólica (climática);Padrões;Tipos Cunha;Definição Cunha e Clímax;0;10;;;Livro/Video;Aceleração final
+Cunha Nested (aninhada);Padrões;Tipos Cunha;Definição Cunha;0;10;;;Livro/Video;Cunha dentro cunha
+Variações de Cunha;Padrões;Cunha;Definição Cunha;0;10;;;Livro/Video;Nem sempre perfeita
+Cunha Boa (em tendência fraca);Padrões;Qualidade Cunha;Cunha e Tendência Fraca;0;10;;;Livro/Video;Provável reverter
+Cunha Ruim (em tendência forte);Padrões;Qualidade Cunha;Cunha e Tendência Forte;0;10;;;Livro/Video;Não reverte
+Cunha - Overshoot;Padrões;Cunha;Definição Cunha;0;10;;;Livro/Video;Rompe linha antes reverter
+Cunha - Undershoot;Padrões;Cunha;Definição Cunha;0;10;;;Livro/Video;Não atinge linha
+Cunhas Raramente Perfeitas;Padrões;Cunha;Definição Cunha;0;10;;;Livro/Video;Aceitar imperfeição
+Maioria Canais São Cunhas;Padrões;Cunha;Canal e Cunha;0;10;;;Livro/Video;Linhas convergem
+Reversão Antes Tendência Terminar;Padrões;Cunha;Cunha;0;10;;;Livro/Video;Antecipa fim
+Entrada Antecipada LTF Cunha;Padrões;Cunha;Cunha e LTF;0;10;;;Livro/Video;Timeframe menor
+Tendências Fortes Têm Cunhas Ruins;Padrões;Cunha;Tendência Forte;0;10;;;Livro/Video;Continuam subindo/descendo
+Falha de Cunha;Padrões;Cunha;Definição Cunha;0;10;;;Livro/Video;Não reverte
+Double Top - Definição;Padrões;Reversão - Duplos;Swing High;0;10;;;Livro/Video;2 topos similares
+Double Bottom - Definição;Padrões;Reversão - Duplos;Swing Low;0;10;;;Livro/Video;2 fundos similares
+Duplos - Teste S/R;Padrões;Duplos;Duplos e S/R;0;10;;;Livro/Video;Segunda tentativa
+Por Que Duplos Funcionam;Padrões;Duplos;Definição Duplos;0;10;;;Livro/Video;Trapped traders
+Maioria Reversões São Duplos;Padrões;Duplos;MTR;0;10;;;Livro/Video;Padrão mais comum
+Maioria Topos São Duplos;Padrões;Duplos;Double Top;0;10;;;Livro/Video;Natureza do topo
+Bandeiras em Forma de Duplo;Padrões;Duplos;Duplos e Bandeiras;0;10;;;Livro/Video;Correção como duplo
+Duplos - Movimento Projetado;Padrões;Duplos;Duplos e MM;0;10;;;Livro/Video;Altura como alvo
+Falha de Duplo (comum);Padrões;Duplos;Definição Duplos;0;10;;;Livro/Video;80% falham se contra tendência
+Head and Shoulders - é MTR;Padrões;Reversão - H&S;MTR;0;10;;;Livro/Video;Ombro-Cabeça-Ombro
+H&S - Ombro;Padrões;H&S;H&S;0;10;;;Livro/Video;Primeiro e terceiro swing
+H&S - Cabeça;Padrões;H&S;H&S;0;10;;;Livro/Video;Swing do meio mais alto/baixo
+H&S - Resultado Majoritário (raro);Padrões;H&S;H&S;0;10;;;Livro/Video;Verdadeira reversão
+H&S - Resultado Minoritário (comum);Padrões;H&S;H&S;0;10;;;Livro/Video;Apenas correção
+Reversões em Forma H&S;Padrões;H&S;H&S;0;10;;;Livro/Video;Padrão comum
+O Que Acontece Quando Stop Atingido;Padrões;H&S;H&S e Stop;0;10;;;Livro/Video;Reavaliar
+Xícara e Alça;Padrões;Padrões Adicionais;Nenhum;0;10;;;Livro/Video;Cup and handle
+Padrão Aninhado (Nested);Padrões;Padrões Adicionais;Nenhum;0;10;;;Livro/Video;Padrão dentro padrão
+Reversão Minoritária - Definição;Padrões;Reversão Minoritária;MTR;0;10;;;Livro/Video;Minor trend reversal
+Minoritária - Vencedor 40%;Padrões;Reversão Minoritária;Probabilidade Baixa;0;10;;;Livro/Video;Baixa probabilidade
+Topo/Fundo Duplo Menor;Padrões;Reversão Minoritária;Duplos;0;10;;;Livro/Video;Minor double
+Cunha Fraca;Padrões;Reversão Minoritária;Cunha;0;10;;;Livro/Video;Wedge minor
+H&S como Minoritária;Padrões;Reversão Minoritária;H&S;0;10;;;Livro/Video;Resultado comum
+Reversões Comuns Mas Falham;Padrões;Reversão Minoritária;Regra 80%;0;10;;;Livro/Video;Maioria não funciona
+Iniciantes Adoram Minoritárias;Padrões;Reversão Minoritária;Reversão Minoritária;0;10;;;Livro/Video;E perdem dinheiro
+Buying Climax - Definição;Padrões;Clímax;Nenhum;0;10;;;Livro/Video;Exaustão compradores
+Selling Climax - Definição;Padrões;Clímax;Nenhum;0;10;;;Livro/Video;Exaustão vendedores
+Clímax Consecutivo;Padrões;Clímax;Clímax;0;10;;;Livro/Video;2+ seguidos
+Topos/Fundos em V;Padrões;Formato Clímax;Clímax;0;10;;;Livro/Video;Reversão abrupta
+Reversões Climáticas;Padrões;Formato Clímax;Clímax;0;10;;;Livro/Video;Clímax causa reversão
+Clímax - EG;Padrões;Clímax Gap;EG e Clímax;0;10;;;Livro/Video;Exhaustion gap
+Clímax - MG;Padrões;Clímax Gap;MG e Clímax;0;10;;;Livro/Video;Measuring gap
+Clímax - Empresas de Opções;Padrões;Clímax;Clímax;0;10;;;Livro/Video;Causados por instituições
+Falha de Clímax Consecutivo;Padrões;Clímax;Clímax Consecutivo;0;10;;;Livro/Video;Não reverte
+Clímax Sempre Termina em S/R;Padrões;Clímax;Clímax e S/R;0;10;;;Livro/Video;Para em nível
+Micro Canal pode ser Clímax;Padrões;Clímax;Micro Canal;0;10;;;Livro/Video;Insustentável
+BO Fraco Depois Clímax = TR;Padrões;Clímax;Clímax e BO;0;10;;;Livro/Video;Sem força continuar
+Apostar Contra BO Tardio Pós-Clímax;Padrões;Clímax;Clímax e BO;0;10;;;Livro/Video;Fade
+Clímax - Reversões Majoritárias;Padrões;Clímax;Clímax e MTR;0;10;;;Livro/Video;Grande reversão possível
+Clímax - Reversões Minoritárias;Padrões;Clímax;Clímax e Minor;0;10;;;Livro/Video;Mais comum
+Bull Trap - Definição;Padrões;Armadilhas;Nenhum;0;10;;;Livro/Video;Falso rompimento alta
+Bear Trap - Definição;Padrões;Armadilhas;Nenhum;0;10;;;Livro/Video;Falso rompimento baixa
+Armadilha Segunda Perna (comum);Padrões;Armadilhas;Legs;0;10;;;Livro/Video;TBTL trap
+Armadilha 5 Ticks (Emini);Padrões;Armadilhas;Nenhum;0;10;;;Livro/Video;Específico Emini
+Armadilha 11 Pips (Forex);Padrões;Armadilhas;Nenhum;0;10;;;Livro/Video;Específico Forex
+Armadilha na Abertura;Padrões;Momento Armadilha;Abertura;0;10;;;Livro/Video;Primeira hora
+Armadilha Final Dia;Padrões;Momento Armadilha;Final Dia;0;10;;;Livro/Video;Última hora
+Armadilha Após Clímax;Padrões;Momento Armadilha;Clímax;0;10;;;Livro/Video;Pós-exaustão
+Armadilha Em TR;Padrões;Momento Armadilha;TR;0;10;;;Livro/Video;Falsos BOs
+Armadilha e Exaustão;Padrões;Armadilhas;Armadilha e Clímax;0;10;;;Livro/Video;Trap = sinal exaustão
+Falha de Armadilha (vira tendência);Padrões;Armadilhas;Armadilha;0;10;;;Livro/Video;BO real após trap
+Topos/Fundos Arredondados;Padrões;Outros Padrões;Nenhum;0;10;;;Livro/Video;Geralmente é cunha

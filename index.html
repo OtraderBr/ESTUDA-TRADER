@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Motor Brooks</title>
+
+  <!-- Tailwind CSS (via CDN para facilitar a migração conservando as classes) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            zinc: {
+              850: '#f4f4f5',
+              950: '#fafafa',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Estilos globais extras -->
+  <link rel="stylesheet" href="./css/style.css" />
+
+  <!-- PapaParse para carregar CSV -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body class="bg-zinc-50 text-zinc-900 h-screen overflow-hidden">
+
+  <!-- Carregador inicial -->
+  <div id="loading-screen"
+    class="min-h-screen flex items-center justify-center text-emerald-500 absolute inset-0 z-50 bg-zinc-50">
+    <div class="flex flex-col items-center gap-4">
+      <i data-lucide="loader-2" class="w-8 h-8 animate-spin"></i>
+      <p class="text-zinc-500 font-mono text-sm animate-pulse">Inicializando Motor Brooks...</p>
+    </div>
+  </div>
+
+  <!-- Container Principal do App (Oculto até carregar) -->
+  <div id="app-container" class="flex h-screen w-full" style="display: none;">
+
+    <!-- Sidebar Injetada via JS -->
+    <div id="sidebar-container"></div>
+    <div id="mobile-overlay" class="fixed inset-0 bg-black/50 z-20 hidden md:hidden"></div>
+
+    <!-- Main Content -->
+    <main class="flex-1 min-w-0 h-full relative flex flex-col">
+
+      <!-- Header Principal -->
+      <header
+        class="flex items-center gap-4 px-6 py-4 border-b border-zinc-200 bg-white/50 backdrop-blur-sm sticky top-0 z-10 hidden"
+        id="main-header">
+        <button id="mobile-menu-btn" class="p-2 -ml-2 hover:bg-zinc-100 rounded-md md:hidden">
+          <i data-lucide="menu" class="w-5 h-5 text-zinc-500"></i>
+        </button>
+        <div class="flex-1 flex items-center justify-between">
+          <h1 id="header-brand"
+            class="font-semibold text-zinc-900 leading-tight cursor-pointer hover:text-emerald-600 transition-colors">
+            Motor Brooks
+          </h1>
+          <button id="header-back-btn"
+            class="text-xs font-medium text-zinc-500 hover:text-zinc-900 bg-zinc-100 px-3 py-1.5 rounded-full"
+            style="display: none;">
+            Voltar
+          </button>
+        </div>
+      </header>
+
+      <!-- Área de renderização dinâmica das views -->
+      <div id="view-container" class="flex-1 overflow-y-auto w-full h-full relative">
+        <!-- O conteúdo (Dashboard, Roadmap, Lista, Sessões, Detalhes) será injetado aqui pelo roteador -->
+      </div>
+
+    </main>
+  </div>
+
+  <!-- Módulo Principal da Aplicação -->
+  <script type="module" src="./js/app.js"></script>
+
+</body>
+
+</html>
