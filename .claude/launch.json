@@ -1,0 +1,17 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "Motor Brooks (Python)",
+      "runtimeExecutable": "python",
+      "runtimeArgs": ["-m", "http.server", "5500", "--directory", "C:\\Users\\Meu Computador\\Desktop\\Projetos\\GITHUB\\PESSOAL\\ESTUDA-TRADER"],
+      "port": 5500
+    },
+    {
+      "name": "Motor Brooks (Node/npx serve)",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["serve", "C:\\Users\\Meu Computador\\Desktop\\Projetos\\GITHUB\\PESSOAL\\ESTUDA-TRADER", "-p", "5500", "--no-clipboard"],
+      "port": 5500
+    }
+  ]
+}

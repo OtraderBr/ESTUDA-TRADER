@@ -1,0 +1,1676 @@
+ARVORE DE ESCOLHA - PRICE ACTION
+	[CAMINHO A] MODO BREAKOUT
+		Identificação do Breakout
+			VOCÊ ESTÁ EM BREAKOUT SE:
+			3+ barras grandes mesma cor consecutivas
+			Barras fechando na extremidade (corpos cheios)
+			Gaps abertos entre barras
+			Preço muito longe da EMA20 (>10pts Emini / >50pips Forex)
+			Mínima sobreposição entre barras
+			Poucos pavios contrários
+		Qual é a Qualidade do Breakout?
+			Breakout Bem Sucedido (Strong Breakout)
+				IDENTIFICAÇÃO
+					Gap de corpo na barra
+					Fechamento forte (>75% no extremo)
+					Follow-through imediato
+					Sem retração em 3 barras seguintes
+				PROBABILIDADE: 60-70% continua
+				ENTRADA
+					Market Order na barra atual (se primeira)
+					Buy/Sell the Close (BTC/STC)
+					Stop Order no High+1 / Low-1
+				STOP LOSS
+					Swing Point anterior (HL para compra / LH para venda)
+					OU 2x tamanho da barra (Catastrophe Stop)
+				GESTÃO
+					REGRA: NÃO espere pullback
+					REGRA: NÃO opere contra
+					MODO: Swing Trade
+				ALVOS
+					Alvo 1: Measured Move
+					Alvo 2: Próximo S/R em HTF
+					Trailing: Abaixo de cada novo HL / Acima de cada novo LH
+				EXCEÇÕES
+					É 3ª ou 4ª Perna Consecutiva?
+						SIM → Possível CLÍMAX (vá para sub-item Clímax)
+					Testando S/R Extremo HTF?
+						SIM → Possível VACUUM (vá para sub-item Vacuum)
+			Clímax / Exaustão (Buying/Selling Climax)
+				IDENTIFICAÇÃO
+					Barra gigante (maior das últimas 50)
+					Aceleração vertical
+					3ª ou 4ª perna de impulso (Leg 4)
+					Preço muito distante EMA (>15pts Emini)
+				Tipo de Gap no Clímax?
+					Exhaustion Gap (EG)
+						Gap NÃO preenchido imediatamente
+						Será máxima/mínima do movimento
+						AÇÃO: Realize lucro total
+						AÇÃO: Aguarde 10 barras (TBTL)
+					Measuring Gap (MG)
+						Gap seguido de continuação
+						Projeta movimento igual
+						AÇÃO: Se dentro, mantenha
+						AÇÃO: Se fora, aguarde H2/L2
+				Micro Canal Extremo?
+					SIM - 8+ Barras Sem Romper Mínima/Máxima
+						DIAGNÓSTICO: Força extrema OU clímax
+						AÇÃO: Aguarde primeira barra que rompe padrão
+						Se Reversão Seguinte → Era clímax
+						Se Retoma com Força → Era breakout extremo
+				VOCÊ ESTÁ DENTRO DA POSIÇÃO?
+					SIM - É Minha 3ª ou 4ª Perna?
+						SIM → REALIZE TUDO (scale 100%)
+						NÃO → Scale out 50-75%, move stop breakeven
+					NÃO - Está Fora
+						REGRA: NÃO entre a favor (última barra da festa)
+						AÇÃO: Aguarde TBTL (10 barras + 2 legs)
+						Depois Procure Setup de Retomada (H2/L2) OU Reversão (MTR)
+				QUER OPERAR CONTRA O CLÍMAX?
+					APENAS TRADERS EXPERIENTES
+					AGUARDE: Barra de reversão FORTE
+					STOP: 1 tick além do extremo
+					ALVO: EMA20 (conservador) ou 50% (agressivo)
+					RISCO: Alto - pode fazer Push 4
+					MATEMÁTICA: Precisa R:R 1:2 mínimo
+				Clímax Consecutivo?
+					PADRÃO: Primeiro clímax → Correção 10+ → Segundo clímax
+					REGRA: Segundo clímax GERALMENTE FALHA
+					SETUP: Venda/compra na falha do segundo
+					STOP: Além do segundo clímax
+					ALVO: Fundo/topo entre clímax + MM
+			Breakout Fraco (Weak/Failed Breakout)
+				IDENTIFICAÇÃO
+					Pavios grandes (>30% da barra)
+					Doji na barra ou logo após
+					Sobreposição imediata (50%+)
+					Sem gap de corpo
+					Fechamento no meio
+				PROBABILIDADE: 80% de falha (Regra dos 80%)
+				DIAGNÓSTICO
+					Provável Canal Amplo iniciando
+					OU Trading Range iniciando
+					OU Armadilha (Bull/Bear Trap)
+				VOCÊ ENTROU NO BREAKOUT?
+					SIM
+						Próxima Barra é Outside Contra Você?
+							SIM → SAIA IMEDIATAMENTE (market order)
+						Próxima Barra é Doji?
+							SIM → Saia breakeven OU aguarde 1 barra
+						Barra a Favor Pequena?
+							SIM → Move stop breakeven, aguarde
+					NÃO - Está Fora
+						AÇÃO: Aguarde falha completar
+						SETUP: FADE (apostar contra breakout)
+							Espere retornar para dentro do range
+							Barra de reversão forte
+							Entrada: Stop 1 tick além barra reversão
+							Stop: Além do extremo do breakout falhado
+							Alvo: Meio do range anterior
+						OU AÇÃO: Aguarde Pullback Profundo (50% ou EMA)
+							Setup H2/L2 na direção original
+							Confirme com barra sinal melhor
+				REGRA ESPECÍFICA
+					Breakout fraco + Outro breakout fraco = Trading Range de 10-20 barras
+					AÇÃO: Mude para modo BLSHS → VÁ PARA [TRADING RANGE]
+			Vacuum Effect (Efeito Vácuo)
+				IDENTIFICAÇÃO
+					Aceleração repentina em direção a S/R forte visível
+					Barras grandes súbitas sem razão aparente
+					Geralmente após lateralização ou canal
+				CAUSA
+					Preço sendo "sugado" para testar nível
+					Stops acumulados no nível
+				AÇÃO
+					REGRA: NÃO ENTRE no rompimento durante vácuo
+					É movimento de exaustão disfarçado
+					AGUARDE: Teste do nível S/R
+				SETUP: Reversão no Teste
+					Barra de sinal: Reversão com pavio longo no S/R
+					Entrada: Stop contra movimento do vácuo
+					Alvo: Retorno ao ponto origem do vácuo
+				EXCEÇÃO
+					Teste do S/R Bem Sucedido (rompe com força)?
+						SIM → Era breakout legítimo, não vácuo
+						AÇÃO: Aguarde pullback para entrar a favor
+	[CAMINHO B] MODO CANAL
+		Identificação do Canal
+			VOCÊ ESTÁ EM CANAL SE:
+			Preço tem direção clara (topos/fundos ascendentes ou descendentes)
+			Mas há correções visíveis (não é micro canal)
+			Possível traçar 2 linhas paralelas contendo movimento
+			Preço respeita essas linhas (testa e respeita)
+		O Canal é Estreito ou Amplo?
+			Canal Estreito (Tight Channel)
+				IDENTIFICAÇÃO
+					Higher Highs e Higher Lows consistentes (alta)
+					OU Lower Highs e Lower Lows consistentes (baixa)
+					Correções duram apenas 1-3 barras
+					Correções NÃO tocam ou mal tocam EMA20
+					Preço consistentemente acima/abaixo EMA20
+				Canal Estreito de ALTA
+					CONTEXTO PSICOLÓGICO
+						Compradores dominam totalmente
+						Vendedores desistiram ou emboscados
+						Cada pullback comprado imediatamente
+					CONTAGEM DE BARRAS
+						H1/L1: Primeira correção → ENTRE AQUI (melhor R:R)
+						H2/L2: Segunda correção → Ainda ok
+						H3/L3: Terceira correção → Cuidado (pode ser wedge)
+						H4/L4: Quarta correção → ATENÇÃO (provável exaustão)
+					SETUP 1: High 1 (H1)
+						Primeira pullback após breakout ou lateral
+						Qualidade: Melhor setup do canal
+						Gatilho: Stop 1 tick acima máxima barra sinal
+						OU: Buy the Close (BTC) se fecha forte
+						Stop: Abaixo mínima barra sinal OU último HL
+						Alvo: Measured Move ou próximo S/R
+					SETUP 2: Micro Canal
+						5+ barras sem romper mínima anterior
+						Sinal: Primeira barra rompe mínima = Oportunidade
+						OPÇÃO A: Limit Order na mínima (buy the low)
+						OPÇÃO B: Stop Order se retoma (confirmação)
+						Stop: Muito apertado (abaixo barra ou 2 barras)
+					SETUP 3: Buy The Close (BTC)
+						Quando: Cada barra fecha acima anterior
+						Entrada: Order 1 tick acima fechamento
+						Vantagem: Confirmação máxima
+						Desvantagem: Pior preço
+					REGRAS ESPECÍFICAS
+						REGRA 1: Primeira reversão SEMPRE FALHA (80%)
+							Se barra forte baixa aparecer, NÃO venda
+							Use reversão falhada como sinal COMPRA (segunda entrada)
+						REGRA 2: NÃO opere contra até sinais exaustão
+							Linha canal rompida
+							3 pushes (wedge)
+							Clímax
+						REGRA 3: Evolução Natural
+							Canal estreito → Acelera micro canal (clímax) → Correção profunda
+							OU → Amplia para canal amplo
+							OU → Lateraliza (TR)
+					GESTÃO
+						Modo: Swing Trading prioritário
+						Stop: Apertado inicialmente (abaixo barra sinal)
+						Trailing: Move stop abaixo cada novo HL após confirmação
+						Realize Parcial: Teste linha superior canal
+						Realize Total: Measured Move ou wedge/clímax
+					SINAIS DE TÉRMINO
+						Rompe linha inferior com força
+						Faz 3 pushes para cima (wedge)
+						Barra de clímax
+						Canal amplia (mais sobreposição)
+				Canal Estreito de BAIXA
+					APLICAR TODAS REGRAS DE ALTA INVERTIDAS
+					Setups: L1/L2/L3/L4
+					Sell The Close (STC)
+					Sell The High em micro canal
+			Canal Amplo (Broad Channel)
+				IDENTIFICAÇÃO
+					Topos/fundos ascendentes mas muita sobreposição
+					Correções profundas (50%+ da perna anterior)
+					Preço toca ou atravessa EMA20 frequentemente
+					Barras alternam cores
+					Difícil traçar linhas limpas
+				Canal Amplo de ALTA
+					CONTEXTO PSICOLÓGICO
+						Compradores e vendedores disputando
+						Compradores vencem mas vendedores conseguem rallies
+						"Trading Range Inclinado"
+						Always In Long mas com dúvida constante
+					CARACTERÍSTICAS
+						Contém setups de COMPRA E VENDA
+						Mínimas podem ser Major OU Minor
+						Às vezes modo parece Always In Short (correções)
+						Reversões comuns mas FALHAM
+						Diagnóstico prematuro comum
+					ARMADILHA: Second Leg Trap
+						Após nova máxima → Correção profunda
+						Sobe novamente mas FALHA (Lower High)
+						Parece MTR
+						Mas retoma e faz nova máxima → Armadilha vendedores
+						Como Evitar: Aguarde 3ª perna ou rompimento claro linha canal
+					SETUPS DE COMPRA (A Favor)
+						Setup 1: H2/L2 (Segunda Entrada)
+							Correção em duas pernas (ABC) até 50% ou EMA20
+							Gatilho: Stop 1 tick acima máxima barra sinal
+							Stop: Abaixo fundo correção OU Swing Point anterior
+							Vantagem: Melhor R:R que H1 em canal amplo
+						Setup 2: H3/L3 (Terceira Entrada - Wedge)
+							Após 2 tentativas reversão falhadas
+							Geralmente forma wedge baixista pequena
+							Gatilho: Rompimento da wedge para cima
+							Qualidade: Excelente se combina suporte HTF
+						Setup 3: Zona de Compra (Lower Half)
+							Preço na metade inferior ou terço inferior canal
+							Procure: Duplo fundo, wedge baixista, Spring
+							Entrada: Após barra reversão alta forte
+							Stop: Largo (abaixo fundo do canal)
+						Setup 4: 50% Pullback
+							Correção atinge exatamente 50% perna anterior
+							Aguarde: Barra reversão forte
+							Entrada: Stop acima dessa barra
+							Lógica: S/R matemático
+					SETUPS DE VENDA (Contra - Scalp - Avançados)
+						Setup 1: Topo Canal + Wedge
+							Preço terço superior + 3 pushes
+							Gatilho: Barra reversão baixa forte
+							Stop: 1-2 ticks acima topo wedge
+							Alvo: EMA20 ou 50% canal (SCALP)
+							Risco: Alto (pode ser H1 nova perna)
+						Setup 2: Duplo Topo no Topo Canal
+							Teste máxima anterior terço superior
+							Falha: Não faz nova máxima (H2 falha)
+							Gatilho: Stop abaixo barra reversão
+							Alvo: Meio do canal
+							ATENÇÃO: 60% faz H3 e retoma → Stop disciplinado
+					GESTÃO NO CANAL AMPLO
+						REGRA 1: Stops LARGOS obrigatórios
+							Não use stop apertado
+							Stop além Swing Point claro (Major Low/High)
+						REGRA 2: Reduza tamanho posição
+							Compense stop largo com posição menor
+							Mantenha risco capital constante
+						REGRA 3: Opere menor ou escale
+							Entre 50% no setup inicial
+							Adicione 50% se confirmar (novo HL)
+						REGRA 4: Modo mental "BLSHS dentro canal"
+							Buy Low (zona inferior)
+							Sell High (zona superior - scalp)
+							Scalp (parciais em cada S/R menor)
+						REGRA 5: Realize lucros parcialmente
+							50% no teste linha superior
+							50% no Measured Move ou wedge
+					EVOLUÇÃO DO CANAL AMPLO
+						Natural: Vira Trading Range grande eventualmente
+						Típico: Dura vários dias (gráfico diário)
+						HTF: Geralmente é canal estreito em TF superior
+						Término: Breakout forte OU reversão major após múltiplas wedges
+				Canal Amplo de BAIXA
+					APLICAR TODAS REGRAS DE ALTA INVERTIDAS
+					Setups: Venda metade superior, L2/L3, Duplo topo rallies, Wedges altistas
+		Decisão: Canal ou Trading Range?
+			PERGUNTA: A direção ainda é clara ou virou confusão total?
+			É CANAL SE
+				Ainda identifico direção dominante (HL OU LH)
+				Correções são proporcionais
+				EMA tem inclinação clara
+				AÇÃO: Continue operando como CANAL
+			É TRADING RANGE SE
+				Perdeu direção clara
+				Preço cruza EMA constantemente ambos lados
+				Não consigo traçar linhas canal consistentes
+				AÇÃO: VÁ PARA [TRADING RANGE]
+	[CAMINHO C] MODO TRADING RANGE
+		Identificação do Trading Range
+			VOCÊ ESTÁ EM TR SE:
+			Preço oscila entre dois níveis horizontais claros
+			Barras alternam cores constantemente
+			Preço cruza EMA20 repetidamente ambos lados
+			Compradores compram embaixo, vendedores vendem em cima
+			Sensação de confusão e frustração
+			Rompimentos falham e retornam (80%)
+			MENTALIDADE OBRIGATÓRIA: BLSHS (Buy Low, Sell High, Scalp)
+		A Lateralidade é Ampla ou Estreita?
+			Lateralidade Ampla (Broad Trading Range)
+				IDENTIFICAÇÃO
+					Range altura 20+ pontos (Emini) / 100+ pips (Forex)
+					Barras grandes ambas direções
+					Swing Points claros (Major Highs/Lows)
+					Dura 20-50+ barras
+				ESTRUTURA INTERNA
+					Contém bull flags E bear flags
+					Contém canais alta E baixa internos
+					"Toda TR contém canal alta e canal baixa"
+				Onde Está o Preço no Range?
+					ZONA 1: Terço Superior (Zona de Venda)
+						CARACTERÍSTICAS
+							Preço no topo do range
+							Compradores realizando lucro
+							Vendedores agressivos
+						Setups de Venda
+							Setup 1: Duplo Topo (Double Top)
+								Identificação: Teste máxima anterior do range
+								Qualidade Melhor: Segundo topo FALHA (não atinge primeiro)
+								Qualidade Melhor: Forma Lower High
+								Gatilho: Stop 1 tick abaixo barra reversão
+								OU: Limit order acima das barras (scale in)
+								Stop: 1-2 ticks acima topo do range
+								Alvo: Meio range (escalar) + fundo range
+								Matemática: MM = altura entre topos projetado baixo
+							Setup 2: Wedge Altista no Topo
+								Identificação: 3 pushes para cima terço superior
+								Geralmente overshoot linha canal rally
+								Gatilho: Rompimento linha inferior wedge
+								Stop: Acima topo wedge
+								Alvo: EMA20 + Meio range
+							Setup 3: Falha de Breakout (Failed Bull BO)
+								Identificação: Rompe topo TR mas retorna imediatamente
+								Barra sinal: Outside bar ou pavio grande em cima
+								Regra 80%: 80% breakouts TR falham
+								Gatilho: Stop abaixo barra reversão
+								Stop: Acima pico breakout falhado
+								Alvo: Retorno dentro + meio range
+							Setup 4: Segunda Entrada Venda (Second Entry Short)
+								Após primeiro sinal venda falhar
+								Preço tenta nova máxima mas falha
+								Geralmente forma H2
+								Gatilho: Stop abaixo barra sinal
+								Vantagem: Melhor que primeira (vendedores emboscaram)
+							Setup 5: Barra Reversão de Baixa
+								Pavio grande em cima
+								Corpo de baixa
+								Fechamento terço inferior barra
+								Gatilho: Stop 1 tick abaixo
+						REGRAS ZONA SUPERIOR
+							NÃO COMPRE breakouts de alta (80% falham)
+							APOSTE CONTRA rompimentos
+							Use limit orders para escalar posição
+							Stops mais apertados (2-3pts / 10-20pips)
+					ZONA 2: Terço Inferior (Zona de Compra)
+						APLICAR TODOS SETUPS ZONA 1 INVERTIDOS
+						Setups de Compra
+							Duplo Fundo (Double Bottom)
+							Wedge Baixista no Fundo
+							Falha Breakout Baixa (Spring / Bear Trap)
+							Segunda Entrada Compra (Second Entry Long)
+							Barra Reversão de Alta
+						REGRA 80% INVERTIDA
+							80% breakouts de baixa FALHAM
+							Compre contra breakouts baixa no fundo TR
+					ZONA 3: Meio do Range (Dead Zone)
+						REGRA ABSOLUTA: NÃO OPERE
+						RAZÕES
+							Probabilidade 50/50
+							Sem vantagem estatística
+							Ambos lados têm argumentos
+							Alto risco whipsaw
+						EXCEÇÃO (Apenas Muito Avançados)
+							Range MUITO amplo (50+ pts / 200+ pips)
+							Forma mini-structures internas
+							Scalp apenas mini-structures
+							NÃO RECOMENDADO INICIANTES
+					ZONA 4: Metade Superior
+						Estado: "Neither fish nor fowl"
+						VIÉS: Venda (mas aguarde topo)
+						OU: Aguarde meio para definir direção
+					ZONA 5: Metade Inferior
+						VIÉS: Compra (mas aguarde fundo)
+						OU: Aguarde meio para definir direção
+			Lateralidade Estreita (Tight Trading Range - TTR)
+				IDENTIFICAÇÃO
+					6+ barras extremamente sobrepostas
+					Range altura pequena (3-5pts Emini / 15-30pips Forex)
+					Pavios grandes em todas barras
+					Corpos pequenos
+					Barras tipo Doji consecutivas
+					Sensação "barb wire" (arame farpado)
+				CONTEXTO
+					Compressão = Explosão iminente
+					Ambos lados acumulando posições
+					Aguardando catalisador
+				Tipos de TTR
+					TTR na Abertura
+						Comum primeiros 10-20 min
+						Mercado "probing" ambos lados
+						Breakout define direção dia (20%)
+						OU evolui para TR amplo (80%)
+					TTR Após Clímax
+						Pausa natural após movimento forte
+						Consolidação antes continuação/reversão
+						Geralmente forma bandeira (flag)
+					TTR Final do Dia
+						Após 12:45 PST comum
+						Breakout final últimos 20-30 min
+						Geralmente pequeno e rápido
+				Padrões Dentro do TTR
+					ii (Inside-Inside)
+						Duas inside bars consecutivas
+						Compressão extrema
+						Breakout geralmente forte
+						Setup: Entre no breakout, não antes
+					ioi (Inside-Outside-Inside)
+						Padrão indecisão
+						Outside bar não resolve
+						Volta para inside
+						Age como bandeira final
+						Breakout após ioi costuma ser legítimo
+				OPERANDO O TTR
+					REGRA 1: NÃO OPERE DENTRO DO TTR
+						Scalpers perdem spread/comissões
+						Whipsaw constante
+						Sem edge
+					REGRA 2: OPERE O BREAKOUT
+						Breakout Para Cima
+							Aguarde: Barra rompe máxima TTR com corpo
+							Gatilho: Stop 1 tick acima dessa barra
+							Stop: Abaixo TTR (low do TTR)
+							Alvo: Altura TTR projetada para cima (MM)
+						Breakout Para Baixo
+							APLICAR PROCESSO INVERTIDO
+					REGRA 3: FADE SE BREAKOUT FALHAR
+						Breakout não tem follow-through?
+						Retorna dentro TTR em 1-3 barras?
+						Forma outside bar direção contrária?
+						AÇÃO: Entre apostando retorno
+						Stop: Além pico/fundo breakout falhado
+						Alvo: Lado oposto TTR
+		Modo do Trading Range: BOM ou LOM?
+			Breakout Mode (BOM)
+				QUANDO TR ESTÁ EM BOM
+					TR acabou se formar (menos 10 barras)
+					Recente breakout tendência que falhou
+					Preço testando ambos lados rapidamente
+					Barras grandes tentando breakouts
+					Muita volatilidade
+				OPERANDO BOM
+					Aguarde breakout legítimo
+					NÃO opere reversões dentro range ainda
+					NÃO use limit orders ainda
+					Foque em stop orders quando breakout ocorrer
+			Limit Order Market (LOM)
+				QUANDO TR ESTÁ EM LOM
+					TR estabelecido (15+ barras)
+					Topo e fundo claros e respeitados
+					Cada teste extremo reverte
+					Barras menores, mais sobreposição
+					Volatilidade diminuiu
+				OPERANDO LOM
+					Use limit orders nas extremidades
+					Compre abaixo barras no fundo
+					Venda acima barras no topo
+					Scale in se necessário
+					Aguarde preço vir até você
+		Comportamento do TR (Psicologia)
+			Decepção Constante
+				Parece romper → Falha
+				Parece reversão → Retorna
+				Setup perfeito → Stop atingido
+			Lógica Invertida
+				Bons setups tendência falham
+				Setups "ruins" funcionam
+				Razão: Mercado equilibrado
+			Aposte Contra, Não A Favor
+				Breakout forte alta → VENDA
+				Breakout forte baixa → COMPRA
+				Regra dos 80%
+		Breakout do Trading Range
+			Tipo 1: Breakout Verdadeiro (RARO - 20%)
+				CARACTERÍSTICAS
+					Barra ENORME (2-3x maior que barras TR)
+					Gap de corpo
+					Fechamento na extremidade
+					Follow-through imediato
+					Pode ter catalisador (notícia/horário)
+				AÇÃO
+					Entre a favor imediatamente
+					NÃO opere contra (dessa vez é real)
+					VÁ PARA [BREAKOUT]
+			Tipo 2: Breakout Falso (COMUM - 80%)
+				CARACTERÍSTICAS
+					Barra normal ou pequena
+					Pavios grandes
+					Sem gap
+					Próxima barra hesita ou reverte
+					Retorna dentro TR nas próximas barras
+				AÇÃO: FADE
+					Setup: Failed Breakout Fade
+						Para Failed Bull Breakout
+							Identificação
+							Rompeu topo TR
+							Retornou dentro (fechou abaixo topo)
+							Forma outside bar ou pavio grande
+							Gatilho
+							Stop 1 tick abaixo barra retorno
+							OU Limit order se voltar testar topo
+							Stop
+							1-2 ticks acima pico breakout
+							Se não pequeno, não vale
+							Alvo
+							Alvo 1: Meio range (scale 50%)
+							Alvo 2: Fundo range
+							Lógica
+							Compradores TRAPPED
+							Vendedores emboscaram
+							80% probability retorno completo
+						Para Failed Bear Breakout (Spring)
+							APLICAR PROCESSO INVERTIDO
+							Altamente confiável fundo TR
+							Compradores emboscaram vendedores
+		Sinais Antecipados de TR
+			COMO SABER QUE ESTÁ ENTRANDO EM TR:
+			Após Tendência Forte
+				Primeira correção profunda (50%+)
+				Segunda perna não faz nova máxima/mínima
+				Terceira tentativa também falha
+			Sinais de Indecisão
+				3+ barras sobrepostas consecutivas
+				Dojis frequentes
+				Barras alternando cores
+			Comportamento S/R
+				Suporte respeitado é violado e retorna
+				Resistência idem
+				"Failed second signal"
+			Linha de Tendência
+				Rompida mas retorna
+				Testada várias vezes ambos lados
+			QUANDO VER ESSES SINAIS
+				Prepare-se: Mudança Swing → Scalp
+				Reduza expectativas alvos
+				Aumente stop loss (mais espaço)
+				Reduza frequência trades (aguarde extremidades)
+		TR como Bandeira (HTF Context)
+			CONCEITO: Qualquer TR pode ser consolidação dentro tendência maior
+			Olhe o HTF
+				Qual era tendência antes?
+				Onde estamos no HTF? (Começo/meio/fim tendência)
+				TR está na direção HTF ou contra?
+			Bull Flag (TR dentro tendência alta HTF)
+				Probabilidade maior breakout para cima
+				Mas ainda opere TR como TR no CTF
+				Quando romper cima, tamanho maior posição
+			Bear Flag (TR dentro tendência baixa HTF)
+				APLICAR INVERTIDO
+	[CAMINHO D] REVERSÕES DE TENDÊNCIA
+		Conceito de Reversão
+			O QUE É MTR (Major Trend Reversal)?
+			Mudança de Always In Direction
+			De Always In Long → Always In Short (ou vice-versa)
+			Padrão MAIS IMPORTANTE do Price Action
+			Mas também mais difícil e menos provável
+			PROBABILIDADE: 80% tentativas reversão FALHAM / 20% resultam nova tendência
+		Todos os Pré-Requisitos Estão Presentes?
+			PARA CONSIDERAR OPERAR MTR, TODOS DEVEM ESTAR PRESENTES:
+			Pré-Requisito 1: Quebra Linha de Tendência
+				Linha tendência clara existe?
+					SIM
+						Rompida com convicção (corpo, não pavio)?
+							SIM
+								Preço fechou além da linha?
+									SIM → Pré-requisito 1 OK
+									NÃO → NÃO é MTR
+							NÃO → NÃO é MTR
+					NÃO → NÃO é MTR
+			Pré-Requisito 2: Teste do Extremo
+				Em Tendência de Alta
+					Após romper LTA, voltou testar topo anterior?
+						SIM → Pré-requisito 2 OK
+						NÃO → NÃO é MTR (ainda)
+				Em Tendência de Baixa
+					Após romper LTB, voltou testar fundo anterior?
+						SIM → Pré-requisito 2 OK
+						NÃO → NÃO é MTR (ainda)
+			Pré-Requisito 3: Falha em Fazer Nova Máxima/Mínima
+				Topo de Alta
+					Fez Lower High (não conseguiu nova máxima)?
+						SIM → Pré-requisito 3 OK
+						NÃO → NÃO é MTR
+				Fundo de Baixa
+					Fez Higher Low (não conseguiu nova mínima)?
+						SIM → Pré-requisito 3 OK
+						NÃO → NÃO é MTR
+			Pré-Requisito 4: MAG (Moving Average Gap)
+				OPCIONAL mas comum
+				Gap entre preço e EMA20 na reversão?
+					SIM → Indica força movimento reversão
+					NÃO → Ainda pode ser MTR
+		TODOS Pré-Requisitos OK?
+			SIM - Configuração MTR Válida
+				Qual Tipo de MTR?
+					MTR de Topo (Lower High)
+					MTR de Fundo (Higher Low)
+			NÃO - Algum Pré-Requisito Falta
+				NÃO OPERE COMO MTR
+				Pode ser apenas correção profunda
+				Aguarde desenvolvimento
+		MTR de TOPO (Lower High MTR)
+			Contexto Antes
+				Estava em tendência alta (HH, HL)
+				Canal de alta ou série impulsos
+				Preço acima EMA20
+			Estrutura da MTR
+				Fase 1: Topo
+					Máxima histórica ou significativa
+					Pode ser clímax
+					Compradores exaustos
+				Fase 2: Correção Profunda
+					Rompe linha tendência alta
+					Correção 40-60%+ (não normal)
+					Pode formar canal baixa temporário
+					Vendedores mostrando força primeira vez
+				Fase 3: Rally de Reteste
+					Compradores tentam retomar
+					Preço volta direção topo anterior
+					Cria expectativa continuação alta
+				Fase 4: Falha (LH)
+					Rally falha em fazer nova máxima
+					Forma Lower High
+					ESTE É O SINAL DE ENTRADA
+			Setups Específicos MTR Topo
+				Setup 1: Duplo Topo (Double Top)
+					Topo 1: Máxima anterior
+					Topo 2: Teste falha (não atinge/toca T1)
+					Qualidade Melhor: T2 não chega em T1 (LH óbvio)
+					Gatilho: Stop abaixo barra reversão T2
+					Stop: Acima T2 (ou T1 se muito perto)
+					Alvos
+						Mínimo: Measured Move (distância entre topos)
+						Objetivo: Fundo última correção
+						Final: Início tendência alta
+				Setup 2: Wedge Altista (Rising Wedge)
+					3 pushes para cima formando wedge
+					Cada push faz nova máxima mas menos força
+					Linhas convergentes
+					Geralmente overshoot 3ª perna
+					Gatilho: Rompimento linha inferior wedge
+					Stop: Acima topo wedge (Push 3)
+					Alvo: Início wedge + MM
+				Setup 3: Head and Shoulders (OHO)
+					Ombro Esquerdo: Máxima inicial
+					Cabeça: Nova máxima maior
+					Ombro Direito: Máxima menor (LH)
+					Linha pescoço: Conecta mínimos entre ombros
+					Gatilho: Rompimento linha pescoço
+					Stop: Acima Ombro Direito
+					Alvo: Altura cabeça projetada abaixo pescoço
+					IMPORTANTE: Maioria OHO são Minor, não Major
+				Setup 4: Final Bear Flag Inside Bull Trend
+					Após máxima, faz bandeira baixa pequena
+					Geralmente com ii ou ioi
+					Bandeira rasa (não corrige muito)
+					Parece continuar alta
+					Mas rompe para baixo da bandeira
+					Gatilho: Stop abaixo fundo bandeira
+					"Final flag" = última antes reverter
+		MTR de FUNDO (Higher Low MTR)
+			APLICAR TODAS REGRAS MTR TOPO INVERTIDAS
+			Estrutura
+				Fase 1: Fundo (mínima)
+				Fase 2: Rally profundo (rompe LTB)
+				Fase 3: Reteste de baixa
+				Fase 4: Falha em fazer nova mínima (HL)
+			Setups
+				Duplo Fundo (Double Bottom)
+				Wedge Baixista (Falling Wedge)
+				Inverted Head and Shoulders
+				Final Bull Flag Inside Bear Trend
+		MTR vs Minor Reversal
+			MAJOR TREND REVERSAL (MTR)
+				Muda Always In Direction completamente
+				Inicia nova tendência 20+ barras ou múltiplos dias
+				Viola Swing Points significativos
+				Todos pré-requisitos presentes
+			MINOR TREND REVERSAL
+				Apenas correção profunda dentro tendência maior
+				NÃO muda Always In Direction
+				Pode parecer MTR mas falha
+				Retoma tendência original após 10-20 barras
+			Como Diferenciar EM TEMPO REAL?
+				IMPOSSÍVEL com 100% certeza
+				Por isso MTR tem probabilidade 40-50% apenas
+				Por isso exige R:R de 1:2 ou 1:3 mínimo
+				Sinais de MINOR (Cuidado)
+					Estrutura não clara
+					Pré-requisitos fracos/ausentes
+					Ainda dentro canal tendência original
+					HTF ainda mostra tendência forte
+				Sinais de MAJOR (Confiança)
+					Estrutura perfeita (todos pré-requisitos)
+					Canal original claramente rompido
+					HTF também mostra exaustão
+					Clímax recente
+					Multiple legs já ocorreram (H4/L4)
+		Matemática da MTR
+			PROBABILIDADE
+				Sucesso: 40-50% (melhor configuração)
+				Falha: 50-60%
+			RISCO:RETORNO MÍNIMO
+				1:2 (arriscar X para ganhar 2X)
+				Idealmente 1:3 ou melhor
+			EQUAÇÃO DO TRADER
+				0.4 × 2R - 0.6 × 1R = +0.2R (positivo mas pequeno)
+				Por isso difícil ganhar dinheiro com MTR
+				Precisa configuração perfeita + disciplina stop
+			QUANDO NÃO OPERAR MTR
+				Pré-requisitos incompletos
+				Tendência ainda muito forte
+				Você do lado perdedor (revenge trading)
+				Setup não perfeito
+		Cunha (Wedge) - Padrão de Exaustão
+			CONCEITO
+				3 impulsos (pushes) em uma direção
+				Cada impulso mais fraco que anterior
+				Linhas convergentes
+				Sinal exaustão compradores/vendedores
+			Tipo de Cunha?
+				Cunha Altista (Rising Wedge / Bull Wedge)
+				Cunha Baixista (Falling Wedge / Bear Wedge)
+		Cunha ALTISTA (Rising Wedge)
+			IDENTIFICAÇÃO
+				3 topos ascendentes (HH HH HH)
+				3 fundos ascendentes (HL HL HL)
+				Correções entre pushes claras
+				Linha superior e inferior convergem
+			Como Traçar
+				Identifique 3 topos (Push 1, 2, 3)
+				Conecte fundos correções (linha inferior)
+				Conecte topos (linha superior)
+				Linhas devem convergir (não paralelas)
+			Qualidade da Wedge
+				Boa Wedge (Provável Reversão)
+					Em tendência FRACA ou final tendência longa
+					Push 3 tem overshoot (excede linha superior)
+					Barras Push 3 são climáticas
+					Contexto HTF favorece reversão
+				Má Wedge (NÃO Reverte)
+					Em tendência FORTE inicial
+					Push 3 é pequeno (undershoot)
+					Sem sinais exaustão
+					HTF ainda muito forte
+					Resultado: Apenas pausa, não reversão
+					Evolui para canal amplo ou nova perna
+			Variações de Wedge
+				Wedge Clássica
+					3 pushes claramente separados
+					Correções proporcionais
+					Estrutura limpa
+				Wedge Parabólica
+					Push 3 climático (aceleração vertical)
+					Sinal exaustão extrema
+					Alta probabilidade reversão sharp
+				Nested Wedge (Aninhada)
+					Wedge menor dentro wedge maior
+					Push 3 wedge maior contém wedge 3 pushes
+					Exaustão múltiplos níveis
+					Reversão pode ser muito forte
+			Operando a Wedge
+				Entrada
+					Opção 1: Agressiva
+						Na barra reversão do Push 3
+						Barra com pavio longo contra wedge
+						Fechamento contra direção wedge
+						Stop acima/abaixo extremo Push 3
+					Opção 2: Conservadora
+						Aguarde rompimento linha inferior
+						Confirma reversão acontecendo
+						Stop ainda extremo Push 3
+						Vantagem: Confirmação
+						Desvantagem: Pior preço
+				Stop
+					1-2 ticks além extremo Push 3
+					Se muito largo (wedge grande), use swing point anterior
+				Alvos
+					Alvo 1 (Mínimo): Início wedge (onde Push 1 começou)
+					Alvo 2 (Measured Move): Altura wedge projetada direção oposta
+					Alvo 3 (Final): Se reversão major, até início tendência inteira
+				Gestão
+					Scale out 50% no início wedge
+					Trailing stop: Abaixo/acima cada nova correção na reversão
+					Se formar nova wedge direção oposta = Retomada original
+				Falha da Wedge
+					Após Push 3, faz Push 4 (quarta perna)?
+						SIM
+							Não é mais wedge, é canal
+							SAIA da posição reversão
+							Possível retomada tendência
+		Cunha BAIXISTA (Falling Wedge)
+			APLICAR TODAS REGRAS CUNHA ALTISTA INVERTIDAS
+			3 fundos descendentes (LL LL LL)
+			Reversão para cima esperada
+			Setups, gestão, alvos invertidos
+	APÊNDICE: GLOSSÁRIO RÁPIDO
+		Termos Essenciais
+			NOTA: Mantenha esta referência à mão durante operação
+			Always In: Direção dominante mercado (Long/Short)
+			BOM: Breakout Mode
+			BLSHS: Buy Low, Sell High, Scalp
+			BTC: Buy The Close
+			CTF: Current TimeFrame
+			EG: Exhaustion Gap
+			EMA: Exponential Moving Average
+			H1/H2/H3/H4: High 1/2/3/4 (contagem barras alta)
+			HL: Higher Low (Fundo mais alto)
+			HH: Higher High (Topo mais alto)
+			HTF: Higher TimeFrame
+			L1/L2/L3/L4: Low 1/2/3/4 (contagem barras baixa)
+			LH: Lower High (Topo mais baixo)
+			LL: Lower Low (Fundo mais baixo)
+			LOM: Limit Order Market
+			LTA/LTB: Linha Tendência Alta/Baixa
+			LTF: Lower TimeFrame
+			MAG: Moving Average Gap
+			MG: Measuring Gap
+			MM: Measured Move
+			MTR: Major Trend Reversal
+			OHO: Ombro-Cabeça-Ombro
+			PB: Pullback
+			S/R: Suporte e Resistência
+			STC: Sell The Close
+			TBTL: Ten Bars Two Legs
+			TR: Trading Range
+			TTR: Tight Trading Range
+	NOTAS FINAIS DE USO
+		Para Operar
+			ANTES MERCADO: Leia NÍVEL 0 (contexto HTF)
+			DURANTE: Use NÍVEL 1 → 2 → 3 em sequência
+			ANTES ENTRADA: NÍVEL 5 (checklist) obrigatório
+			ESTUDO: Uma fase por semana até dominar
+		Princípios Fundamentais
+			LEMBRE-SE SEMPRE:
+				Mercado é PROBABILÍSTICO
+				Mesmo melhor setup pode falhar
+				Edge vem de probabilidade, não certeza
+				EXPERIÊNCIA é Fundamental
+				Árvore guia, prática refina
+				6+ meses para dominar conceitos
+				PSICOLOGIA é Metade da Batalha
+				Conhecimento técnico sem disciplina = perdas
+				Siga regras mesmo quando difícil
+				SIMPLICIDADE Vence
+				Não use todos conceitos de uma vez
+				Começe básico, evolua gradualmente
+				INICIE COM O BÁSICO
+				Fase 1: Identifique ciclo
+				Fase 2: Aguarde barra sinal boa
+				Fase 3: Stop técnico + alvo 2:1
+				APENAS ISSO já coloca à frente 80% traders
+		Evolução do Trader
+			MÊS 1-3: Identificação Ciclos
+				Foque em diferenciar Breakout/Canal/TR
+				Não opere, apenas observe e anote
+				Pratique marcando gráficos passados
+			MÊS 4-6: Setups Básicos
+				H1/H2 em tendências claras
+				Duplos em TR
+				Apenas setups óbvios e perfeitos
+				1-2 trades por dia máximo
+			MÊS 7-12: Refinamento
+				Adicione wedges, MTR
+				Melhore timing entrada (contagem barras)
+				Trabalhe gestão emocional
+			ANO 2+: Maestria
+				Todos setups integrados
+				Lê mercado fluidamente
+				Adaptação automática contexto
+				Consistência mensal
+			A COMPLEXIDADE VEM COM TEMPO. COMECE SIMPLES. EXECUTE DISCIPLINADO. EVOLUA GRADUALMENTE.
+	NÍVEL 5: CHECKLIST DE DECISÃO FINAL
+		Antes de Clicar COMPRAR/VENDER
+			ALWAYS IN?
+			Quem está controle? (Touros/Ursos/Ninguém)
+			Estou operando A FAVOR Always In?
+			[ ] SIM → Continuar
+			[ ] NÃO → ABORTAR
+			SETUP?
+			Tenho setup técnico válido?
+				H1/H2/MTR/Wedge/Double/etc
+	NÍVEL 4: SITUAÇÕES ESPECÍFICAS
+		Padrões Clássicos Específicos
+			Duplo Topo (Double Top)
+				IDENTIFICAÇÃO
+					Topo 1: Máxima anterior
+					Topo 2: Teste Topo 1 (geralmente falha nova máxima)
+					Formação "M"
+				MEASURED MOVE
+					Distância entre topos (pico a vale)
+					Projetada para baixo segundo topo
+				QUALIDADE
+					Duplo Topo Perfeito
+						Topo 2 forma LH (não atinge T1)
+						Barra reversão forte no T2
+						Contexto: Topo TR ou final tendência
+						Entrada: Stop abaixo barra reversão
+						Probabilidade: 50-60%
+					Duplo Topo Comum
+						T2 atinge T1 ou excede ligeiramente
+						Barra reversão média
+						Entrada: Aguarde romper vale entre topos
+						Probabilidade: 40-50%
+					Falha Duplo Topo
+						T2 rompe T1 com força
+						AÇÃO: Não opere contra
+						Era apenas pausa
+						Possível H2 (entrada compra)
+			Duplo Fundo (Double Bottom)
+				APLICAR REGRAS DUPLO TOPO INVERTIDAS
+				Spring / Bear Trap
+					Variação especial duplo fundo
+					Fundo 2 excede F1 ligeiramente (fake breakout)
+					Depois retorna com força
+					Altamente confiável fundo TR
+					Setup favorito traders experientes
+			Triângulos
+				TIPOS
+					Triângulo Ascendente: Topos iguais, fundos ascendentes
+					Triângulo Descendente: Fundos iguais, topos descendentes
+					Triângulo Simétrico: Ambos convergem
+				NATUREZA
+					Podem ser continuação OU reversão (ambíguo)
+					Geralmente feios (não perfeitos)
+					REGRA: Aguarde breakout, não antecipe
+				OPERANDO
+					Não opere dentro triângulo
+					Aguarde rompimento claro
+					Entre direção rompimento
+					Stop: Outro lado triângulo
+			Flags (Bandeiras)
+				Bull Flag (Bandeira de Alta)
+					Após impulso alta
+					Correção em canal baixa pequeno
+					Consolidação antes retomada
+				Bear Flag
+					APLICAR INVERTIDO
+				Bandeiras Finais
+					Após 3ª perna
+					Geralmente pequenas e rasas
+					Com ii ou ioi dentro
+					Breakout dessas geralmente legítimo
+				OPERANDO
+					Aguarde breakout bandeira
+					Entre a favor tendência original
+					Alvo: Altura impulso anterior
+		Momentos Específicos do Dia
+			Abertura (Primeira Hora)
+				80% Dias Revertem na Abertura
+					Barras 1-5: Movimento inicial (fake)
+					Barras 6-10: Reversão
+					Barras 11-20: Define direção real ou TR
+					REGRA: Não confie movimento primeiras 5 barras
+				Trend From The Open (20%)
+					Primeira barra ENORME + fechamento extremo
+					Segunda confirma (follow-through)
+					Sem reversão primeiras 10 barras
+					AÇÃO: Entre a favor, é dos 20% dias tendência
+				Gaps na Abertura
+					Gap Grande (10+ pts)
+						70-80% será testado durante dia
+						AÇÃO
+							Não entre a favor gap inicialmente
+							Aguarde fechamento gap
+							Entre quando testar (limit)
+					Gap Pequeno (2-5pts)
+						Trate como abertura normal
+						Pode fechar primeiros 10min
+				TTR na Abertura
+					6+ barras sobrepostas início dia
+						Dia TR confirmado
+						AÇÃO
+							Não opere dentro TTR
+							Aguarde breakout e fade se fraco
+							OU opere breakout se forte (20%)
+			Meio do Dia (Mid-Session)
+				Lunch Hour (11:00-13:00 EST)
+					CARACTERÍSTICAS
+						Liquidez diminui
+						Volatilidade diminui
+						Frequentemente lateraliza
+					AÇÃO
+						Se em trade: Considere realizar
+						Se fora: Melhor hora pausa
+						Se opera: Apenas setups perfeitos
+				Teste Tardio (Late Test)
+					PADRÃO
+						10:00-14:00 testa S/R abertura
+						Ex: Mínima dia 9:30, testada 12:00
+						SETUP: Segunda entrada (L2/H2) nesse teste
+						Geralmente bom R:R
+			Final do Dia (Close)
+				Armadilhas Finais
+					Último 60-30 min
+						Bull/Bear traps comuns
+						Breakout fraco → Fade
+						REGRA: Breakouts finais dia geralmente falham
+				Magneto (Magnet)
+					ATRAÇÃO PARA
+						Abertura do dia
+						Fechamento de ontem
+						Números redondos (00, 50, 000)
+						High/Low do dia
+					USO
+						Alvo final trades finais
+						Expectativa "ir buscar" esses níveis
+				TTR Final (12:45+ PST)
+					PADRÃO
+						Após 12:45 PST forma TTR pequeno
+						Breakout últimos 15-20 min
+						Geralmente rápido e pequeno
+						AÇÃO: Scalp apenas, não swing
+		Casos Especiais
+			Notícias / Eventos
+				DURANTE NOTÍCIA
+					FIQUE DE FORA
+					Volatilidade extrema
+					Spread alarga
+					Slippage enorme
+					Não há edge
+				APÓS NOTÍCIA
+					AGUARDE 10-20 barras (TBTL)
+					Deixe caos assentar
+					Depois trade normalmente
+			Dia Alta Volatilidade
+				SINAIS
+					Barras todas 2x maiores que normal
+					ATR muito alto
+				ADAPTAÇÕES
+					Reduza tamanho: 50% posição normal
+					Alargue stops: 1.5-2x normal
+					Ou não opere: Considere pausar dia
+			Dia Baixa Volatilidade
+				SINAIS
+					Barras todas 50% menores
+					TR estreito dia todo
+				ADAPTAÇÕES
+					Reduza alvos: Não espere 20pts se range 10pts
+					Scalp mais: Swing menos provável
+					Ou não opere: Sem movimento = sem lucro
+				Setup está CONTEXTO certo?
+				[ ] SIM → Continuar
+				[ ] NÃO → ABORTAR
+				BARRA DE SINAL?
+				Barra atual é boa?
+					Corpo, fechamento, pavio
+				É Doji/ruim e devo aguardar?
+				[ ] BOA → Continuar
+				[ ] RUIM → AGUARDAR
+				CONTEXTO PERIGOSO?
+				Comprando ALTO em TR? (ERRO FATAL)
+				Vendendo BAIXO em Tendência Alta? (ERRO FATAL)
+				Operando contra tendência forte? (ALTO RISCO)
+				[ ] NENHUM → Continuar
+				[ ] ALGUM → ABORTAR
+				MATEMÁTICA?
+				Onde está meu stop? (Técnico, não arbitrário)
+				Onde está meu alvo? (Realista)
+				R:R ≥ 1:1.5? (Mínimo aceitável)
+				[ ] TODOS OK → Continuar
+				[ ] ALGUM RUIM → ABORTAR
+				TIMING?
+				Acabou ter clímax? (Esperar TBTL)
+				Está em barb wire? (Não entrar)
+				Notícia em 5 min? (Não operar)
+				[ ] TIMING BOM → Continuar
+				[ ] TIMING RUIM → ABORTAR
+				EMOCIONAL?
+				Estou calmo? (Não revenge)
+				Acredito setup? (Não forçando)
+				Aceito perda se vier? (Stop aceitável)
+				[ ] SIM TODOS → CLIQUE
+				[ ] NÃO ALGUM → AGUARDAR
+	NÍVEL 3: GESTÃO PÓS-ENTRADA
+		Colocação do Stop Loss
+			Price Action Stop (Stop Técnico)
+				PRINCÍPIO: Stop onde premissa é invalidada
+				Para COMPRAS
+					Abaixo último Higher Low major OU
+					Abaixo barra sinal (se swing) OU
+					Abaixo setup (ex: abaixo duplo fundo)
+				Para VENDAS
+					Acima último Lower High major OU
+					Acima barra sinal OU
+					Acima setup (ex: acima duplo topo)
+				EXEMPLOS
+					Compra H2 Canal Alta
+						Stop: Abaixo fundo correção (último HL)
+						Razão: Se romper, não é correção, é reversão
+					Venda Duplo Topo TR
+						Stop: 1-2 ticks acima topo mais alto
+						Razão: Se romper, breakout foi real
+			Catastrophe Stop
+				QUANDO USAR: Breakouts
+				CÁLCULO
+					Measured Move barra/padrão que rompeu
+					Projete direção oposta
+				EX: Breakout alta TR 20pts
+					Se falhar e voltar dentro
+					Stop: 20 pontos ABAIXO topo TR
+			Stops Por Contexto
+				Tendência Forte (Scalp)
+					Stop APERTADO: Abaixo barra sinal apenas
+					Razão: Correções rasas, se aprofunda está mudando
+				Canal Amplo / TR
+					Stop LARGO: Beyond Swing Point major
+					Razão: Volatilidade normal grande, precisa espaço
+				Reversão (MTR)
+					Stop: Swing Point anterior (topo/fundo revertendo)
+					Razão: Se romper volta, reversão falhou
+			Tamanho Posição Baseado no Stop
+				REGRA DE OURO
+					Arrisque sempre MESMA QUANTIDADE DINHEIRO por trade
+				EXEMPLO: Regra arriscar R$100 por trade
+					Stop 10 pontos = 10 contratos (R$10 por ponto)
+					Stop 20 pontos = 5 contratos (R$20 por ponto)
+					Stop 5 pontos = 20 contratos (R$5 por ponto)
+				NUNCA
+					Ajuste stop para caber posição desejada
+					Escolha STOP correto tecnicamente PRIMEIRO
+					DEPOIS calcule tamanho que cabe no risco
+		Acompanhamento Barra a Barra
+			Primeira Barra Após Entrada
+				Cenário A: Foi a Favor (Follow-Through)
+					Barra fechou forte sua direção
+					Sem pavio grande contra
+					AÇÃO
+						MANTENHA posição
+						Trade agora probabilidade maior (60%+)
+						Considere adicionar se configuração perfeita
+				Cenário B: Estacionou (Indecisão)
+					Doji ou barra pequena
+					Preço dentro barra entrada
+					AÇÃO
+						AGUARDE mais uma barra
+						Se segunda também estagnar
+							Em breakout: SAIA (tempo é inimigo)
+							Em tendência: Aguarde (normal)
+				Cenário C: Foi Contra (Reversão Imediata)
+					Barra forte contra você
+					AÇÃO CRÍTICA
+						É outside bar? → SAIA IMEDIATAMENTE
+						Rompeu S/R chave? → SAIA
+						Apenas corrigiu pouco? → Mantenha (normal)
+			Barras 2-10 (Desenvolvimento)
+				MONITORE
+					Barb Wire (Arame Farpado)
+						3-5 barras pequenas sobrepostas
+						Sem direção
+						Em Breakout: SAIA 0x0 ou lucro mínimo
+						"Tempo é inimigo rompimentos"
+						Está virando TR
+					Novo Swing Point a Favor
+						Fez novo HL (em compra)?
+						AÇÃO
+							Mova stop abaixo novo HL
+							Aguarde 1-2 barras confirmação
+					Teste de S/R
+						Preço testou resistência major?
+						CONSIDERE
+							Scale out 50% (realizar parcial)
+							Move stop breakeven
+							Aguarde rompimento ou reversão
+					Sinais de Exaustão
+						Formando wedge?
+						Barra climática?
+						4ª perna?
+						AÇÃO: Realize lucros, não seja ganancioso
+		Realização de Lucros
+			Alvos Por Tipo de Trade
+				Scalp (Alvo 1:1 ou menor)
+					ALVOS
+						Fechamento barra anterior
+						Máxima/mínima anterior
+						1:1 de risco
+						EMA20
+						Número redondo próximo
+					GESTÃO
+						Realize 100% no alvo
+						Não deixe virar perdedor
+						"In and out quick"
+				Swing (Alvo 2:1 ou maior)
+					ALVOS ESCALONADOS
+						Alvo 1 (50% posição)
+							Measured Move OU
+							2x o risco OU
+							S/R próximo
+							AÇÃO: Scale out metade, move stop breakeven
+						Alvo 2 (30% posição)
+							Próximo S/R major (HTF)
+							Linha canal oposta
+							3x o risco
+						Alvo 3 (20% posição)
+							"Moon shot"
+							Extremo movimento potencial
+							Início tendência
+							Use trailing stop, sem alvo fixo
+			Alvos Por Matemática
+				Measured Move
+					Altura range/padrão que rompeu
+					Projetada direção rompimento
+					Ex: TR 20pts rompeu para cima
+						Alvo: 20pts acima topo TR
+				Leg 1 = Leg 2
+					Primeira perna mediu X pontos
+					Segunda perna tende X também
+					Ex: Rompimento 30pts, correção 10pts
+						Próxima perna tende 30pts
+			Trailing Stop
+				QUANDO USAR
+					Trade bem no lucro (2:1+)
+					Quer deixar "correr"
+					Não sabe onde terminará
+				MÉTODO
+					Tendência de Alta
+						Move stop abaixo cada novo HL
+						Aguarde confirmação (1-2 barras após HL)
+					Tendência de Baixa
+						Move stop acima cada novo LH
+				REGRA
+					Só mova stop A FAVOR (proteger lucro)
+					NUNCA mova stop CONTRA (ampliando risco)
+			Sinais Para Realizar
+				REALIZE QUANDO
+					Alvo atingido
+					Formou wedge sua direção (exaustão)
+					Formou duplo topo/fundo contra
+					Barra climática
+					Teste S/R major HTF
+					4ª perna (H4/L4)
+					Rompeu linha canal (contra)
+					Barb wire (5+ barras breakout)
+					Tempo: Final dia (day trader)
+					PREMISSA MUDOU (sempre)
+			Convertendo Swing Para Scalp
+				QUANDO
+					Trade não desenvolvendo como esperado
+					Há 10-20 barras mas pouco progresso
+					Formando TR quando esperava tendência
+					Perto S/R mostrando fraqueza
+				AÇÃO
+					Realize próximo teste S/R menor
+					Não espere alvo swing
+					Aceite lucro pequeno
+					"Scalp certo melhor que swing errado"
+		Quando Sair Antes do Alvo
+			Premissa Mudou
+				EXEMPLOS
+					Entrou H2 Tendência Alta
+						Linha tendência rompida para baixo
+						Fez Lower High
+						→ Não é mais tendência alta, SAIA
+					Entrou Fade Topo TR
+						Preço rompeu topo TR com força (gap)
+						Follow-through confirma
+						→ Não é mais TR, é breakout real, SAIA
+				REGRA
+					Se razão entrou não existe mais
+					SAIA, não importa lucro/prejuízo
+					Não reze, não espere
+			Sinais Técnicos Contra
+				Outside bar contra → SAIA IMEDIATAMENTE
+				Rompeu stop swing point → SAIA (stop será atingido)
+				Padrão reversão forte contra → SAIA
+				Clímax contra → SAIA ou scale out pesado
+		Adicionando à Posição (Scaling In)
+			Quando É Seguro
+				REGRA DE OURO
+					Só adicione a GANHADORA
+					NUNCA adicione a PERDEDORA (averaging down = perigo)
+				MOMENTOS CERTOS
+					Após Primeira Realização Parcial
+					Realizou 50% Alvo 1
+					Trade confirmou (novo HL/LH)
+					Setup segunda entrada apareceu (H2/L2)
+					AÇÃO: Adicione o que tirou, stop breakeven
+					Em Breakout Forte
+					Entrou breakout inicial
+					Primeira barra teve follow-through
+					Correção pequena (1-2 barras)
+					AÇÃO: Adicione na H1/L1, stop primeira já protegida
+					Setup Segunda Entrada
+					Primeira posição já 1:1+ lucro
+					Formou H2/L2 perfeito
+					AÇÃO: Entre de novo como novo trade
+			Quando NÃO Adicionar
+				PERIGOS
+					Perdedor: NUNCA "faça média" perdedor
+					Perto Alvo: Não adicione 1-2pts do alvo
+					Sinais Exaustão: Wedge, clímax, H4/L4
+					Trading Range: Adicionar TR é faca dois gumes
+		Gestão Emocional no Trade
+			Frustração (Trade Estagnado)
+				Se após 20 barras não progrediu
+					Converta para scalp
+					Realize próximo pequeno lucro
+					Não force
+			Ganância (Está Ganhando)
+				SINTOMAS
+					"Se subir mais 5 pontos..."
+					Ignora sinais realização
+					Recusa realizar parcial
+				CURA
+					SCALE OUT (parciais forçam disciplina)
+					Realize algo no alvo planejado
+					Trailing stop para resto
+			Medo (Em Drawdown)
+				Se stop não atingido mas perdendo
+					AGUARDE stop técnico
+					Não saia manual por medo
+					Exceto se premissa mudou (razão técnica, não emocional)
+			Vingança (Após Perda)
+				Se tomou stop
+					PAUSE 10 minutos
+					Não entre "revenge trade"
+					Reavalie cabeça fria
+					Próximo trade deve ser MELHOR setup, não mais rápido
+	NÍVEL 2: REFINAMENTO DA BARRA DE SINAL
+		Qualidade da Barra de Sinal
+			VOCÊ IDENTIFICOU O CONTEXTO (Nível 1). AGORA AVALIE A BARRA ATUAL.
+			Barra de Reversão Ideal
+				COMPONENTES
+					Corpo: Médio a grande (50-80% da barra)
+					Direção corpo: A favor operação pretendida
+					Fechamento: Na extremidade (80%+ da barra)
+					Pavio contrário: Pequeno ou inexistente (<20%)
+					Pavio a favor: Grande (rejeitou outro lado)
+				Para COMPRA (Barra Reversão de Alta)
+					Mínima: Testou suporte e rejeitou (pavio baixo longo)
+					Corpo: Verde/azul (fechou acima abertura)
+					Fechamento: No topo barra ou próximo
+					Pavio de cima: Nenhum ou muito pequeno
+					LEITURA: Vendedores tentaram empurrar baixo, falharam, compradores assumiram
+				Para VENDA (Barra Reversão de Baixa)
+					APLICAR INVERTIDO
+			Barra de Indecisão (Doji)
+				CARACTERÍSTICAS
+					Corpo muito pequeno (<25% barra)
+					Pavios grandes ambos lados
+					Abertura ≈ Fechamento
+					Não define direção clara
+				Contexto Importa
+					Doji em Contexto FORTE
+						Ex: Doji na H1 de tendência forte
+						Interpretação: Apenas pausa, não fraqueza
+						AÇÃO: Pode entrar mas
+							Use stop order (não limit)
+							Reduza tamanho 50%
+							Aguarde confirmação próxima barra se possível
+					Doji em Contexto FRACO
+						Ex: Doji no meio de TR
+						Interpretação: Confusão genuína 50/50
+						AÇÃO: NÃO ENTRE
+							Aguarde outside bar OU
+							Aguarde sequência 2-3 barras que defina
+			Padrões Especiais de Barras
+				Inside Bar (i)
+					IDENTIFICAÇÃO
+						Máxima < Máxima barra anterior
+						Mínima > Mínima barra anterior
+						Barra "dentro" da anterior
+					SIGNIFICADO
+						Pausa, indecisão
+						Compressão
+						Pode preceder explosão
+					OPERANDO
+						NÃO opere dentro da inside bar
+						Aguarde breakout (high ou low da inside)
+						Entre direção do breakout
+						Stop: Outro lado inside bar
+				ii (Inside-Inside)
+					IDENTIFICAÇÃO
+						Duas inside bars consecutivas
+						Compressão EXTREMA
+					SIGNIFICADO
+						Explosão iminente
+						Geralmente forte quando rompe
+						Pode ser bandeira final
+					OPERANDO
+						Aguarde breakout do ii
+						Entre imediatamente no breakout
+						Stop: Outro lado padrão inteiro
+						Expectativa: Movimento forte
+				ioi (Inside-Outside-Inside)
+					IDENTIFICAÇÃO
+						Inside → Outside → Inside
+					SIGNIFICADO
+						Tentativa breakout falhou
+						Voltou compressão
+						Indecisão extrema
+						Age como bandeira final ou setup reversão
+					OPERANDO
+						Contexto Determina
+							Em tendência: Bandeira final antes nova perna
+							Em TR: Setup reversão no extremo
+						Aguarde breakout do ioi
+						Geralmente legítimo quando rompe
+				Outside Bar (o)
+					IDENTIFICAÇÃO
+						Máxima > Máxima barra anterior
+						Mínima < Mínima barra anterior
+						Barra "engole" a anterior
+					SIGNIFICADO
+						Volatilidade
+						Ambos lados testados
+						Fechamento define vencedor
+					OPERANDO
+						Fecha no Topo? → Sinal de alta (compradores venceram)
+						Fecha no Fundo? → Sinal de baixa (vendedores venceram)
+						Fecha no Meio? → Indecisão (não opere ou aguarde)
+					OUTSIDE BAR CONTRA SUA POSIÇÃO
+						SAIA IMEDIATAMENTE
+						É reversão forte contra você
+						Não aguarde, não reze
+				oo (Outside-Outside)
+					IDENTIFICAÇÃO
+						Duas outside bars consecutivas
+						Raro
+						Volatilidade extrema
+					SIGNIFICADO
+						Confusão total
+						Algoritmos em conflito
+						Possivelmente notícia
+					OPERANDO
+						FIQUE DE FORA
+						Aguarde padrão resolver
+						Após oo, geralmente vem inside bar ou breakout claro
+			Barras por Tamanho
+				Barra Grande (>150% média)
+					Em Breakout: Força, continuação provável → Entre a favor
+					Em TR: Possível clímax → Fade (aposte contra)
+					Contra Tendência: Possível reversão → Aguarde confirmação
+				Barra Pequena (<50% média)
+					SIGNIFICADO: Pausa, indecisão, pode preceder explosão/lateralização
+					AÇÃO: Não confie sozinha, aguarde próxima
+				Barra Média (75-125% média)
+					Mais comum, "normal"
+		Contagem de Barras (Bar Counting)
+			H1/L1 (High 1 / Low 1)
+				CONTEXTO: Primeira correção em tendência forte
+				H1 (High 1 - Compra)
+					Primeira barra alta após correção em tendência alta
+					TIMING: MELHOR entrada (risco mínimo, retorno máximo)
+					USO: Tendência forte, canal estreito, após breakout
+				L1 (Low 1 - Venda)
+					APLICAR INVERTIDO
+			H2/L2 (High 2 / Low 2)
+				CONTEXTO: Segunda tentativa / Segunda Entrada
+				H2 (High 2)
+					Primeira tentativa falhou (H1 stopada ou não disparou)
+					Segunda barra alta após correção
+					CARACTERÍSTICA: Melhor que H1 em canal amplo
+					RAZÃO: Vendedores do H1 estão TRAPPED
+					PADRÃO: Correção ABC (duas pernas)
+				L2 (Low 2)
+					APLICAR INVERTIDO
+				REGRA IMPORTANTE
+					Traders contra-tendência no H1/L1 são stopados no H2/L2
+					H2/L2 é onde contra desiste e tendência retoma
+			H3/L3 e H4/L4
+				H3/L3: Terceira tentativa
+					Geralmente forma wedge
+					Pode ser exaustão
+					Contexto determina
+				H4/L4: Quarta tentativa
+					ATENÇÃO: Sinal possível exaustão
+					4 legs = Provável final tendência ou TR
+					Se é sua quarta perna, realize lucros
+					Se fora, aguarde reversão ou TR
+			TBTL (Ten Bars Two Legs)
+				REGRA
+					Após qualquer clímax ou movimento extremo
+					Mercado precisa PELO MENOS:
+						10 barras de descanso E
+						2 pernas de correção
+					Antes poder retomar ou reverter claramente
+				APLICAÇÃO
+					Após clímax: Não opere por 10 barras
+					Conte correções: Primeira perna (A), Segunda perna (C do ABC)
+					Só depois procure setup retomada ou reversão
+		Tipo de Ordem (Execution)
+			Stop Order (Ordem Start)
+				CONCEITO: "Compre/Venda SE preço for para lá"
+				POSICIONAMENTO
+					Compra: 1 tick ACIMA máxima barra sinal
+					Venda: 1 tick ABAIXO mínima barra sinal
+				QUANDO USAR
+					Breakouts (rompimentos)
+					H1/L1 em tendência forte
+					Confirmação de reversão
+					Quando quer confirmação antes entrar
+				VANTAGENS
+					Confirma preço indo sua direção
+					Evita entradas sinais falsos
+				DESVANTAGENS
+					Pior preço (slippage)
+					Mercados rápidos, execução muito pior
+					Pode nunca ser executada
+				PARA INICIANTES
+					USE STOP ORDERS (mais seguras)
+					Não use limit até 6+ meses experiência
+			Limit Order (Ordem Pendurada)
+				CONCEITO: "Compre/Venda SE preço voltar aqui"
+				POSICIONAMENTO
+					Compra: 1-2 ticks ABAIXO mínima barra(s)
+					Venda: 1-2 ticks ACIMA máxima barra(s)
+				QUANDO USAR
+					Trading Range (BLSHS)
+					Pullbacks profundos canais amplos
+					Fade de breakouts fracos
+					"Buy Low, Sell High"
+				TÉCNICA SCALE IN
+					Múltiplas limit orders
+					Diferentes níveis
+					Ex: 50% em -2 ticks, 50% em -4 ticks
+					Entra melhor preço se cair mais
+				VANTAGENS
+					Melhor preço entrada
+					Pode entrar exato low/high
+				DESVANTAGENS
+					Pode NUNCA ser executada
+					Pode "pegar faca caindo"
+					Requer experiência
+				PARA AVANÇADOS
+					Use em TR estabelecidos
+					Use quando confiança alta
+					Combine com stop orders
+			Market Order (Ordem de Mercado)
+				CONCEITO: "Compre/Venda AGORA, não importa preço"
+				QUANDO USAR - URGÊNCIA ABSOLUTA
+					Outside bar contra posição (saia agora)
+					Premissa mudou (saia agora)
+					Breakout fortíssimo (entre agora ou perde)
+					Clímax extremo (se quer entrar contra)
+				VANTAGENS
+					Execução garantida
+					Imediato
+				DESVANTAGENS
+					PIOR preço possível
+					Slippage alto
+					Forex: pega spread inteiro
+				REGRA
+					Use raramente
+					Apenas situações extremas
+	NÍVEL 1: DIAGNÓSTICO DO CICLO
+		PERGUNTA CENTRAL: Qual é a Fase do Mercado Atual?
+			DESCRIÇÃO: Observe as últimas 20-40 barras e identifique o padrão dominante.
+			[CAMINHO A] BREAKOUT / SPIKE
+			[CAMINHO B] CANAL
+			[CAMINHO C] TRADING RANGE
+			[CAMINHO D] REVERSÃO DE TENDÊNCIA
+	NÍVEL 0: PRÉ-ANÁLISE
+		Análise Multi-Timeframe
+			HTF (Higher Timeframe)
+				Consultar Gráfico Superior (Diário/Semanal)
+				Identificar Tendência Dominante
+					Tendência de Alta
+					Tendência de Baixa
+					Lateralidade
+				Mapear S/R Principais
+					Swing Highs Históricos
+					Swing Lows Históricos
+					Números Redondos Importantes
+				Verificar Measured Moves Ativos
+				RESULTADO: Define Viés Direcional Principal
+					NOTA: Se HTF = Alta → Prefira COMPRAS no CTF
+					NOTA: Se HTF = Baixa → Prefira VENDAS no CTF
+					NOTA: Se HTF = TR → Opere reversões nas extremidades
+			CTF (Current Timeframe)
+				Gráfico Operacional Principal (ex: 5min)
+				AÇÃO: Prossiga para NÍVEL 1
+			LTF (Lower Timeframe)
+				Gráfico Inferior (ex: 1min)
+				USO: Entrada Antecipada
+				USO: Melhor Preço
+				USO: Confirmação de Força
+		Momento do Dia
+			ABERTURA (Primeiras 6-20 barras)
+				CARACTERÍSTICAS
+					REGRA: 80% dos dias NÃO têm tendência desde início
+					REGRA: 90% da High/Low ocorre antes da barra 18
+					Muitas reversões iniciais esperadas
+				Há GAP na Abertura?
+					SIM - Gap Grande (>10pts Emini / >50pips Forex)
+						PROBABILIDADE: 70% será testado
+						AÇÃO: Aguarde fechamento do gap
+						AÇÃO: Não opere a favor do gap inicialmente
+					SIM - Gap Pequeno (<5pts)
+						AÇÃO: Trate como abertura normal
+					NÃO
+						AÇÃO: Prossiga para próxima pergunta
+				Primeira Barra é Forte?
+					SIM - Barra Grande + Fechamento Extremo
+						DIAGNÓSTICO: Possível Trend from the Open (20% chance)
+						AÇÃO: Se confirmar follow-through → VÁ PARA [BREAKOUT]
+						AÇÃO: Se falhar em 3 barras → VÁ PARA [REVERSÕES]
+					NÃO - Barra Fraca/Doji/Inside
+						DIAGNÓSTICO: Dia de reversões provável
+						AÇÃO: Aguarde setup → VÁ PARA [TRADING RANGE]
+				Quantas Reversões nas Primeiras 10 Barras?
+					0-2 Reversões
+						DIAGNÓSTICO: Possível tendência desenvolvendo
+					3-4 Reversões
+						DIAGNÓSTICO: Canal amplo provável
+					5+ Reversões
+						DIAGNÓSTICO: DIA DE TRADING RANGE confirmado
+						AÇÃO: Mude para modo BLSHS → VÁ PARA [TRADING RANGE]
+				Há TTR (Tight Trading Range)?
+					SIM - 6+ Barras Sobrepostas Estreitas
+						DIAGNÓSTICO: Compressão = Explosão iminente
+						AÇÃO: NÃO opere dentro do TTR
+						AÇÃO: Aguarde breakout → VÁ PARA [BREAKOUT]
+					NÃO
+						AÇÃO: Continue avaliação normal
+			MEIO DO DIA (Barras 20-50)
+				CARACTERÍSTICAS
+					Busca por mudança de caráter
+					2h de possível lateralidade (lunch time)
+					Teste tardio de S/R da abertura
+				Movimento da Abertura Se Esgotou?
+					SIM - Clímax Ocorreu
+						AÇÃO: Aguarde TBTL (10 barras + 2 legs)
+					SIM - Lateralizou 10+ Barras
+						AÇÃO: VÁ PARA [TRADING RANGE]
+					NÃO - Continua Movimento
+						AÇÃO: Continue no caminho atual
+				Há Reversão com Força?
+					SIM
+						AÇÃO: VÁ PARA [REVERSÕES]
+					NÃO
+						AÇÃO: Continue operação normal
+			FINAL DO DIA (Últimas 20 barras)
+				CARACTERÍSTICAS
+					Breakouts finais ou Trading Range
+					Armadilhas (Bull/Bear Trap) comuns
+					Magnetos ativos (Abertura, Fechamento anterior, Números redondos)
+				Há TTR Após 12:45 PST?
+					SIM
+						AÇÃO: Aguarde breakout últimos 20min
+						MODO: Scalp apenas
+					NÃO
+						AÇÃO: Continue avaliação
+				Perto de Número Redondo?
+					SIM
+						EXPECTATIVA: Preço será atraído (magneto)
+						USO: Como alvo final
+					NÃO
+						AÇÃO: Continue
+				Breakout Fraco Final de Dia?
+					SIM
+						AÇÃO: FADE (aposte contra)

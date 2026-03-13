@@ -37,7 +37,13 @@ function renderApp(state) {
     }
 
     // Roteamento Basico
-    viewContainer.innerHTML = ''; // Limpa a view atual
+    const currentViewType = viewContainer.getAttribute('data-view');
+    const targetViewType = state.selectedConceptId ? 'concept-detail' : state.currentPage;
+
+    if (currentViewType !== targetViewType) {
+        viewContainer.innerHTML = ''; // Limpa a view atual apenas se mudou de página
+        viewContainer.setAttribute('data-view', targetViewType);
+    }
 
     if (state.selectedConceptId) {
         const concept = state.concepts.find(c => c.id === state.selectedConceptId);
@@ -45,6 +51,16 @@ function renderApp(state) {
     } else {
         switch (state.currentPage) {
             case 'dashboard':
+                if (currentViewType !== 'dashboard') {
+                    // renderDashboard é async (busca Edge Functions) — skeleton imediato só na primeira renderização
+                    viewContainer.innerHTML = `<div class="p-8 flex items-center justify-center h-64">
+                        <div class="flex flex-col items-center gap-3 text-emerald-500">
+                            <i data-lucide="loader-2" class="w-8 h-8 animate-spin"></i>
+                            <p class="text-zinc-500 text-sm">Carregando plano inteligente...</p>
+                        </div>
+                    </div>`;
+                    if (window.lucide) window.lucide.createIcons();
+                }
                 renderDashboard(viewContainer, state);
                 break;
             case 'roadmap':

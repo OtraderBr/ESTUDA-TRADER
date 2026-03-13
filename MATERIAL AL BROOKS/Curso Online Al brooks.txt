@@ -1,0 +1,224 @@
+Com certeza! Aqui está a lista dos títulos de todas as aulas, organizadas por módulo, conforme apresentado nos seus documentos:
+
+**Fundamentos de Price Action**
+
+- **Começando (01-07)**
+    - 01 - Terminologia
+    - 02A - O Básico de Gráficos e Price Action: Gráficos: finalidade e tipos, Mercados: como eles funcionam
+    - 02B - O Básico de Gráficos e Price Action: Volume, News
+    - 02C - O Básico de Gráficos e Price Action: O que é Price Action?, O que é pain trade?
+    - 02D - O Básico de Gráficos e Price Action: Padrões de velas, Sobre o que os traders falam, Indicadores
+    - 03A - Básico de Forex: O que é o mercado Forex?, Sessões Forex, Alavancagem, fundamentos
+    - 03B - Básico de Forex: Riscos, custos, corretoras, Símbolos, Tipos de cotações
+    - 03C - Básico de Forex: Valor de um pip, Espaços de trabalho Forex, Futuros ou Forex?
+    - 03D - Básico de Forex: Gráficos apenas aproximados, Operações de Swing e Scalp
+    - 03E - Básico de Forex: Margens, Lucro e perda
+    - 04 - Meu Setup
+    - 05 - Operando Com Programas: O que é operar com programas?, Operação de alta frequência, Spoofing, Antecipação e HFTs
+    - 06 - Traços de Personalidade de Traders de Sucesso: Características de grandes traders, Fazendo coisas estúpidas, Confortável com a incerteza
+    - 07A - Começando: Falsas crenças, Qual é o quadro geral? B L S H!, Tipos de gráficos, tempos gráficos
+    - 07B - Começando: Começando e avançando, Sentimentos, Medo e ambição, Incerteza
+- **Análise de Gráficos (08-11)**
+    - 08A - Candle Setups e Barras de Sinal: Barras de tendência e barras TR, Barras de sinal e barras de entrada, Barras de sinal ruins
+    - 08B - Candle Setups e Barras de Sinal: Barras de reversão, Reversão de múltiplas barras, Barras internas e externas
+    - 08C - Candle Setups e Barras de Sinal: Lateralidades estreitas como setups, ii and Breakout Mode
+    - 08D - Candle Setups e Barras de Sinal: O que é um setup?, Setup fraco, precisa de mais, Segundo sinal, A contra-tendência precisa de uma barra de sinal forte
+    - 09A - Correções e Contagem de Barras: O que é uma correção?, O que é contagem de barras?
+    - 09B - Correções e Contagem de Barras: Bandeiras de Baixa em Forma de Topo Duplo e Bandeiras de Alta em Forma de Fundo Duplo, Reversões consecutivas de H4 e L4
+    - 09C - Correções e Contagem de Barras: Correção sem fim, Tempos gráficos mais altos e mais baixos, Traders de contra-tendência saem no H2 ou L2
+    - 10A - Pressão de Compra e de Venda: O que é Pressão de Compra e de Venda?, Gaps
+    - 10B - Pressão de Compra e de Venda: Lateralidades, Canais
+    - 11A - Gaps: O que são gaps?
+    - 11B - Gaps: Barra de Gap de Média Móvel, Gap de Exaustão
+    - 11C - Gaps: Micro gaps, Gap nas Barras de Abertura, Gaps significam força, Gap de Corpo (Gap Negativo)
+    - 11D - Gaps: Gaps frequentemente levam a tendências, Padrão de Escada
+- **Ciclo de Mercado (12-18)**
+    - 12A - Ciclo de Mercado: Quatro partes do ciclo de mercado?, A correção é o começo de um canal, Canal se torna Lateralidade
+    - 12B - Ciclo de Mercado: Ciclo de mercado: modo sempre tendência ou lateralidade, Inércia e a regra dos 80%, Definições 1: Tendências, swings e pernas
+    - 12C - Ciclo de Mercado: Definições 2: Correções, Definições 3: Lateralidade, Decisões binárias
+    - 13A - Modo Sempre Posicionado: Modo sempre tendência ou lateralidade, Direção sempre posicionada, Equação do Trader
+    - 13B - Modo Sempre Posicionado: Modo Sempre Comprado, Modo Sempre Vendido
+    - 13C - Modo Sempre Posicionado: Operação de Swing e Scalp
+    - 14A - Tendências: O que é uma tendência?, Tendências de alta precisam de Mínimas Mais Altas, Tendências de baixa precisam de Máximas Mais Baixas
+    - 14B - Tendências: Quando não estiver claro, é uma lateralidade, Rompimento significa uma tendência mais forte, Regra dos 80%: A maioria das reversões falham
+    - 14C - Tendências: Tipos de tendência, Tendências de alta e de baixa, Armadilhas e rompimentos
+    - 14D - Tendências: Tendência a partir da Abertura, Operando Lateralidades, Tendência de Canal Amplo
+    - 14E - Tendências: Canal Estreito, Tendência de Correção Rasa
+    - 15A - Rompimentos: O que é um rompimento?, Regra dos 80%: A maioria dos rompimentos falham, Reversão é um rompimento, Lateralidade significa BLSHS!
+    - 15B - Rompimentos: É preciso continuidade, Tendências sempre tentam reverter, Rompimento pode começar pequeno
+    - 15C - Rompimentos: Rompimento geralmente possui uma segunda perna, Rompimentos de lateralidades
+    - 15D - Rompimentos: Armadilhas de segunda perna, Sinais de rompimentos fortes, Ter sucesso ou reverter?
+    - 15E - Rompimentos: Gap de Exaustão ou Projeção?, Um rompimento fraco possui uma correção mais profunda, Teste de rompimento
+    - 15F - Rompimentos: Falha de rompimento, retomada da tendência ou reversão?
+    - 15G - Rompimentos: Armadilhas de 5 ticks e armadilhas de 11 pips, Apostar contra setups fracos
+    - 15H - Rompimentos: Barras de surpresa, Armadilhas de segunda perna e exaustão, Barras de desistência – Reversão minoritária
+    - 16A - Canais e Como Traçar Linhas: Um canal são 2 linhas, Linhas precisam de dois pontos, Regra dos 70%
+    - 16B - Canais e Como Traçar Linhas: Como traçar canais, Exemplos de canais de baixa no Forex, Exemplos de canais de alta no Emini
+    - 16C - Canais e Como Traçar Linhas: Novas tendências começam em tendências antigas, Tempos gráficos mais altos, Reversões e rompimentos
+    - 16D - Canais e Como Traçar Linhas: Tipos de canais, Canais Estreitos e Amplos de Alta, Canais Estreitos e Amplos de Baixa
+    - 16E - Canais e Como Traçar Linhas: Evoluindo para Lateralidade, Rompimentos de canal geralmente falham, Com rompimento de tendência de canal
+    - 16F - Canais e Como Traçar Linhas: Ordens limitadas para apostar contra o teste de uma linha, Rompimentos no início da tendência, Falhas de reversão e rompimento, Canal amplo ou lateralidade (TR)?, Toda lateralidade possui canal de alta e de baixa
+    - 17A - Canais Estreitos e Micro Canais: O que é um Canal Estreito?, O que é um Micro Canal?
+    - 17B - Canais Estreitos e Micro Canais: Lateralidades Estreitas, Rompimento ou clímax?
+    - 18A - Lateralidades: Definição de correção e lateralidade, Marcas registradas: confusão, decepção
+    - 18B - Lateralidades: Lateralidades contém setups de compra e de venda, Modo Rompimento (BOM), Armadilha de Segunda Perna
+    - 18C - Lateralidades: Retomada de tendência ou reversão?, Tendência ou perna na lateralidade?
+    - 18D - Lateralidades: Lateralidade Estreita (TTR), Platôs, Mercado de Ordem Limitada (LOM)
+    - 18E - Lateralidades: O que é efeito vácuo?, Lógica perversa: Apostar contra o rompimento
+    - 18F - Lateralidades: Lateralidade: Não aposte no rompimento, Rompimento na tendência, Sinais antecipados de lateralidade
+- **Suporte, Resistência e Padrões Básicos (19-29)**
+    - 19A - Suporte e Resistência: O que é suporte e resistência (S/R)?, S/R controlam o preço, não as notícias, Gráficos mensais precisam de stops mensais, S/R geralmente é preciso
+    - 19B - Suporte e Resistência: Qual S/R é o melhor?, O S/R do Forex não é preciso, Exemplos
+    - 19C - Suporte e Resistência: Outros tipos de S/R, Números redondos, Lista de S/R
+    - 19D - Suporte e Resistência: Compra em fechamento, Venda em Fechamento, Teste de Rompimento (BO)
+    - 19E - Suporte e Resistência: Fechamento mais alto e mais baixo, Compradores precisam de Mínimas Mais Altas, vendedores precisam de Máximas Mais Baixas, Correção de 50%
+    - 20A - Movimentos Projetados: Perna 1 = Perna 2
+    - 20B - Movimentos Projetados: Altura da Lateralidade, Altura do Rompimento
+    - 21A - Reversões: O que é uma reversão?, Reversão majoritária e minoritária de tendência, Reversões podem começar com rompimentos
+    - 21B - Reversões: Reversão é uma entrada antecipada, Regra dos 80%, Padrão em forma de xícara e alça
+    - 21C - Reversões: Iniciantes adoram reversões, Pressão de Compra e de Venda, Padrão Aninhado
+    - 21D - Reversões: Vencedor de 40%, Dez Barras, Duas Pernas (TBTL), A maioria das reversões são Topos ou Fundos Duplos
+    - 22A - Reversões Majoritárias de Tendência (MTR): O que são reversões majoritárias e minoritárias?, MTR é o padrão de reversão mais importante
+    - 22B - Reversões Majoritárias de Tendência (MTR): MTR LH bem-sucedido
+    - 22C - Reversões Majoritárias de Tendência (MTR): MAG (Barra de Gap de Média Móvel), A maioria dos topos são Topos Duplos
+    - 22D - Reversões Majoritárias de Tendência (MTR): Fundos em forma de MTR, Reversões em forma de ombro-cabeça-ombro, Falha de MTR
+    - 23A - Bandeiras Finais: O que é uma Bandeira final?
+    - 23B - Bandeiras Finais: Bandeiras Finais Rasas, Bandeiras Finais com padrão ii
+    - 24A - Cunhas: O que é uma cunha?, Como traçar linhas
+    - 24B - Cunhas: Cunhas raramente perfeitas, A maioria dos canais são Cunhas, Variações de Cunhas
+    - 24C - Cunhas: Cunhas ruins não são setups de reversão, A reversão começa antes que uma tendência antiga termine, Entrada antecipada em um tempo gráfico mais baixo
+    - 24D - Cunhas: O que é uma Cunha parabólica?, Tendências fortes têm Cunhas ruins
+    - 24E - Cunhas: Falha de Cunha
+    - 25A - Topos e Fundos Duplos: O que é um Topo ou Fundo Duplo?, Por que Topos e Fundos Duplos funcionam, Bandeiras em forma de Topo e Fundo Duplo
+    - 25B - Topos e Fundos Duplos: Teste de suporte e resistência, Falha de Topos e Fundos Duplos, Movimentos Projetados
+    - 26A - Triângulos: Triângulo, Cunha, Reversão ou continuação (bandeira)
+    - 26B - Triângulos: Triângulo Expandido, Padrões com aparência ruim
+    - 27A - Ombro Cabeça Ombro: Ombro-cabeça-ombro é MTR, A maioria das reversões de ombro-cabeça-ombro são minoritárias
+    - 27B - Ombro Cabeça Ombro: Mercados resistem à mudança, O que acontece quando o stop é atingido?
+    - 28 - Topos e Fundos Arredondados: É sempre outra coisa
+    - 29A - Clímaxes: O que é um clímax?
+    - 29B - Clímaxes: Topos e Fundos em forma de V
+    - 29C - Clímaxes: Reversões climáticas, Gaps: Exaustão, Projeção
+    - 29D - Clímaxes: Clímaxes consecutivos
+    - 29E - Clímaxes: Clímaxes causados por empresas de opções, Falha de clímaxes consecutivos
+- **Pré-Requisitos de Como Operar (30-36)**
+    - 30A - Equação do Trader e Probabilidade: Vantagem e operações perfeitas, Equação do Trader
+    - 30B - Equação do Trader e Probabilidade: Três Variáveis
+    - 30C - Equação do Trader e Probabilidade: Z-score, Probabilidade é o mais importante
+    - 30D - Equação do Trader e Probabilidade: Correção de 50%, A matemática pode melhorar depois do rompimento
+    - 30E - Equação do Trader e Probabilidade: Probabilidade de 70% – 90%!, Regra dos 40 – 60, TR probability high near top and bottom
+    - 31A - Operações de Swing e Scalp: O que é operação de swing e scalp?, Ambientes ideais
+    - 31B - Operações de Swing e Scalp: Operação de swing significa que o retorno é 2x o risco
+    - 31C - Operações de Swing e Scalp: Scalp não é para iniciantes, Tamanho mínimo de um scalp
+    - 31D - Operações de Swing e Scalp: Convertendo swing para scalp, Fazendo scalp em um rompimento forte, Você perde se gerenciar o scalp como um swing
+    - 32A - Ordens: Ordens stop, Ordens limitadas, Ordens Bracket, Ordens de mercado e outras
+    - 32B - Ordens: Ordens stop são melhores para a maioria dos traders, Traders habilidosos usam ordens de mercado e ordens limitadas, Mercado de ordem limitada com lateralidade e tendências
+    - 32C - Ordens: O movimento lateral de preços determina o tipo de ordem, Ordens limitadas com tendências e contra-tendências, Entrada prematura em um tempo gráfico mais baixo
+    - 33A - Stop de Proteção: Por que usar stops?, O stop determina o tamanho da posição
+    - 33B - Stop de Proteção: Depois que um stop é atingido, Use o stop correto
+    - 33C - Stop de Proteção: Stop de Price Action, Compradores precisam de Mínimas Mais Altas, Stops móveis, Stops da baixa
+    - 33D - Stop de Proteção: Tendências respeitam correções majoritárias, Saia se a premissa mudar
+    - 33E - Stop de Proteção: Stops longos
+    - 33F - Stop de Proteção: Movimentos projetados / outros S & R, Barra de sinal pequena
+    - 33G - Stop de Proteção: Stop de ponto de equilíbrio e testes de Rompimento, Stops para scalpers
+    - 34A - Risco Efetivo: Equação do Trader e risco, Risco Efetivo
+    - 34B - Risco Efetivo: Risco Efetivo pequeno é inútil, Use o risco para encontrar alvos de lucro
+    - 35A - Fracionando a Entrada: Quem fraciona a entrada e por quê?, Fracionando a entrada em operações ganhadoras
+    - 35B - Fracionando a Entrada: Fracionando a entrada em posições perdedoras
+    - 35C - Fracionando a Entrada: Amostra de estratégia: 2 partes, Amostra de estratégia: 4 partes
+    - 36A - Gerenciamento de Operação e Realização de Lucro: O gerenciamento é para depois de entrar em uma operação, O Dinheiro de Outras pessoas nunca é verdadeiro
+    - 36B - Gerenciamento de Operação e Realização de Lucro: Padrões para Realização de Lucro
+
+**Como Operar Price Action**
+
+- **Operando Padrões de Price Action (37-42)**
+    
+    - 37A - Como Operar: O que os mercados podem fazer?, Resumo de como operar
+    - 37B - Como Operar: Use o ciclo de mercado, Equação do Trader e Regra de 40 – 60, Alvos padrão
+    - 38A - Operando Topos em Forma de Reversão Majoritária de Tendência: O topo precisa de vendedores fortes, Precisa de alvos mínimos
+    - 38B - Operando Topos em Forma de Reversão Majoritária de Tendência: Planeje realizar lucros
+    - 38C - Operando Topos em Forma de Reversão Majoritária de Tendência: Reversão Majoritária de Tendência de Máxima Mais Baixa
+    - 38D - Operando Topos em Forma de Reversão Majoritária de Tendência: Probabilidade mais alta depois de um rompimento
+    - 39A - Operando Fundos em Forma de Reversão Majoritária de Tendência: Operando Fundos em Forma de Reversão Majoritária de Tendência, Antecipe um possível fundo
+    - 39B - Operando Fundos em Forma de Reversão Majoritária de Tendência: Reversões minoritárias, Não há os melhores setups, Alvos de lucro
+    - 39C - Operando Fundos em Forma de Reversão Majoritária de Tendência: Não há operação perfeita
+    - 39D - Operando Fundos em Forma de Reversão Majoritária de Tendência: Movendo seus stops, MTR na abertura
+    - 40A - Entrando Tarde em Tendências: FOMO de alta (FOMO), FOMO de baixa (FOMO)
+    - 40B - Entrando Tarde em Tendências: Fechamento de Alta e de Baixa no fim da tendência, Tendência de baixa de venda fechamento, Tendência de alta de venda fechamento
+    - 40C - Entrando Tarde em Tendências: Barras de Final de Tendência, Barras de Desistência, Forte Rompimento de baixa
+    - 40D - Entrando Tarde em Tendências: Vendedores desapontados, Vendedores emboscados no final de uma tendência de baixa, Desistência dos vendedores que vendem o fechamento
+    - 40E - Entrando Tarde em Tendências: Apostando contra um rompimento tardio de alta desde um clímax, AIS significa prováveis preços mais baixos Lateralidade Estreita pode ser uma Reversão Majoritária de Tendência, Apostando contra um rompimento tardio de baixa desde um clímax, Clímax sempre termina em S/R
+    - 41A - Operando Rompimentos: Rompimentos de alta, Tendência de alta de compra em fechamento, Tendência de baixa de venda em fechamento
+    - 41B - Operando Rompimentos: Use stops de swing, Se agora é um canal, opere como um canal, Rompimento geralmente segue uma armadilha, Entrada prematura em um tempo gráfico mais baixo
+    - 41C - Operando Rompimentos: Rompimento fraco, depois Lateralidade, Rompimentos de baixa
+    - 41D - Operando Rompimentos: Gerenciamento de stop, Como vender
+    - 42A - Operando Reversões Climáticas: Rompimento fraco significa Lateralidade em breve, Rompimento pode ser bem-sucedido (MG) ou pode falhar (EG), Compradores e vendedores fortes e fracos
+    - 42B - Operando Reversões Climáticas: Reversões climáticas majoritárias, Um Micro Canal pode ser um clímax
+    - 42C - Operando Reversões Climáticas: Reversões climáticas minoritárias
+- **Operando Canais e Lateralidades (43-47)**
+    
+    - 43A - Operando Canais Estreitos de Alta: O que é um Canal Estreito de Alta?, Rompimento em um tempo gráfico mais alto, Canal Estreito de Baixa como Bandeira de Alta
+    - 43B - Operando Canais Estreitos de Alta: A primeira reversão é geralmente minoritária
+    - 43C - Operando Canais Estreitos de Alta: Fracionando a entrada, Os vendedores conseguem fazer dinheiro?
+    - 43D - Operando Canais Estreitos de Alta: Como comprar um Canal Estreito de Alta, Stops e realização de lucros, Canal Estreito evolui para Lateralidade
+    - 44A - Operando Canais Estreitos de Baixa: O que é um Canal Estreito de Baixa?, Rompimento em um tempo gráfico mais alto, Canal Estreito de Alta como Bandeira de Baixa
+    - 44B - Operando Canais Estreitos de Baixa: A primeira reversão é geralmente minoritária
+    - 44C - Operando Canais Estreitos de Baixa: Fracionando a entrada, Os compradores conseguem fazer dinheiro?
+    - 44D - Operando Canais Estreitos de Baixa: Como vender um Canal Estreito de Baixa, Stops e realização de lucros, Canal Estreito evolui para Lateralidade
+    - 45A - Operando Canais Amplos de Alta: O que é um Canal Amplo de Alta?, Geralmente contém Lateralidades, Geralmente dura muitos dias, Canal geralmente Estreito em tempo gráfico mais alto
+    - 45B - Operando Canais Amplos de Alta: Mínima majoritária e minoritária, Às vezes pode estar em Modo Sempre Vendido!
+    - 45C - Operando Canais Amplos de Alta: Reversões são comuns, mas falham, Faça um diagnóstico prematuro, Vendedores vendem ralis, Continuidade ruim após uma nova máxima
+    - 45D - Operando Canais Amplos de Alta: Precisa de Mínimas mais Altas (HLs), Armadilha de segunda perna, Vendedores vendem em Canais Amplos de Alta, Compradores realizam lucros acima da máxima anterior
+    - 45E - Operando Canais Amplos de Alta: Zona de compra, Realização de lucros acima da máxima anterior, Correção de 50% (PB), Toda Lateralidade é uma Bandeira de Alta, Evolução para uma grande Lateralidade
+    - 46A - Operando Canais Amplos de Baixa: O que é um Canal Amplo de Baixa?, Por que não é comum em um gráfico de 5 minutos?, Máximas majoritárias e minoritárias
+    - 46B - Operando Canais Amplos de Baixa: Canais geralmente duram pelo menos 3 dias, Reversões são comuns, mas a maioria delas falha, Faça um diagnóstico prematuro
+    - 46C - Operando Canais Amplos de Baixa: Vendedores vendem, mas os compradores podem comprar de vez em quando, Às vezes brevemente em Modo Sempre Comprado
+    - 46D - Operando Canais Amplos de Baixa: Tendência de baixa precisa de Máximas mais Baixas, Armadilha de segunda perna, Compradores compram abaixo das mínimas, Compradores usam stops longos e fracionam a entrada
+    - 46E - Operando Canais Amplos de Baixa: Zonas de venda, Correção de 50% (PB)
+    - 47A - Operando em Lateralidades: A Lateralidade (TR) é ampla ou estreita?, Procure por sinais de Lateralidade
+    - 47B - Operando em Lateralidades: Regra dos 80%, Pernas na Lateralidade, não na tendência, Compre na metade superior, venda na metade inferior
+    - 47C - Operando em Lateralidades: Armadilha de segunda perna, Aposte contra rompimentos (aposte que irão falhar), Como entrar em reversões, Stops longos e fracionando a entrada
+    - 47D - Operando em Lateralidades: Entrando com ordens limitadas, Realizando lucros, Teste tardio da abertura, Lateralidade Estreita (TTR), Eventualmente rompe em uma tendência
+- **Operando em Diferentes Momentos do Dia (48)**
+    
+    - 48A - Operando na Abertura: 3 partes para o dia, Reversões na Abertura
+    - 48B - Operando na Abertura: Por que operar a abertura?, Padrões mais comuns, Ordens stop são melhores, Regra mais importante
+    - 48C - Operando na Abertura: Contexto, Como o dia anterior terminou?
+    - 48D - Operando na Abertura: Modo rompimento (BOM), Rompimento da primeira amplitude de 18 barras
+    - 48E - Operando na Abertura: Falha de rompimento da Máxima ou da Mínima do dia anterior, Falha de reversão do rompimento da amplitude do dia anterior
+    - 48F - Operando na Abertura: Gaps nas aberturas, Bandeiras prematuras
+    - 48G - Operando no Meio do Dia: Procure por mudança, Tendência ou Perna na Lateralidade (TR)?
+    - 48H - Operando no Meio do Dia: Teste tardio de suporte ou resistência, Regra dos 80%
+    - 48I - Operando ao Final do Dia: Rompimento (BO) e Lateralidade (TR), não canais
+    - 48J - Operando ao Final do Dia: Compra em Fechamento, Venda em Fechamento
+    - 48K - Operando ao Final do Dia: Armadilhas de alta e de baixa, Suporte e resistência em tempo gráfico mais alto
+- **Operações de Swing e Scalp (49-50)**
+    
+    - 49A - Exemplos de Operação de Swing: Exemplos de day trading
+    - 49B - Exemplos de Operação de Swing: Exemplos de day trading
+    - 49C - Exemplos de Operação de Swing: Exemplos de day trading
+    - 49D - Exemplos de Operação de Swing: Exemplos de day trading
+    - 49E - Exemplos de Operação de Swing: Exemplos de day trading
+    - 49F - Exemplos de Operação de Swing: Fazendo day trade quando o gráfico diário está em modo compra em fechamento ou venda em fechamento, Fazendo day trade quando o gráfico diário possui um Micro Canal, Apostando contra grandes barras de tendência em uma Lateralidade, Suporte e resistência em um tempo gráfico mais alto
+    - 50A - Exemplos de Operação de Scalp no Emini: Lateralidade (TR) é um Mercado de Ordem Limitada, Personalidade do Scalper
+    - 50B - Exemplos de Operação de Scalp no Emini: Iniciantes devem evitar fazer scalp, Dois tempos gráficos
+    - 50C - Exemplos de Operação de Scalp no Emini: Usando ticks e encontrando sinais, Divergência de ticks, Barra com Gap de Abertura
+    - 50D - Exemplos de Operação de Scalp no Emini: Exemplos de scalp
+    - 50E - Exemplos de Operação de Scalp no Emini: Exemplos de scalp
+- **Gerenciando Perdas (51-52)**
+    
+    - 51A - Perdendo por Causa de Erros: Iniciantes perdem por causa da psicologia e crenças falsas
+    - 51B - Perdendo por Causa de Erros: Gerenciamento ruim
+    - 51C - Perdendo por Causa de Erros: Regras para evitar grandes perdas
+    - 51D - Perdendo por Causa de Erros: Stop correto, Fracionar a entrada cria grandes perdas
+    - 52A - Perdendo Quando uma Boa Operação Vai Mal: É preciso regras para evitar grandes perdas, Todas as tendências eventualmente desapontam os traders
+    - 52B - Perdendo Quando uma Boa Operação Vai Mal: Se a premissa mudar, mude o estilo de operar, Traders emboscados
+- **Vídeos Bônus**
+    
+    - 01 - Armadilhas de Final de Dia: O que é uma armadilha?, Armadilhas de Alta no Final do Dia, Falha de Armadilha de Alta no Final do Dia (Se torna uma Tendência de Alta), Armadilhas de Baixa no Final do Dia, Falha de Armadilha de Baixa no Final do Dia (Se torna uma Tendência de Baixa)
+    - 02 - Padrões na Abertura: Tendências a partir da Abertura: 20% dos dias, 80% dos dias têm reversão na abertura (primeiros 90 min), Como entrar, posicionar um stop e sair, 4 Padrões: Gap para baixo, Clímax de Compra, Gap para baixo, Clímax de Compra, mas falha (Rompimento de Alta), Gap para baixo, Clímax de Venda, Gap para baixo, Clímax de Venda, mas falha (Rompimento de Baixa)
+    - 03 - Operando na Hora Final: Dinheiro Inteligente na Hora Final, Lateralidade Estreita às 12:45 – PST, Tendência de Alta de Compra em Fechamento (BTC), Tendência de Baixa de Compra em Fechamento (STC), Magneto, como O, H, L, Como Sair
+    - 04 - Operando Canais de Baixa: O que é um Canal de Baixa?, Canais de Baixa, Canais Estreitos de Baixa (Tendência de Baixa de Correções Rasas), Canais Amplos de Baixa
+    - 05 - Operando Lateralidades Estreitas na Abertura: Sem Reversão na Abertura: Tendência a partir da primeira barra, 80% das Aberturas Têm Pelo Menos 2 Reversões, Lateralidade na Abertura: 5 ou Mais Reversões, Como Operar Lateralidades Estreitas na Abertura e Durante Todo o Dia
+    - 06 - 3 Padrões Que Todo Trader e Investidor Deveria Saber: O que é Price Action?, Tendência de Alta Forte, Correção em uma Tendência de Alta, Reversão em forma de Cunha: Fundo, Reversão em forma de Cunha: Topo, Al Brooks: 2 sites
+    - 07 - Operando Quando o Mercado Está em um Canal de Alta: O que é um Canal de Alta?, Canais de Alta, Canais Estreitos de Alta (Tendência de Alta de Corre

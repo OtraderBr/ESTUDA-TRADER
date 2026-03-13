@@ -153,3 +153,66 @@
   margin: 1em 0;
   border: 1px solid #e5e7eb;
 }
+
+/* ── Tiptap Rich Editor ────────────────────────────────────────── */
+.tiptap-editor {
+  outline: none;
+  line-height: 1.7;
+}
+
+.tiptap-editor p { margin-bottom: 0.5rem; }
+.tiptap-editor h1 { font-size: 1.5rem; font-weight: 700; margin-bottom: 0.75rem; }
+.tiptap-editor h2 { font-size: 1.25rem; font-weight: 600; margin-bottom: 0.5rem; }
+.tiptap-editor ul { list-style: disc; padding-left: 1.5rem; margin-bottom: 0.5rem; }
+.tiptap-editor ol { list-style: decimal; padding-left: 1.5rem; margin-bottom: 0.5rem; }
+.tiptap-editor strong { font-weight: 700; }
+.tiptap-editor em { font-style: italic; }
+.tiptap-editor s { text-decoration: line-through; }
+.tiptap-editor mark { background-color: #fef08a; padding: 0.1em 0.2em; border-radius: 3px; }
+.tiptap-editor blockquote { border-left: 3px solid #d1d5db; padding-left: 1rem; color: #6b7280; margin: 0.5rem 0; }
+
+/* Placeholder */
+.tiptap-editor p.is-editor-empty:first-child::before {
+  color: #9ca3af;
+  content: attr(data-placeholder);
+  float: left;
+  height: 0;
+  pointer-events: none;
+}
+
+/* Toolbar flutuante */
+.rich-toolbar {
+  display: none;
+  align-items: center;
+  gap: 2px;
+  background: #18181b;
+  border-radius: 8px;
+  padding: 4px 6px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+}
+
+.rich-toolbar button {
+  color: #f4f4f5;
+  background: transparent;
+  border: none;
+  border-radius: 4px;
+  padding: 4px 8px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.rich-toolbar button:hover { background: #3f3f46; }
+.rich-toolbar button.is-active { background: #10b981; color: white; }
+.rich-toolbar .toolbar-sep { width: 1px; height: 16px; background: #3f3f46; margin: 0 2px; }
+
+/* Render HTML from Tiptap notes (read-only) */
+.tiptap-render p { margin-bottom: 0.4rem; }
+.tiptap-render h1 { font-size: 1.25rem; font-weight: 700; margin-bottom: 0.5rem; }
+.tiptap-render h2 { font-size: 1.1rem; font-weight: 600; margin-bottom: 0.4rem; }
+.tiptap-render ul { list-style: disc; padding-left: 1.25rem; margin-bottom: 0.4rem; }
+.tiptap-render ol { list-style: decimal; padding-left: 1.25rem; margin-bottom: 0.4rem; }
+.tiptap-render strong { font-weight: 700; }
+.tiptap-render em { font-style: italic; }
+.tiptap-render mark { background-color: #fef08a; padding: 0.1em 0.2em; border-radius: 3px; }

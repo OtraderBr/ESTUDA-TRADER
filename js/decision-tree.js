@@ -9,7 +9,8 @@ let loadError = null;
 async function fetchTreeData() {
     try {
         isLoading = true;
-        const response = await fetch('data/decision_tree.json');
+        const timestamp = new Date().getTime();
+        const response = await fetch(`data/decision_tree.json?t=${timestamp}`);
         if (!response.ok) throw new Error('Não foi possível carregar a Árvore de Decisão.');
         const data = await response.json();
         treeData = data;

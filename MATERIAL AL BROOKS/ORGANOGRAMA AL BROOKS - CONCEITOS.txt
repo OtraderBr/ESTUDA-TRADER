@@ -1,0 +1,1016 @@
+◦ PRICE ACTION AL BROOKS - CONCEITOS COMPLETOS
+
+◦ FUNDAMENTOS
+	◦ Terminologia Base
+		◦ Gráficos
+			◦ Finalidade
+			◦ Tipos (5min, Diário, Semanal, Mensal)
+			◦ Tempos Gráficos
+		◦ Mercados
+			◦ Como Funcionam
+			◦ Probing
+			◦ Leilão de Preços
+		◦ Price Action
+			◦ Definição
+			◦ Pain Trade
+		◦ Volume
+		◦ Notícias
+		◦ Indicadores
+			◦ Média Móvel
+	◦ Forex Específico
+		◦ Mercado Forex
+		◦ Sessões
+		◦ Pares de Moedas
+		◦ Símbolos
+		◦ Cotações
+		◦ Pip
+		◦ Alavancagem
+		◦ Margens
+		◦ Riscos
+		◦ Custos
+		◦ Corretoras
+		◦ Forex vs Futuros
+		◦ Emini S&P 500
+	◦ Anatomia da Barra
+		◦ Componentes
+			◦ Corpo
+			◦ Sombra
+			◦ Abertura
+			◦ Fechamento
+			◦ Máxima
+			◦ Mínima
+		◦ Tipos de Barra
+			◦ Trend Bar
+			◦ Doji
+			◦ Inside Bar (i)
+			◦ Outside Bar (o)
+			◦ Reversal Bar
+		◦ Tamanho
+			◦ Grande
+			◦ Média
+			◦ Pequena
+		◦ Classificação
+			◦ Barra de Tendência
+			◦ Barra TR (Trading Range)
+			◦ Barra de Sinal
+			◦ Barra de Entrada
+			◦ Barra de Reversão
+			◦ Barra de Surpresa
+			◦ Barra de Desistência
+			◦ Barra de Final de Tendência
+	◦ Padrões de Barras
+		◦ ii (inside-inside)
+		◦ ioi (inside-outside-inside)
+		◦ oo (outside-outside)
+		◦ Lateralidades Estreitas
+	◦ Relação Entre Barras
+		◦ Higher High (HH)
+		◦ Higher Low (HL)
+		◦ Lower High (LH)
+		◦ Lower Low (LL)
+		◦ Equal High (EH)
+		◦ Equal Low (EL)
+	◦ Gaps
+		◦ Definição
+		◦ Tipos
+			◦ MAG (Moving Average Gap)
+			◦ EG (Exhaustion Gap)
+			◦ MG (Measuring Gap)
+			◦ Gap de Corpo
+			◦ Micro Gap
+			◦ Gap de Abertura
+		◦ Significado
+			◦ Força
+			◦ Tendência
+			◦ Padrão Escada
+	◦ Linhas
+		◦ Horizontais
+			◦ Swing High
+			◦ Swing Low
+			◦ Números Redondos
+		◦ Diagonais
+			◦ Linha de Tendência
+			◦ Linha de Canal
+		◦ Dinâmicas
+			◦ Média Móvel
+	◦ Matemática
+		◦ Equação do Trader
+			◦ Edge
+			◦ Probabilidade
+			◦ Recompensa
+			◦ Risco
+		◦ Variáveis
+			◦ Três Variáveis
+			◦ Z-score
+		◦ Probabilidade
+			◦ Alta (70-90%)
+			◦ Média (50-60%)
+			◦ Baixa (40-50%)
+			◦ Probabilidade TR alta perto topo/fundo
+		◦ Risco
+			◦ Fixo
+			◦ Variável
+			◦ Efetivo
+				◦ Definição
+				◦ Pequeno é Inútil
+				◦ Uso para Alvos
+		◦ Recompensa
+			◦ Pequena (<2x)
+			◦ Média (2-3x)
+			◦ Grande (>3x)
+			◦ 2x Mínimo para Swing
+		◦ Regras Estatísticas
+			◦ Regra 80%
+				◦ Reversões Falham
+				◦ Rompimentos Falham
+				◦ Inércia
+			◦ Regra 70%
+				◦ Teste de Canal
+			◦ Regra 40-60
+				◦ Probabilidade Média
+		◦ Vantagem
+		◦ Operações Perfeitas (não existem)
+	◦ Psicologia
+		◦ Traços de Sucesso
+			◦ Características Grandes Traders
+			◦ Disciplina
+			◦ Paciência
+			◦ Confiança
+		◦ Estados Destrutivos
+			◦ Medo
+			◦ Ambição
+			◦ FOMO
+			◦ Fazendo Coisas Estúpidas
+		◦ Gestão Emocional
+			◦ Incerteza
+				◦ Aceitar
+				◦ Confortável Com
+				◦ Trabalhar Dentro
+			◦ Perdas
+				◦ Não Vingar
+				◦ Aprender
+			◦ Ganhos
+				◦ Não Comemorar Cedo
+				◦ Proteger
+		◦ Crenças
+			◦ Falsas Crenças
+			◦ Sentimentos
+		◦ Erros Comuns
+			◦ Gerenciamento Ruim
+			◦ Overtrading
+			◦ Revenge Trading
+	◦ Operando com Programas
+		◦ Algo Trading
+		◦ HFT (High Frequency Trading)
+		◦ Spoofing
+		◦ Antecipação
+		◦ Institutional Piggybacking
+
+◦ CONTEXTO DE MERCADO
+	◦ Ciclo de Mercado
+		◦ Quatro Fases
+			◦ Tendência
+			◦ Canal
+			◦ Lateralidade
+			◦ Rompimento
+		◦ Transições
+			◦ Correção
+			◦ Rompimento
+		◦ Inércia
+		◦ Mercados Resistem à Mudança
+		◦ Probing Contínuo
+	◦ Always In Direction
+		◦ Conceito Central
+		◦ Direção
+			◦ Always In Long
+			◦ Always In Short
+		◦ Estado
+			◦ Tendência
+			◦ Lateralidade
+		◦ Clareza
+			◦ Clara
+			◦ Confusa
+		◦ BLSHS
+			◦ Buy Low
+			◦ Sell High
+			◦ Scalp
+		◦ Decisões Binárias
+	◦ Estrutura de Tendência
+		◦ Definição
+			◦ Swings
+			◦ Pernas
+			◦ Pivots
+		◦ Tendência de Alta
+			◦ Higher Lows (HL)
+			◦ Compradores Controlam
+			◦ Tipos
+				◦ Micro Canal
+				◦ Canal Estreito
+				◦ Canal Amplo
+				◦ Correção Rasa
+		◦ Tendência de Baixa
+			◦ Lower Highs (LH)
+			◦ Vendedores Controlam
+			◦ Tipos
+				◦ Micro Canal
+				◦ Canal Estreito
+				◦ Canal Amplo
+		◦ Qualidade
+			◦ Forte
+				◦ Grandes Barras
+				◦ Gaps
+				◦ Micro Canais
+				◦ Correções Rasas
+			◦ Fraca
+				◦ Barras Pequenas
+				◦ Dojis
+				◦ Overlap
+				◦ Correções Profundas
+		◦ Quando Não Claro
+			◦ Lateralidade
+		◦ Rompimento Significa Mais Forte
+		◦ Tendências Tentam Reverter (80% falham)
+		◦ Tendência da Abertura
+		◦ Armadilhas e Rompimentos
+		◦ Tendências Respeitam Correções Majoritárias
+		◦ Novas Tendências Começam em Antigas
+	◦ Canais
+		◦ Definição
+			◦ 2 Linhas Paralelas
+			◦ 2 Pontos Necessários
+		◦ Tipos
+			◦ Canal de Alta
+				◦ Estreito
+				◦ Amplo
+			◦ Canal de Baixa
+				◦ Estreito
+				◦ Amplo
+		◦ Micro Canal
+			◦ Tendência Mais Forte
+			◦ Pode Ser Clímax
+		◦ Comportamento
+			◦ Teste de Linha (70%)
+			◦ Overshoot
+			◦ Undershoot
+			◦ Evolução para TR
+		◦ Como Traçar
+		◦ Rompimentos
+			◦ Geralmente Falham
+			◦ Início de Tendência (mais sucesso)
+		◦ Maioria dos Canais São Cunhas
+		◦ Canal Amplo ou TR
+		◦ Toda TR tem Canal de Alta e Baixa
+		◦ Tempos Gráficos Mais Altos
+		◦ Reversões e Rompimentos
+		◦ Falhas
+	◦ Lateralidades (Trading Range - TR)
+		◦ Definição
+			◦ Correção vs Lateralidade
+			◦ Confusão
+			◦ Decepção
+		◦ Amplitude
+			◦ Estreita (TTR - Tight Trading Range)
+			◦ Ampla
+		◦ Modos
+			◦ BOM (Breakout Mode)
+			◦ LOM (Limit Order Market)
+		◦ Posição no Range
+			◦ Topo
+			◦ Meio
+			◦ Fundo
+			◦ Metade Superior
+			◦ Metade Inferior
+		◦ Características
+			◦ Contém Setups de Compra E Venda
+			◦ Pernas na TR (não tendência)
+			◦ Platôs
+		◦ Comportamento
+			◦ Efeito Vácuo
+			◦ Lógica Perversa
+			◦ Não Aposte NO Rompimento
+			◦ Aposte CONTRA Rompimento
+		◦ Sinais Antecipados
+		◦ Rompimento na Tendência (diferente)
+		◦ Toda TR é Bandeira Potencial
+		◦ Eventualmente Rompe
+		◦ Sinais de TR
+			◦ Procure Sinais
+			◦ Ampla ou Estreita
+	◦ Rompimentos (Breakouts - BO)
+		◦ Definição
+		◦ Tipos
+			◦ Rompimento de Alta
+			◦ Rompimento de Baixa
+		◦ Qualidade
+			◦ Forte
+				◦ Gap
+				◦ Grande Barra
+				◦ Follow-Through
+				◦ Continuidade
+				◦ Segunda Perna
+			◦ Fraco
+				◦ Sem Gap
+				◦ Pequena Barra
+				◦ Sem Follow-Through
+				◦ Correção Profunda
+		◦ Resultado
+			◦ Sucesso
+			◦ Falha (80%)
+		◦ Regra 80%
+		◦ Reversão é Rompimento
+		◦ Lateralidade = BLSHS
+		◦ Pode Começar Pequeno
+		◦ Segunda Perna Comum
+		◦ Rompimentos de TR
+		◦ Teste de Rompimento
+		◦ Falha
+			◦ Retomada Tendência
+			◦ Reversão
+		◦ EG ou MG
+		◦ Rompimento Fraco = TR em Breve
+		◦ Rompimento Geralmente Segue Armadilha
+		◦ Sinais de BO Forte
+		◦ Ter Sucesso ou Reverter
+		◦ Rompimento Tardio
+		◦ Início da Tendência (melhor)
+	◦ Legs e Swings
+		◦ Componentes
+			◦ Perna (Leg)
+				◦ Primeira
+				◦ Segunda
+				◦ Leg 1 = Leg 2
+			◦ Pivot
+				◦ Alto
+				◦ Baixo
+			◦ Correção (Pullback)
+		◦ Classificação
+			◦ Major (Majoritário)
+				◦ Major High
+				◦ Major Low
+			◦ Minor (Minoritário)
+				◦ Minor High
+				◦ Minor Low
+		◦ Contagem
+			◦ H1 L1
+			◦ H2 L2 (contra-tendência sai)
+			◦ H3 L3
+			◦ H4 L4 (atenção exaustão)
+		◦ Tempos Gráficos Afetam
+	◦ Correções (Pullbacks)
+		◦ Definição
+		◦ Tipos
+			◦ Rasa (sinal força)
+			◦ Profunda (sinal fraqueza)
+			◦ 50% (metade)
+			◦ Sem Fim (vira TR)
+		◦ Majoritária vs Minoritária
+		◦ Bandeiras em Forma de Duplo
+		◦ Reversões Consecutivas H4/L4
+		◦ Matemática Melhora Depois BO
+		◦ Toda Correção é Bandeira Potencial
+	◦ Pressão
+		◦ Tipos
+			◦ Compra
+			◦ Venda
+			◦ Equilíbrio
+		◦ Manifestação
+			◦ Gap
+			◦ Barra Grande
+			◦ Sequência
+			◦ Micro Canal
+		◦ Compradores/Vendedores
+			◦ Fortes
+			◦ Fracos
+		◦ Trapped Traders
+		◦ Emboscados
+		◦ Desapontados
+	◦ Suporte e Resistência (S/R)
+		◦ Definição
+		◦ S/R Controlam Preço (não notícias)
+		◦ Tipos
+			◦ Swing High/Low
+			◦ Números Redondos
+			◦ Média Móvel
+			◦ Linha de Canal
+			◦ Fechamento Anterior
+			◦ Máxima/Mínima Dia Anterior
+			◦ Gap Anterior
+		◦ Origem
+			◦ HTF (mais importante)
+			◦ CTF
+			◦ LTF
+		◦ Nível
+			◦ Testado
+			◦ Não Testado
+		◦ Reação
+			◦ Respeitado
+			◦ Violado
+		◦ Teste
+			◦ Sucesso
+			◦ Falha
+			◦ Segunda Tentativa
+			◦ Teste Tardio
+		◦ Compra/Venda em Fechamento
+		◦ Teste de BO
+		◦ Fechamento Mais Alto/Baixo
+		◦ Compradores Precisam HL
+		◦ Vendedores Precisam LH
+		◦ Qual S/R é Melhor (contexto)
+		◦ Forex Não é Preciso
+		◦ Gráficos Mensais = Stops Mensais
+		◦ Lista de S/R
+		◦ Clímax Sempre Termina em S/R
+	◦ Movimentos Projetados (Measured Moves - MM)
+		◦ Perna 1 = Perna 2
+		◦ Altura TR
+		◦ Altura BO
+		◦ Uso
+			◦ Alvos
+			◦ Stops
+
+◦ PADRÕES
+	◦ Barras de Sinal
+		◦ Definição
+		◦ Barra de Entrada
+		◦ Qualidade
+			◦ Forte
+				◦ Corpo Grande
+				◦ Fechamento Extremo
+				◦ Sem Sombra Contrária
+			◦ Fraca
+				◦ Corpo Pequeno
+				◦ Fechamento Meio
+				◦ Sombra Grande
+			◦ Ruins (evitar)
+		◦ Confirmação
+			◦ Primeiro Sinal
+			◦ Segundo Sinal (melhor)
+			◦ Terceiro Sinal
+		◦ Contexto
+			◦ Com Tendência (melhor)
+			◦ Contra Tendência (precisa forte)
+			◦ Em TR
+		◦ Barra de Sinal Pequena
+	◦ Setups
+		◦ Definição (contexto + sinal)
+		◦ Setup Fraco (precisa mais)
+		◦ Apostar Contra Setups Fracos
+	◦ Contagem de Barras
+		◦ Definição
+		◦ TBTL (Ten Bars Two Legs)
+		◦ H1 L1, H2 L2, H3 L3, H4 L4
+		◦ Reversões Consecutivas H4/L4
+	◦ Continuação
+		◦ Bandeiras (Flags)
+			◦ Definição
+			◦ Bull Flag
+				◦ Topo Duplo como Bandeira
+				◦ Cunha como Bandeira
+				◦ Canal Baixa como Bandeira
+			◦ Bear Flag
+				◦ Fundo Duplo como Bandeira
+				◦ Cunha como Bandeira
+				◦ Canal Alta como Bandeira
+			◦ Bandeiras Finais
+				◦ Definição
+				◦ Rasa
+				◦ Com ii
+			◦ Bandeiras Prematuras
+		◦ Correções
+			◦ Toda Correção é Bandeira Potencial
+			◦ Rasa
+			◦ Profunda
+		◦ Triângulos
+			◦ Alta
+			◦ Baixa
+			◦ Simétrico
+			◦ Expandido
+			◦ Reversão ou Continuação
+			◦ Aparência Ruim
+		◦ Toda TR é Bandeira Potencial
+	◦ Reversão Majoritária
+		◦ MTR (Major Trend Reversal)
+			◦ Padrão Mais Importante
+			◦ Definição
+			◦ Majoritária vs Minoritária
+			◦ Tipos
+				◦ LH (Lower High)
+				◦ HL (Higher Low)
+			◦ Componentes
+				◦ MAG (comum)
+				◦ Topo/Fundo Duplo (maioria)
+			◦ Sucesso
+			◦ Falha (80%)
+			◦ MTR na Abertura
+			◦ Entrada Antecipada
+			◦ TTR pode ser MTR
+		◦ Cunha (Wedge)
+			◦ Definição
+			◦ 3 Pushes (empurrões)
+			◦ Como Traçar
+			◦ Tipos
+				◦ Clássica
+				◦ Parabólica (climática)
+				◦ Nested (aninhada)
+			◦ Variações
+			◦ Qualidade
+				◦ Boa (em fraca)
+				◦ Ruim (em forte, não reverte)
+			◦ Overshoot
+			◦ Undershoot
+			◦ Raramente Perfeitas
+			◦ Maioria Canais São Cunhas
+			◦ Reversão Antes Tendência Terminar
+			◦ Entrada Antecipada LTF
+			◦ Tendências Fortes Têm Cunhas Ruins
+			◦ Falha
+		◦ Topo/Fundo Duplo (Double Top/Bottom)
+			◦ Definição
+			◦ Teste S/R
+			◦ Por Que Funcionam
+			◦ Maioria Reversões São Duplos
+			◦ Maioria Topos São Duplos
+			◦ Bandeiras em Forma de Duplo
+			◦ Movimento Projetado
+			◦ Falha (comum)
+		◦ Ombro-Cabeça-Ombro (Head and Shoulders - OHO)
+			◦ É MTR
+			◦ Ombro
+			◦ Cabeça
+			◦ Resultado
+				◦ Majoritário (raro)
+				◦ Minoritário (comum)
+			◦ Reversões em Forma OHO
+			◦ O Que Acontece Quando Stop Atingido
+		◦ Padrões Adicionais
+			◦ Xícara e Alça
+			◦ Padrão Aninhado (Nested)
+	◦ Reversão Minoritária
+		◦ Definição
+		◦ Vencedor 40%
+		◦ Topo/Fundo Duplo Menor
+		◦ Cunha Fraca
+		◦ OHO
+		◦ Reversões Comuns Mas Falham
+		◦ Iniciantes Adoram (mas perdem)
+	◦ Clímaxes
+		◦ Definição
+		◦ Tipos
+			◦ Buying Climax (Compra)
+			◦ Selling Climax (Venda)
+			◦ Consecutivo
+		◦ Formato
+			◦ Topos/Fundos em V
+			◦ Reversões Climáticas
+		◦ Gap
+			◦ Exaustão (EG)
+			◦ Projeção (MG)
+		◦ Causados por Empresas de Opções
+		◦ Falha de Consecutivos
+		◦ Sempre Termina em S/R
+		◦ Micro Canal pode ser Clímax
+		◦ Rompimento Fraco Depois = TR
+		◦ Apostando Contra BO Tardio desde Clímax
+		◦ Reversões Majoritárias
+		◦ Reversões Minoritárias
+	◦ Armadilhas (Traps)
+		◦ Definição
+		◦ Tipos
+			◦ Bull Trap
+			◦ Bear Trap
+			◦ Segunda Perna (common)
+			◦ 5 Ticks (Emini)
+			◦ 11 Pips (Forex)
+		◦ Momento
+			◦ Abertura
+			◦ Final Dia
+			◦ Após Clímax
+			◦ Em TR
+		◦ Armadilha e Exaustão
+		◦ Falha de Armadilha (vira tendência)
+	◦ Topos/Fundos Arredondados
+		◦ É Sempre Outra Coisa (geralmente cunha)
+
+◦ DECISÃO E OPERAÇÃO
+	◦ Tipos de Operação
+		◦ Swing Trading
+			◦ Definição
+			◦ Retorno 2x+ Risco
+			◦ Ambiente Favorável
+				◦ Tendência
+				◦ Canal
+			◦ Operação Base
+		◦ Scalping
+			◦ Definição
+			◦ Retorno <2x
+			◦ Múltiplas Operações
+			◦ NÃO para Iniciantes
+			◦ Tamanho Mínimo (4 ticks Emini)
+			◦ Personalidade
+			◦ Ambiente
+				◦ TR
+				◦ BO Forte
+			◦ Dois Timeframes
+			◦ Ticks
+			◦ Divergência de Ticks
+			◦ Gráfico 2 Minutos
+			◦ Gráfico 15 Segundos
+			◦ 50 Setups/Dia
+			◦ Regras para Scalp
+			◦ Perda se Gerenciar Como Swing
+		◦ Convertendo Swing para Scalp
+	◦ Ordens
+		◦ Stop Order
+			◦ Compra Acima
+			◦ Venda Abaixo
+			◦ Para Rompimentos
+			◦ Melhores para Maioria
+		◦ Limit Order
+			◦ Compra Abaixo
+			◦ Venda Acima
+			◦ Para Pullbacks
+			◦ Para Fade
+			◦ LOM (TR)
+			◦ Traders Habilidosos
+			◦ Apostar Contra Teste Linha
+		◦ Market Order
+			◦ Imediata
+			◦ Urgência
+		◦ Bracket Order
+		◦ Movimento Lateral Determina Tipo
+		◦ Ordens na Abertura (stop melhores)
+	◦ Entrada
+		◦ Timing
+			◦ Antecipado
+			◦ Na Hora
+			◦ Atrasado
+		◦ Preço
+			◦ Stop Order
+			◦ Limit Order
+			◦ Market Order
+		◦ Tamanho
+			◦ Posição Total
+			◦ Fracionado
+		◦ Entrada Prematura LTF
+		◦ Como Entrar em Reversões
+	◦ Stop Loss
+		◦ Por Que Usar
+		◦ Determina Tamanho Posição
+		◦ Depois Atingido (reavalie)
+		◦ Use Stop Correto
+		◦ Posição
+			◦ Price Action Stop
+			◦ Acima LH (para compras)
+			◦ Abaixo HL (para vendas)
+			◦ Em S/R
+			◦ Além Barra Sinal
+		◦ Tipos
+			◦ Fixo
+			◦ Trailing (móvel)
+			◦ Breakeven
+		◦ Tamanho
+			◦ Apertado (scalp, com tendência)
+			◦ Médio
+			◦ Largo (contra, TR)
+			◦ Stops Longos
+			◦ Stops da Baixa
+		◦ Regras
+			◦ Compradores: Abaixo HL
+			◦ Vendedores: Acima LH
+			◦ Tendências Respeitam Correções Majoritárias
+			◦ Saia se Premissa Mudar
+			◦ Stop de Swing
+			◦ Stops para Scalpers
+		◦ Movimento Projetado / S/R
+		◦ Gráficos Mensais = Stops Mensais
+		◦ Stop Correto (não arbitrário)
+		◦ Gerenciamento de Stop
+		◦ Movendo Stops
+	◦ Gestão
+		◦ Durante
+			◦ Mover Stop
+			◦ Adicionar Posição
+			◦ Reduzir Posição
+			◦ Converter Swing para Scalp
+		◦ Saída
+			◦ Alvo Atingido
+			◦ Stop Atingido
+			◦ Premissa Mudou (saia)
+		◦ Gerenciamento é DEPOIS Entrar
+		◦ OPM (Dinheiro Outras Pessoas nunca é verdadeiro)
+	◦ Realização de Lucros
+		◦ Alvos
+			◦ Tipos
+				◦ Movimento Projetado
+				◦ 2x Risco
+				◦ S/R
+				◦ Zona
+			◦ Método
+				◦ Total
+				◦ Parcial
+			◦ Alvos Padrão
+			◦ Alvos Mínimos
+		◦ Pontos
+			◦ Acima Máxima Anterior
+			◦ Abaixo Mínima Anterior
+			◦ Compra/Venda Fechamento
+			◦ Zona de Compra
+			◦ Zona de Venda
+			◦ 50% Correção
+		◦ Padrões para Realizar
+		◦ Planeje Antes Entrar
+		◦ Realizando em TR
+		◦ Não Comemorar Cedo
+	◦ Fracionamento
+		◦ Scale In
+			◦ Em Ganhadora (ok)
+			◦ Em Perdedora (PERIGO)
+			◦ Quem Fraciona
+		◦ Scale Out
+			◦ 1/2 no Alvo 1
+			◦ 1/2 no Alvo 2
+			◦ 1/4 em cada
+			◦ Variável
+		◦ Estratégias
+			◦ 2 Partes
+			◦ 4 Partes
+		◦ Fracionar Cria Grandes Perdas
+		◦ Stops Longos E Fracionamento
+
+◦ OPERANDO POR CONTEXTO
+	◦ Operando Tendências
+		◦ Tendência de Alta
+			◦ Compra Correção
+			◦ Compra Rompimento
+			◦ Compra Fechamento (BTC)
+			◦ Stop Abaixo HL
+			◦ Swing Prioritário
+			◦ Zona de Compra
+			◦ Não Venda Contra
+		◦ Tendência de Baixa
+			◦ Venda Rally
+			◦ Venda Rompimento
+			◦ Venda Fechamento (STC)
+			◦ Stop Acima LH
+			◦ Swing Prioritário
+			◦ Zona de Venda
+			◦ Não Compre Contra
+		◦ Entrando Tarde
+			◦ FOMO Alta
+			◦ FOMO Baixa
+			◦ Barras Final Tendência
+			◦ Barras Desistência
+			◦ Vendedores Desapontados
+			◦ Emboscados
+			◦ Apostando Contra BO Tardio
+			◦ AIS = Preços Mais Baixos
+	◦ Operando Canais
+		◦ Canal Estreito Alta
+			◦ Compra Pullback Raso
+			◦ Compra Após ii
+			◦ Stop Apertado Abaixo HL
+			◦ Swing
+			◦ Primeira Reversão Falha
+			◦ Vendedores Não Ganham
+			◦ Evolui para TR
+			◦ BO em HTF
+			◦ Canal Baixa como Bandeira Alta
+		◦ Canal Estreito Baixa
+			◦ Venda Rally Raso
+			◦ Venda Após ii
+			◦ Stop Apertado Acima LH
+			◦ Swing
+			◦ Primeira Reversão Falha
+			◦ Compradores Não Ganham
+			◦ Evolui para TR
+			◦ BO em HTF
+			◦ Canal Alta como Bandeira Baixa
+		◦ Canal Amplo Alta
+			◦ Compra Zona Inferior
+			◦ Venda Rally (scalp)
+			◦ Stop Largo
+			◦ Contém TR
+			◦ Mínimas Major/Minor
+			◦ Às Vezes Modo Vendido
+			◦ Vendedores Vendem Rallies
+			◦ Reversões Comuns Mas Falham
+			◦ Diagnóstico Prematuro
+			◦ Continuidade Ruim Após Nova Máxima
+			◦ Precisa HLs
+			◦ Armadilha Segunda Perna
+			◦ Compradores Realizam Acima Anterior
+			◦ 50% PB
+			◦ Evolução Grande TR
+			◦ Geralmente Estreito em HTF
+			◦ Dura Muitos Dias
+		◦ Canal Amplo Baixa
+			◦ Venda Zona Superior
+			◦ Compra Queda (scalp)
+			◦ Stop Largo
+			◦ Máximas Major/Minor
+			◦ Dura Pelo Menos 3 Dias
+			◦ Reversões Comuns Mas Falham
+			◦ Diagnóstico Prematuro
+			◦ Às Vezes Modo Comprado
+			◦ Precisa LHs
+			◦ Armadilha Segunda Perna
+			◦ Compradores Compram Abaixo Mínimas
+			◦ Stops Longos Fracionar
+			◦ 50% PB
+			◦ Por Que Não Comum 5min
+		◦ Se Canal, Opere Como Canal
+	◦ Operando Lateralidades
+		◦ Identificação
+			◦ Ampla ou Estreita
+			◦ Procure Sinais
+		◦ Regra 80%
+		◦ Pernas na TR (não tendência)
+		◦ Entrada
+			◦ Compra Metade Inferior
+			◦ Venda Metade Superior
+			◦ Ordens Limitadas
+		◦ Gestão
+			◦ Aposte CONTRA BO
+			◦ Stop Largo
+			◦ Fracionar
+			◦ Scalp
+		◦ Realização
+		◦ Teste Tardio Abertura
+		◦ TTR
+			◦ Compressão
+			◦ Explosão Provável
+		◦ Eventualmente Rompe
+		◦ LOM (TR estabelecida)
+		◦ Como Entrar Reversões
+	◦ Operando Rompimentos
+		◦ BO Forte
+			◦ Entre com Stop
+			◦ Swing
+			◦ Segunda Perna
+			◦ Fazendo Scalp em BO Forte
+		◦ BO Fraco
+			◦ Aguarde Teste
+			◦ Scalp
+			◦ Depois TR
+		◦ BO Alta
+			◦ BTC (Compra Fechamento)
+		◦ BO Baixa
+			◦ STC (Venda Fechamento)
+		◦ Stops de Swing
+		◦ Geralmente Segue Armadilha
+		◦ Entrada Prematura LTF
+		◦ Gerenciamento Stop
+		◦ Como Vender
+	◦ Operando Reversões
+		◦ MTR Topos
+			◦ Precisa Vendedores Fortes
+			◦ Alvos Mínimos
+			◦ Planeje Realizar
+			◦ LH Setup
+			◦ Probabilidade Maior Depois BO
+		◦ MTR Fundos
+			◦ Precisa Compradores Fortes
+			◦ Antecipe Possível Fundo
+			◦ Alvos Mínimos
+			◦ HL Setup
+			◦ Reversões Minoritárias
+			◦ Não Há Melhores Setups
+			◦ Não Há Operação Perfeita
+			◦ Movendo Stops
+			◦ MTR na Abertura
+		◦ Reversões Climáticas
+			◦ BO Fraco = TR Breve
+			◦ Pode Sucesso (MG) ou Falhar (EG)
+			◦ Compradores/Vendedores Fortes/Fracos
+			◦ Majoritárias
+			◦ Minoritárias
+			◦ Micro Canal pode ser Clímax
+
+◦ OPERANDO POR TEMPO
+	◦ Momentos do Dia
+		◦ Abertura
+			◦ 3 Partes Dia
+			◦ Por Que Operar
+			◦ Reversões na Abertura (80% dias)
+			◦ Tendência da Abertura (20% dias)
+			◦ 90% high/low antes barra 18
+			◦ Padrões Comuns
+				◦ BOM
+				◦ Gap
+				◦ Reversão
+				◦ Amplitude 18 Barras
+			◦ Contexto
+				◦ Dia Anterior
+				◦ Como Terminou
+			◦ BO Primeira Amplitude
+			◦ Falha BO Máxima/Mínima Anterior
+			◦ Falha Reversão BO Amplitude
+			◦ Gaps na Abertura
+			◦ Bandeiras Prematuras
+			◦ Ordens Stop Melhores
+			◦ Regra Mais Importante
+			◦ 5+ Reversões = TR
+			◦ Sem Reversão = Tendência Primeira Barra
+			◦ TTR na Abertura
+			◦ MTR na Abertura
+		◦ Meio Dia
+			◦ Procure Mudança
+			◦ Tendência ou Perna TR
+			◦ Teste Tardio S/R
+			◦ Regra 80%
+			◦ Mudança de Fase
+			◦ Frequentemente TR (2h)
+		◦ Final Dia
+			◦ BO e TR (não canais)
+			◦ Compra/Venda Fechamento
+			◦ Armadilhas Alta/Baixa
+			◦ S/R HTF
+			◦ Armadilhas Final Dia
+			◦ Falha Armadilha (vira tendência)
+			◦ Hora Final
+			◦ Dinheiro Inteligente
+			◦ TTR 12:45 PST
+			◦ Magneto (O, H, L)
+			◦ Como Sair
+	◦ Análise Multi-Timeframe
+		◦ HTF (Higher Timeframe)
+			◦ Contexto Geral
+			◦ S/R Maior (mais importante)
+			◦ Tendência Maior
+			◦ Define Viés
+			◦ Canal ou TR Maior
+			◦ BO em HTF
+			◦ Gráficos Mensais
+			◦ Tempos Gráficos Mais Altos
+		◦ CTF (Current Timeframe)
+			◦ Execução Principal
+			◦ Padrões
+			◦ Sinais
+			◦ Onde Opera
+			◦ Gestão
+			◦ Gráfico 5 Minutos
+		◦ LTF (Lower Timeframe)
+			◦ Entrada Prematura
+			◦ Confirmação
+			◦ Scalping
+			◦ Melhor Preço
+			◦ Gráfico 2 Minutos
+			◦ Gráfico 15 Segundos
+	◦ Day Trade com Gráfico Diário
+		◦ Modo BTC/STC
+		◦ Micro Canal
+		◦ Apostando Contra Grandes Barras TR
+
+◦ GESTÃO DE PERDAS
+	◦ Perdendo por Erros
+		◦ Psicologia
+		◦ Crenças Falsas
+		◦ Gerenciamento Ruim
+		◦ Regras Evitar Grandes Perdas
+		◦ Stop Incorreto
+		◦ Fracionar Cria Grandes Perdas
+	◦ Boa Operação Vai Mal
+		◦ Precisa Regras
+		◦ Todas Tendências Desapontam
+		◦ Se Premissa Mudar, Mude Estilo
+		◦ Traders Emboscados
+	◦ Evite Operações Ruins
+	◦ Segurando Perdedores Muito Tempo
+	◦ Realizando Muito Rápido
+	◦ Perdendo Depois Aumentar Posição
+
+◦ TÓPICOS ESPECÍFICOS
+	◦ Opções
+		◦ Day Trade Opções
+			◦ Por Que
+			◦ Como Operar
+			◦ Problemas Corretora/Dados
+			◦ Call vs Índice
+			◦ Put vs Stock
+			◦ Quais Índices
+		◦ Opções Gráficos Diários
+			◦ Por Que
+			◦ Estratégias Reposição Índice
+			◦ Quanto Tempo Segurar
+			◦ Quais Opções
+			◦ Custos Execução
+			◦ Como Operar
+			◦ Stops Proteção
+			◦ Quando Entrar/Sair
+			◦ Índices Ótimos
+	◦ Setups Diários
+		◦ Praticar Todo Dia
+		◦ Mesma Abordagem Todos Mercados/TF
+		◦ Comece com Linhas
+			◦ Cunhas
+			◦ Topo Duplo
+			◦ Fundo Duplo
+			◦ Triângulo
+		◦ Barras Especiais
+			◦ Grandes
+			◦ ii
+			◦ OO
+			◦ ioi
+		◦ Adicione Caixas Entradas
+		◦ Caixas de Texto
+		◦ 5 Passos Encontrar Operação

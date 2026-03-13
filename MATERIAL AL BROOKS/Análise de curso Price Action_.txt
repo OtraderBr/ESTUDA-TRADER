@@ -1,0 +1,588 @@
+﻿Estrutura Detalhada do Curso Aprenda a Operar Price Action
+A seguir, apresento uma lista detalhada e organizada dos módulos, capítulos, aulas e tópicos do curso "Aprenda a Operar Price Action," conforme solicitado 1.
+1. Fundamentos de Price Action (121 vídeos, 59 horas)
+* Módulo: Começando (01-07) (15 vídeos, 5h 42min)
+   * Aula: Terminologia
+      * Tópicos: (Não especificados no índice)
+   * Aula: O Básico de Gráficos e Price Action
+      * Tópicos:
+         * Gráficos: finalidade e tipos
+         * Mercados: como eles funcionam
+         * Volume
+         * Notícias
+         * O que é Price Action?
+         * O que é pain trade?
+         * Padrões de velas
+         * Sobre o que os traders falam
+         * Indicadores
+   * Aula: Básico de Forex
+      * Tópicos:
+         * O que é o mercado Forex?
+         * Sessões Forex
+         * Alavancagem, fundamentos
+         * Riscos, custos, corretoras
+         * Símbolos
+         * Tipos de cotações
+         * Valor de um pip
+         * Espaços de trabalho Forex
+         * Futuros ou Forex?
+         * Gráficos apenas aproximados
+         * Operações de Swing e Scalp
+         * Margens
+         * Lucro e perda
+   * Aula: Meu Setup
+      * Tópicos: (Não especificados no índice)
+   * Aula: Operando Com Programas
+      * Tópicos:
+         * O que é operar com programas?
+         * Operação de alta frequência
+         * Spoofing
+         * Antecipação e HFTs
+   * Aula: Traços de Personalidade de Traders de Sucesso
+      * Tópicos:
+         * Características de grandes traders
+         * Fazendo coisas estúpidas
+         * Confortável com a incerteza
+   * Aula: Começando
+      * Tópicos:
+         * Falsas crenças
+         * Qual é o quadro geral? B L S H!
+         * Tipos de gráficos, tempos gráficos
+         * Começando e avançando
+         * Sentimentos
+         * Medo e ambição
+         * Incerteza
+* Módulo: Análise de Gráficos (08-11) (13 vídeos, 6h 16min)
+   * Aula: Candle Setups e Barras de Sinal
+      * Tópicos:
+         * Barras de tendência e barras TR
+         * Barras de sinal e barras de entrada
+         * Barras de sinal ruins
+         * Barras de reversão
+         * Reversão de múltiplas barras
+         * Barras internas e externas
+         * Lateralidades estreitas como setups
+         * ii e Modo Rompimento
+         * O que é um setup?
+         * Setup fraco, precisa de mais
+         * Segundo sinal
+         * A contra-tendência precisa de uma barra de sinal forte
+   * Aula: Correções e Contagem de Barras
+      * Tópicos:
+         * O que é uma correção?
+         * O que é contagem de barras?
+         * Bandeiras de Baixa em Forma de Topo Duplo e Bandeiras de Alta em Forma de Fundo Duplo
+         * Reversões consecutivas de H4 e L4
+         * Correção sem fim
+         * Tempos gráficos mais altos e mais baixos
+         * Traders de contra-tendência saem no H2 ou L2
+   * Aula: Pressão de Compra e de Venda
+      * Tópicos:
+         * O que é Pressão de Compra e de Venda?
+         * Gaps
+         * Lateralidades
+         * Canais
+   * Aula: Gaps
+      * Tópicos:
+         * O que são gaps?
+         * Barra de Gap de Média Móvel
+         * Gap de Exaustão
+         * Micro gaps
+         * Gap nas Barras de Abertura
+         * Gaps significam força
+         * Gap de Corpo (Gap Negativo)
+         * Gaps frequentemente levam a tendências
+         * Padrão de Escada
+* Módulo: Ciclo de Mercado (12-18) (33 vídeos, 16h 53min)
+   * Aula: Ciclo de Mercado
+      * Tópicos:
+         * Quatro partes do ciclo de mercado?
+         * A correção é o começo de um canal
+         * Canal se torna Lateralidade
+         * Ciclo de mercado: modo sempre tendência ou lateralidade
+         * Inércia e a regra dos 80%
+         * Definições 1: Tendências, swings e pernas
+         * Definições 2: Correções
+         * Definições 3: Lateralidade
+         * Decisões binárias
+   * Aula: Modo Sempre Posicionado
+      * Tópicos:
+         * Modo sempre tendência ou lateralidade
+         * Direção sempre posicionada
+         * Equação do Trader
+         * Modo Sempre Comprado
+         * Modo Sempre Vendido
+         * Operação de Swing e Scalp
+   * Aula: Tendências
+      * Tópicos:
+         * O que é uma tendência?
+         * Tendências de alta precisam de Mínimas Mais Altas
+         * Tendências de baixa precisam de Máximas Mais Baixas
+         * Quando não estiver claro, é uma lateralidade
+         * Rompimento significa uma tendência mais forte
+         * Regra dos 80%: A maioria das reversões falham
+         * Tipos de tendência
+         * Tendências de alta e de baixa
+         * Armadilhas e rompimentos
+         * Tendência a partir da Abertura
+         * Operando Lateralidades
+         * Tendência de Canal Amplo
+         * Canal Estreito
+         * Tendência de Correção Rasa
+   * Aula: Rompimentos
+      * Tópicos:
+         * O que é um rompimento?
+         * Regra dos 80%: A maioria dos rompimentos falham
+         * Reversão é um rompimento
+         * Lateralidade significa BLSHS!
+         * É preciso continuidade
+         * Tendências sempre tentam reverter
+         * Rompimento pode começar pequeno
+         * Rompimento geralmente possui uma segunda perna
+         * Rompimentos de lateralidades
+         * Armadilhas de segunda perna
+         * Sinais de rompimentos fortes
+         * Ter sucesso ou reverter?
+         * Gap de Exaustão ou Projeção?
+         * Um rompimento fraco possui uma correção mais profunda
+         * Teste de rompimento
+         * Falha de rompimento, retomada da tendência ou reversão?
+         * Armadilhas de 5 ticks e armadilhas de 11 pips
+         * Apostar contra setups fracos
+         * Barras de surpresa
+         * Armadilhas de segunda perna e exaustão
+         * Barras de desistência – Reversão minoritária
+   * Aula: Canais e Como Traçar Linhas
+      * Tópicos:
+         * Um canal são 2 linhas
+         * Linhas precisam de dois pontos
+         * Regra dos 70%
+         * Como traçar canais
+         * Exemplos de canais de baixa no Forex
+         * Exemplos de canais de alta no Emini
+         * Novas tendências começam em tendências antigas
+         * Tempos gráficos mais altos
+         * Reversões e rompimentos
+         * Tipos de canais
+         * Canais Estreitos e Amplos de Alta
+         * Canais Estreitos e Amplos de Baixa
+         * Evoluindo para Lateralidade
+         * Rompimentos de canal geralmente falham
+         * Com rompimento de tendência de canal
+         * Ordens limitadas para apostar contra o teste de uma linha
+         * Rompimentos no início da tendência
+         * Falhas de reversão e rompimento
+         * Canal amplo ou lateralidade (TR)?
+         * Toda lateralidade possui canal de alta e de baixa
+   * Aula: Canais Estreitos e Micro Canais
+      * Tópicos:
+         * O que é um Canal Estreito?
+         * O que é um Micro Canal?
+         * Lateralidades Estreitas
+         * Rompimento ou clímax?
+   * Aula: Lateralidades
+      * Tópicos:
+         * Definição de correção e lateralidade
+         * Marcas registradas: confusão, decepção
+         * Lateralidades contém setups de compra e de venda
+         * Modo Rompimento (BOM)
+         * Armadilha de Segunda Perna
+         * Retomada de tendência ou reversão?
+         * Tendência ou perna na lateralidade?
+         * Lateralidade Estreita (TTR)
+         * Platôs
+         * Mercado de Ordem Limitada (LOM)
+         * O que é efeito vácuo?
+         * Lógica perversa: Apostar contra o rompimento
+         * Lateralidade: Não aposte no rompimento
+         * Rompimento na tendência
+         * Sinais antecipados de lateralidade
+* Módulo: Suporte, Resistência e Padrões Básicos (19-29) (34 vídeos, 16h 29min)
+   * Aula: Suporte e Resistência
+      * Tópicos:
+         * O que é suporte e resistência (S/R)?
+         * S/R controlam o preço, não as notícias
+         * Gráficos mensais precisam de stops mensais
+         * S/R geralmente é preciso
+         * Qual S/R é o melhor?
+         * O S/R do Forex não é preciso
+         * Exemplos
+         * Outros tipos de S/R
+         * Números redondos
+         * Lista de S/R
+         * Compra em fechamento, Venda em Fechamento
+         * Teste de Rompimento (BO)
+         * Fechamento mais alto e mais baixo
+         * Compradores precisam de Mínimas Mais Altas, vendedores precisam de Máximas Mais Baixas
+         * Correção de 50%
+   * Aula: Movimentos Projetados
+      * Tópicos:
+         * Perna 1 = Perna 2
+         * Altura da Lateralidade
+         * Altura do Rompimento
+   * Aula: Reversões
+      * Tópicos:
+         * O que é uma reversão?
+         * Reversão majoritária e minoritária de tendência
+         * Reversões podem começar com rompimentos
+         * Reversão é uma entrada antecipada
+         * Regra dos 80%
+         * Padrão em forma de xícara e alça
+         * Iniciantes adoram reversões
+         * Pressão de Compra e de Venda
+         * Padrão Aninhado
+         * Vencedor de 40%
+         * Dez Barras, Duas Pernas (TBTL)
+         * A maioria das reversões são Topos ou Fundos Duplos
+   * Aula: Reversões Majoritárias de Tendência (MTR)
+      * Tópicos:
+         * O que são reversões majoritárias e minoritárias?
+         * MTR é o padrão de reversão mais importante
+         * MTR LH bem-sucedido
+         * MAG (Barra de Gap de Média Móvel)
+         * A maioria dos topos são Topos Duplos
+         * Fundos em forma de MTR
+         * Reversões em forma de ombro-cabeça-ombro
+         * Falha de MTR
+   * Aula: Bandeiras Finais
+      * Tópicos:
+         * O que é uma Bandeira final?
+         * Bandeiras Finais Rasas
+         * Bandeiras Finais com padrão ii
+   * Aula: Cunhas
+      * Tópicos:
+         * O que é uma cunha? Como traçar linhas
+         * Cunhas raramente perfeitas
+         * A maioria dos canais são Cunhas
+         * Variações de Cunhas
+         * Cunhas ruins não são setups de reversão
+         * A reversão começa antes que uma tendência antiga termine
+         * Entrada antecipada em um tempo gráfico mais baixo
+         * O que é uma Cunha parabólica?
+         * Tendências fortes têm Cunhas ruins
+         * Falha de Cunha
+   * Aula: Topos e Fundos Duplos
+      * Tópicos:
+         * O que é um Topo ou Fundo Duplo?
+         * Por que Topos e Fundos Duplos funcionam
+         * Bandeiras em forma de Topo e Fundo Duplo
+         * Teste de suporte e resistência
+         * Falha de Topos e Fundos Duplos
+         * Movimentos Projetados
+   * Aula: Triângulos
+      * Tópicos:
+         * Triângulo
+         * Cunha
+         * Reversão ou continuação (bandeira)
+         * Triângulo Expandido
+         * Padrões com aparência ruim
+   * Aula: Ombro Cabeça Ombro
+      * Tópicos:
+         * Ombro-cabeça-ombro é MTR
+         * A maioria das reversões de ombro-cabeça-ombro são minoritárias
+         * Mercados resistem à mudança
+         * O que acontece quando o stop é atingido?
+   * Aula: Topos e Fundos Arredondados
+      * Tópicos:
+         * É sempre outra coisa
+   * Aula: Clímaxes
+      * Tópicos:
+         * O que é um clímax?
+         * Topos e Fundos em forma de V
+         * Reversões climáticas
+         * Gaps: Exaustão, Projeção
+         * Clímaxes consecutivos
+         * Clímaxes causados por empresas de opções
+         * Falha de clímaxes consecutivos
+* Módulo: Pré-Requisitos de Como Operar (30-36) (26 vídeos, 13h 40min)
+   * Aula: Equação do Trader e Probabilidade
+      * Tópicos:
+         * Vantagem e operações perfeitas
+         * Equação do Trader
+         * Três Variáveis
+         * Z-score
+         * Probabilidade é o mais importante
+         * Correção de 50%
+         * A matemática pode melhorar depois do rompimento
+         * Probabilidade de 70% – 90%!
+         * Regra dos 40 – 60
+         * Probabilidade TR alta perto do topo e do fundo
+   * Aula: Operações de Swing e Scalp
+      * Tópicos:
+         * O que é operação de swing e scalp?
+         * Ambientes ideais
+         * Operação de swing significa que o retorno é 2x o risco
+         * Scalp não é para iniciantes
+         * Tamanho mínimo de um scalp
+         * Convertendo swing para scalp
+         * Fazendo scalp em um rompimento forte
+         * Você perde se gerenciar o scalp como um swing
+   * Aula: Ordens
+      * Tópicos:
+         * Ordens stop
+         * Ordens limitadas
+         * Ordens Bracket
+         * Ordens de mercado e outras
+         * Ordens stop são melhores para a maioria dos traders
+         * Traders habilidosos usam ordens de mercado e ordens limitadas
+         * Mercado de ordem limitada com lateralidade e tendências
+         * O movimento lateral de preços determina o tipo de ordem
+         * Ordens limitadas com tendências e contra-tendências
+         * Entrada prematura em um tempo gráfico mais baixo
+   * Aula: Stop de Proteção
+      * Tópicos:
+         * Por que usar stops?
+         * O stop determina o tamanho da posição
+         * Depois que um stop é atingido
+         * Use o stop correto
+         * Stop de Price Action
+         * Compradores precisam de Mínimas Mais Altas
+         * Stops móveis
+         * Stops da baixa
+         * Tendências respeitam correções majoritárias
+         * Saia se a premissa mudar
+         * Stops longos
+         * Movimentos projetados / outros S & R
+         * Barra de sinal pequena
+         * Stop de ponto de equilíbrio e testes de Rompimento
+         * Stops para scalpers
+   * Aula: Risco Efetivo
+      * Tópicos:
+         * Equação do Trader e risco
+         * Risco Efetivo
+         * Risco Efetivo pequeno é inútil
+         * Use o risco para encontrar alvos de lucro
+   * Aula: Fracionando a Entrada
+      * Tópicos:
+         * Quem fraciona a entrada e por quê?
+         * Fracionando a entrada em operações ganhadoras
+         * Fracionando a entrada em posições perdedoras
+         * Amostra de estratégia: 2 partes
+         * Amostra de estratégia: 4 partes
+   * Aula: Gerenciamento de Operação e Realização de Lucro
+      * Tópicos:
+         * O gerenciamento é para depois de entrar em uma operação
+         * O Dinheiro de Outras pessoas nunca é verdadeiro
+         * Padrões para Realização de Lucro
+2. Como Operar Price Action (72 vídeos, 38 horas 58 minutos)
+* Módulo: Operando Padrões de Price Action (37-42) (22 vídeos, 11h 57min)
+   * Aula: Como Operar
+      * Tópicos:
+         * O que os mercados podem fazer?
+         * Resumo de como operar
+         * Use o ciclo de mercado
+         * Equação do Trader e Regra de 40 – 60
+         * Alvos padrão
+   * Aula: Operando Topos em Forma de Reversão Majoritária de Tendência
+      * Tópicos:
+         * O topo precisa de vendedores fortes
+         * Precisa de alvos mínimos
+         * Planeje realizar lucros
+         * Reversão Majoritária de Tendência de Máxima Mais Baixa
+         * Probabilidade mais alta depois de um rompimento
+   * Aula: Operando Fundos em Forma de Reversão Majoritária de Tendência
+      * Tópicos:
+         * Operando Fundos em Forma de Reversão Majoritária de Tendência
+         * Antecipe um possível fundo
+         * Reversões minoritárias
+         * Não há os melhores setups
+         * Alvos de lucro
+         * Não há operação perfeita
+         * Movendo seus stops
+         * MTR na abertura
+   * Aula: Entrando Tarde em Tendências
+      * Tópicos:
+         * FOMO de alta (FOMO)
+         * FOMO de baixa (FOMO)
+         * Fechamento de Alta e de Baixa no fim da tendência
+         * Tendência de baixa de venda fechamento
+         * Tendência de alta de venda fechamento
+         * Barras de Final de Tendência
+         * Barras de Desistência
+         * Forte Rompimento de baixa
+         * Vendedores desapontados
+         * Vendedores emboscados no final de uma tendência de baixa
+         * Desistência dos vendedores que vendem o fechamento
+         * Apostando contra um rompimento tardio de alta desde um clímax
+         * AIS significa prováveis preços mais baixos
+         * Lateralidade Estreita pode ser uma Reversão Majoritária de Tendência
+         * Apostando contra um rompimento tardio de baixa desde um clímax
+         * Clímax sempre termina em S/R
+   * Aula: Operando Rompimentos
+      * Tópicos:
+         * Rompimentos de alta
+         * Tendência de alta de compra em fechamento
+         * Tendência de baixa de venda em fechamento
+         * Use stops de swing
+         * Se agora é um canal, opere como um canal
+         * Rompimento geralmente segue uma armadilha
+         * Entrada prematura em um tempo gráfico mais baixo
+         * Rompimento fraco, depois Lateralidade
+         * Rompimentos de baixa
+         * Gerenciamento de stop
+         * Como vender
+   * Aula: Operando Reversões Climáticas
+      * Tópicos:
+         * Rompimento fraco significa Lateralidade em breve
+         * Rompimento pode ser bem-sucedido (MG) ou pode falhar (EG)
+         * Compradores e vendedores fortes e fracos
+         * Reversões climáticas majoritárias
+         * Um Micro Canal pode ser um clímax
+         * Reversões climáticas minoritárias
+* Módulo: Operando Canais e Lateralidades (43-47) (22 vídeos, 12h 32min)
+   * Aula: Operando Canais Estreitos de Alta
+      * Tópicos:
+         * O que é um Canal Estreito de Alta?
+         * Rompimento em um tempo gráfico mais alto
+         * Canal Estreito de Baixa como Bandeira de Alta
+         * A primeira reversão é geralmente minoritária
+         * Fracionando a entrada
+         * Os vendedores conseguem fazer dinheiro?
+         * Como comprar um Canal Estreito de Alta
+         * Stops e realização de lucros
+         * Canal Estreito evolui para Lateralidade
+   * Aula: Operando Canais Estreitos de Baixa
+      * Tópicos:
+         * O que é um Canal Estreito de Baixa?
+         * Rompimento em um tempo gráfico mais alto
+         * Canal Estreito de Alta como Bandeira de Baixa
+         * A primeira reversão é geralmente minoritária
+         * Fracionando a entrada
+         * Os compradores conseguem fazer dinheiro?
+         * Como vender um Canal Estreito de Baixa
+         * Stops e realização de lucros
+         * Canal Estreito evolui para Lateralidade
+   * Aula: Operando Canais Amplos de Alta
+      * Tópicos:
+         * O que é um Canal Amplo de Alta?
+         * Geralmente contém Lateralidades
+         * Geralmente dura muitos dias
+         * Canal geralmente Estreito em tempo gráfico mais alto
+         * Mínima majoritária e minoritária
+         * Às vezes pode estar em Modo Sempre Vendido!
+         * Reversões são comuns, mas falham
+         * Faça um diagnóstico prematuro
+         * Vendedores vendem ralis
+         * Continuidade ruim após uma nova máxima
+         * Precisa de Mínimas mais Altas (HLs)
+         * Armadilha de segunda perna
+         * Vendedores vendem em Canais Amplos de Alta
+         * Compradores realizam lucros acima da máxima anterior
+         * Zona de compra
+         * Realização de lucros acima da máxima anterior
+         * Correção de 50% (PB)
+         * Toda Lateralidade é uma Bandeira de Alta
+         * Evolução para uma grande Lateralidade
+   * Aula: Operando Canais Amplos de Baixa
+      * Tópicos:
+         * O que é um Canal Amplo de Baixa?
+         * Por que não é comum em um gráfico de 5 minutos?
+         * Máximas majoritárias e minoritárias
+         * Canais geralmente duram pelo menos 3 dias
+         * Reversões são comuns, mas a maioria delas falha
+         * Faça um diagnóstico prematuro
+         * Vendedores vendem, mas os compradores podem comprar de vez em quando
+         * Às vezes brevemente em Modo Sempre Comprado
+         * Tendência de baixa precisa de Máximas mais Baixas
+         * Armadilha de segunda perna
+         * Compradores compram abaixo das mínimas
+         * Compradores usam stops longos e fracionam a entrada
+         * Zonas de venda
+         * Correção de 50% (PB)
+   * Aula: Operando em Lateralidades
+      * Tópicos:
+         * A Lateralidade (TR) é ampla ou estreita?
+         * Procure por sinais de Lateralidade
+         * Regra dos 80%
+         * Pernas na Lateralidade, não na tendência
+         * Compre na metade superior, venda na metade inferior
+         * Armadilha de segunda perna
+         * Aposte contra rompimentos (aposte que irão falhar)
+         * Como entrar em reversões
+         * Stops longos e fracionando a entrada
+         * Entrando com ordens limitadas
+         * Realizando lucros
+         * Teste tardio da abertura
+         * Lateralidade Estreita (TTR)
+         * Eventualmente rompe em uma tendência
+* Módulo: Operando em Diferentes Momentos do Dia (48) (11 vídeos, 5h 14min)
+   * Aula: Operando na Abertura
+      * Tópicos:
+         * 3 partes para o dia
+         * Reversões na Abertura
+         * Por que operar a abertura?
+         * Padrões mais comuns
+         * Ordens stop são melhores
+         * Regra mais importante
+         * Contexto
+         * Como o dia anterior terminou?
+         * Modo rompimento (BOM)
+         * Rompimento da primeira amplitude de 18 barras
+         * Falha de rompimento da Máxima ou da Mínima do dia anterior
+         * Falha de reversão do rompimento da amplitude do dia anterior
+         * Gaps nas aberturas
+         * Bandeiras prematuras
+   * Aula: Operando no Meio do Dia
+      * Tópicos:
+         * Procure por mudança
+         * Tendência ou Perna na Lateralidade (TR)?
+         * Teste tardio de suporte ou resistência
+         * Regra dos 80%
+   * Aula: Operando ao Final do Dia
+      * Tópicos:
+         * Rompimento (BO) e Lateralidade (TR), não canais
+         * Compra em Fechamento, Venda em Fechamento
+         * Armadilhas de alta e de baixa
+         * Suporte e resistência em tempo gráfico mais alto
+* Módulo: Operações de Swing e Scalp (49-50) (11 vídeos, 6h 25min)
+   * Aula: Exemplos de Operação de Swing
+      * Tópicos:
+         * Exemplos de day trading (vários vídeos)
+         * Fazendo day trade quando o gráfico diário está em modo compra em fechamento ou venda em fechamento
+         * Fazendo day trade quando o gráfico diário possui um Micro Canal
+         * Apostando contra grandes barras de tendência em uma Lateralidade
+         * Suporte e resistência em um tempo gráfico mais alto
+   * Aula: Exemplos de Operação de Scalp no Emini
+      * Tópicos:
+         * Lateralidade (TR) é um Mercado de Ordem Limitada
+         * Personalidade do Scalper
+         * Iniciantes devem evitar fazer scalp
+         * Dois tempos gráficos
+         * Usando ticks e encontrando sinais
+         * Divergência de ticks
+         * Barra com Gap de Abertura
+         * Exemplos de scalp (vários vídeos)
+* Módulo: Gerenciando Perdas (51-52) (6 vídeos, 2h 50min)
+   * Aula: Perdendo por Causa de Erros
+      * Tópicos:
+         * Iniciantes perdem por causa da psicologia e crenças falsas
+         * Gerenciamento ruim
+         * Regras para evitar grandes perdas
+         * Stop correto
+         * Fracionar a entrada cria grandes perdas
+   * Aula: Perdendo Quando uma Boa Operação Vai Mal
+      * Tópicos:
+         * É preciso regras para evitar grandes perdas
+         * Todas as tendências eventualmente desapontam os traders
+         * Se a premissa mudar, mude o estilo de operar
+         * Traders emboscados
+* Módulo: Vídeos Bônus (16 vídeos, 10 horas 44 minutos)
+   * Aula: Armadilhas de Final de Dia
+   * Aula: Padrões na Abertura
+   * Aula: Operando na Hora Final
+   * Aula: Operando Canais de Baixa
+   * Aula: Operando Lateralidades Estreitas na Abertura
+   * Aula: 3 Padrões Que Todo Trader e Investidor Deveria Saber
+   * Aula: Operando Quando o Mercado Está em um Canal de Alta
+   * Aula: Operando Price Action 5 Pensamentos Sobre Psicologia
+   * Aula: Regras Para Realizar Scalp
+   * Aula: Fazendo Scalp no Gráfico de 2 Minutos
+   * Aula: Operando Opções Para Day Trades
+   * Aula: Operando Opções nos Gráficos Diários
+   * Aula: Setups Diários 5 Passos Para Encontrar a Operação do Dia
+   * Aula: 10 Scalps no Emini no Gráfico de 15 Segundos
+   * Aula: Padrões ii, ioi, OO: Definições
+   * Aula: Padrões ii, ioi, OO: exemplos
+Espero que esta lista detalhada e organizada seja útil! Avise-me se precisar de mais alguma coisa.
+Referências citadas
+1. Curso de Trading do Al Brooks | Curso de Trading do Brooks, acessado em março 29, 2025, https://www.brookstradingcourse.com/pt-br/aprenda-a-operar-price-action/

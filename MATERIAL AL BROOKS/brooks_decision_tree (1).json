@@ -2818,4 +2818,192 @@
       "conclusao": "A COMPLEXIDADE VEM COM TEMPO. COMECE SIMPLES. EXECUTE DISCIPLINADO. EVOLUA GRADUALMENTE."
     }
   }
-}
+} reversão",
+          "alvo": "Meio do canal",
+          "atencao": "60% faz H3 e retoma → Stop disciplinado"
+        }
+      },
+      "gestao_canal_amplo": {
+        "regra_1": {
+          "title": "Stops LARGOS obrigatórios",
+          "description": "Não use stop apertado. Stop além Swing Point claro (Major Low/High)"
+        },
+        "regra_2": {
+          "title": "Reduza tamanho posição",
+          "description": "Compense stop largo com posição menor. Mantenha risco capital constante"
+        },
+        "regra_3": {
+          "title": "Opere menor ou escale",
+          "description": "Entre 50% no setup inicial. Adicione 50% se confirmar (novo HL)"
+        },
+        "regra_4": {
+          "title": "Modo mental 'BLSHS dentro canal'",
+          "description": "Buy Low (zona inferior), Sell High (zona superior - scalp), Scalp (parciais em cada S/R menor)"
+        },
+        "regra_5": {
+          "title": "Realize lucros parcialmente",
+          "description": "50% no teste linha superior, 50% no Measured Move ou wedge"
+        }
+      },
+      "evolucao": {
+        "natural": "Vira Trading Range grande eventualmente",
+        "tipico": "Dura vários dias (gráfico diário)",
+        "htf": "Geralmente é canal estreito em TF superior",
+        "termino": "Breakout forte OU reversão major após múltiplas wedges"
+      },
+      "next": "canal_ou_tr"
+    },
+    "canal_ou_tr": {
+      "id": "canal_ou_tr",
+      "level": 1,
+      "title": "Decisão: Canal ou Trading Range?",
+      "type": "decision",
+      "question": "A direção ainda é clara ou virou confusão total?",
+      "options": [
+        {
+          "label": "É CANAL",
+          "criteria": [
+            "Ainda identifico direção dominante (HL OU LH)",
+            "Correções são proporcionais",
+            "EMA tem inclinação clara"
+          ],
+          "action": "Continue operando como CANAL",
+          "next": "nivel_2_barra_sinal"
+        },
+        {
+          "label": "É TRADING RANGE",
+          "criteria": [
+            "Perdeu direção clara",
+            "Preço cruza EMA constantemente ambos lados",
+            "Não consigo traçar linhas canal consistentes"
+          ],
+          "action": "VÁ PARA [TRADING RANGE]",
+          "next": "modo_trading_range"
+        }
+      ]
+    },
+    "modo_trading_range": {
+      "id": "modo_trading_range",
+      "level": 1,
+      "title": "[CAMINHO C] MODO TRADING RANGE",
+      "type": "sequence",
+      "identification": {
+        "title": "VOCÊ ESTÁ EM TR SE:",
+        "criteria": [
+          "Preço oscila entre dois níveis horizontais claros",
+          "Barras alternam cores constantemente",
+          "Preço cruza EMA20 repetidamente ambos lados",
+          "Compradores compram embaixo, vendedores vendem em cima",
+          "Sensação de confusão e frustração",
+          "Rompimentos falham e retornam (80%)"
+        ]
+      },
+      "mentalidade": "BLSHS (Buy Low, Sell High, Scalp)",
+      "children": ["tr_tipo"]
+    },
+    "tr_tipo": {
+      "id": "tr_tipo",
+      "level": 1,
+      "title": "A Lateralidade é Ampla ou Estreita?",
+      "type": "decision",
+      "question": "A lateralidade é ampla ou estreita?",
+      "options": [
+        {
+          "label": "Lateralidade Ampla (Broad Trading Range)",
+          "next": "tr_amplo"
+        },
+        {
+          "label": "Lateralidade Estreita (Tight Trading Range - TTR)",
+          "next": "tr_estreito"
+        }
+      ]
+    },
+    "tr_amplo": {
+      "id": "tr_amplo",
+      "level": 1,
+      "title": "Lateralidade Ampla (Broad Trading Range)",
+      "type": "sequence",
+      "identification": [
+        "Range altura 20+ pontos (Emini) / 100+ pips (Forex)",
+        "Barras grandes ambas direções",
+        "Swing Points claros (Major Highs/Lows)",
+        "Dura 20-50+ barras"
+      ],
+      "estrutura_interna": [
+        "Contém bull flags E bear flags",
+        "Contém canais alta E baixa internos",
+        "'Toda TR contém canal alta e canal baixa'"
+      ],
+      "children": ["tr_zona_preco"]
+    },
+    "tr_zona_preco": {
+      "id": "tr_zona_preco",
+      "level": 1,
+      "title": "Onde Está o Preço no Range?",
+      "type": "decision",
+      "question": "Onde o preço está no trading range?",
+      "options": [
+        {
+          "label": "ZONA 1: Terço Superior (Zona de Venda)",
+          "next": "tr_zona_superior"
+        },
+        {
+          "label": "ZONA 2: Terço Inferior (Zona de Compra)",
+          "next": "tr_zona_inferior"
+        },
+        {
+          "label": "ZONA 3: Meio do Range (Dead Zone)",
+          "next": "tr_zona_meio"
+        },
+        {
+          "label": "ZONA 4: Metade Superior",
+          "state": "Neither fish nor fowl",
+          "vies": "Venda (mas aguarde topo)",
+          "ou": "Aguarde meio para definir direção",
+          "next": "nivel_2_barra_sinal"
+        },
+        {
+          "label": "ZONA 5: Metade Inferior",
+          "vies": "Compra (mas aguarde fundo)",
+          "ou": "Aguarde meio para definir direção",
+          "next": "nivel_2_barra_sinal"
+        }
+      ]
+    },
+    "tr_zona_superior": {
+      "id": "tr_zona_superior",
+      "level": 1,
+      "title": "ZONA 1: Terço Superior (Zona de Venda)",
+      "type": "info",
+      "caracteristicas": [
+        "Preço no topo do range",
+        "Compradores realizando lucro",
+        "Vendedores agressivos"
+      ],
+      "setups_venda": {
+        "setup_1_duplo_topo": {
+          "title": "Setup 1: Duplo Topo (Double Top)",
+          "identification": "Teste máxima anterior do range",
+          "qualidade_melhor": [
+            "Segundo topo FALHA (não atinge primeiro)",
+            "Forma Lower High"
+          ],
+          "gatilho": ["Stop 1 tick abaixo barra reversão", "OU: Limit order acima das barras (scale in)"],
+          "stop": "1-2 ticks acima topo do range",
+          "alvo": "Meio range (escalar) + fundo range",
+          "matematica": "MM = altura entre topos projetado baixo"
+        },
+        "setup_2_wedge_altista": {
+          "title": "Setup 2: Wedge Altista no Topo",
+          "identification": "3 pushes para cima terço superior",
+          "geralmente": "Overshoot linha canal rally",
+          "gatilho": "Rompimento linha inferior wedge",
+          "stop": "Acima topo wedge",
+          "alvo": "EMA20 + Meio range"
+        },
+        "setup_3_failed_breakout": {
+          "title": "Setup 3: Falha de Breakout (Failed Bull BO)",
+          "identification": "Rompe topo TR mas retorna imediatamente",
+          "barra_sinal": "Outside bar ou pavio grande em cima",
+          "regra_80": "80% breakouts TR falham",
+          "gatilho": "Stop abaixo barra
