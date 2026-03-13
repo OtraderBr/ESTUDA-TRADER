@@ -9,11 +9,13 @@ let selectedConceptIds = [];
 export function renderSessions(container, state) {
     const { sessions, concepts } = state;
     let conceptSearch = store.getState().sessionConceptSearch || '';
+    let filterModulo = store.getState().sessionFilterModulo || 'Todos';
 
     const sortedSessions = [...sessions].sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
     const filteredConcepts = concepts.filter(c =>
-        c.name.toLowerCase().includes(conceptSearch.toLowerCase()) ||
-        c.category.toLowerCase().includes(conceptSearch.toLowerCase())
+        (c.name.toLowerCase().includes(conceptSearch.toLowerCase()) ||
+        c.category.toLowerCase().includes(conceptSearch.toLowerCase())) &&
+        (filterModulo === 'Todos' || c.moduloCurso === filterModulo)
     );
 
     const getSessionTypeColor = (type) => {
@@ -74,20 +76,38 @@ export function renderSessions(container, state) {
           </div>
 
           <div class="mb-8">
-            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-4">
-              <label class="block text-sm font-medium text-zinc-700">
+            <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-2">
+              <label class="block text-sm font-medium text-zinc-700 mt-2">
                 Conceitos Vinculados <span class="text-emerald-500 ml-1">(${selectedConceptIds.length} selecionados)</span>
               </label>
-              <div class="relative">
-                <i data-lucide="search" class="w-4 h-4 text-zinc-500 absolute left-3 top-1/2 -translate-y-1/2"></i>
-                <input 
-                  type="text" 
-                  id="conceptSearchInput"
-                  placeholder="Buscar conceito..." 
-                  value="${conceptSearch}"
-                  class="bg-zinc-50 border border-zinc-200 text-zinc-800 text-sm rounded-xl pl-9 pr-4 py-2 focus:outline-none focus:border-emerald-500 w-full sm:w-64 transition-colors"
-                />
+              <div class="flex flex-col sm:flex-row gap-2 w-full sm:w-auto">
+                <select id="moduloFilterInput" class="bg-zinc-50 border border-zinc-200 text-zinc-800 text-sm rounded-xl px-3 py-2 focus:outline-none focus:border-emerald-500 cursor-pointer">
+                  <option value="Todos" ${filterModulo === 'Todos' ? 'selected' : ''}>Todos Módulos</option>
+                  <option value="01-07" ${filterModulo === '01-07' ? 'selected' : ''}>Mód. 01-07</option>
+                  <option value="08-11" ${filterModulo === '08-11' ? 'selected' : ''}>Mód. 08-11</option>
+                  <option value="12-18" ${filterModulo === '12-18' ? 'selected' : ''}>Mód. 12-18</option>
+                  <option value="19-29" ${filterModulo === '19-29' ? 'selected' : ''}>Mód. 19-29</option>
+                  <option value="30-36" ${filterModulo === '30-36' ? 'selected' : ''}>Mód. 30-36</option>
+                  <option value="37-42" ${filterModulo === '37-42' ? 'selected' : ''}>Mód. 37-42</option>
+                  <option value="43-46" ${filterModulo === '43-46' ? 'selected' : ''}>Mód. 43-46</option>
+                  <option value="47-50" ${filterModulo === '47-50' ? 'selected' : ''}>Mód. 47-50</option>
+                </select>
+                <div class="relative w-full sm:w-64">
+                  <i data-lucide="search" class="w-4 h-4 text-zinc-500 absolute left-3 top-1/2 -translate-y-1/2"></i>
+                  <input 
+                    type="text" 
+                    id="conceptSearchInput"
+                    placeholder="Buscar conceito..." 
+                    value="${conceptSearch}"
+                    class="bg-zinc-50 border border-zinc-200 text-zinc-800 text-sm rounded-xl pl-9 pr-4 py-2 focus:outline-none focus:border-emerald-500 w-full transition-colors"
+                  />
+                </div>
               </div>
+            </div>
+            <div class="flex justify-end gap-3 mb-2">
+                <button id="addAllBtn" class="text-[11px] uppercase tracking-wider font-bold text-emerald-600 hover:text-emerald-700 transition-colors">Vinclular Todos Abaixo</button>
+                <span class="text-zinc-300">|</span>
+                <button id="clearAllBtn" class="text-[11px] uppercase tracking-wider font-bold text-red-600 hover:text-red-700 transition-colors">Limpar Seleção</button>
             </div>
             <div class="h-64 overflow-y-auto bg-zinc-50 border border-zinc-200 rounded-2xl p-3 space-y-1.5 custom-scrollbar">
               ${filteredConcepts.map(concept => {
@@ -222,6 +242,24 @@ export function renderSessions(container, state) {
         });
         if (isFocused) setTimeout(() => document.getElementById('conceptSearchInput')?.focus(), 0);
 
+
+        const moduloSelect = document.getElementById('moduloFilterInput');
+        moduloSelect?.addEventListener('change', (e) => {
+            store.setState({ sessionFilterModulo: e.target.value });
+        });
+
+        document.getElementById('addAllBtn')?.addEventListener('click', () => {
+            const idsToAdd = filteredConcepts.map(c => c.id);
+            // Evitar duplicações
+            const uniqueIds = new Set([...selectedConceptIds, ...idsToAdd]);
+            selectedConceptIds = Array.from(uniqueIds);
+            renderSessions(container, state);
+        });
+
+        document.getElementById('clearAllBtn')?.addEventListener('click', () => {
+            selectedConceptIds = [];
+            renderSessions(container, state);
+        });
 
         container.querySelectorAll('.concept-toggle-btn').forEach(btn => {
             btn.addEventListener('click', (e) => {

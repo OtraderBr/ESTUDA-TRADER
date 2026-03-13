@@ -1,7 +1,7 @@
 // js/engine.js
 // Lógica de negócios central: mescla os dados do CSV com o localStorage e expõe as ações
 import { store } from './state.js';
-import { loadConcepts } from './csvService.js';
+import { loadConcepts } from './dataService.js';
 
 // ---- Helpers ----
 
@@ -98,10 +98,22 @@ export async function initializeEngine() {
                     nextReview: savedData.nextReview || '',
                     masteryPercentage: savedData.masteryPercentage || 0,
                     abcCategory: savedData.abcCategory || 'C',
-                    macroCategory: savedData.macroCategory || inferMacroCategory(c.category, c.subcategory)
+                    macroCategory: savedData.macroCategory || c.macroCategoryStr || inferMacroCategory(c.category, c.subcategory),
+                    // Novos campos Motor Brooks v2:
+                    moduloCurso: c.moduloCurso || '',
+                    conhecimentoAtual: c.conhecimentoAtual || 0,
+                    objetivo: c.objetivo || 10,
+                    fonteEstudo: c.fonteEstudo || 'Livro/Video/Arvore',
+                    regrasOperacionais: c.regrasOperacionais || '',
+                    probabilidade: c.probabilidade || '',
+                    mercadoAplicavel: c.mercadoAplicavel || 'Universal',
+                    notasBD: c.notasBD || ''
                 };
             }
-            return { ...c, macroCategory: inferMacroCategory(c.category, c.subcategory) };
+            return {
+                ...c,
+                macroCategory: c.macroCategoryStr || inferMacroCategory(c.category, c.subcategory)
+            };
         });
     } else {
         // Tenta migrar da V3
@@ -121,13 +133,20 @@ export async function initializeEngine() {
                         nextReview: oldData.nextReview || '',
                         masteryPercentage: oldData.masteryPercentage || 0,
                         abcCategory: oldData.abcCategory || 'C',
-                        macroCategory: inferMacroCategory(c.category, c.subcategory)
+                        macroCategory: c.macroCategoryStr || inferMacroCategory(c.category, c.subcategory),
+                        moduloCurso: c.moduloCurso || '',
+                        regrasOperacionais: c.regrasOperacionais || '',
+                        probabilidade: c.probabilidade || '',
+                        mercadoAplicavel: c.mercadoAplicavel || 'Universal'
                     };
                 }
-                return { ...c, macroCategory: inferMacroCategory(c.category, c.subcategory) };
+                return { ...c, macroCategory: c.macroCategoryStr || inferMacroCategory(c.category, c.subcategory) };
             });
         } else {
-            finalConcepts = loadedConcepts.map(c => ({ ...c, macroCategory: inferMacroCategory(c.category, c.subcategory) }));
+            finalConcepts = loadedConcepts.map(c => ({
+                ...c,
+                macroCategory: c.macroCategoryStr || inferMacroCategory(c.category, c.subcategory)
+            }));
         }
     }
 

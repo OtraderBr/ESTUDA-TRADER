@@ -1,0 +1,3009 @@
+{
+  "metadata": {
+    "title": "ÁRVORE DE DECISÃO AL BROOKS - PRICE ACTION",
+    "version": "1.0",
+    "description": "Sistema completo de decisão para trading baseado em Price Action de Al Brooks"
+  },
+  "rootNode": "nivel_0_inicio",
+  "nodes": {
+    "nivel_0_inicio": {
+      "id": "nivel_0_inicio",
+      "level": 0,
+      "title": "NÍVEL 0: PRÉ-ANÁLISE",
+      "type": "sequence",
+      "description": "Análise inicial antes de começar a operar",
+      "children": ["mtf_analysis", "momento_dia"]
+    },
+    "mtf_analysis": {
+      "id": "mtf_analysis",
+      "level": 0,
+      "title": "Análise Multi-Timeframe",
+      "type": "sequence",
+      "description": "Consultar múltiplos timeframes para contexto",
+      "children": ["htf_analysis", "ctf_analysis", "ltf_analysis"]
+    },
+    "htf_analysis": {
+      "id": "htf_analysis",
+      "level": 0,
+      "title": "HTF (Higher Timeframe)",
+      "type": "decision",
+      "description": "Consultar Gráfico Superior (Diário/Semanal)",
+      "question": "Qual é a Tendência Dominante no HTF?",
+      "options": [
+        {
+          "label": "Tendência de Alta",
+          "consequence": "Define Viés Direcional Principal: Prefira COMPRAS no CTF",
+          "note": "Se HTF = Alta → Prefira COMPRAS no CTF",
+          "next": "ctf_analysis"
+        },
+        {
+          "label": "Tendência de Baixa",
+          "consequence": "Define Viés Direcional Principal: Prefira VENDAS no CTF",
+          "note": "Se HTF = Baixa → Prefira VENDAS no CTF",
+          "next": "ctf_analysis"
+        },
+        {
+          "label": "Lateralidade (Trading Range)",
+          "consequence": "Opere reversões nas extremidades",
+          "note": "Se HTF = TR → Opere reversões nas extremidades",
+          "next": "ctf_analysis"
+        }
+      ],
+      "tasks": [
+        "Identificar Tendência Dominante",
+        "Mapear S/R Principais (Swing Highs/Lows Históricos, Números Redondos)",
+        "Verificar Measured Moves Ativos"
+      ]
+    },
+    "ctf_analysis": {
+      "id": "ctf_analysis",
+      "level": 0,
+      "title": "CTF (Current Timeframe)",
+      "type": "info",
+      "description": "Gráfico Operacional Principal (ex: 5min)",
+      "action": "Prossiga para análise do Momento do Dia",
+      "next": "momento_dia"
+    },
+    "ltf_analysis": {
+      "id": "ltf_analysis",
+      "level": 0,
+      "title": "LTF (Lower Timeframe)",
+      "type": "info",
+      "description": "Gráfico Inferior (ex: 1min)",
+      "uses": [
+        "Entrada Antecipada",
+        "Melhor Preço",
+        "Confirmação de Força"
+      ]
+    },
+    "momento_dia": {
+      "id": "momento_dia",
+      "level": 0,
+      "title": "Momento do Dia",
+      "type": "decision",
+      "description": "Identificar qual momento do dia estamos",
+      "question": "Em qual momento do dia estamos?",
+      "options": [
+        {
+          "label": "ABERTURA (Primeiras 6-20 barras)",
+          "next": "abertura_analysis"
+        },
+        {
+          "label": "MEIO DO DIA (Barras 20-50)",
+          "next": "meio_dia_analysis"
+        },
+        {
+          "label": "FINAL DO DIA (Últimas 20 barras)",
+          "next": "final_dia_analysis"
+        }
+      ]
+    },
+    "abertura_analysis": {
+      "id": "abertura_analysis",
+      "level": 0,
+      "title": "ABERTURA - Análise",
+      "type": "sequence",
+      "characteristics": {
+        "regra_80": "80% dos dias NÃO têm tendência desde início",
+        "regra_90": "90% da High/Low ocorre antes da barra 18",
+        "expectativa": "Muitas reversões iniciais esperadas"
+      },
+      "children": ["gap_abertura", "primeira_barra_forte", "reversoes_abertura", "ttr_abertura"]
+    },
+    "gap_abertura": {
+      "id": "gap_abertura",
+      "level": 0,
+      "title": "Há GAP na Abertura?",
+      "type": "decision",
+      "question": "Há GAP na abertura?",
+      "options": [
+        {
+          "label": "SIM - Gap Grande (>10pts Emini / >50pips Forex)",
+          "probability": "70% será testado",
+          "actions": [
+            "Aguarde fechamento do gap",
+            "Não opere a favor do gap inicialmente"
+          ],
+          "next": "primeira_barra_forte"
+        },
+        {
+          "label": "SIM - Gap Pequeno (<5pts)",
+          "action": "Trate como abertura normal",
+          "next": "primeira_barra_forte"
+        },
+        {
+          "label": "NÃO",
+          "action": "Prossiga para próxima pergunta",
+          "next": "primeira_barra_forte"
+        }
+      ]
+    },
+    "primeira_barra_forte": {
+      "id": "primeira_barra_forte",
+      "level": 0,
+      "title": "Primeira Barra é Forte?",
+      "type": "decision",
+      "question": "A primeira barra é forte?",
+      "options": [
+        {
+          "label": "SIM - Barra Grande + Fechamento Extremo",
+          "diagnosis": "Possível Trend from the Open (20% chance)",
+          "actions": [
+            "Se confirmar follow-through → VÁ PARA [BREAKOUT]",
+            "Se falhar em 3 barras → VÁ PARA [REVERSÕES]"
+          ],
+          "next": "nivel_1_diagnostico"
+        },
+        {
+          "label": "NÃO - Barra Fraca/Doji/Inside",
+          "diagnosis": "Dia de reversões provável",
+          "action": "Aguarde setup → VÁ PARA [TRADING RANGE]",
+          "next": "reversoes_abertura"
+        }
+      ]
+    },
+    "reversoes_abertura": {
+      "id": "reversoes_abertura",
+      "level": 0,
+      "title": "Quantas Reversões nas Primeiras 10 Barras?",
+      "type": "decision",
+      "question": "Quantas reversões ocorreram nas primeiras 10 barras?",
+      "options": [
+        {
+          "label": "0-2 Reversões",
+          "diagnosis": "Possível tendência desenvolvendo",
+          "next": "ttr_abertura"
+        },
+        {
+          "label": "3-4 Reversões",
+          "diagnosis": "Canal amplo provável",
+          "next": "ttr_abertura"
+        },
+        {
+          "label": "5+ Reversões",
+          "diagnosis": "DIA DE TRADING RANGE confirmado",
+          "action": "Mude para modo BLSHS → VÁ PARA [TRADING RANGE]",
+          "next": "modo_trading_range"
+        }
+      ]
+    },
+    "ttr_abertura": {
+      "id": "ttr_abertura",
+      "level": 0,
+      "title": "Há TTR (Tight Trading Range)?",
+      "type": "decision",
+      "question": "Há TTR na abertura?",
+      "options": [
+        {
+          "label": "SIM - 6+ Barras Sobrepostas Estreitas",
+          "diagnosis": "Compressão = Explosão iminente",
+          "actions": [
+            "NÃO opere dentro do TTR",
+            "Aguarde breakout → VÁ PARA [BREAKOUT]"
+          ],
+          "next": "nivel_1_diagnostico"
+        },
+        {
+          "label": "NÃO",
+          "action": "Continue avaliação normal",
+          "next": "nivel_1_diagnostico"
+        }
+      ]
+    },
+    "meio_dia_analysis": {
+      "id": "meio_dia_analysis",
+      "level": 0,
+      "title": "MEIO DO DIA - Análise",
+      "type": "sequence",
+      "characteristics": [
+        "Busca por mudança de caráter",
+        "2h de possível lateralidade (lunch time)",
+        "Teste tardio de S/R da abertura"
+      ],
+      "children": ["movimento_esgotou", "reversao_forca_meio"]
+    },
+    "movimento_esgotou": {
+      "id": "movimento_esgotou",
+      "level": 0,
+      "title": "Movimento da Abertura Se Esgotou?",
+      "type": "decision",
+      "question": "O movimento da abertura se esgotou?",
+      "options": [
+        {
+          "label": "SIM - Clímax Ocorreu",
+          "action": "Aguarde TBTL (10 barras + 2 legs)",
+          "next": "nivel_1_diagnostico"
+        },
+        {
+          "label": "SIM - Lateralizou 10+ Barras",
+          "action": "VÁ PARA [TRADING RANGE]",
+          "next": "modo_trading_range"
+        },
+        {
+          "label": "NÃO - Continua Movimento",
+          "action": "Continue no caminho atual",
+          "next": "reversao_forca_meio"
+        }
+      ]
+    },
+    "reversao_forca_meio": {
+      "id": "reversao_forca_meio",
+      "level": 0,
+      "title": "Há Reversão com Força?",
+      "type": "decision",
+      "question": "Há reversão com força no meio do dia?",
+      "options": [
+        {
+          "label": "SIM",
+          "action": "VÁ PARA [REVERSÕES]",
+          "next": "modo_reversao"
+        },
+        {
+          "label": "NÃO",
+          "action": "Continue operação normal",
+          "next": "nivel_1_diagnostico"
+        }
+      ]
+    },
+    "final_dia_analysis": {
+      "id": "final_dia_analysis",
+      "level": 0,
+      "title": "FINAL DO DIA - Análise",
+      "type": "sequence",
+      "characteristics": [
+        "Breakouts finais ou Trading Range",
+        "Armadilhas (Bull/Bear Trap) comuns",
+        "Magnetos ativos (Abertura, Fechamento anterior, Números redondos)"
+      ],
+      "children": ["ttr_final", "numero_redondo_final", "breakout_fraco_final"]
+    },
+    "ttr_final": {
+      "id": "ttr_final",
+      "level": 0,
+      "title": "Há TTR Após 12:45 PST?",
+      "type": "decision",
+      "question": "Há TTR após 12:45 PST?",
+      "options": [
+        {
+          "label": "SIM",
+          "actions": [
+            "Aguarde breakout últimos 20min",
+            "MODO: Scalp apenas"
+          ],
+          "next": "numero_redondo_final"
+        },
+        {
+          "label": "NÃO",
+          "action": "Continue avaliação",
+          "next": "numero_redondo_final"
+        }
+      ]
+    },
+    "numero_redondo_final": {
+      "id": "numero_redondo_final",
+      "level": 0,
+      "title": "Perto de Número Redondo?",
+      "type": "decision",
+      "question": "O preço está perto de número redondo?",
+      "options": [
+        {
+          "label": "SIM",
+          "expectation": "Preço será atraído (magneto)",
+          "use": "Como alvo final",
+          "next": "breakout_fraco_final"
+        },
+        {
+          "label": "NÃO",
+          "action": "Continue",
+          "next": "breakout_fraco_final"
+        }
+      ]
+    },
+    "breakout_fraco_final": {
+      "id": "breakout_fraco_final",
+      "level": 0,
+      "title": "Breakout Fraco Final de Dia?",
+      "type": "decision",
+      "question": "Há breakout fraco no final do dia?",
+      "options": [
+        {
+          "label": "SIM",
+          "action": "FADE (aposte contra)",
+          "next": "nivel_1_diagnostico"
+        },
+        {
+          "label": "NÃO",
+          "action": "Prossiga para Nível 1",
+          "next": "nivel_1_diagnostico"
+        }
+      ]
+    },
+    "nivel_1_diagnostico": {
+      "id": "nivel_1_diagnostico",
+      "level": 1,
+      "title": "NÍVEL 1: DIAGNÓSTICO DO CICLO",
+      "type": "decision",
+      "description": "Observe as últimas 20-40 barras e identifique o padrão dominante",
+      "question": "Qual é a Fase do Mercado Atual?",
+      "instruction": "PERGUNTA CENTRAL: Qual é a Fase do Mercado Atual?",
+      "options": [
+        {
+          "label": "[CAMINHO A] BREAKOUT / SPIKE",
+          "next": "modo_breakout"
+        },
+        {
+          "label": "[CAMINHO B] CANAL",
+          "next": "modo_canal"
+        },
+        {
+          "label": "[CAMINHO C] TRADING RANGE",
+          "next": "modo_trading_range"
+        },
+        {
+          "label": "[CAMINHO D] REVERSÃO DE TENDÊNCIA",
+          "next": "modo_reversao"
+        }
+      ]
+    },
+    "modo_breakout": {
+      "id": "modo_breakout",
+      "level": 1,
+      "title": "[CAMINHO A] MODO BREAKOUT",
+      "type": "sequence",
+      "identification": {
+        "title": "VOCÊ ESTÁ EM BREAKOUT SE:",
+        "criteria": [
+          "3+ barras grandes mesma cor consecutivas",
+          "Barras fechando na extremidade (corpos cheios)",
+          "Gaps abertos entre barras",
+          "Preço muito longe da EMA20 (>10pts Emini / >50pips Forex)",
+          "Mínima sobreposição entre barras",
+          "Poucos pavios contrários"
+        ]
+      },
+      "children": ["breakout_qualidade"]
+    },
+    "breakout_qualidade": {
+      "id": "breakout_qualidade",
+      "level": 1,
+      "title": "Qual é a Qualidade do Breakout?",
+      "type": "decision",
+      "question": "Qual é a qualidade do breakout?",
+      "options": [
+        {
+          "label": "Breakout Bem Sucedido (Strong Breakout)",
+          "next": "breakout_sucesso"
+        },
+        {
+          "label": "Clímax / Exaustão (Buying/Selling Climax)",
+          "next": "breakout_climax"
+        },
+        {
+          "label": "Breakout Fraco (Weak/Failed Breakout)",
+          "next": "breakout_fraco"
+        },
+        {
+          "label": "Vacuum Effect (Efeito Vácuo)",
+          "next": "breakout_vacuum"
+        }
+      ]
+    },
+    "breakout_sucesso": {
+      "id": "breakout_sucesso",
+      "level": 1,
+      "title": "Breakout Bem Sucedido (Strong Breakout)",
+      "type": "info",
+      "identification": [
+        "Gap de corpo na barra",
+        "Fechamento forte (>75% no extremo)",
+        "Follow-through imediato",
+        "Sem retração em 3 barras seguintes"
+      ],
+      "probability": "60-70% continua",
+      "entrada": {
+        "options": [
+          "Market Order na barra atual (se primeira)",
+          "Buy/Sell the Close (BTC/STC)",
+          "Stop Order no High+1 / Low-1"
+        ]
+      },
+      "stop_loss": {
+        "options": [
+          "Swing Point anterior (HL para compra / LH para venda)",
+          "OU 2x tamanho da barra (Catastrophe Stop)"
+        ]
+      },
+      "gestao": {
+        "regras": [
+          "REGRA: NÃO espere pullback",
+          "REGRA: NÃO opere contra",
+          "MODO: Swing Trade"
+        ]
+      },
+      "alvos": {
+        "alvo_1": "Measured Move",
+        "alvo_2": "Próximo S/R em HTF",
+        "trailing": "Abaixo de cada novo HL / Acima de cada novo LH"
+      },
+      "excecoes": {
+        "terceira_quarta_perna": {
+          "question": "É 3ª ou 4ª Perna Consecutiva?",
+          "if_yes": "Possível CLÍMAX (vá para sub-item Clímax)"
+        },
+        "testando_sr_extremo": {
+          "question": "Testando S/R Extremo HTF?",
+          "if_yes": "Possível VACUUM (vá para sub-item Vacuum)"
+        }
+      },
+      "next": "nivel_2_barra_sinal"
+    },
+    "breakout_climax": {
+      "id": "breakout_climax",
+      "level": 1,
+      "title": "Clímax / Exaustão (Buying/Selling Climax)",
+      "type": "sequence",
+      "identification": [
+        "Barra gigante (maior das últimas 50)",
+        "Aceleração vertical",
+        "3ª ou 4ª perna de impulso (Leg 4)",
+        "Preço muito distante EMA (>15pts Emini)"
+      ],
+      "children": ["climax_tipo_gap", "climax_micro_canal", "climax_posicao", "climax_contra", "climax_consecutivo"]
+    },
+    "climax_tipo_gap": {
+      "id": "climax_tipo_gap",
+      "level": 1,
+      "title": "Tipo de Gap no Clímax?",
+      "type": "decision",
+      "question": "Qual tipo de gap ocorreu no clímax?",
+      "options": [
+        {
+          "label": "Exhaustion Gap (EG)",
+          "characteristics": [
+            "Gap NÃO preenchido imediatamente",
+            "Será máxima/mínima do movimento"
+          ],
+          "actions": [
+            "Realize lucro total",
+            "Aguarde 10 barras (TBTL)"
+          ],
+          "next": "climax_posicao"
+        },
+        {
+          "label": "Measuring Gap (MG)",
+          "characteristics": [
+            "Gap seguido de continuação",
+            "Projeta movimento igual"
+          ],
+          "actions": [
+            "Se dentro, mantenha",
+            "Se fora, aguarde H2/L2"
+          ],
+          "next": "climax_posicao"
+        }
+      ]
+    },
+    "climax_micro_canal": {
+      "id": "climax_micro_canal",
+      "level": 1,
+      "title": "Micro Canal Extremo?",
+      "type": "decision",
+      "question": "Há micro canal extremo (8+ barras sem romper mínima/máxima)?",
+      "options": [
+        {
+          "label": "SIM - 8+ Barras Sem Romper Mínima/Máxima",
+          "diagnosis": "Força extrema OU clímax",
+          "actions": [
+            "Aguarde primeira barra que rompe padrão",
+            "Se Reversão Seguinte → Era clímax",
+            "Se Retoma com Força → Era breakout extremo"
+          ],
+          "next": "climax_posicao"
+        },
+        {
+          "label": "NÃO",
+          "next": "climax_posicao"
+        }
+      ]
+    },
+    "climax_posicao": {
+      "id": "climax_posicao",
+      "level": 1,
+      "title": "VOCÊ ESTÁ DENTRO DA POSIÇÃO?",
+      "type": "decision",
+      "question": "Você está dentro da posição no clímax?",
+      "options": [
+        {
+          "label": "SIM - É Minha 3ª ou 4ª Perna?",
+          "sub_question": "É sua 3ª ou 4ª perna?",
+          "if_yes": "REALIZE TUDO (scale 100%)",
+          "if_no": "Scale out 50-75%, move stop breakeven",
+          "next": "climax_contra"
+        },
+        {
+          "label": "NÃO - Está Fora",
+          "regra": "NÃO entre a favor (última barra da festa)",
+          "actions": [
+            "Aguarde TBTL (10 barras + 2 legs)",
+            "Depois Procure Setup de Retomada (H2/L2) OU Reversão (MTR)"
+          ],
+          "next": "climax_contra"
+        }
+      ]
+    },
+    "climax_contra": {
+      "id": "climax_contra",
+      "level": 1,
+      "title": "QUER OPERAR CONTRA O CLÍMAX?",
+      "type": "info",
+      "warning": "APENAS TRADERS EXPERIENTES",
+      "setup": {
+        "aguarde": "Barra de reversão FORTE",
+        "stop": "1 tick além do extremo",
+        "alvo": "EMA20 (conservador) ou 50% (agressivo)",
+        "risco": "Alto - pode fazer Push 4",
+        "matematica": "Precisa R:R 1:2 mínimo"
+      },
+      "next": "climax_consecutivo"
+    },
+    "climax_consecutivo": {
+      "id": "climax_consecutivo",
+      "level": 1,
+      "title": "Clímax Consecutivo?",
+      "type": "info",
+      "pattern": "Primeiro clímax → Correção 10+ → Segundo clímax",
+      "regra": "Segundo clímax GERALMENTE FALHA",
+      "setup": {
+        "entrada": "Venda/compra na falha do segundo",
+        "stop": "Além do segundo clímax",
+        "alvo": "Fundo/topo entre clímax + MM"
+      },
+      "next": "nivel_2_barra_sinal"
+    },
+    "breakout_fraco": {
+      "id": "breakout_fraco",
+      "level": 1,
+      "title": "Breakout Fraco (Weak/Failed Breakout)",
+      "type": "sequence",
+      "identification": [
+        "Pavios grandes (>30% da barra)",
+        "Doji na barra ou logo após",
+        "Sobreposição imediata (50%+)",
+        "Sem gap de corpo",
+        "Fechamento no meio"
+      ],
+      "probability": "80% de falha (Regra dos 80%)",
+      "diagnosis": [
+        "Provável Canal Amplo iniciando",
+        "OU Trading Range iniciando",
+        "OU Armadilha (Bull/Bear Trap)"
+      ],
+      "children": ["breakout_fraco_posicao", "breakout_fraco_regra"]
+    },
+    "breakout_fraco_posicao": {
+      "id": "breakout_fraco_posicao",
+      "level": 1,
+      "title": "VOCÊ ENTROU NO BREAKOUT FRACO?",
+      "type": "decision",
+      "question": "Você entrou no breakout fraco?",
+      "options": [
+        {
+          "label": "SIM",
+          "scenarios": {
+            "outside_contra": {
+              "condition": "Próxima Barra é Outside Contra Você?",
+              "if_yes": "SAIA IMEDIATAMENTE (market order)"
+            },
+            "doji": {
+              "condition": "Próxima Barra é Doji?",
+              "if_yes": "Saia breakeven OU aguarde 1 barra"
+            },
+            "barra_favor_pequena": {
+              "condition": "Barra a Favor Pequena?",
+              "if_yes": "Move stop breakeven, aguarde"
+            }
+          },
+          "next": "breakout_fraco_regra"
+        },
+        {
+          "label": "NÃO - Está Fora",
+          "action_fade": {
+            "title": "SETUP: FADE (apostar contra breakout)",
+            "steps": [
+              "Espere retornar para dentro do range",
+              "Barra de reversão forte",
+              "Entrada: Stop 1 tick além barra reversão",
+              "Stop: Além do extremo do breakout falhado",
+              "Alvo: Meio do range anterior"
+            ]
+          },
+          "action_pullback": {
+            "title": "OU AÇÃO: Aguarde Pullback Profundo (50% ou EMA)",
+            "steps": [
+              "Setup H2/L2 na direção original",
+              "Confirme com barra sinal melhor"
+            ]
+          },
+          "next": "breakout_fraco_regra"
+        }
+      ]
+    },
+    "breakout_fraco_regra": {
+      "id": "breakout_fraco_regra",
+      "level": 1,
+      "title": "REGRA ESPECÍFICA",
+      "type": "info",
+      "regra": "Breakout fraco + Outro breakout fraco = Trading Range de 10-20 barras",
+      "action": "Mude para modo BLSHS → VÁ PARA [TRADING RANGE]",
+      "next": "modo_trading_range"
+    },
+    "breakout_vacuum": {
+      "id": "breakout_vacuum",
+      "level": 1,
+      "title": "Vacuum Effect (Efeito Vácuo)",
+      "type": "info",
+      "identification": [
+        "Aceleração repentina em direção a S/R forte visível",
+        "Barras grandes súbitas sem razão aparente",
+        "Geralmente após lateralização ou canal"
+      ],
+      "causa": [
+        "Preço sendo 'sugado' para testar nível",
+        "Stops acumulados no nível"
+      ],
+      "acao": {
+        "regra": "NÃO ENTRE no rompimento durante vácuo",
+        "razao": "É movimento de exaustão disfarçado",
+        "aguarde": "Teste do nível S/R"
+      },
+      "setup_reversao": {
+        "barra_sinal": "Reversão com pavio longo no S/R",
+        "entrada": "Stop contra movimento do vácuo",
+        "alvo": "Retorno ao ponto origem do vácuo"
+      },
+      "excecao": {
+        "condition": "Teste do S/R Bem Sucedido (rompe com força)?",
+        "if_yes": "Era breakout legítimo, não vácuo",
+        "action": "Aguarde pullback para entrar a favor"
+      },
+      "next": "nivel_2_barra_sinal"
+    },
+    "modo_canal": {
+      "id": "modo_canal",
+      "level": 1,
+      "title": "[CAMINHO B] MODO CANAL",
+      "type": "sequence",
+      "identification": {
+        "title": "VOCÊ ESTÁ EM CANAL SE:",
+        "criteria": [
+          "Preço tem direção clara (topos/fundos ascendentes ou descendentes)",
+          "Mas há correções visíveis (não é micro canal)",
+          "Possível traçar 2 linhas paralelas contendo movimento",
+          "Preço respeita essas linhas (testa e respeita)"
+        ]
+      },
+      "children": ["canal_tipo"]
+    },
+    "canal_tipo": {
+      "id": "canal_tipo",
+      "level": 1,
+      "title": "O Canal é Estreito ou Amplo?",
+      "type": "decision",
+      "question": "O canal é estreito ou amplo?",
+      "options": [
+        {
+          "label": "Canal Estreito (Tight Channel)",
+          "next": "canal_estreito"
+        },
+        {
+          "label": "Canal Amplo (Broad Channel)",
+          "next": "canal_amplo"
+        }
+      ]
+    },
+    "canal_estreito": {
+      "id": "canal_estreito",
+      "level": 1,
+      "title": "Canal Estreito (Tight Channel)",
+      "type": "decision",
+      "identification": [
+        "Higher Highs e Higher Lows consistentes (alta)",
+        "OU Lower Highs e Lower Lows consistentes (baixa)",
+        "Correções duram apenas 1-3 barras",
+        "Correções NÃO tocam ou mal tocam EMA20",
+        "Preço consistentemente acima/abaixo EMA20"
+      ],
+      "question": "É canal estreito de alta ou baixa?",
+      "options": [
+        {
+          "label": "Canal Estreito de ALTA",
+          "next": "canal_estreito_alta"
+        },
+        {
+          "label": "Canal Estreito de BAIXA",
+          "note": "APLICAR TODAS REGRAS DE ALTA INVERTIDAS",
+          "setups": ["L1/L2/L3/L4", "Sell The Close (STC)", "Sell The High em micro canal"],
+          "next": "nivel_2_barra_sinal"
+        }
+      ]
+    },
+    "canal_estreito_alta": {
+      "id": "canal_estreito_alta",
+      "level": 1,
+      "title": "Canal Estreito de ALTA",
+      "type": "info",
+      "contexto_psicologico": [
+        "Compradores dominam totalmente",
+        "Vendedores desistiram ou emboscados",
+        "Cada pullback comprado imediatamente"
+      ],
+      "contagem_barras": {
+        "H1_L1": "Primeira correção → ENTRE AQUI (melhor R:R)",
+        "H2_L2": "Segunda correção → Ainda ok",
+        "H3_L3": "Terceira correção → Cuidado (pode ser wedge)",
+        "H4_L4": "Quarta correção → ATENÇÃO (provável exaustão)"
+      },
+      "setups": {
+        "setup_1_high_1": {
+          "title": "SETUP 1: High 1 (H1)",
+          "description": "Primeira pullback após breakout ou lateral",
+          "qualidade": "Melhor setup do canal",
+          "gatilho": ["Stop 1 tick acima máxima barra sinal", "OU: Buy the Close (BTC) se fecha forte"],
+          "stop": "Abaixo mínima barra sinal OU último HL",
+          "alvo": "Measured Move ou próximo S/R"
+        },
+        "setup_2_micro_canal": {
+          "title": "SETUP 2: Micro Canal",
+          "identification": "5+ barras sem romper mínima anterior",
+          "sinal": "Primeira barra rompe mínima = Oportunidade",
+          "opcao_a": "Limit Order na mínima (buy the low)",
+          "opcao_b": "Stop Order se retoma (confirmação)",
+          "stop": "Muito apertado (abaixo barra ou 2 barras)"
+        },
+        "setup_3_btc": {
+          "title": "SETUP 3: Buy The Close (BTC)",
+          "quando": "Cada barra fecha acima anterior",
+          "entrada": "Order 1 tick acima fechamento",
+          "vantagem": "Confirmação máxima",
+          "desvantagem": "Pior preço"
+        }
+      },
+      "regras_especificas": {
+        "regra_1": {
+          "title": "Primeira reversão SEMPRE FALHA (80%)",
+          "description": "Se barra forte baixa aparecer, NÃO venda. Use reversão falhada como sinal COMPRA (segunda entrada)"
+        },
+        "regra_2": {
+          "title": "NÃO opere contra até sinais exaustão",
+          "sinais": ["Linha canal rompida", "3 pushes (wedge)", "Clímax"]
+        },
+        "regra_3": {
+          "title": "Evolução Natural",
+          "opcoes": [
+            "Canal estreito → Acelera micro canal (clímax) → Correção profunda",
+            "OU → Amplia para canal amplo",
+            "OU → Lateraliza (TR)"
+          ]
+        }
+      },
+      "gestao": {
+        "modo": "Swing Trading prioritário",
+        "stop": "Apertado inicialmente (abaixo barra sinal)",
+        "trailing": "Move stop abaixo cada novo HL após confirmação",
+        "realize_parcial": "Teste linha superior canal",
+        "realize_total": "Measured Move ou wedge/clímax"
+      },
+      "sinais_termino": [
+        "Rompe linha inferior com força",
+        "Faz 3 pushes para cima (wedge)",
+        "Barra de clímax",
+        "Canal amplia (mais sobreposição)"
+      ],
+      "next": "nivel_2_barra_sinal"
+    },
+    "canal_amplo": {
+      "id": "canal_amplo",
+      "level": 1,
+      "title": "Canal Amplo (Broad Channel)",
+      "type": "decision",
+      "identification": [
+        "Topos/fundos ascendentes mas muita sobreposição",
+        "Correções profundas (50%+ da perna anterior)",
+        "Preço toca ou atravessa EMA20 frequentemente",
+        "Barras alternam cores",
+        "Difícil traçar linhas limpas"
+      ],
+      "question": "É canal amplo de alta ou baixa?",
+      "options": [
+        {
+          "label": "Canal Amplo de ALTA",
+          "next": "canal_amplo_alta"
+        },
+        {
+          "label": "Canal Amplo de BAIXA",
+          "note": "APLICAR TODAS REGRAS DE ALTA INVERTIDAS",
+          "setups": ["Venda metade superior", "L2/L3", "Duplo topo rallies", "Wedges altistas"],
+          "next": "nivel_2_barra_sinal"
+        }
+      ]
+    },
+    "canal_amplo_alta": {
+      "id": "canal_amplo_alta",
+      "level": 1,
+      "title": "Canal Amplo de ALTA",
+      "type": "info",
+      "contexto_psicologico": [
+        "Compradores e vendedores disputando",
+        "Compradores vencem mas vendedores conseguem rallies",
+        "'Trading Range Inclinado'",
+        "Always In Long mas com dúvida constante"
+      ],
+      "caracteristicas": [
+        "Contém setups de COMPRA E VENDA",
+        "Mínimas podem ser Major OU Minor",
+        "Às vezes modo parece Always In Short (correções)",
+        "Reversões comuns mas FALHAM",
+        "Diagnóstico prematuro comum"
+      ],
+      "armadilha_second_leg": {
+        "title": "ARMADILHA: Second Leg Trap",
+        "pattern": [
+          "Após nova máxima → Correção profunda",
+          "Sobe novamente mas FALHA (Lower High)",
+          "Parece MTR",
+          "Mas retoma e faz nova máxima → Armadilha vendedores"
+        ],
+        "como_evitar": "Aguarde 3ª perna ou rompimento claro linha canal"
+      },
+      "setups_compra": {
+        "setup_1_h2_l2": {
+          "title": "Setup 1: H2/L2 (Segunda Entrada)",
+          "description": "Correção em duas pernas (ABC) até 50% ou EMA20",
+          "gatilho": "Stop 1 tick acima máxima barra sinal",
+          "stop": "Abaixo fundo correção OU Swing Point anterior",
+          "vantagem": "Melhor R:R que H1 em canal amplo"
+        },
+        "setup_2_h3_l3": {
+          "title": "Setup 2: H3/L3 (Terceira Entrada - Wedge)",
+          "description": "Após 2 tentativas reversão falhadas",
+          "geralmente": "Forma wedge baixista pequena",
+          "gatilho": "Rompimento da wedge para cima",
+          "qualidade": "Excelente se combina suporte HTF"
+        },
+        "setup_3_zona_compra": {
+          "title": "Setup 3: Zona de Compra (Lower Half)",
+          "preço": "Preço na metade inferior ou terço inferior canal",
+          "procure": ["Duplo fundo", "wedge baixista", "Spring"],
+          "entrada": "Após barra reversão alta forte",
+          "stop": "Largo (abaixo fundo do canal)"
+        },
+        "setup_4_50_pullback": {
+          "title": "Setup 4: 50% Pullback",
+          "description": "Correção atinge exatamente 50% perna anterior",
+          "aguarde": "Barra reversão forte",
+          "entrada": "Stop acima dessa barra",
+          "logica": "S/R matemático"
+        }
+      },
+      "setups_venda": {
+        "title": "SETUPS DE VENDA (Contra - Scalp - Avançados)",
+        "setup_1_topo_wedge": {
+          "title": "Setup 1: Topo Canal + Wedge",
+          "identification": "Preço terço superior + 3 pushes",
+          "geralmente": "Overshoot linha canal rally",
+          "gatilho": "Barra reversão baixa forte",
+          "stop": "1-2 ticks acima topo wedge",
+          "alvo": "EMA20 ou 50% canal (SCALP)",
+          "risco": "Alto (pode ser H1 nova perna)"
+        },
+        "setup_2_duplo_topo": {
+          "title": "Setup 2: Duplo Topo no Topo Canal",
+          "description": "Teste máxima anterior terço superior",
+          "falha": "Não faz nova máxima (H2 falha)",
+          "gatilho": "Stop abaixo barra reversão",
+          "stop": "Acima pico breakout falhado",
+          "alvo": "Retorno dentro + meio range"
+        },
+        "setup_4_segunda_entrada": {
+          "title": "Setup 4: Segunda Entrada Venda (Second Entry Short)",
+          "description": "Após primeiro sinal venda falhar",
+          "pattern": "Preço tenta nova máxima mas falha. Geralmente forma H2",
+          "gatilho": "Stop abaixo barra sinal",
+          "vantagem": "Melhor que primeira (vendedores emboscaram)"
+        },
+        "setup_5_barra_reversao": {
+          "title": "Setup 5: Barra Reversão de Baixa",
+          "characteristics": [
+            "Pavio grande em cima",
+            "Corpo de baixa",
+            "Fechamento terço inferior barra"
+          ],
+          "gatilho": "Stop 1 tick abaixo"
+        }
+      },
+      "regras_zona_superior": [
+        "NÃO COMPRE breakouts de alta (80% falham)",
+        "APOSTE CONTRA rompimentos",
+        "Use limit orders para escalar posição",
+        "Stops mais apertados (2-3pts / 10-20pips)"
+      ],
+      "next": "nivel_2_barra_sinal"
+    },
+    "tr_zona_inferior": {
+      "id": "tr_zona_inferior",
+      "level": 1,
+      "title": "ZONA 2: Terço Inferior (Zona de Compra)",
+      "type": "info",
+      "note": "APLICAR TODOS SETUPS ZONA 1 INVERTIDOS",
+      "setups_compra": [
+        "Duplo Fundo (Double Bottom)",
+        "Wedge Baixista no Fundo",
+        "Falha Breakout Baixa (Spring / Bear Trap)",
+        "Segunda Entrada Compra (Second Entry Long)",
+        "Barra Reversão de Alta"
+      ],
+      "regra_80_invertida": "80% breakouts de baixa FALHAM. Compre contra breakouts baixa no fundo TR",
+      "next": "nivel_2_barra_sinal"
+    },
+    "tr_zona_meio": {
+      "id": "tr_zona_meio",
+      "level": 1,
+      "title": "ZONA 3: Meio do Range (Dead Zone)",
+      "type": "info",
+      "regra_absoluta": "NÃO OPERE",
+      "razoes": [
+        "Probabilidade 50/50",
+        "Sem vantagem estatística",
+        "Ambos lados têm argumentos",
+        "Alto risco whipsaw"
+      ],
+      "excecao": {
+        "title": "EXCEÇÃO (Apenas Muito Avançados)",
+        "conditions": [
+          "Range MUITO amplo (50+ pts / 200+ pips)",
+          "Forma mini-structures internas",
+          "Scalp apenas mini-structures"
+        ],
+        "warning": "NÃO RECOMENDADO INICIANTES"
+      },
+      "next": "nivel_2_barra_sinal"
+    },
+    "tr_estreito": {
+      "id": "tr_estreito",
+      "level": 1,
+      "title": "Lateralidade Estreita (Tight Trading Range - TTR)",
+      "type": "info",
+      "identification": [
+        "6+ barras extremamente sobrepostas",
+        "Range altura pequena (3-5pts Emini / 15-30pips Forex)",
+        "Pavios grandes em todas barras",
+        "Corpos pequenos",
+        "Barras tipo Doji consecutivas",
+        "Sensação 'barb wire' (arame farpado)"
+      ],
+      "contexto": [
+        "Compressão = Explosão iminente",
+        "Ambos lados acumulando posições",
+        "Aguardando catalisador"
+      ],
+      "tipos_ttr": {
+        "ttr_abertura": {
+          "title": "TTR na Abertura",
+          "description": "Comum primeiros 10-20 min",
+          "market": "Mercado 'probing' ambos lados",
+          "outcomes": [
+            "Breakout define direção dia (20%)",
+            "OU evolui para TR amplo (80%)"
+          ]
+        },
+        "ttr_pos_climax": {
+          "title": "TTR Após Clímax",
+          "description": "Pausa natural após movimento forte",
+          "purpose": "Consolidação antes continuação/reversão",
+          "geralmente": "Forma bandeira (flag)"
+        },
+        "ttr_final_dia": {
+          "title": "TTR Final do Dia",
+          "timing": "Após 12:45 PST comum",
+          "pattern": "Breakout final últimos 15-20 min",
+          "characteristic": "Geralmente pequeno e rápido"
+        }
+      },
+      "padroes_dentro_ttr": {
+        "ii_inside_inside": {
+          "title": "ii (Inside-Inside)",
+          "description": "Duas inside bars consecutivas",
+          "significance": "Compressão extrema",
+          "breakout": "Geralmente forte",
+          "setup": "Entre no breakout, não antes"
+        },
+        "ioi": {
+          "title": "ioi (Inside-Outside-Inside)",
+          "description": "Padrão indecisão. Outside bar não resolve. Volta para inside",
+          "age_como": "Bandeira final",
+          "breakout": "Breakout após ioi costuma ser legítimo"
+        }
+      },
+      "operando_ttr": {
+        "regra_1": {
+          "title": "NÃO OPERE DENTRO DO TTR",
+          "reasons": [
+            "Scalpers perdem spread/comissões",
+            "Whipsaw constante",
+            "Sem edge"
+          ]
+        },
+        "regra_2_breakout": {
+          "title": "OPERE O BREAKOUT",
+          "breakout_cima": {
+            "aguarde": "Barra rompe máxima TTR com corpo",
+            "gatilho": "Stop 1 tick acima dessa barra",
+            "stop": "Abaixo TTR (low do TTR)",
+            "alvo": "Altura TTR projetada para cima (MM)"
+          },
+          "breakout_baixo": "APLICAR PROCESSO INVERTIDO"
+        },
+        "regra_3_fade": {
+          "title": "FADE SE BREAKOUT FALHAR",
+          "conditions": [
+            "Breakout não tem follow-through?",
+            "Retorna dentro TTR em 1-3 barras?",
+            "Forma outside bar direção contrária?"
+          ],
+          "acao": "Entre apostando retorno",
+          "stop": "Além pico/fundo breakout falhado",
+          "alvo": "Lado oposto TTR"
+        }
+      },
+      "next": "tr_modo"
+    },
+    "tr_modo": {
+      "id": "tr_modo",
+      "level": 1,
+      "title": "Modo do Trading Range: BOM ou LOM?",
+      "type": "decision",
+      "question": "O Trading Range está em modo BOM ou LOM?",
+      "options": [
+        {
+          "label": "Breakout Mode (BOM)",
+          "next": "tr_bom"
+        },
+        {
+          "label": "Limit Order Market (LOM)",
+          "next": "tr_lom"
+        }
+      ]
+    },
+    "tr_bom": {
+      "id": "tr_bom",
+      "level": 1,
+      "title": "Breakout Mode (BOM)",
+      "type": "info",
+      "quando_tr_em_bom": [
+        "TR acabou se formar (menos 10 barras)",
+        "Recente breakout tendência que falhou",
+        "Preço testando ambos lados rapidamente",
+        "Barras grandes tentando breakouts",
+        "Muita volatilidade"
+      ],
+      "operando_bom": [
+        "Aguarde breakout legítimo",
+        "NÃO opere reversões dentro range ainda",
+        "NÃO use limit orders ainda",
+        "Foque em stop orders quando breakout ocorrer"
+      ],
+      "next": "tr_breakout_decisao"
+    },
+    "tr_lom": {
+      "id": "tr_lom",
+      "level": 1,
+      "title": "Limit Order Market (LOM)",
+      "type": "info",
+      "quando_tr_em_lom": [
+        "TR estabelecido (15+ barras)",
+        "Topo e fundo claros e respeitados",
+        "Cada teste extremo reverte",
+        "Barras menores, mais sobreposição",
+        "Volatilidade diminuiu"
+      ],
+      "operando_lom": [
+        "Use limit orders nas extremidades",
+        "Compre abaixo barras no fundo",
+        "Venda acima barras no topo",
+        "Scale in se necessário",
+        "Aguarde preço vir até você"
+      ],
+      "next": "tr_breakout_decisao"
+    },
+    "tr_breakout_decisao": {
+      "id": "tr_breakout_decisao",
+      "level": 1,
+      "title": "Breakout do Trading Range",
+      "type": "decision",
+      "question": "Qual tipo de breakout ocorreu?",
+      "options": [
+        {
+          "label": "Tipo 1: Breakout Verdadeiro (RARO - 20%)",
+          "next": "tr_breakout_verdadeiro"
+        },
+        {
+          "label": "Tipo 2: Breakout Falso (COMUM - 80%)",
+          "next": "tr_breakout_falso"
+        }
+      ]
+    },
+    "tr_breakout_verdadeiro": {
+      "id": "tr_breakout_verdadeiro",
+      "level": 1,
+      "title": "Breakout Verdadeiro (RARO - 20%)",
+      "type": "info",
+      "caracteristicas": [
+        "Barra ENORME (2-3x maior que barras TR)",
+        "Gap de corpo",
+        "Fechamento na extremidade",
+        "Follow-through imediato",
+        "Pode ter catalisador (notícia/horário)"
+      ],
+      "acao": [
+        "Entre a favor imediatamente",
+        "NÃO opere contra (dessa vez é real)",
+        "VÁ PARA [BREAKOUT]"
+      ],
+      "next": "modo_breakout"
+    },
+    "tr_breakout_falso": {
+      "id": "tr_breakout_falso",
+      "level": 1,
+      "title": "Breakout Falso (COMUM - 80%)",
+      "type": "info",
+      "caracteristicas": [
+        "Barra normal ou pequena",
+        "Pavios grandes",
+        "Sem gap",
+        "Próxima barra hesita ou reverte",
+        "Retorna dentro TR nas próximas barras"
+      ],
+      "acao": "FADE",
+      "setup_failed_bull_breakout": {
+        "title": "Setup: Failed Breakout Fade - Para Failed Bull Breakout",
+        "identificacao": [
+          "Rompeu topo TR",
+          "Retornou dentro (fechou abaixo topo)",
+          "Forma outside bar ou pavio grande"
+        ],
+        "gatilho": [
+          "Stop 1 tick abaixo barra retorno",
+          "OU Limit order se voltar testar topo"
+        ],
+        "stop": "1-2 ticks acima pico breakout. Se não pequeno, não vale",
+        "alvo": {
+          "alvo_1": "Meio range (scale 50%)",
+          "alvo_2": "Fundo range"
+        },
+        "logica": "Compradores TRAPPED. Vendedores emboscaram. 80% probability retorno completo"
+      },
+      "setup_failed_bear_breakout": {
+        "title": "Para Failed Bear Breakout (Spring)",
+        "note": "APLICAR PROCESSO INVERTIDO",
+        "reliability": "Altamente confiável fundo TR",
+        "description": "Compradores emboscaram vendedores"
+      },
+      "next": "nivel_2_barra_sinal"
+    },
+    "modo_reversao": {
+      "id": "modo_reversao",
+      "level": 1,
+      "title": "[CAMINHO D] REVERSÕES DE TENDÊNCIA",
+      "type": "sequence",
+      "conceito": {
+        "o_que_e_mtr": "Major Trend Reversal - Mudança de Always In Direction",
+        "mudanca": "De Always In Long → Always In Short (ou vice-versa)",
+        "importancia": "Padrão MAIS IMPORTANTE do Price Action",
+        "dificuldade": "Mas também mais difícil e menos provável"
+      },
+      "probabilidade": "80% tentativas reversão FALHAM / 20% resultam nova tendência",
+      "children": ["mtr_pre_requisitos"]
+    },
+    "mtr_pre_requisitos": {
+      "id": "mtr_pre_requisitos",
+      "level": 1,
+      "title": "Todos os Pré-Requisitos Estão Presentes?",
+      "type": "sequence",
+      "description": "PARA CONSIDERAR OPERAR MTR, TODOS DEVEM ESTAR PRESENTES",
+      "children": ["mtr_req_1", "mtr_req_2", "mtr_req_3", "mtr_req_4", "mtr_decisao_final"]
+    },
+    "mtr_req_1": {
+      "id": "mtr_req_1",
+      "level": 1,
+      "title": "Pré-Requisito 1: Quebra Linha de Tendência",
+      "type": "decision",
+      "question": "Linha tendência clara existe e foi rompida?",
+      "cascade": {
+        "q1": "Linha tendência clara existe?",
+        "if_no": "NÃO é MTR",
+        "q2": "Rompida com convicção (corpo, não pavio)?",
+        "if_no_q2": "NÃO é MTR",
+        "q3": "Preço fechou além da linha?",
+        "if_yes_q3": "Pré-requisito 1 OK",
+        "if_no_q3": "NÃO é MTR"
+      },
+      "next": "mtr_req_2"
+    },
+    "mtr_req_2": {
+      "id": "mtr_req_2",
+      "level": 1,
+      "title": "Pré-Requisito 2: Teste do Extremo",
+      "type": "decision",
+      "em_tendencia_alta": {
+        "question": "Após romper LTA, voltou testar topo anterior?",
+        "if_yes": "Pré-requisito 2 OK",
+        "if_no": "NÃO é MTR (ainda)"
+      },
+      "em_tendencia_baixa": {
+        "question": "Após romper LTB, voltou testar fundo anterior?",
+        "if_yes": "Pré-requisito 2 OK",
+        "if_no": "NÃO é MTR (ainda)"
+      },
+      "next": "mtr_req_3"
+    },
+    "mtr_req_3": {
+      "id": "mtr_req_3",
+      "level": 1,
+      "title": "Pré-Requisito 3: Falha em Fazer Nova Máxima/Mínima",
+      "type": "decision",
+      "topo_de_alta": {
+        "question": "Fez Lower High (não conseguiu nova máxima)?",
+        "if_yes": "Pré-requisito 3 OK",
+        "if_no": "NÃO é MTR"
+      },
+      "fundo_de_baixa": {
+        "question": "Fez Higher Low (não conseguiu nova mínima)?",
+        "if_yes": "Pré-requisito 3 OK",
+        "if_no": "NÃO é MTR"
+      },
+      "next": "mtr_req_4"
+    },
+    "mtr_req_4": {
+      "id": "mtr_req_4",
+      "level": 1,
+      "title": "Pré-Requisito 4: MAG (Moving Average Gap)",
+      "type": "decision",
+      "optional": "OPCIONAL mas comum",
+      "question": "Gap entre preço e EMA20 na reversão?",
+      "if_yes": "Indica força movimento reversão",
+      "if_no": "Ainda pode ser MTR",
+      "next": "mtr_decisao_final"
+    },
+    "mtr_decisao_final": {
+      "id": "mtr_decisao_final",
+      "level": 1,
+      "title": "TODOS Pré-Requisitos OK?",
+      "type": "decision",
+      "question": "Todos os pré-requisitos estão presentes?",
+      "options": [
+        {
+          "label": "SIM - Configuração MTR Válida",
+          "next": "mtr_tipo"
+        },
+        {
+          "label": "NÃO - Algum Pré-Requisito Falta",
+          "warning": "NÃO OPERE COMO MTR",
+          "note": "Pode ser apenas correção profunda",
+          "action": "Aguarde desenvolvimento",
+          "next": "nivel_2_barra_sinal"
+        }
+      ]
+    },
+    "mtr_tipo": {
+      "id": "mtr_tipo",
+      "level": 1,
+      "title": "Qual Tipo de MTR?",
+      "type": "decision",
+      "question": "É MTR de topo ou fundo?",
+      "options": [
+        {
+          "label": "MTR de TOPO (Lower High MTR)",
+          "next": "mtr_topo"
+        },
+        {
+          "label": "MTR de FUNDO (Higher Low MTR)",
+          "next": "mtr_fundo"
+        }
+      ]
+    },
+    "mtr_topo": {
+      "id": "mtr_topo",
+      "level": 1,
+      "title": "MTR de TOPO (Lower High MTR)",
+      "type": "info",
+      "contexto_antes": [
+        "Estava em tendência alta (HH, HL)",
+        "Canal de alta ou série impulsos",
+        "Preço acima EMA20"
+      ],
+      "estrutura_mtr": {
+        "fase_1_topo": {
+          "title": "Fase 1: Topo",
+          "description": [
+            "Máxima histórica ou significativa",
+            "Pode ser clímax",
+            "Compradores exaustos"
+          ]
+        },
+        "fase_2_correcao": {
+          "title": "Fase 2: Correção Profunda",
+          "description": [
+            "Rompe linha tendência alta",
+            "Correção 40-60%+ (não normal)",
+            "Pode formar canal baixa temporário",
+            "Vendedores mostrando força primeira vez"
+          ]
+        },
+        "fase_3_rally": {
+          "title": "Fase 3: Rally de Reteste",
+          "description": [
+            "Compradores tentam retomar",
+            "Preço volta direção topo anterior",
+            "Cria expectativa continuação alta"
+          ]
+        },
+        "fase_4_falha": {
+          "title": "Fase 4: Falha (LH)",
+          "description": [
+            "Rally falha em fazer nova máxima",
+            "Forma Lower High",
+            "ESTE É O SINAL DE ENTRADA"
+          ]
+        }
+      },
+      "setups_especificos": {
+        "setup_1_duplo_topo": {
+          "title": "Setup 1: Duplo Topo (Double Top)",
+          "topo_1": "Máxima anterior",
+          "topo_2": "Teste falha (não atinge/toca T1)",
+          "qualidade_melhor": "T2 não chega em T1 (LH óbvio)",
+          "gatilho": "Stop abaixo barra reversão T2",
+          "stop": "Acima T2 (ou T1 se muito perto)",
+          "alvos": {
+            "minimo": "Measured Move (distância entre topos)",
+            "objetivo": "Fundo última correção",
+            "final": "Início tendência alta"
+          }
+        },
+        "setup_2_wedge": {
+          "title": "Setup 2: Wedge Altista (Rising Wedge)",
+          "description": "3 pushes para cima formando wedge",
+          "characteristic": "Cada push faz nova máxima mas menos força",
+          "linhas": "Linhas convergentes",
+          "geralmente": "Overshoot 3ª perna",
+          "gatilho": "Rompimento linha inferior wedge",
+          "stop": "Acima topo wedge (Push 3)",
+          "alvo": "Início wedge + MM"
+        },
+        "setup_3_oho": {
+          "title": "Setup 3: Head and Shoulders (OHO)",
+          "ombro_esquerdo": "Máxima inicial",
+          "cabeca": "Nova máxima maior",
+          "ombro_direito": "Máxima menor (LH)",
+          "linha_pescoco": "Conecta mínimos entre ombros",
+          "gatilho": "Rompimento linha pescoço",
+          "stop": "Acima Ombro Direito",
+          "alvo": "Altura cabeça projetada abaixo pescoço",
+          "importante": "Maioria OHO são Minor, não Major"
+        },
+        "setup_4_final_flag": {
+          "title": "Setup 4: Final Bear Flag Inside Bull Trend",
+          "description": "Após máxima, faz bandeira baixa pequena",
+          "geralmente": "Com ii ou ioi",
+          "bandeira": "Bandeira rasa (não corrige muito)",
+          "parece": "Continuar alta",
+          "mas": "Rompe para baixo da bandeira",
+          "gatilho": "Stop abaixo fundo bandeira",
+          "note": "'Final flag' = última antes reverter"
+        }
+      },
+      "next": "mtr_matematica"
+    },
+    "mtr_fundo": {
+      "id": "mtr_fundo",
+      "level": 1,
+      "title": "MTR de FUNDO (Higher Low MTR)",
+      "type": "info",
+      "note": "APLICAR TODAS REGRAS MTR TOPO INVERTIDAS",
+      "estrutura": {
+        "fase_1": "Fundo (mínima)",
+        "fase_2": "Rally profundo (rompe LTB)",
+        "fase_3": "Reteste de baixa",
+        "fase_4": "Falha em fazer nova mínima (HL)"
+      },
+      "setups": [
+        "Duplo Fundo (Double Bottom)",
+        "Wedge Baixista (Falling Wedge)",
+        "Inverted Head and Shoulders",
+        "Final Bull Flag Inside Bear Trend"
+      ],
+      "next": "mtr_matematica"
+    },
+    "mtr_matematica": {
+      "id": "mtr_matematica",
+      "level": 1,
+      "title": "Matemática da MTR",
+      "type": "info",
+      "probabilidade": {
+        "sucesso": "40-50% (melhor configuração)",
+        "falha": "50-60%"
+      },
+      "risco_retorno_minimo": "1:2 (arriscar X para ganhar 2X). Idealmente 1:3 ou melhor",
+      "equacao_trader": "0.4 × 2R - 0.6 × 1R = +0.2R (positivo mas pequeno). Por isso difícil ganhar dinheiro com MTR. Precisa configuração perfeita + disciplina stop",
+      "quando_nao_operar_mtr": [
+        "Pré-requisitos incompletos",
+        "Tendência ainda muito forte",
+        "Você do lado perdedor (revenge trading)",
+        "Setup não perfeito"
+      ],
+      "next": "mtr_vs_minor"
+    },
+    "mtr_vs_minor": {
+      "id": "mtr_vs_minor",
+      "level": 1,
+      "title": "MTR vs Minor Reversal",
+      "type": "info",
+      "major_trend_reversal": {
+        "description": "Muda Always In Direction completamente",
+        "duration": "Inicia nova tendência 20+ barras ou múltiplos dias",
+        "violation": "Viola Swing Points significativos",
+        "requirements": "Todos pré-requisitos presentes"
+      },
+      "minor_trend_reversal": {
+        "description": "Apenas correção profunda dentro tendência maior",
+        "change": "NÃO muda Always In Direction",
+        "appearance": "Pode parecer MTR mas falha",
+        "duration": "Retoma tendência original após 10-20 barras"
+      },
+      "como_diferenciar": {
+        "possibilidade": "IMPOSSÍVEL com 100% certeza",
+        "razao": "Por isso MTR tem probabilidade 40-50% apenas",
+        "exigencia": "Por isso exige R:R de 1:2 ou 1:3 mínimo",
+        "sinais_minor": {
+          "title": "Sinais de MINOR (Cuidado)",
+          "indicators": [
+            "Estrutura não clara",
+            "Pré-requisitos fracos/ausentes",
+            "Ainda dentro canal tendência original",
+            "HTF ainda mostra tendência forte"
+          ]
+        },
+        "sinais_major": {
+          "title": "Sinais de MAJOR (Confiança)",
+          "indicators": [
+            "Estrutura perfeita (todos pré-requisitos)",
+            "Canal original claramente rompido",
+            "HTF também mostra exaustão",
+            "Clímax recente",
+            "Multiple legs já ocorreram (H4/L4)"
+          ]
+        }
+      },
+      "next": "wedge_intro"
+    },
+    "wedge_intro": {
+      "id": "wedge_intro",
+      "level": 1,
+      "title": "Cunha (Wedge) - Padrão de Exaustão",
+      "type": "decision",
+      "conceito": [
+        "3 impulsos (pushes) em uma direção",
+        "Cada impulso mais fraco que anterior",
+        "Linhas convergentes",
+        "Sinal exaustão compradores/vendedores"
+      ],
+      "question": "Tipo de Cunha?",
+      "options": [
+        {
+          "label": "Cunha Altista (Rising Wedge / Bull Wedge)",
+          "next": "wedge_altista"
+        },
+        {
+          "label": "Cunha Baixista (Falling Wedge / Bear Wedge)",
+          "next": "wedge_baixista"
+        }
+      ]
+    },
+    "wedge_altista": {
+      "id": "wedge_altista",
+      "level": 1,
+      "title": "Cunha ALTISTA (Rising Wedge)",
+      "type": "info",
+      "identification": [
+        "3 topos ascendentes (HH HH HH)",
+        "3 fundos ascendentes (HL HL HL)",
+        "Correções entre pushes claras",
+        "Linha superior e inferior convergem"
+      ],
+      "como_tracar": {
+        "step_1": "Identifique 3 topos (Push 1, 2, 3)",
+        "step_2": "Conecte fundos correções (linha inferior)",
+        "step_3": "Conecte topos (linha superior)",
+        "step_4": "Linhas devem convergir (não paralelas)"
+      },
+      "qualidade_wedge": {
+        "boa_wedge": {
+          "title": "Boa Wedge (Provável Reversão)",
+          "conditions": [
+            "Em tendência FRACA ou final tendência longa",
+            "Push 3 tem overshoot (excede linha superior)",
+            "Barras Push 3 são climáticas",
+            "Contexto HTF favorece reversão"
+          ]
+        },
+        "ma_wedge": {
+          "title": "Má Wedge (NÃO Reverte)",
+          "conditions": [
+            "Em tendência FORTE inicial",
+            "Push 3 é pequeno (undershoot)",
+            "Sem sinais exaustão",
+            "HTF ainda muito forte"
+          ],
+          "resultado": "Apenas pausa, não reversão. Evolui para canal amplo ou nova perna"
+        }
+      },
+      "variacoes": {
+        "wedge_classica": {
+          "title": "Wedge Clássica",
+          "description": "3 pushes claramente separados. Correções proporcionais. Estrutura limpa"
+        },
+        "wedge_parabolica": {
+          "title": "Wedge Parabólica",
+          "description": "Push 3 climático (aceleração vertical)",
+          "signal": "Sinal exaustão extrema",
+          "probability": "Alta probabilidade reversão sharp"
+        },
+        "nested_wedge": {
+          "title": "Nested Wedge (Aninhada)",
+          "description": "Wedge menor dentro wedge maior. Push 3 wedge maior contém wedge 3 pushes",
+          "exaustao": "Exaustão múltiplos níveis",
+          "reversao": "Reversão pode ser muito forte"
+        }
+      },
+      "operando_wedge": {
+        "entrada": {
+          "opcao_1_agressiva": {
+            "title": "Opção 1: Agressiva",
+            "timing": "Na barra reversão do Push 3",
+            "sinal": "Barra com pavio longo contra wedge. Fechamento contra direção wedge",
+            "stop": "Acima/abaixo extremo Push 3"
+          },
+          "opcao_2_conservadora": {
+            "title": "Opção 2: Conservadora",
+            "timing": "Aguarde rompimento linha inferior",
+            "confirmacao": "Confirma reversão acontecendo",
+            "stop": "Ainda extremo Push 3",
+            "vantagem": "Confirmação",
+            "desvantagem": "Pior preço"
+          }
+        },
+        "stop": "1-2 ticks além extremo Push 3. Se muito largo (wedge grande), use swing point anterior",
+        "alvos": {
+          "alvo_1": "InÃ­cio wedge (onde Push 1 começou)",
+          "alvo_2": "Measured Move: Altura wedge projetada direção oposta",
+          "alvo_3": "Se reversão major, até início tendência inteira"
+        },
+        "gestao": [
+          "Scale out 50% no início wedge",
+          "Trailing stop: Abaixo/acima cada nova correção na reversão",
+          "Se formar nova wedge direção oposta = Retomada original"
+        ],
+        "falha_wedge": {
+          "condition": "Após Push 3, faz Push 4 (quarta perna)?",
+          "if_yes": "Não é mais wedge, é canal. SAIA da posição reversão. Possível retomada tendência"
+        }
+      },
+      "next": "nivel_2_barra_sinal"
+    },
+    "wedge_baixista": {
+      "id": "wedge_baixista",
+      "level": 1,
+      "title": "Cunha BAIXISTA (Falling Wedge)",
+      "type": "info",
+      "note": "APLICAR TODAS REGRAS CUNHA ALTISTA INVERTIDAS",
+      "description": "3 fundos descendentes (LL LL LL). Reversão para cima esperada. Setups, gestão, alvos invertidos",
+      "next": "nivel_2_barra_sinal"
+    },
+    "nivel_2_barra_sinal": {
+      "id": "nivel_2_barra_sinal",
+      "level": 2,
+      "title": "NÍVEL 2: REFINAMENTO DA BARRA DE SINAL",
+      "type": "sequence",
+      "description": "VOCÊ IDENTIFICOU O CONTEXTO (Nível 1). AGORA AVALIE A BARRA ATUAL.",
+      "children": ["barra_qualidade"]
+    },
+    "barra_qualidade": {
+      "id": "barra_qualidade",
+      "level": 2,
+      "title": "Qualidade da Barra de Sinal",
+      "type": "decision",
+      "question": "Qual é a qualidade da barra de sinal atual?",
+      "options": [
+        {
+          "label": "Barra de Reversão Ideal",
+          "next": "barra_reversao_ideal"
+        },
+        {
+          "label": "Barra de Indecisão (Doji)",
+          "next": "barra_doji"
+        },
+        {
+          "label": "Padrões Especiais de Barras",
+          "next": "padroes_especiais_barras"
+        }
+      ]
+    },
+    "barra_reversao_ideal": {
+      "id": "barra_reversao_ideal",
+      "level": 2,
+      "title": "Barra de Reversão Ideal",
+      "type": "info",
+      "componentes": {
+        "corpo": "Médio a grande (50-80% da barra)",
+        "direcao_corpo": "A favor operação pretendida",
+        "fechamento": "Na extremidade (80%+ da barra)",
+        "pavio_contrario": "Pequeno ou inexistente (<20%)",
+        "pavio_favor": "Grande (rejeitou outro lado)"
+      },
+      "para_compra": {
+        "title": "Para COMPRA (Barra Reversão de Alta)",
+        "minima": "Testou suporte e rejeitou (pavio baixo longo)",
+        "corpo": "Verde/azul (fechou acima abertura)",
+        "fechamento": "No topo barra ou próximo",
+        "pavio_cima": "Nenhum ou muito pequeno",
+        "leitura": "Vendedores tentaram empurrar baixo, falharam, compradores assumiram"
+      },
+      "para_venda": {
+        "title": "Para VENDA (Barra Reversão de Baixa)",
+        "note": "APLICAR INVERTIDO"
+      },
+      "next": "contagem_barras"
+    },
+    "barra_doji": {
+      "id": "barra_doji",
+      "level": 2,
+      "title": "Barra de Indecisão (Doji)",
+      "type": "info",
+      "caracteristicas": [
+        "Corpo muito pequeno (<25% barra)",
+        "Pavios grandes ambos lados",
+        "Abertura ≈ Fechamento",
+        "Não define direção clara"
+      ],
+      "contexto_importa": {
+        "doji_contexto_forte": {
+          "title": "Doji em Contexto FORTE",
+          "example": "Doji na H1 de tendência forte",
+          "interpretacao": "Apenas pausa, não fraqueza",
+          "acao": [
+            "Pode entrar mas:",
+            "- Use stop order (não limit)",
+            "- Reduza tamanho 50%",
+            "- Aguarde confirmação próxima barra se possível"
+          ]
+        },
+        "doji_contexto_fraco": {
+          "title": "Doji em Contexto FRACO",
+          "example": "Doji no meio de TR",
+          "interpretacao": "Confusão genuína 50/50",
+          "acao": [
+            "NÃO ENTRE",
+            "- Aguarde outside bar OU",
+            "- Aguarde sequência 2-3 barras que defina"
+          ]
+        }
+      },
+      "next": "padroes_especiais_barras"
+    },
+    "padroes_especiais_barras": {
+      "id": "padroes_especiais_barras",
+      "level": 2,
+      "title": "Padrões Especiais de Barras",
+      "type": "info",
+      "inside_bar": {
+        "title": "Inside Bar (i)",
+        "identification": [
+          "Máxima < Máxima barra anterior",
+          "Mínima > Mínima barra anterior",
+          "Barra 'dentro' da anterior"
+        ],
+        "significado": ["Pausa, indecisão", "Compressão", "Pode preceder explosão"],
+        "operando": [
+          "NÃO opere dentro da inside bar",
+          "Aguarde breakout (high ou low da inside)",
+          "Entre direção do breakout",
+          "Stop: Outro lado inside bar"
+        ]
+      },
+      "ii_inside_inside": {
+        "title": "ii (Inside-Inside)",
+        "identification": "Duas inside bars consecutivas. Compressão EXTREMA",
+        "significado": ["Explosão iminente", "Geralmente forte quando rompe", "Pode ser bandeira final"],
+        "operando": [
+          "Aguarde breakout do ii",
+          "Entre imediatamente no breakout",
+          "Stop: Outro lado padrão inteiro",
+          "Expectativa: Movimento forte"
+        ]
+      },
+      "ioi": {
+        "title": "ioi (Inside-Outside-Inside)",
+        "identification": "Inside → Outside → Inside",
+        "significado": [
+          "Tentativa breakout falhou",
+          "Voltou compressão",
+          "Indecisão extrema",
+          "Age como bandeira final ou setup reversão"
+        ],
+        "operando": {
+          "contexto": "Contexto Determina",
+          "em_tendencia": "Bandeira final antes nova perna",
+          "em_tr": "Setup reversão no extremo",
+          "acao": "Aguarde breakout do ioi. Geralmente legítimo quando rompe"
+        }
+      },
+      "outside_bar": {
+        "title": "Outside Bar (o)",
+        "identification": [
+          "Máxima > Máxima barra anterior",
+          "Mínima < Mínima barra anterior",
+          "Barra 'engole' a anterior"
+        ],
+        "significado": ["Volatilidade", "Ambos lados testados", "Fechamento define vencedor"],
+        "operando": {
+          "fecha_topo": "Sinal de alta (compradores venceram)",
+          "fecha_fundo": "Sinal de baixa (vendedores venceram)",
+          "fecha_meio": "Indecisão (não opere ou aguarde)"
+        },
+        "outside_contra_posicao": "SAIA IMEDIATAMENTE. É reversão forte contra você. Não aguarde, não reze"
+      },
+      "oo_outside_outside": {
+        "title": "oo (Outside-Outside)",
+        "identification": "Duas outside bars consecutivas. Raro. Volatilidade extrema",
+        "significado": ["Confusão total", "Algoritmos em conflito", "Possivelmente notícia"],
+        "operando": "FIQUE DE FORA. Aguarde padrão resolver. Após oo, geralmente vem inside bar ou breakout claro"
+      },
+      "barras_por_tamanho": {
+        "barra_grande": {
+          "title": "Barra Grande (>150% média)",
+          "em_breakout": "Força, continuação provável → Entre a favor",
+          "em_tr": "Possível clímax → Fade (aposte contra)",
+          "contra_tendencia": "Possível reversão → Aguarde confirmação"
+        },
+        "barra_pequena": {
+          "title": "Barra Pequena (<50% média)",
+          "significado": "Pausa, indecisão, pode preceder explosão/lateralização",
+          "acao": "Não confie sozinha, aguarde próxima"
+        },
+        "barra_media": {
+          "title": "Barra Média (75-125% média)",
+          "description": "Mais comum, 'normal'"
+        }
+      },
+      "next": "contagem_barras"
+    },
+    "contagem_barras": {
+      "id": "contagem_barras",
+      "level": 2,
+      "title": "Contagem de Barras (Bar Counting)",
+      "type": "info",
+      "h1_l1": {
+        "title": "H1/L1 (High 1 / Low 1)",
+        "contexto": "Primeira correção em tendência forte",
+        "h1": {
+          "title": "H1 (High 1 - Compra)",
+          "description": "Primeira barra alta após correção em tendência alta",
+          "timing": "MELHOR entrada (risco mínimo, retorno máximo)",
+          "uso": "Tendência forte, canal estreito, após breakout"
+        },
+        "l1": {
+          "title": "L1 (Low 1 - Venda)",
+          "note": "APLICAR INVERTIDO"
+        }
+      },
+      "h2_l2": {
+        "title": "H2/L2 (High 2 / Low 2)",
+        "contexto": "Segunda tentativa / Segunda Entrada",
+        "h2": {
+          "title": "H2 (High 2)",
+          "description": [
+            "Primeira tentativa falhou (H1 stopada ou não disparou)",
+            "Segunda barra alta após correção"
+          ],
+          "caracteristica": "Melhor que H1 em canal amplo",
+          "razao": "Vendedores do H1 estão TRAPPED",
+          "padrao": "Correção ABC (duas pernas)"
+        },
+        "l2": {
+          "title": "L2 (Low 2)",
+          "note": "APLICAR INVERTIDO"
+        },
+        "regra_importante": "Traders contra-tendência no H1/L1 são stopados no H2/L2. H2/L2 é onde contra desiste e tendência retoma"
+      },
+      "h3_l3_h4_l4": {
+        "h3_l3": {
+          "title": "H3/L3: Terceira tentativa",
+          "geralmente": "Forma wedge",
+          "pode_ser": "Exaustão",
+          "contexto": "Contexto determina"
+        },
+        "h4_l4": {
+          "title": "H4/L4: Quarta tentativa",
+          "atencao": "Sinal possível exaustão",
+          "regra": "4 legs = Provável final tendência ou TR",
+          "se_sua_quarta": "Realize lucros",
+          "se_fora": "Aguarde reversão ou TR"
+        }
+      },
+      "tbtl": {
+        "title": "TBTL (Ten Bars Two Legs)",
+        "regra": [
+          "Após qualquer clímax ou movimento extremo",
+          "Mercado precisa PELO MENOS:",
+          "- 10 barras de descanso E",
+          "- 2 pernas de correção",
+          "Antes poder retomar ou reverter claramente"
+        ],
+        "aplicacao": [
+          "Após clímax: Não opere por 10 barras",
+          "Conte correções: Primeira perna (A), Segunda perna (C do ABC)",
+          "Só depois procure setup retomada ou reversão"
+        ]
+      },
+      "next": "tipo_ordem"
+    },
+    "tipo_ordem": {
+      "id": "tipo_ordem",
+      "level": 2,
+      "title": "Tipo de Ordem (Execution)",
+      "type": "info",
+      "stop_order": {
+        "title": "Stop Order (Ordem Start)",
+        "conceito": "'Compre/Venda SE preço for para lá'",
+        "posicionamento": {
+          "compra": "1 tick ACIMA máxima barra sinal",
+          "venda": "1 tick ABAIXO mínima barra sinal"
+        },
+        "quando_usar": [
+          "Breakouts (rompimentos)",
+          "H1/L1 em tendência forte",
+          "Confirmação de reversão",
+          "Quando quer confirmação antes entrar"
+        ],
+        "vantagens": ["Confirma preço indo sua direção", "Evita entradas sinais falsos"],
+        "desvantagens": [
+          "Pior preço (slippage)",
+          "Mercados rápidos, execução muito pior",
+          "Pode nunca ser executada"
+        ],
+        "para_iniciantes": "USE STOP ORDERS (mais seguras). Não use limit até 6+ meses experiência"
+      },
+      "limit_order": {
+        "title": "Limit Order (Ordem Pendurada)",
+        "conceito": "'Compre/Venda SE preço voltar aqui'",
+        "posicionamento": {
+          "compra": "1-2 ticks ABAIXO mínima barra(s)",
+          "venda": "1-2 ticks ACIMA máxima barra(s)"
+        },
+        "quando_usar": [
+          "Trading Range (BLSHS)",
+          "Pullbacks profundos canais amplos",
+          "Fade de breakouts fracos",
+          "'Buy Low, Sell High'"
+        ],
+        "tecnica_scale_in": {
+          "title": "Técnica SCALE IN",
+          "description": [
+            "Múltiplas limit orders",
+            "Diferentes níveis",
+            "Ex: 50% em -2 ticks, 50% em -4 ticks",
+            "Entra melhor preço se cair mais"
+          ]
+        },
+        "vantagens": ["Melhor preço entrada", "Pode entrar exato low/high"],
+        "desvantagens": ["Pode NUNCA ser executada", "Pode 'pegar faca caindo'", "Requer experiência"],
+        "para_avancados": ["Use em TR estabelecidos", "Use quando confiança alta", "Combine com stop orders"]
+      },
+      "market_order": {
+        "title": "Market Order (Ordem de Mercado)",
+        "conceito": "'Compre/Venda AGORA, não importa preço'",
+        "quando_usar": {
+          "title": "URGÊNCIA ABSOLUTA",
+          "scenarios": [
+            "Outside bar contra posição (saia agora)",
+            "Premissa mudou (saia agora)",
+            "Breakout fortíssimo (entre agora ou perde)",
+            "Clímax extremo (se quer entrar contra)"
+          ]
+        },
+        "vantagens": ["Execução garantida", "Imediato"],
+        "desvantagens": ["PIOR preço possível", "Slippage alto", "Forex: pega spread inteiro"],
+        "regra": "Use raramente. Apenas situações extremas"
+      },
+      "next": "nivel_3_gestao"
+    },
+    "nivel_3_gestao": {
+      "id": "nivel_3_gestao",
+      "level": 3,
+      "title": "NÍVEL 3: GESTÃO PÓS-ENTRADA",
+      "type": "sequence",
+      "description": "Gestão da posição após entrada",
+      "children": ["colocacao_stop", "acompanhamento_barras", "realizacao_lucros"]
+    },
+    "colocacao_stop": {
+      "id": "colocacao_stop",
+      "level": 3,
+      "title": "Colocação do Stop Loss",
+      "type": "info",
+      "price_action_stop": {
+        "title": "Price Action Stop (Stop Técnico)",
+        "principio": "Stop onde premissa é invalidada",
+        "para_compras": [
+          "Abaixo último Higher Low major OU",
+          "Abaixo barra sinal (se swing) OU",
+          "Abaixo setup (ex: abaixo duplo fundo)"
+        ],
+        "para_vendas": [
+          "Acima último Lower High major OU",
+          "Acima barra sinal OU",
+          "Acima setup (ex: acima duplo topo)"
+        ],
+        "exemplos": {
+          "compra_h2_canal": {
+            "stop": "Abaixo fundo correção (último HL)",
+            "razao": "Se romper, não é correção, é reversão"
+          },
+          "venda_duplo_topo_tr": {
+            "stop": "1-2 ticks acima topo mais alto",
+            "razao": "Se romper, breakout foi real"
+          }
+        }
+      },
+      "catastrophe_stop": {
+        "title": "Catastrophe Stop",
+        "quando_usar": "Breakouts",
+        "calculo": "Measured Move barra/padrão que rompeu. Projete direção oposta",
+        "exemplo": "Breakout alta TR 20pts. Se falhar e voltar dentro. Stop: 20 pontos ABAIXO topo TR"
+      },
+      "stops_por_contexto": {
+        "tendencia_forte_scalp": {
+          "stop": "APERTADO: Abaixo barra sinal apenas",
+          "razao": "Correções rasas, se aprofunda está mudando"
+        },
+        "canal_amplo_tr": {
+          "stop": "LARGO: Beyond Swing Point major",
+          "razao": "Volatilidade normal grande, precisa espaço"
+        },
+        "reversao_mtr": {
+          "stop": "Swing Point anterior (topo/fundo revertendo)",
+          "razao": "Se romper volta, reversão falhou"
+        }
+      },
+      "tamanho_posicao": {
+        "title": "Tamanho Posição Baseado no Stop",
+        "regra_de_ouro": "Arrisque sempre MESMA QUANTIDADE DINHEIRO por trade",
+        "exemplo": {
+          "regra": "Arriscar R$100 por trade",
+          "stop_10pts": "10 contratos (R$10 por ponto)",
+          "stop_20pts": "5 contratos (R$20 por ponto)",
+          "stop_5pts": "20 contratos (R$5 por ponto)"
+        },
+        "nunca": [
+          "Ajuste stop para caber posição desejada",
+          "Escolha STOP correto tecnicamente PRIMEIRO",
+          "DEPOIS calcule tamanho que cabe no risco"
+        ]
+      },
+      "next": "acompanhamento_barras"
+    },
+    "acompanhamento_barras": {
+      "id": "acompanhamento_barras",
+      "level": 3,
+      "title": "Acompanhamento Barra a Barra",
+      "type": "info",
+      "primeira_barra": {
+        "title": "Primeira Barra Após Entrada",
+        "cenario_a": {
+          "title": "CenÃ¡rio A: Foi a Favor (Follow-Through)",
+          "sinais": [
+            "Barra fechou forte sua direção",
+            "Sem pavio grande contra"
+          ],
+          "acao": [
+            "MANTENHA posição",
+            "Trade agora probabilidade maior (60%+)",
+            "Considere adicionar se configuração perfeita"
+          ]
+        },
+        "cenario_b": {
+          "title": "Cenário B: Estacionou (Indecisão)",
+          "sinais": [
+            "Doji ou barra pequena",
+            "Preço dentro barra entrada"
+          ],
+          "acao": [
+            "AGUARDE mais uma barra",
+            "Se segunda também estagnar:",
+            "- Em breakout: SAIA (tempo é inimigo)",
+            "- Em tendência: Aguarde (normal)"
+          ]
+        },
+        "cenario_c": {
+          "title": "Cenário C: Foi Contra (Reversão Imediata)",
+          "sinais": "Barra forte contra você",
+          "acao_critica": [
+            "É outside bar? → SAIA IMEDIATAMENTE",
+            "Rompeu S/R chave? → SAIA",
+            "Apenas corrigiu pouco? → Mantenha (normal)"
+          ]
+        }
+      },
+      "barras_2_10": {
+        "title": "Barras 2-10 (Desenvolvimento)",
+        "monitore": {
+          "barb_wire": {
+            "title": "Barb Wire (Arame Farpado)",
+            "sinais": "3-5 barras pequenas sobrepostas. Sem direção",
+            "em_breakout": "SAIA 0x0 ou lucro mínimo. 'Tempo é inimigo rompimentos'. Está virando TR"
+          },
+          "novo_swing_point": {
+            "title": "Novo Swing Point a Favor",
+            "condicao": "Fez novo HL (em compra)?",
+            "acao": [
+              "Mova stop abaixo novo HL",
+              "Aguarde 1-2 barras confirmação"
+            ]
+          },
+          "teste_sr": {
+            "title": "Teste de S/R",
+            "condicao": "Preço testou resistência major?",
+            "considere": [
+              "Scale out 50% (realizar parcial)",
+              "Move stop breakeven",
+              "Aguarde rompimento ou reversão"
+            ]
+          },
+          "sinais_exaustao": {
+            "title": "Sinais de Exaustão",
+            "sinais": [
+              "Formando wedge?",
+              "Barra climática?",
+              "4ª perna?"
+            ],
+            "acao": "Realize lucros, não seja ganancioso"
+          }
+        }
+      },
+      "next": "realizacao_lucros"
+    },
+    "realizacao_lucros": {
+      "id": "realizacao_lucros",
+      "level": 3,
+      "title": "Realização de Lucros",
+      "type": "info",
+      "alvos_por_tipo": {
+        "scalp": {
+          "title": "Scalp (Alvo 1:1 ou menor)",
+          "alvos": [
+            "Fechamento barra anterior",
+            "Máxima/mínima anterior",
+            "1:1 de risco",
+            "EMA20",
+            "Número redondo próximo"
+          ],
+          "gestao": [
+            "Realize 100% no alvo",
+            "Não deixe virar perdedor",
+            "'In and out quick'"
+          ]
+        },
+        "swing": {
+          "title": "Swing (Alvo 2:1 ou maior)",
+          "alvos_escalonados": {
+            "alvo_1": {
+              "percentual": "50% posição",
+              "alvos": [
+                "Measured Move OU",
+                "2x o risco OU",
+                "S/R próximo"
+              ],
+              "acao": "Scale out metade, move stop breakeven"
+            },
+            "alvo_2": {
+              "percentual": "30% posição",
+              "alvos": [
+                "Próximo S/R major (HTF)",
+                "Linha canal oposta",
+                "3x o risco"
+              ]
+            },
+            "alvo_3": {
+              "percentual": "20% posição",
+              "descricao": "'Moon shot'",
+              "alvos": [
+                "Extremo movimento potencial",
+                "Início tendência"
+              ],
+              "metodo": "Use trailing stop, sem alvo fixo"
+            }
+          }
+        }
+      },
+      "alvos_por_matematica": {
+        "measured_move": {
+          "title": "Measured Move",
+          "calculo": "Altura range/padrão que rompeu. Projetada direção rompimento",
+          "exemplo": "TR 20pts rompeu para cima. Alvo: 20pts acima topo TR"
+        },
+        "leg_1_leg_2": {
+          "title": "Leg 1 = Leg 2",
+          "principio": "Primeira perna mediu X pontos. Segunda perna tende X também",
+          "exemplo": "Rompimento 30pts, correção 10pts. Próxima perna tende 30pts"
+        }
+      },
+      "trailing_stop": {
+        "title": "Trailing Stop",
+        "quando_usar": [
+          "Trade bem no lucro (2:1+)",
+          "Quer deixar 'correr'",
+          "Não sabe onde terminará"
+        ],
+        "metodo": {
+          "tendencia_alta": "Move stop abaixo cada novo HL. Aguarde confirmação (1-2 barras após HL)",
+          "tendencia_baixa": "Move stop acima cada novo LH"
+        },
+        "regra": [
+          "SÓ mova stop A FAVOR (proteger lucro)",
+          "NUNCA mova stop CONTRA (ampliando risco)"
+        ]
+      },
+      "sinais_realizar": {
+        "title": "REALIZE QUANDO",
+        "sinais": [
+          "1. Alvo atingido",
+          "2. Formou wedge sua direção (exaustão)",
+          "3. Formou duplo topo/fundo contra",
+          "4. Barra climática",
+          "5. Teste S/R major HTF",
+          "6. 4ª perna (H4/L4)",
+          "7. Rompeu linha canal (contra)",
+          "8. Barb wire (5+ barras breakout)",
+          "9. Tempo: Final dia (day trader)",
+          "10. PREMISSA MUDOU (sempre)"
+        ]
+      },
+      "convertendo_swing_scalp": {
+        "title": "Convertendo Swing Para Scalp",
+        "quando": [
+          "Trade não desenvolvendo como esperado",
+          "Há 10-20 barras mas pouco progresso",
+          "Formando TR quando esperava tendência",
+          "Perto S/R mostrando fraqueza"
+        ],
+        "acao": [
+          "Realize próximo teste S/R menor",
+          "Não espere alvo swing",
+          "Aceite lucro pequeno",
+          "'Scalp certo melhor que swing errado'"
+        ]
+      },
+      "next": "quando_sair_antes"
+    },
+    "quando_sair_antes": {
+      "id": "quando_sair_antes",
+      "level": 3,
+      "title": "Quando Sair Antes do Alvo",
+      "type": "info",
+      "premissa_mudou": {
+        "title": "Premissa Mudou",
+        "exemplos": {
+          "exemplo_1": {
+            "situacao": "Entrou H2 Tendência Alta",
+            "mudancas": [
+              "Linha tendência rompida para baixo",
+              "Fez Lower High"
+            ],
+            "conclusao": "Não é mais tendência alta, SAIA"
+          },
+          "exemplo_2": {
+            "situacao": "Entrou Fade Topo TR",
+            "mudancas": [
+              "Preço rompeu topo TR com força (gap)",
+              "Follow-through confirma"
+            ],
+            "conclusao": "Não é mais TR, é breakout real, SAIA"
+          }
+        },
+        "regra": "Se razão entrou não existe mais. SAIA, não importa lucro/prejuízo. Não reze, não espere"
+      },
+      "sinais_tecnicos_contra": [
+        "1. Outside bar contra → SAIA IMEDIATAMENTE",
+        "2. Rompeu stop swing point → SAIA (stop será atingido)",
+        "3. Padrão reversão forte contra → SAIA",
+        "4. Clímax contra → SAIA ou scale out pesado"
+      ],
+      "next": "adicionando_posicao"
+    },
+    "adicionando_posicao": {
+      "id": "adicionando_posicao",
+      "level": 3,
+      "title": "Adicionando à Posição (Scaling In)",
+      "type": "info",
+      "quando_seguro": {
+        "regra_ouro": "SÓ adicione a GANHADORA. NUNCA adicione a PERDEDORA (averaging down = perigo)",
+        "momentos_certos": {
+          "momento_1": {
+            "title": "Após Primeira Realização Parcial",
+            "condicoes": [
+              "Realizou 50% Alvo 1",
+              "Trade confirmou (novo HL/LH)",
+              "Setup segunda entrada apareceu (H2/L2)"
+            ],
+            "acao": "Adicione o que tirou, stop breakeven"
+          },
+          "momento_2": {
+            "title": "Em Breakout Forte",
+            "condicoes": [
+              "Entrou breakout inicial",
+              "Primeira barra teve follow-through",
+              "Correção pequena (1-2 barras)"
+            ],
+            "acao": "Adicione na H1/L1, stop primeira já protegida"
+          },
+          "momento_3": {
+            "title": "Setup Segunda Entrada",
+            "condicoes": [
+              "Primeira posição já 1:1+ lucro",
+              "Formou H2/L2 perfeito"
+            ],
+            "acao": "Entre de novo como novo trade"
+          }
+        }
+      },
+      "quando_nao_adicionar": {
+        "title": "Quando NÃO Adicionar",
+        "perigos": [
+          "1. Perdedor: NUNCA 'faça média' perdedor",
+          "2. Perto Alvo: Não adicione 1-2pts do alvo",
+          "3. Sinais Exaustão: Wedge, clímax, H4/L4",
+          "4. Trading Range: Adicionar TR é faca dois gumes"
+        ]
+      },
+      "next": "gestao_emocional"
+    },
+    "gestao_emocional": {
+      "id": "gestao_emocional",
+      "level": 3,
+      "title": "Gestão Emocional no Trade",
+      "type": "info",
+      "frustracao": {
+        "title": "Frustração (Trade Estagnado)",
+        "condicao": "Se após 20 barras não progrediu",
+        "solucao": [
+          "Converta para scalp",
+          "Realize próximo pequeno lucro",
+          "Não force"
+        ]
+      },
+      "ganancia": {
+        "title": "Ganância (Está Ganhando)",
+        "sintomas": [
+          "'Se subir mais 5 pontos...'",
+          "Ignora sinais realização",
+          "Recusa realizar parcial"
+        ],
+        "cura": [
+          "SCALE OUT (parciais forçam disciplina)",
+          "Realize algo no alvo planejado",
+          "Trailing stop para resto"
+        ]
+      },
+      "medo": {
+        "title": "Medo (Em Drawdown)",
+        "condicao": "Se stop não atingido mas perdendo",
+        "acao": [
+          "AGUARDE stop técnico",
+          "Não saia manual por medo",
+          "Exceto se premissa mudou (razão técnica, não emocional)"
+        ]
+      },
+      "vinganca": {
+        "title": "Vingança (Após Perda)",
+        "condicao": "Se tomou stop",
+        "acao": [
+          "PAUSE 10 minutos",
+          "Não entre 'revenge trade'",
+          "Reavalie cabeça fria",
+          "Próximo trade deve ser MELHOR setup, não mais rápido"
+        ]
+      },
+      "next": "nivel_4_situacoes"
+    },
+    "nivel_4_situacoes": {
+      "id": "nivel_4_situacoes",
+      "level": 4,
+      "title": "NÍVEL 4: SITUAÇÕES ESPECÍFICAS",
+      "type": "sequence",
+      "children": ["padroes_classicos", "momentos_especificos", "casos_especiais"]
+    },
+    "padroes_classicos": {
+      "id": "padroes_classicos",
+      "level": 4,
+      "title": "Padrões Clássicos Específicos",
+      "type": "info",
+      "duplo_topo": {
+        "title": "Duplo Topo (Double Top)",
+        "identification": [
+          "Topo 1: Máxima anterior",
+          "Topo 2: Teste Topo 1 (geralmente falha nova máxima)",
+          "Formação 'M'"
+        ],
+        "measured_move": "Distância entre topos (pico a vale). Projetada para baixo segundo topo",
+        "qualidade": {
+          "duplo_topo_perfeito": {
+            "caracteristicas": [
+              "Topo 2 forma LH (não atinge T1)",
+              "Barra reversão forte no T2",
+              "Contexto: Topo TR ou final tendência"
+            ],
+            "entrada": "Stop abaixo barra reversão",
+            "probabilidade": "50-60%"
+          },
+          "duplo_topo_comum": {
+            "caracteristicas": [
+              "T2 atinge T1 ou excede ligeiramente",
+              "Barra reversão média"
+            ],
+            "entrada": "Aguarde romper vale entre topos",
+            "probabilidade": "40-50%"
+          },
+          "falha_duplo_topo": {
+            "caracteristica": "T2 rompe T1 com força",
+            "acao": "Não opere contra. Era apenas pausa. Possível H2 (entrada compra)"
+          }
+        }
+      },
+      "duplo_fundo": {
+        "title": "Duplo Fundo (Double Bottom)",
+        "note": "APLICAR REGRAS DUPLO TOPO INVERTIDAS",
+        "spring_bear_trap": {
+          "title": "Spring / Bear Trap",
+          "description": "Variação especial duplo fundo",
+          "pattern": "Fundo 2 excede F1 ligeiramente (fake breakout). Depois retorna com força",
+          "reliability": "Altamente confiável fundo TR",
+          "note": "Setup favorito traders experientes"
+        }
+      },
+      "triangulos": {
+        "title": "Triângulos",
+        "tipos": [
+          "Triângulo Ascendente: Topos iguais, fundos ascendentes",
+          "Triângulo Descendente: Fundos iguais, topos descendentes",
+          "Triângulo Simétrico: Ambos convergem"
+        ],
+        "natureza": [
+          "Podem ser continuação OU reversão (ambíguo)",
+          "Geralmente feios (não perfeitos)",
+          "REGRA: Aguarde breakout, não antecipe"
+        ],
+        "operando": [
+          "Não opere dentro triângulo",
+          "Aguarde rompimento claro",
+          "Entre direção rompimento",
+          "Stop: Outro lado triângulo"
+        ]
+      },
+      "flags": {
+        "title": "Flags (Bandeiras)",
+        "bull_flag": {
+          "title": "Bull Flag (Bandeira de Alta)",
+          "description": "Após impulso alta. Correção em canal baixa pequeno. Consolidação antes retomada"
+        },
+        "bear_flag": {
+          "title": "Bear Flag",
+          "note": "APLICAR INVERTIDO"
+        },
+        "bandeiras_finais": {
+          "title": "Bandeiras Finais",
+          "caracteristicas": [
+            "Após 3ª perna",
+            "Geralmente pequenas e rasas",
+            "Com ii ou ioi dentro",
+            "Breakout dessas geralmente legítimo"
+          ]
+        },
+        "operando": [
+          "Aguarde breakout bandeira",
+          "Entre a favor tendência original",
+          "Alvo: Altura impulso anterior"
+        ]
+      }
+    },
+    "momentos_especificos": {
+      "id": "momentos_especificos",
+      "level": 4,
+      "title": "Momentos Específicos do Dia",
+      "type": "info",
+      "abertura_primeira_hora": {
+        "title": "Abertura (Primeira Hora)",
+        "regra_80": {
+          "title": "80% Dias Revertem na Abertura",
+          "pattern": [
+            "Barras 1-5: Movimento inicial (fake)",
+            "Barras 6-10: Reversão",
+            "Barras 11-20: Define direção real ou TR",
+            "REGRA: Não confie movimento primeiras 5 barras"
+          ]
+        },
+        "trend_from_open": {
+          "title": "Trend From The Open (20%)",
+          "identificacao": [
+            "Primeira barra ENORME + fechamento extremo",
+            "Segunda confirma (follow-through)",
+            "Sem reversão primeiras 10 barras"
+          ],
+          "acao": "Entre a favor, é dos 20% dias tendência"
+        },
+        "gaps_abertura": {
+          "gap_grande": {
+            "tamanho": "10+ pts",
+            "probabilidade": "70-80% será testado durante dia",
+            "acao": [
+              "Não entre a favor gap inicialmente",
+              "Aguarde fechamento gap",
+              "Entre quando testar (limit)"
+            ]
+          },
+          "gap_pequeno": {
+            "tamanho": "2-5pts",
+            "acao": "Trate como abertura normal. Pode fechar primeiros 10min"
+          }
+        },
+        "ttr_abertura_review": {
+          "title": "TTR na Abertura",
+          "identificacao": "6+ barras sobrepostas início dia",
+          "conclusao": "Dia TR confirmado",
+          "acao": [
+            "Não opere dentro TTR",
+            "Aguarde breakout e fade se fraco",
+            "OU opere breakout se forte (20%)"
+          ]
+        }
+      },
+      "meio_dia_mid_session": {
+        "title": "Meio do Dia (Mid-Session)",
+        "lunch_hour": {
+          "title": "Lunch Hour (11:00-13:00 EST)",
+          "caracteristicas": [
+            "Liquidez diminui",
+            "Volatilidade diminui",
+            "Frequentemente lateraliza"
+          ],
+          "acao": [
+            "Se em trade: Considere realizar",
+            "Se fora: Melhor hora pausa",
+            "Se opera: Apenas setups perfeitos"
+          ]
+        },
+        "teste_tardio": {
+          "title": "Teste Tardio (Late Test)",
+          "padrao": [
+            "10:00-14:00 testa S/R abertura",
+            "Ex: Mínima dia 9:30, testada 12:00",
+            "SETUP: Segunda entrada (L2/H2) nesse teste",
+            "Geralmente bom R:R"
+          ]
+        }
+      },
+      "final_dia_close": {
+        "title": "Final do Dia (Close)",
+        "armadilhas_finais": {
+          "timing": "Último 60-30 min",
+          "pattern": "Bull/Bear traps comuns. Breakout fraco → Fade",
+          "regra": "Breakouts finais dia geralmente falham"
+        },
+        "magneto": {
+          "title": "Magneto (Magnet)",
+          "atracao_para": [
+            "1. Abertura do dia",
+            "2. Fechamento de ontem",
+            "3. Números redondos (00, 50, 000)",
+            "4. High/Low do dia"
+          ],
+          "uso": "Alvo final trades finais. Expectativa 'ir buscar' esses níveis"
+        },
+        "ttr_final_review": {
+          "title": "TTR Final (12:45+ PST)",
+          "padrao": [
+            "Após 12:45 PST forma TTR pequeno",
+            "Breakout últimos 15-20 min",
+            "Geralmente rápido e pequeno"
+          ],
+          "acao": "Scalp apenas, não swing"
+        }
+      }
+    },
+    "casos_especiais": {
+      "id": "casos_especiais",
+      "level": 4,
+      "title": "Casos Especiais",
+      "type": "info",
+      "noticias_eventos": {
+        "title": "Notícias / Eventos",
+        "durante_noticia": [
+          "FIQUE DE FORA",
+          "Volatilidade extrema",
+          "Spread alarga",
+          "Slippage enorme",
+          "Não há edge"
+        ],
+        "apos_noticia": [
+          "AGUARDE 10-20 barras (TBTL)",
+          "Deixe caos assentar",
+          "Depois trade normalmente"
+        ]
+      },
+      "dia_alta_volatilidade": {
+        "title": "Dia Alta Volatilidade",
+        "sinais": [
+          "Barras todas 2x maiores que normal",
+          "ATR muito alto"
+        ],
+        "adaptacoes": [
+          "Reduza tamanho: 50% posição normal",
+          "Alargue stops: 1.5-2x normal",
+          "Ou não opere: Considere pausar dia"
+        ]
+      },
+      "dia_baixa_volatilidade": {
+        "title": "Dia Baixa Volatilidade",
+        "sinais": [
+          "Barras todas 50% menores",
+          "TR estreito dia todo"
+        ],
+        "adaptacoes": [
+          "Reduza alvos: Não espere 20pts se range 10pts",
+          "Scalp mais: Swing menos provável",
+          "Ou não opere: Sem movimento = sem lucro"
+        ]
+      },
+      "next": "nivel_5_checklist"
+    },
+    "nivel_5_checklist": {
+      "id": "nivel_5_checklist",
+      "level": 5,
+      "title": "NÍVEL 5: CHECKLIST DE DECISÃO FINAL",
+      "type": "sequence",
+      "description": "Antes de Clicar COMPRAR/VENDER",
+      "checklist": {
+        "check_1_always_in": {
+          "number": 1,
+          "title": "ALWAYS IN?",
+          "questions": [
+            "Quem está controle? (Touros/Ursos/Ninguém)",
+            "Estou operando A FAVOR Always In?"
+          ],
+          "decision": [
+            "[ ] SIM → Continuar",
+            "[ ] NÃO → ABORTAR"
+          ]
+        },
+        "check_2_setup": {
+          "number": 2,
+          "title": "SETUP?",
+          "questions": [
+            "Tenho setup técnico válido? (H1/H2/MTR/Wedge/Double/etc)",
+            "Setup está CONTEXTO certo?"
+          ],
+          "decision": [
+            "[ ] SIM → Continuar",
+            "[ ] NÃO → ABORTAR"
+          ]
+        },
+        "check_3_barra_sinal": {
+          "number": 3,
+          "title": "BARRA DE SINAL?",
+          "questions": [
+            "Barra atual é boa? (Corpo, fechamento, pavio)",
+            "É Doji/ruim e devo aguardar?"
+          ],
+          "decision": [
+            "[ ] BOA → Continuar",
+            "[ ] RUIM → AGUARDAR"
+          ]
+        },
+        "check_4_contexto_perigoso": {
+          "number": 4,
+          "title": "CONTEXTO PERIGOSO?",
+          "perigos": [
+            "Comprando ALTO em TR? (ERRO FATAL)",
+            "Vendendo BAIXO em Tendência Alta? (ERRO FATAL)",
+            "Operando contra tendência forte? (ALTO RISCO)"
+          ],
+          "decision": [
+            "[ ] NENHUM → Continuar",
+            "[ ] ALGUM → ABORTAR"
+          ]
+        },
+        "check_5_matematica": {
+          "number": 5,
+          "title": "MATEMÁTICA?",
+          "questions": [
+            "Onde está meu stop? (Técnico, não arbitrário)",
+            "Onde está meu alvo? (Realista)",
+            "R:R ≥ 1:1.5? (Mínimo aceitável)"
+          ],
+          "decision": [
+            "[ ] TODOS OK → Continuar",
+            "[ ] ALGUM RUIM → ABORTAR"
+          ]
+        },
+        "check_6_timing": {
+          "number": 6,
+          "title": "TIMING?",
+          "questions": [
+            "Acabou ter clímax? (Esperar TBTL)",
+            "Está em barb wire? (Não entrar)",
+            "Notícia em 5 min? (Não operar)"
+          ],
+          "decision": [
+            "[ ] TIMING BOM → Continuar",
+            "[ ] TIMING RUIM → ABORTAR"
+          ]
+        },
+        "check_7_emocional": {
+          "number": 7,
+          "title": "EMOCIONAL?",
+          "questions": [
+            "Estou calmo? (Não revenge)",
+            "Acredito setup? (Não forçando)",
+            "Aceito perda se vier? (Stop aceitável)"
+          ],
+          "decision": [
+            "[ ] SIM TODOS → CLIQUE",
+            "[ ] NÃO ALGUM → AGUARDAR"
+          ]
+        }
+      },
+      "next": "apendice_glossario"
+    },
+    "apendice_glossario": {
+      "id": "apendice_glossario",
+      "level": "appendix",
+      "title": "APÊNDICE: GLOSSÁRIO RÁPIDO",
+      "type": "info",
+      "note": "Mantenha esta referência à mão durante operação",
+      "termos_essenciais": {
+        "Always_In": "Direção dominante mercado (Long/Short)",
+        "BOM": "Breakout Mode",
+        "BLSHS": "Buy Low, Sell High, Scalp",
+        "BTC": "Buy The Close",
+        "CTF": "Current TimeFrame",
+        "EG": "Exhaustion Gap",
+        "EMA": "Exponential Moving Average",
+        "H1_H2_H3_H4": "High 1/2/3/4 (contagem barras alta)",
+        "HL": "Higher Low (Fundo mais alto)",
+        "HH": "Higher High (Topo mais alto)",
+        "HTF": "Higher TimeFrame",
+        "L1_L2_L3_L4": "Low 1/2/3/4 (contagem barras baixa)",
+        "LH": "Lower High (Topo mais baixo)",
+        "LL": "Lower Low (Fundo mais baixo)",
+        "LOM": "Limit Order Market",
+        "LTA_LTB": "Linha Tendência Alta/Baixa",
+        "LTF": "Lower TimeFrame",
+        "MAG": "Moving Average Gap",
+        "MG": "Measuring Gap",
+        "MM": "Measured Move",
+        "MTR": "Major Trend Reversal",
+        "OHO": "Ombro-Cabeça-Ombro",
+        "PB": "Pullback",
+        "SR": "Suporte e Resistência",
+        "STC": "Sell The Close",
+        "TBTL": "Ten Bars Two Legs",
+        "TR": "Trading Range",
+        "TTR": "Tight Trading Range"
+      }
+    },
+    "notas_finais": {
+      "id": "notas_finais",
+      "level": "appendix",
+      "title": "NOTAS FINAIS DE USO",
+      "type": "info",
+      "como_usar_arvore": {
+        "title": "Como Usar Esta Árvore",
+        "descricao": "Esta é estrutura operacional completa Al Brooks Price Action",
+        "no_edrawmind": [
+          "Copie toda estrutura",
+          "Cole no EdrawMind",
+          "Software criará nós automaticamente",
+          "Notas/descrições ficarão em balões"
+        ],
+        "para_operar": [
+          "ANTES MERCADO: Leia NÍVEL 0 (contexto HTF)",
+          "DURANTE: Use NÍVEL 1 → 2 → 3 em sequência",
+          "ANTES ENTRADA: NÍVEL 5 (checklist) obrigatório",
+          "ESTUDO: Uma fase por semana até dominar"
+        ]
+      },
+      "principios_fundamentais": {
+        "title": "Princípios Fundamentais - LEMBRE-SE SEMPRE",
+        "principio_1": {
+          "title": "Mercado é PROBABILÍSTICO",
+          "description": "Mesmo melhor setup pode falhar. Edge vem de probabilidade, não certeza"
+        },
+        "principio_2": {
+          "title": "EXPERIÊNCIA é Fundamental",
+          "description": "Árvore guia, prática refina. 6+ meses para dominar conceitos"
+        },
+        "principio_3": {
+          "title": "PSICOLOGIA é Metade da Batalha",
+          "description": "Conhecimento técnico sem disciplina = perdas. Siga regras mesmo quando difícil"
+        },
+        "principio_4": {
+          "title": "SIMPLICIDADE Vence",
+          "description": "Não use todos conceitos de uma vez. Comece básico, evolua gradualmente"
+        },
+        "principio_5": {
+          "title": "INICIE COM O BÁSICO",
+          "fases": [
+            "Fase 1: Identifique ciclo",
+            "Fase 2: Aguarde barra sinal boa",
+            "Fase 3: Stop técnico + alvo 2:1",
+            "APENAS ISSO já coloca à frente 80% traders"
+          ]
+        }
+      },
+      "evolucao_trader": {
+        "title": "Evolução do Trader",
+        "mes_1_3": {
+          "title": "MÊS 1-3: Identificação Ciclos",
+          "tarefas": [
+            "Foque em diferenciar Breakout/Canal/TR",
+            "Não opere, apenas observe e anote",
+            "Pratique marcando gráficos passados"
+          ]
+        },
+        "mes_4_6": {
+          "title": "MÊS 4-6: Setups Básicos",
+          "tarefas": [
+            "H1/H2 em tendências claras",
+            "Duplos em TR",
+            "Apenas setups óbvios e perfeitos",
+            "1-2 trades por dia máximo"
+          ]
+        },
+        "mes_7_12": {
+          "title": "MÊS 7-12: Refinamento",
+          "tarefas": [
+            "Adicione wedges, MTR",
+            "Melhore timing entrada (contagem barras)",
+            "Trabalhe gestão emocional"
+          ]
+        },
+        "ano_2_plus": {
+          "title": "ANO 2+: Maestria",
+          "caracteristicas": [
+            "Todos setups integrados",
+            "Lê mercado fluidamente",
+            "Adaptação automática contexto",
+            "Consistência mensal"
+          ]
+        }
+      },
+      "conclusao": "A COMPLEXIDADE VEM COM TEMPO. COMECE SIMPLES. EXECUTE DISCIPLINADO. EVOLUA GRADUALMENTE."
+    }
+  }
+} reversão",
+          "alvo": "Meio do canal",
+          "atencao": "60% faz H3 e retoma → Stop disciplinado"
+        }
+      },
+      "gestao_canal_amplo": {
+        "regra_1": {
+          "title": "Stops LARGOS obrigatórios",
+          "description": "Não use stop apertado. Stop além Swing Point claro (Major Low/High)"
+        },
+        "regra_2": {
+          "title": "Reduza tamanho posição",
+          "description": "Compense stop largo com posição menor. Mantenha risco capital constante"
+        },
+        "regra_3": {
+          "title": "Opere menor ou escale",
+          "description": "Entre 50% no setup inicial. Adicione 50% se confirmar (novo HL)"
+        },
+        "regra_4": {
+          "title": "Modo mental 'BLSHS dentro canal'",
+          "description": "Buy Low (zona inferior), Sell High (zona superior - scalp), Scalp (parciais em cada S/R menor)"
+        },
+        "regra_5": {
+          "title": "Realize lucros parcialmente",
+          "description": "50% no teste linha superior, 50% no Measured Move ou wedge"
+        }
+      },
+      "evolucao": {
+        "natural": "Vira Trading Range grande eventualmente",
+        "tipico": "Dura vários dias (gráfico diário)",
+        "htf": "Geralmente é canal estreito em TF superior",
+        "termino": "Breakout forte OU reversão major após múltiplas wedges"
+      },
+      "next": "canal_ou_tr"
+    },
+    "canal_ou_tr": {
+      "id": "canal_ou_tr",
+      "level": 1,
+      "title": "Decisão: Canal ou Trading Range?",
+      "type": "decision",
+      "question": "A direção ainda é clara ou virou confusão total?",
+      "options": [
+        {
+          "label": "É CANAL",
+          "criteria": [
+            "Ainda identifico direção dominante (HL OU LH)",
+            "Correções são proporcionais",
+            "EMA tem inclinação clara"
+          ],
+          "action": "Continue operando como CANAL",
+          "next": "nivel_2_barra_sinal"
+        },
+        {
+          "label": "É TRADING RANGE",
+          "criteria": [
+            "Perdeu direção clara",
+            "Preço cruza EMA constantemente ambos lados",
+            "Não consigo traçar linhas canal consistentes"
+          ],
+          "action": "VÁ PARA [TRADING RANGE]",
+          "next": "modo_trading_range"
+        }
+      ]
+    },
+    "modo_trading_range": {
+      "id": "modo_trading_range",
+      "level": 1,
+      "title": "[CAMINHO C] MODO TRADING RANGE",
+      "type": "sequence",
+      "identification": {
+        "title": "VOCÊ ESTÁ EM TR SE:",
+        "criteria": [
+          "Preço oscila entre dois níveis horizontais claros",
+          "Barras alternam cores constantemente",
+          "Preço cruza EMA20 repetidamente ambos lados",
+          "Compradores compram embaixo, vendedores vendem em cima",
+          "Sensação de confusão e frustração",
+          "Rompimentos falham e retornam (80%)"
+        ]
+      },
+      "mentalidade": "BLSHS (Buy Low, Sell High, Scalp)",
+      "children": ["tr_tipo"]
+    },
+    "tr_tipo": {
+      "id": "tr_tipo",
+      "level": 1,
+      "title": "A Lateralidade é Ampla ou Estreita?",
+      "type": "decision",
+      "question": "A lateralidade é ampla ou estreita?",
+      "options": [
+        {
+          "label": "Lateralidade Ampla (Broad Trading Range)",
+          "next": "tr_amplo"
+        },
+        {
+          "label": "Lateralidade Estreita (Tight Trading Range - TTR)",
+          "next": "tr_estreito"
+        }
+      ]
+    },
+    "tr_amplo": {
+      "id": "tr_amplo",
+      "level": 1,
+      "title": "Lateralidade Ampla (Broad Trading Range)",
+      "type": "sequence",
+      "identification": [
+        "Range altura 20+ pontos (Emini) / 100+ pips (Forex)",
+        "Barras grandes ambas direções",
+        "Swing Points claros (Major Highs/Lows)",
+        "Dura 20-50+ barras"
+      ],
+      "estrutura_interna": [
+        "Contém bull flags E bear flags",
+        "Contém canais alta E baixa internos",
+        "'Toda TR contém canal alta e canal baixa'"
+      ],
+      "children": ["tr_zona_preco"]
+    },
+    "tr_zona_preco": {
+      "id": "tr_zona_preco",
+      "level": 1,
+      "title": "Onde Está o Preço no Range?",
+      "type": "decision",
+      "question": "Onde o preço está no trading range?",
+      "options": [
+        {
+          "label": "ZONA 1: Terço Superior (Zona de Venda)",
+          "next": "tr_zona_superior"
+        },
+        {
+          "label": "ZONA 2: Terço Inferior (Zona de Compra)",
+          "next": "tr_zona_inferior"
+        },
+        {
+          "label": "ZONA 3: Meio do Range (Dead Zone)",
+          "next": "tr_zona_meio"
+        },
+        {
+          "label": "ZONA 4: Metade Superior",
+          "state": "Neither fish nor fowl",
+          "vies": "Venda (mas aguarde topo)",
+          "ou": "Aguarde meio para definir direção",
+          "next": "nivel_2_barra_sinal"
+        },
+        {
+          "label": "ZONA 5: Metade Inferior",
+          "vies": "Compra (mas aguarde fundo)",
+          "ou": "Aguarde meio para definir direção",
+          "next": "nivel_2_barra_sinal"
+        }
+      ]
+    },
+    "tr_zona_superior": {
+      "id": "tr_zona_superior",
+      "level": 1,
+      "title": "ZONA 1: Terço Superior (Zona de Venda)",
+      "type": "info",
+      "caracteristicas": [
+        "Preço no topo do range",
+        "Compradores realizando lucro",
+        "Vendedores agressivos"
+      ],
+      "setups_venda": {
+        "setup_1_duplo_topo": {
+          "title": "Setup 1: Duplo Topo (Double Top)",
+          "identification": "Teste máxima anterior do range",
+          "qualidade_melhor": [
+            "Segundo topo FALHA (não atinge primeiro)",
+            "Forma Lower High"
+          ],
+          "gatilho": ["Stop 1 tick abaixo barra reversão", "OU: Limit order acima das barras (scale in)"],
+          "stop": "1-2 ticks acima topo do range",
+          "alvo": "Meio range (escalar) + fundo range",
+          "matematica": "MM = altura entre topos projetado baixo"
+        },
+        "setup_2_wedge_altista": {
+          "title": "Setup 2: Wedge Altista no Topo",
+          "identification": "3 pushes para cima terço superior",
+          "geralmente": "Overshoot linha canal rally",
+          "gatilho": "Rompimento linha inferior wedge",
+          "stop": "Acima topo wedge",
+          "alvo": "EMA20 + Meio range"
+        },
+        "setup_3_failed_breakout": {
+          "title": "Setup 3: Falha de Breakout (Failed Bull BO)",
+          "identification": "Rompe topo TR mas retorna imediatamente",
+          "barra_sinal": "Outside bar ou pavio grande em cima",
+          "regra_80": "80% breakouts TR falham",
+          "gatilho": "Stop abaixo barra

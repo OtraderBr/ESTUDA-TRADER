@@ -90,6 +90,7 @@ const navItems = [
   { id: 'dashboard', label: 'Dashboard', icon: 'layout-dashboard' },
   { id: 'roadmap', label: 'Trilha de Estudo', icon: 'target' },
   { id: 'concepts', label: 'Gestão de Conceitos', icon: 'library' },
+  { id: 'decision-tree', label: 'Árvore de Decisão', icon: 'git-merge' },
   { id: 'sessions', label: 'Sessões de Estudo', icon: 'calendar-days' },
 ];
 

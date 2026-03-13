@@ -1,231 +1,191 @@
 // js/roadmap.js
 import { store } from './state.js';
 
+let expandedMacro = null; // Guarda qual macro está expandida
+
 export function renderRoadmap(container, state) {
   const { concepts } = state;
 
+  // Agrupar conceitos por macro categoria
+  const macroGroups = {};
+  concepts.forEach(c => {
+    const macro = c.macroCategory || 'Fundamentos';
+    if (!macroGroups[macro]) {
+      macroGroups[macro] = {
+        name: macro,
+        concepts: [],
+        mastered: 0,
+        inProgress: 0,
+        notStarted: 0
+      };
+    }
+    macroGroups[macro].concepts.push(c);
+    
+    // Contagem baseada na retenção (masteryPercentage)
+    const mastery = c.masteryPercentage || 0;
+    if (mastery >= 85) macroGroups[macro].mastered++;
+    else if (mastery > 0) macroGroups[macro].inProgress++;
+    else macroGroups[macro].notStarted++;
+  });
+
+  const sortedMacros = Object.values(macroGroups).sort((a, b) => b.concepts.length - a.concepts.length);
+
   container.innerHTML = `
-    <div class="p-8 h-full flex flex-col bg-zinc-50" id="roadmap-content">
-      <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8">
-        <div>
-          <h1 class="text-3xl font-bold text-zinc-900 tracking-tight flex items-center gap-3">
-            <i data-lucide="target" class="w-8 h-8 text-emerald-500"></i>
-            Trilha de Estudo
-          </h1>
-          <p class="text-zinc-500 mt-1">Navegue pela sequência lógica de aprendizado baseada em pré-requisitos.</p>
+    <div class="p-8 h-full flex flex-col bg-zinc-50 overflow-y-auto pb-24" id="roadmap-content">
+      <div class="mb-8">
+        <h1 class="text-3xl font-bold text-zinc-900 tracking-tight flex items-center gap-3">
+          <i data-lucide="target" class="w-8 h-8 text-emerald-500"></i>
+          Trilha de Estudo Linear
+        </h1>
+        <p class="text-zinc-500 mt-2">Uma visão agrupada e direta para dominar os ${concepts.length} conceitos do Motor Brooks.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+        <!-- Legend Cards -->
+        <div class="bg-white p-4 rounded-2xl border border-zinc-200 flex items-center gap-3 shadow-sm">
+           <div class="w-3 h-3 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.4)]"></div>
+           <div>
+              <div class="text-xs font-semibold text-zinc-500 uppercase tracking-wider">Dominado</div>
+              <div class="text-sm font-bold text-zinc-800">> 85% Conhecimento</div>
+           </div>
         </div>
-        
-        <div class="flex items-center gap-2 bg-white/50 p-1 rounded-xl border border-zinc-200">
-          <button id="zoom-in" class="p-2 hover:bg-zinc-100 rounded-lg text-zinc-500 transition-colors" title="Zoom In">
-            <i data-lucide="zoom-in" class="w-4 h-4"></i>
-          </button>
-          <button id="zoom-out" class="p-2 hover:bg-zinc-100 rounded-lg text-zinc-500 transition-colors" title="Zoom Out">
-            <i data-lucide="zoom-out" class="w-4 h-4"></i>
-          </button>
-          <button id="zoom-reset" class="p-2 hover:bg-zinc-100 rounded-lg text-zinc-500 transition-colors" title="Reset View">
-            <i data-lucide="maximize-2" class="w-4 h-4"></i>
-          </button>
+        <div class="bg-white p-4 rounded-2xl border border-zinc-200 flex items-center gap-3 shadow-sm">
+           <div class="w-3 h-3 rounded-full bg-amber-500 shadow-[0_0_8px_rgba(245,158,11,0.4)]"></div>
+           <div>
+              <div class="text-xs font-semibold text-zinc-500 uppercase tracking-wider">Em Progresso</div>
+              <div class="text-sm font-bold text-zinc-800">1% a 84% Conhecimento</div>
+           </div>
+        </div>
+        <div class="bg-white p-4 rounded-2xl border border-zinc-200 flex items-center gap-3 shadow-sm">
+           <div class="w-3 h-3 rounded-full bg-zinc-300"></div>
+           <div>
+              <div class="text-xs font-semibold text-zinc-500 uppercase tracking-wider">Não Iniciado</div>
+              <div class="text-sm font-bold text-zinc-800">0% Conhecimento</div>
+           </div>
         </div>
       </div>
-      
-      <div class="flex-1 bg-zinc-100/50 border border-zinc-200/50 rounded-[2rem] overflow-hidden relative group">
-        <!-- Legend -->
-        <div class="absolute top-6 right-6 flex flex-col gap-3 bg-white/90 backdrop-blur-xl p-5 rounded-2xl border border-zinc-200 shadow-2xl z-10">
-          <h4 class="text-[10px] font-bold text-zinc-500 uppercase tracking-[0.2em] mb-1">Status de Domínio</h4>
-          <div class="flex items-center gap-3 text-xs text-zinc-700">
-            <div class="w-2.5 h-2.5 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.4)]"></div>
-            <span>Dominado (A)</span>
-          </div>
-          <div class="flex items-center gap-3 text-xs text-zinc-700">
-            <div class="w-2.5 h-2.5 rounded-full bg-amber-500 shadow-[0_0_8px_rgba(245,158,11,0.4)]"></div>
-            <span>Em Progresso (B)</span>
-          </div>
-          <div class="flex items-center gap-3 text-xs text-zinc-700">
-            <div class="w-2.5 h-2.5 rounded-full bg-zinc-200"></div>
-            <span>Não Iniciado (C)</span>
-          </div>
-          <div class="mt-2 pt-3 border-t border-zinc-200">
-            <div class="flex items-start gap-2 text-[10px] text-zinc-500 leading-relaxed">
-              <i data-lucide="info" class="w-3 h-3 mt-0.5 shrink-0"></i>
-              <span>Use o scroll para zoom e arraste para navegar no mapa.</span>
-            </div>
-          </div>
-        </div>
 
-        <div id="d3-container" class="w-full h-full cursor-grab active:cursor-grabbing">
-          <svg id="roadmap-svg" class="w-full h-full"></svg>
-        </div>
+      <div class="space-y-4">
+        ${sortedMacros.map(macro => {
+          const total = macro.concepts.length;
+          const progressPercentage = Math.round((macro.mastered / total) * 100);
+          const isExpanded = expandedMacro === macro.name;
+          
+          return `
+            <div class="bg-white border ${isExpanded ? 'border-emerald-500 shadow-md ring-4 ring-emerald-50' : 'border-zinc-200 shadow-sm'} rounded-[2rem] overflow-hidden transition-all duration-300">
+              
+              <!-- Macro Header -->
+              <button class="macro-toggle-btn w-full p-6 md:p-8 flex flex-col md:flex-row md:items-center justify-between gap-6 hover:bg-zinc-50/50 transition-colors" data-macro="${macro.name}">
+                <div class="flex items-center gap-4 text-left">
+                  <div class="w-14 h-14 rounded-2xl ${isExpanded ? 'bg-emerald-500 text-white' : 'bg-emerald-50 text-emerald-600'} flex items-center justify-center shrink-0 transition-colors">
+                    <i data-lucide="layers" class="w-7 h-7"></i>
+                  </div>
+                  <div>
+                    <h2 class="text-2xl font-bold text-zinc-900">${macro.name}</h2>
+                    <p class="text-sm text-zinc-500 font-medium mt-1">
+                      ${macro.mastered} de ${total} estruturados dominados
+                    </p>
+                  </div>
+                </div>
+                
+                <div class="w-full md:w-64 shrink-0 flex items-center gap-4">
+                  <div class="flex-1">
+                    <div class="flex justify-between text-xs font-bold text-zinc-700 mb-2">
+                       <span>Progresso</span>
+                       <span class="${progressPercentage >= 80 ? 'text-emerald-600' : 'text-zinc-500'}">${progressPercentage}%</span>
+                    </div>
+                    <div class="h-2 w-full bg-zinc-100 rounded-full overflow-hidden flex">
+                       <div class="h-full bg-emerald-500 transition-all duration-500" style="width: ${progressPercentage}%"></div>
+                       <div class="h-full bg-amber-500 opacity-50 transition-all duration-500" style="width: ${Math.round((macro.inProgress/total)*100)}%"></div>
+                    </div>
+                  </div>
+                  <i data-lucide="chevron-${isExpanded ? 'up' : 'down'}" class="w-6 h-6 text-zinc-400 transition-transform"></i>
+                </div>
+              </button>
+
+              <!-- Expandable Content (Concepts Grid) -->
+              ${isExpanded ? `
+                <div class="px-6 pb-6 md:px-8 md:pb-8 border-t border-zinc-100 pt-6 animate-in fade-in slide-in-from-top-4 duration-300">
+                   
+                   ${Object.entries(groupByCategory(macro.concepts)).map(([category, cats]) => `
+                      <div class="mb-6 last:mb-0">
+                         <h3 class="text-sm font-bold text-zinc-400 uppercase tracking-widest mb-4 flex items-center gap-2">
+                            <span class="w-6 h-px bg-zinc-200"></span> ${category} <span class="flex-1 h-px bg-zinc-200"></span>
+                         </h3>
+                         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3">
+                            ${cats.map(c => {
+                               const mastery = c.masteryPercentage || 0;
+                               let statusDot = '<div class="w-2.5 h-2.5 rounded-full bg-zinc-300 shrink-0"></div>';
+                               let borderStatus = 'border-zinc-200 hover:border-zinc-300';
+                               if(mastery >= 85) {
+                                  statusDot = '<div class="w-2.5 h-2.5 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.4)] shrink-0"></div>';
+                                  borderStatus = 'border-emerald-200 bg-emerald-50/30 hover:border-emerald-400';
+                               } else if (mastery > 0) {
+                                  statusDot = '<div class="w-2.5 h-2.5 rounded-full bg-amber-500 shadow-[0_0_8px_rgba(245,158,11,0.4)] shrink-0"></div>';
+                                  borderStatus = 'border-amber-200 bg-amber-50/30 hover:border-amber-400';
+                               }
+
+                               return `
+                               <button 
+                                  class="roadmap-concept-btn flex items-center gap-3 p-3.5 bg-white border ${borderStatus} rounded-xl text-left transition-all hover:shadow-md group"
+                                  data-id="${c.id}"
+                               >
+                                  ${statusDot}
+                                  <div class="flex-1 min-w-0">
+                                     <div class="text-sm font-bold text-zinc-800 truncate group-hover:text-emerald-700 transition-colors">${c.name}</div>
+                                     <div class="flex items-center gap-2 mt-1">
+                                       <div class="text-[10px] font-semibold text-zinc-500 uppercase tracking-wider">${mastery}% RETENÇÃO</div>
+                                       ${c.regrasOperacionais ? '<i data-lucide="lightbulb" class="w-3 h-3 text-amber-500"></i>' : ''}
+                                     </div>
+                                  </div>
+                                  <i data-lucide="arrow-right" class="w-4 h-4 text-zinc-300 group-hover:text-emerald-500 opacity-0 group-hover:opacity-100 transition-all -translate-x-2 group-hover:translate-x-0"></i>
+                               </button>
+                               `;
+                            }).join('')}
+                         </div>
+                      </div>
+                   `).join('')}
+
+                </div>
+              ` : ''}
+            </div>
+          `;
+        }).join('')}
       </div>
     </div>
   `;
 
   if (window.lucide) window.lucide.createIcons();
 
-  // Add D3.js dynamically if not present
-  if (!window.d3) {
-    const script = document.createElement('script');
-    script.src = 'https://d3js.org/d3.v7.min.js';
-    script.onload = () => drawD3Tree(concepts);
-    document.head.appendChild(script);
-  } else {
-    drawD3Tree(concepts);
-  }
+  // Accordion Toggle Logic
+  container.querySelectorAll('.macro-toggle-btn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      const macro = e.currentTarget.getAttribute('data-macro');
+      if (expandedMacro === macro) {
+        expandedMacro = null; // collapse se ja ta aberto
+      } else {
+        expandedMacro = macro; // expandir novo
+      }
+      renderRoadmap(container, state); // Re-renderiza a tela localmente
+    });
+  });
+
+  // Navigate to concept detail
+  container.querySelectorAll('.roadmap-concept-btn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+        const id = e.currentTarget.getAttribute('data-id');
+        store.setState({ selectedConceptId: id });
+    });
+  });
 }
 
-function drawD3Tree(concepts) {
-  if (concepts.length === 0) return;
-
-  const svgElement = d3.select('#roadmap-svg');
-  svgElement.selectAll("*").remove();
-
-  const virtualRootId = "START";
-  const conceptNames = new Set(concepts.map(c => c.name));
-
-  const data = [
-    { id: virtualRootId, parentId: null, concept: null },
-    ...concepts.map(c => {
-      const hasValidParent = c.prerequisite !== 'Nenhum' && conceptNames.has(c.prerequisite);
-      return {
-        id: c.name,
-        parentId: hasValidParent ? c.prerequisite : virtualRootId,
-        concept: c
-      };
-    })
-  ];
-
-  try {
-    const stratify = d3.stratify()
-      .id(d => d.id)
-      .parentId(d => d.parentId);
-
-    const root = stratify(data);
-
-    // Fixed sizing to prevent viewport shrinking
-    const dx = 50;
-    const dy = 280;
-    const margin = { top: 60, right: 200, bottom: 60, left: 200 };
-
-    const treeLayout = d3.tree()
-      .nodeSize([dx, dy])
-      .separation((a, b) => (a.parent == b.parent ? 1.2 : 2));
-
-    treeLayout(root);
-
-    let x0 = Infinity;
-    let x1 = -x0;
-    let y0 = Infinity;
-    let y1 = -y0;
-    root.each(d => {
-      if (d.x > x1) x1 = d.x;
-      if (d.x < x0) x0 = d.x;
-      if (d.y > y1) y1 = d.y;
-      if (d.y < y0) y0 = d.y;
-    });
-
-    // Ensure static canvas minimums
-    const width = Math.max(1200, y1 - y0 + margin.left + margin.right);
-    const height = Math.max(800, x1 - x0 + margin.top + margin.bottom);
-
-    const svg = svgElement
-      .attr("viewBox", [-margin.left, x0 - margin.top, width, height])
-      .append("g");
-
-    const zoom = d3.zoom()
-      .scaleExtent([0.5, 3])
-      .on("zoom", (event) => {
-        svg.attr("transform", event.transform);
-      });
-
-    svgElement.call(zoom);
-
-    // Zoom Controls
-    d3.select('#zoom-in').on('click', () => {
-      svgElement.transition().call(zoom.scaleBy, 1.2);
-    });
-    d3.select('#zoom-out').on('click', () => {
-      svgElement.transition().call(zoom.scaleBy, 0.8);
-    });
-    d3.select('#zoom-reset').on('click', () => {
-      svgElement.transition().call(zoom.transform, d3.zoomIdentity);
-    });
-
-    // Links
-    svg.append("g")
-      .attr("fill", "none")
-      .attr("stroke", "#e4e4e7")
-      .attr("stroke-opacity", 0.6)
-      .attr("stroke-width", 1.5)
-      .selectAll("path")
-      .data(root.links().filter(l => l.source.id !== virtualRootId))
-      .join("path")
-      .attr("class", "link")
-      .attr("d", d3.linkHorizontal()
-        .x(d => d.y)
-        .y(d => d.x));
-
-    // Nodes
-    const node = svg.append("g")
-      .selectAll("g")
-      .data(root.descendants().filter(d => d.id !== virtualRootId))
-      .join("g")
-      .attr("transform", d => `translate(${d.y},${d.x})`)
-      .style("cursor", "pointer")
-      .on("mouseover", function () {
-        d3.select(this).select("rect").attr("stroke-width", 2).attr("opacity", 1);
-        d3.select(this).select("circle").attr("r", 7);
-      })
-      .on("mouseout", function () {
-        d3.select(this).select("rect").attr("stroke-width", 1).attr("opacity", 0.8);
-        d3.select(this).select("circle").attr("r", 5);
-      })
-      .on("click", (event, d) => {
-        store.setState({ selectedConceptId: d.data.concept.id });
-      });
-
-    // Node background
-    node.append("rect")
-      .attr("x", d => d.children ? -145 : 15)
-      .attr("y", -15)
-      .attr("width", 130)
-      .attr("height", 30)
-      .attr("rx", 8)
-      .attr("fill", "#ffffff")
-      .attr("stroke", d => {
-        const mastery = d.data.concept.masteryPercentage || 0;
-        if (mastery >= 85) return "#10b981";
-        if (mastery > 0) return "#f59e0b";
-        return "#d4d4d8";
-      })
-      .attr("stroke-width", 1)
-      .attr("opacity", 0.8)
-      .attr("class", "transition-all duration-200");
-
-    node.append("circle")
-      .attr("fill", d => {
-        const mastery = d.data.concept.masteryPercentage || 0;
-        if (mastery >= 85) return "#10b981";
-        if (mastery > 0) return "#f59e0b";
-        return "#d4d4d8";
-      })
-      .attr("r", 5)
-      .attr("class", "transition-all duration-200");
-
-    node.append("text")
-      .attr("dy", "0.31em")
-      .attr("x", d => d.children ? -25 : 25)
-      .attr("text-anchor", d => d.children ? "end" : "start")
-      .text(d => d.data.id.length > 18 ? d.data.id.substring(0, 15) + '...' : d.data.id)
-      .attr("fill", "#18181b")
-      .style("font-size", "11px")
-      .style("font-weight", "600")
-      .style("font-family", "Inter, sans-serif")
-      .style("pointer-events", "none");
-
-    // Tooltip
-    node.append("title")
-      .text(d => `${d.data.id}\nCategoria: ${d.data.concept.category}\nRetenção: ${d.data.concept.masteryPercentage || 0}%`);
-
-  } catch (e) {
-    console.error("Error building tree:", e);
-  }
+// Utilitário para quebrar os conceitos dentro do Macro em Categorias
+function groupByCategory(conceptsArray) {
+   const groups = {};
+   conceptsArray.forEach(c => {
+      const cat = c.category || 'Geral';
+      if(!groups[cat]) groups[cat] = [];
+      groups[cat].push(c);
+   });
+   return groups;
 }

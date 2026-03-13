@@ -34,7 +34,8 @@ export function renderDashboard(container, state) {
 
     const filteredConcepts = concepts.filter(c =>
         c.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        c.category.toLowerCase().includes(searchTerm.toLowerCase())
+        c.category.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        c.macroCategory.toLowerCase().includes(searchTerm.toLowerCase())
     );
 
     function getCategoryColor(cat) {
@@ -138,8 +139,11 @@ export function renderDashboard(container, state) {
                 data-id="${concept.id}"
               >
                 <div class="flex justify-between items-start mb-4">
-                  <div class="text-xs font-bold text-emerald-500/80 uppercase tracking-wider bg-emerald-600/10 px-2.5 py-1 rounded-md border border-emerald-600/20">
-                    ${concept.category}
+                  <div class="flex flex-wrap gap-2">
+                    <div class="text-xs font-bold text-emerald-500/80 uppercase tracking-wider bg-emerald-600/10 px-2.5 py-1 rounded-md border border-emerald-600/20">
+                      ${concept.macroCategory}
+                    </div>
+                    ${concept.probabilidade ? `<div class="text-xs font-bold text-blue-500/80 uppercase tracking-wider bg-blue-600/10 px-2.5 py-1 rounded-md border border-blue-600/20"><i data-lucide="percent" class="w-3 h-3 inline"></i> ${concept.probabilidade}</div>` : ''}
                   </div>
                   ${concept.importance === 'Alta' ? `<i data-lucide="alert-circle" class="w-5 h-5 text-red-600"></i>` : ''}
                 </div>
@@ -186,7 +190,11 @@ export function renderDashboard(container, state) {
               data-id="${concept.id}"
             >
               <div class="flex justify-between items-start mb-4">
-                <div class="text-xs font-semibold text-zinc-500 uppercase tracking-wider">${concept.category}</div>
+                <div class="flex flex-wrap gap-2">
+                  <div class="text-xs font-semibold text-zinc-500 uppercase tracking-wider px-2 py-1 bg-zinc-100 rounded-md border border-zinc-200">${concept.macroCategory}</div>
+                  <div class="text-xs font-semibold text-zinc-500 uppercase tracking-wider px-2 py-1 bg-zinc-100 rounded-md border border-zinc-200">${concept.category}</div>
+                  ${concept.probabilidade ? `<div class="text-[10px] font-bold text-blue-600 bg-blue-50 border border-blue-200 uppercase tracking-wider px-2 py-1 rounded-md flex items-center gap-1"><i data-lucide="bar-chart-2" class="w-3 h-3"></i> ${concept.probabilidade}</div>` : ''}
+                </div>
                 <div class="text-xs font-bold px-3 py-1.5 rounded-lg border ${getCategoryColor(concept.abcCategory || 'C')}">
                   ${concept.abcCategory || 'C'}
                 </div>

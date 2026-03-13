@@ -174,14 +174,22 @@ export function renderConceptDetail(container, concept) {
       <div class="bg-white border border-zinc-200 rounded-3xl p-6 md:p-8 mb-8">
         <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 mb-8">
           <div>
-            <div class="flex items-center gap-2 mb-2">
-              <span class="text-xs font-medium text-emerald-500 uppercase tracking-wider bg-emerald-600/10 px-2.5 py-1 rounded-lg border border-emerald-600/20">
+            <div class="flex items-center gap-2 mb-3 flex-wrap">
+              <span class="text-xs font-medium text-emerald-600 uppercase tracking-wider bg-emerald-600/10 px-2.5 py-1 rounded-lg border border-emerald-600/20">
+                ${concept.macroCategory || 'Fundamento'}
+              </span>
+              <span class="text-zinc-400">&gt;</span>
+              <span class="text-xs font-medium text-zinc-600 uppercase tracking-wider bg-zinc-100 px-2.5 py-1 rounded-lg border border-zinc-200">
                 ${concept.category}
               </span>
-              <span class="text-zinc-500">&gt;</span>
-              <span class="text-xs text-zinc-500">${concept.subcategory}</span>
+              ${concept.subcategory ? `<span class="text-zinc-400">&gt;</span><span class="text-xs font-medium text-zinc-600 uppercase tracking-wider bg-zinc-100 px-2.5 py-1 rounded-lg border border-zinc-200">${concept.subcategory}</span>` : ''}
             </div>
             <h1 class="text-3xl md:text-4xl font-bold text-zinc-900 tracking-tight">${concept.name}</h1>
+            <div class="flex items-center gap-3 mt-4 flex-wrap">
+              ${concept.moduloCurso ? `<div class="text-xs font-medium text-zinc-600 bg-white border border-zinc-200 px-2.5 py-1.5 rounded-lg flex items-center gap-1.5 shadow-sm"><i data-lucide="book-open" class="w-3.5 h-3.5 text-zinc-400"></i> Módulos Brooks: ${concept.moduloCurso}</div>` : ''}
+              ${concept.mercadoAplicavel && concept.mercadoAplicavel !== 'Universal' ? `<div class="text-xs font-medium text-purple-600 bg-purple-50 border border-purple-200 px-2.5 py-1.5 rounded-lg flex items-center gap-1.5 shadow-sm"><i data-lucide="globe" class="w-3.5 h-3.5"></i> Mercado: ${concept.mercadoAplicavel}</div>` : ''}
+              ${concept.probabilidade ? `<div class="text-xs font-bold text-blue-700 bg-blue-50 border border-blue-200 px-2.5 py-1.5 rounded-lg flex items-center gap-1.5 shadow-sm"><i data-lucide="percent" class="w-3.5 h-3.5"></i> Win Rate: ${concept.probabilidade}</div>` : ''}
+            </div>
           </div>
           
           <div class="flex flex-wrap items-center gap-3 w-full md:w-auto">
@@ -256,7 +264,7 @@ export function renderConceptDetail(container, concept) {
           </div>
 
           <div class="bg-zinc-50 border border-zinc-200 rounded-2xl p-5 flex items-center gap-4">
-            <div class="w-12 h-12 rounded-xl flex items-center justify-center bg-blue-600/10 text-blue-600 border border-blue-600/20">
+            <div class="w-12 h-12 rounded-xl flex items-center justify-center bg-blue-600/10 text-blue-600 border border-blue-600/20 shrink-0">
               <i data-lucide="calendar-clock" class="w-6 h-6"></i>
             </div>
             <div>
@@ -267,6 +275,43 @@ export function renderConceptDetail(container, concept) {
             </div>
           </div>
         </div>
+
+        ${(concept.regrasOperacionais || concept.notasBD) ? `
+        <div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
+          ${concept.regrasOperacionais ? `
+          <div class="bg-amber-50/50 border border-amber-200/60 rounded-3xl p-6 shadow-sm relative overflow-hidden h-full">
+            <div class="absolute top-0 right-0 w-32 h-32 bg-amber-400/10 rounded-full blur-2xl -translate-y-1/2 translate-x-1/3 pointer-events-none"></div>
+            <div class="flex items-center gap-2 text-amber-600 font-bold mb-4 relative z-10 text-lg">
+              <i data-lucide="lightbulb" class="w-6 h-6 text-amber-500"></i>
+              Regras Operacionais
+            </div>
+            <div class="space-y-3 relative z-10">
+              ${concept.regrasOperacionais.split('|').map(r => `
+                <div class="flex items-start gap-3 bg-white/60 border border-amber-200/30 p-3 rounded-xl">
+                  <i data-lucide="check-circle-2" class="w-5 h-5 text-amber-500 shrink-0 mt-0.5"></i>
+                  <span class="text-amber-900/90 text-sm font-medium leading-relaxed">${r.trim()}</span>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+          ` : ''}
+
+          ${concept.notasBD ? `
+          <div class="bg-zinc-50 border border-zinc-200 rounded-3xl p-6 shadow-sm h-full ${!concept.regrasOperacionais ? 'md:col-span-2' : ''}">
+            <div class="flex items-center gap-2 text-zinc-800 font-bold mb-4 text-lg">
+              <i data-lucide="book-marked" class="w-6 h-6 text-emerald-600"></i>
+              Notas do Autor (Al Brooks)
+            </div>
+            <div class="bg-white border border-zinc-200 p-4 rounded-2xl">
+              <p class="text-zinc-600 text-sm leading-relaxed whitespace-pre-line font-medium italic">
+                "${concept.notasBD}"
+              </p>
+            </div>
+          </div>
+          ` : ''}
+        </div>
+        ` : ''}
+
       </div>
 
       <div class="flex gap-6 mb-8 border-b border-zinc-200 pb-px">

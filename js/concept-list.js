@@ -81,16 +81,19 @@ export function renderConceptList(container, state) {
             </div>
             
             <div class="flex-1 min-w-0">
-              <div class="flex items-center gap-2 mb-1.5">
+              <div class="flex flex-wrap items-center gap-2 mb-1.5">
                 <span class="text-xs font-semibold text-emerald-500 uppercase tracking-wider bg-emerald-600/10 px-2 py-0.5 rounded-md border border-emerald-600/20">
                   ${concept.macroCategory || 'Fundamento'}
                 </span>
-                <span class="text-zinc-500">•</span>
-                <span class="text-xs font-medium text-zinc-500 truncate">${concept.category}</span>
+                <span class="text-xs font-medium text-zinc-500 px-2 py-0.5 rounded-md border border-zinc-200 bg-zinc-50">${concept.category}</span>
+                ${concept.moduloCurso ? `<span class="text-xs font-medium text-zinc-400 border border-dashed border-zinc-200 px-2 py-0.5 rounded-md">Módulos: ${concept.moduloCurso}</span>` : ''}
               </div>
-              <h3 class="text-lg font-semibold text-zinc-800 group-hover:text-emerald-600 transition-colors truncate">
-                ${concept.name}
-              </h3>
+              <div class="flex items-center gap-2">
+                <h3 class="text-lg font-semibold text-zinc-800 group-hover:text-emerald-600 transition-colors truncate">
+                  ${concept.name}
+                </h3>
+                ${concept.probabilidade ? `<span class="text-[10px] font-bold text-blue-600 bg-blue-50 border border-blue-200 uppercase tracking-wider px-2 py-0.5 rounded-md flex items-center gap-1 shrink-0"><i data-lucide="bar-chart-2" class="w-3 h-3"></i> ${concept.probabilidade}</span>` : ''}
+              </div>
             </div>
 
             <div class="flex items-center gap-6 shrink-0">
