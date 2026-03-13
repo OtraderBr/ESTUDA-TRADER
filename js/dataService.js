@@ -24,6 +24,7 @@ export async function loadConcepts() {
             level: 0,
             macroCategoryStr: row.macro_categoria || '',
             moduloCurso: row.modulo_curso || '',
+            aulaCurso: row.aula_curso || '',
             conhecimentoAtual: row.conhecimento_atual || 0,
             objetivo: row.objetivo || 10,
             fonteEstudo: row.fonte_estudo || '',
@@ -259,4 +260,95 @@ export async function hasAnyProgress() {
         .select('*', { count: 'exact', head: true });
     if (error) return false;
     return (count || 0) > 0;
+}
+
+// ─── FREE_NOTES ───────────────────────────────────────────────────────────────
+
+/**
+ * Busca toda a árvore de notas livres (sem content_html para performance na sidebar).
+ * @returns {Promise<Array>}
+ */
+export async function getAllFreeNotes() {
+    const { data, error } = await supabase
+        .from('free_notes')
+        .select('id, title, emoji, parent_id, sort_order, created_at, updated_at')
+        .order('sort_order', { ascending: true });
+    if (error) { console.error('getAllFreeNotes:', error); return []; }
+    return data;
+}
+
+/**
+ * Busca uma nota individual com conteúdo completo.
+ * @param {string} id
+ * @returns {Promise<Object|null>}
+ */
+export async function getFreeNoteById(id) {
+    const { data, error } = await supabase
+        .from('free_notes')
+        .select('*')
+        .eq('id', id)
+        .single();
+    if (error) { console.error('getFreeNoteById:', error); return null; }
+    return data;
+}
+
+/**
+ * Cria uma nova nota livre.
+ * @param {Object} fields - { title, emoji, parent_id, sort_order }
+ * @returns {Promise<Object|null>}
+ */
+export async function createFreeNote(fields = {}) {
+    const { data, error } = await supabase
+        .from('free_notes')
+        .insert({
+            title: fields.title || 'Sem título',
+            emoji: fields.emoji || '',
+            parent_id: fields.parent_id || null,
+            sort_order: fields.sort_order || 0,
+            content_html: '',
+            content_text: ''
+        })
+        .select()
+        .single();
+    if (error) { console.error('createFreeNote:', error); return null; }
+    return data;
+}
+
+/**
+ * Atualiza título/emoji de uma nota livre.
+ * @param {string} id
+ * @param {Object} fields - { title?, emoji? }
+ */
+export async function updateFreeNoteMetadata(id, fields) {
+    const { error } = await supabase
+        .from('free_notes')
+        .update({ ...fields, updated_at: new Date().toISOString() })
+        .eq('id', id);
+    if (error) console.error('updateFreeNoteMetadata:', error);
+}
+
+/**
+ * Salva o conteúdo de uma nota livre (auto-save do editor).
+ * @param {string} id
+ * @param {string} content_html
+ * @param {string} content_text
+ */
+export async function saveFreeNoteContent(id, content_html, content_text) {
+    const { error } = await supabase
+        .from('free_notes')
+        .update({ content_html, content_text, updated_at: new Date().toISOString() })
+        .eq('id', id);
+    if (error) console.error('saveFreeNoteContent:', error);
+}
+
+/**
+ * Deleta uma nota livre (CASCADE apaga sub-páginas automaticamente).
+ * @param {string} id
+ */
+export async function deleteFreeNote(id) {
+    const { error } = await supabase
+        .from('free_notes')
+        .delete()
+        .eq('id', id);
+    if (error) console.error('deleteFreeNote:', error);
 }

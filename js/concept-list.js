@@ -11,8 +11,12 @@ export function renderConceptList(container, state) {
     let filterTag = store.getState().conceptFilterTag || 'Todos';
 
     const filteredConcepts = concepts.filter(c => {
-        const matchesSearch = c.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-            c.category.toLowerCase().includes(searchTerm.toLowerCase());
+        const lower = searchTerm.toLowerCase();
+        const matchesSearch = !lower ||
+            c.name.toLowerCase().includes(lower) ||
+            c.category.toLowerCase().includes(lower) ||
+            (c.moduloCurso || '').toLowerCase().includes(lower) ||
+            (c.aulaCurso || '').toLowerCase().includes(lower);
         const matchesMacro = filterMacro === 'Todos' || c.macroCategory === filterMacro;
         const matchesABC = filterABC === 'Todos' || (c.abcCategory || 'C') === filterABC;
         const matchesTag = filterTag === 'Todos' || (c.tags || []).includes(filterTag);

@@ -61,11 +61,13 @@ export function initSidebar() {
 }
 
 const navItems = [
-  { id: 'dashboard', label: 'Dashboard', icon: 'layout-dashboard' },
-  { id: 'roadmap', label: 'Trilha de Estudo', icon: 'target' },
-  { id: 'concepts', label: 'Conceitos', icon: 'library' },
+  { id: 'dashboard',     label: 'Dashboard',        icon: 'layout-dashboard' },
+  { id: 'roadmap',       label: 'Trilha de Estudo',  icon: 'target' },
+  { id: 'concepts',      label: 'Conceitos',         icon: 'library' },
+  { id: 'notes',         label: 'Notas',             icon: 'notebook-pen' },
+  { id: 'graph',         label: 'Grafo',             icon: 'network' },
   { id: 'decision-tree', label: 'Árvore de Decisão', icon: 'git-merge' },
-  { id: 'sessions', label: 'Sessões', icon: 'calendar-days' },
+  { id: 'sessions',      label: 'Sessões',           icon: 'calendar-days' },
 ];
 
 function renderNavItems(currentPage) {

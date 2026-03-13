@@ -9,6 +9,12 @@ import { renderConceptList } from './concept-list.js';
 import { renderSessions } from './sessions.js';
 import { renderConceptDetail } from './concept-detail.js';
 import { renderDecisionTree } from './decision-tree.js';
+import { renderNotes } from './notes.js';
+import { renderGraph } from './graph.js';
+import { runCourseMapper } from './course-mapper.js';
+
+// Expõe mapper para uso pontual no DevTools Console
+window.__runCourseMapper = runCourseMapper;
 
 function renderApp(state) {
     const loadingScreen = document.getElementById('loading-screen');
@@ -74,6 +80,16 @@ function renderApp(state) {
                 break;
             case 'decision-tree':
                 renderDecisionTree(viewContainer, state);
+                break;
+            case 'notes':
+                if (currentViewType !== 'notes') {
+                    renderNotes(viewContainer);
+                }
+                break;
+            case 'graph':
+                if (currentViewType !== 'graph') {
+                    renderGraph(viewContainer, state);
+                }
                 break;
             default:
                 viewContainer.innerHTML = `<div class="p-6 text-zinc-500">Página não encontrada.</div>`;

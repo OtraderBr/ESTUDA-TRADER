@@ -20,7 +20,13 @@ export function renderConceptDetail(container, concept) {
     <div class="p-5">
       <div class="flex items-center justify-between mb-3">
         <h3 class="text-xs font-semibold text-zinc-400 uppercase tracking-wider">Descrição do Conceito</h3>
-        <span id="save-indicator" class="text-[10px] text-emerald-600 font-medium opacity-0 transition-opacity duration-300">Salvo</span>
+        <div class="flex items-center gap-2">
+          <span id="save-indicator" class="text-[10px] text-emerald-600 font-medium opacity-0 transition-opacity duration-300">Salvo</span>
+          <button id="desc-focus-btn" title="Modo foco"
+            class="p-1 rounded hover:bg-zinc-100 text-zinc-400 hover:text-zinc-700 transition-colors">
+            <i data-lucide="maximize-2" class="w-3.5 h-3.5"></i>
+          </button>
+        </div>
       </div>
       <div class="relative">
         <div class="rich-toolbar" id="rich-toolbar" style="display: none;">
@@ -286,12 +292,20 @@ export function renderConceptDetail(container, concept) {
             <span class="font-semibold text-zinc-800">${concept.probabilidade}</span>
           </div>
         ` : ''}
-        ${concept.moduloCurso ? `
+        ${(concept.moduloCurso || concept.aulaCurso) ? `
           <div class="w-px h-4 bg-zinc-200"></div>
-          <div class="flex items-center gap-1.5 text-xs">
-            <span class="text-zinc-400 font-medium">Módulos:</span>
-            <span class="font-semibold text-zinc-800">${concept.moduloCurso}</span>
-          </div>
+          <button
+            id="course-badge-btn"
+            class="flex items-center gap-1.5 text-xs group hover:opacity-80 transition-opacity"
+            title="Ver todos os conceitos deste módulo"
+          >
+            <i data-lucide="book-open" class="w-3 h-3 text-indigo-400 shrink-0"></i>
+            <span class="text-zinc-400 font-medium">Módulo:</span>
+            <span class="font-semibold text-indigo-700 bg-indigo-50 border border-indigo-200 px-1.5 py-0.5 rounded text-[10px] group-hover:bg-indigo-100 transition-colors truncate max-w-[200px]"
+              title="${concept.aulaCurso || concept.moduloCurso}">
+              ${concept.aulaCurso || concept.moduloCurso}
+            </span>
+          </button>
         ` : ''}
       </div>
 
@@ -333,6 +347,29 @@ export function renderConceptDetail(container, concept) {
                     }
                 });
 
+                // ── Modo Foco ──
+                document.getElementById('desc-focus-btn')?.addEventListener('click', () => {
+                    const editorContainer = document.getElementById('rich-editor-container');
+                    const isFocus = editorContainer?.classList.toggle('desc-focus-mode');
+                    if (isFocus) {
+                        editorContainer.style.cssText = [
+                            'position:fixed', 'inset:0', 'z-index:50',
+                            'background:white', 'padding:2rem',
+                            'overflow-y:auto', 'max-width:100%',
+                            'border-radius:0', 'border:none', 'box-shadow:none'
+                        ].join(';');
+                        const btn = document.getElementById('desc-focus-btn');
+                        btn?.querySelector('[data-lucide]')?.setAttribute('data-lucide', 'minimize-2');
+                        if (window.lucide) window.lucide.createIcons({ nodes: btn?.querySelectorAll('[data-lucide]') });
+                    } else {
+                        editorContainer.style.cssText = '';
+                        const btn = document.getElementById('desc-focus-btn');
+                        btn?.querySelector('[data-lucide]')?.setAttribute('data-lucide', 'maximize-2');
+                        if (window.lucide) window.lucide.createIcons({ nodes: btn?.querySelectorAll('[data-lucide]') });
+                    }
+                    editor?.commands.focus();
+                });
+
                 if (editor && toolbarEl) {
                     attachFloatingToolbar(editor, toolbarEl);
                     if (window.lucide) window.lucide.createIcons({ nodes: toolbarEl.querySelectorAll('[data-lucide]') });
@@ -363,6 +400,15 @@ export function renderConceptDetail(container, concept) {
         tabBtn.addEventListener('click', () => {
             activeTab = tabBtn.getAttribute('data-tab-id');
             renderConceptDetail(container, store.getState().concepts.find(c => c.id === concept.id));
+        });
+    });
+
+    // ── Badge Módulo/Aula → navega para lista filtrada ──
+    document.getElementById('course-badge-btn')?.addEventListener('click', () => {
+        store.setState({
+            selectedConceptId: null,
+            currentPage: 'concepts',
+            conceptSearchTerm: concept.moduloCurso || ''
         });
     });
 
