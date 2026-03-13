@@ -19,198 +19,138 @@ export function renderSessions(container, state) {
     );
 
     const getSessionTypeColor = (type) => {
-        if (type === 'Estudo') return "bg-blue-600/10 text-blue-600 border-blue-600/20";
-        if (type === 'Revisão') return "bg-amber-600/10 text-amber-600 border-amber-600/20";
-        return "bg-purple-600/10 text-purple-600 border-purple-600/20";
+        if (type === 'Estudo') return "bg-blue-50 text-blue-700 border-blue-200";
+        if (type === 'Revisão') return "bg-amber-50 text-amber-700 border-amber-200";
+        return "bg-purple-50 text-purple-700 border-purple-200";
     };
 
     container.innerHTML = `
-    <div class="p-8 max-w-5xl mx-auto h-full overflow-y-auto pb-24" id="sessions-content">
-      <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
-        <div>
-          <h1 class="text-3xl font-bold text-zinc-900">Sessões de Estudo</h1>
-          <p class="text-zinc-500 mt-1">Planeje e acompanhe suas sessões de estudo, revisão e prática.</p>
-        </div>
+    <div class="p-6 max-w-4xl mx-auto h-full overflow-y-auto pb-20" id="sessions-content">
+      <div class="flex items-center justify-between gap-4 mb-5">
+        <h1 class="text-xl font-bold text-zinc-900">Sessões de Estudo</h1>
         <button 
           id="newSessionBtn"
-          class="flex items-center gap-2 bg-emerald-600 hover:bg-emerald-500 text-white px-5 py-2.5 rounded-xl font-medium transition-colors shadow-sm"
+          class="flex items-center gap-1.5 bg-zinc-900 hover:bg-zinc-800 text-white px-4 py-2 rounded-lg text-xs font-medium transition-colors"
         >
-          <i data-lucide="plus" class="w-5 h-5"></i>
+          <i data-lucide="plus" class="w-3.5 h-3.5"></i>
           Nova Sessão
         </button>
       </div>
 
       ${isCreating ? `
-        <div class="bg-white border border-zinc-200 rounded-3xl p-6 md:p-8 mb-8 shadow-sm">
-          <h2 class="text-xl font-semibold text-zinc-900 mb-6">Criar Nova Sessão</h2>
+        <div class="bg-white border border-zinc-200 rounded-xl p-5 mb-5">
+          <h2 class="text-sm font-semibold text-zinc-800 mb-4">Criar Nova Sessão</h2>
           
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-3 mb-4">
             <div>
-              <label class="block text-sm font-medium text-zinc-700 mb-2">Título da Sessão</label>
-              <input 
-                type="text" 
-                id="newSessionTitle"
-                placeholder="Ex: Revisão de Tendências"
-                class="w-full bg-zinc-50 border border-zinc-200 text-zinc-800 rounded-xl px-4 py-3 focus:outline-none focus:border-emerald-500 transition-colors"
-              />
+              <label class="block text-[10px] font-medium text-zinc-500 mb-1">Título</label>
+              <input type="text" id="newSessionTitle" placeholder="Ex: Revisão de Tendências"
+                class="w-full bg-white border border-zinc-200 text-zinc-700 rounded-md px-3 py-2 text-xs focus:outline-none focus:border-zinc-400" />
             </div>
             <div>
-              <label class="block text-sm font-medium text-zinc-700 mb-2">Data</label>
-              <input 
-                type="date" 
-                id="newSessionDate"
-                class="w-full bg-zinc-50 border border-zinc-200 text-zinc-800 rounded-xl px-4 py-3 focus:outline-none focus:border-emerald-500 transition-colors"
-              />
+              <label class="block text-[10px] font-medium text-zinc-500 mb-1">Data</label>
+              <input type="date" id="newSessionDate"
+                class="w-full bg-white border border-zinc-200 text-zinc-700 rounded-md px-3 py-2 text-xs focus:outline-none focus:border-zinc-400" />
             </div>
             <div>
-              <label class="block text-sm font-medium text-zinc-700 mb-2">Tipo de Sessão</label>
-              <select 
-                id="newSessionType"
-                class="w-full bg-zinc-50 border border-zinc-200 text-zinc-800 rounded-xl px-4 py-3 focus:outline-none focus:border-emerald-500 transition-colors"
-              >
-                <option value="Estudo">Estudo (Novo Conteúdo)</option>
-                <option value="Revisão">Revisão (Flashcards/Resumo)</option>
-                <option value="Prática">Prática (Simulados/Gráficos)</option>
+              <label class="block text-[10px] font-medium text-zinc-500 mb-1">Tipo</label>
+              <select id="newSessionType" class="w-full bg-white border border-zinc-200 text-zinc-700 rounded-md px-3 py-2 text-xs focus:outline-none focus:border-zinc-400">
+                <option value="Estudo">Estudo</option>
+                <option value="Revisão">Revisão</option>
+                <option value="Prática">Prática</option>
               </select>
             </div>
           </div>
 
-          <div class="mb-8">
-            <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-2">
-              <label class="block text-sm font-medium text-zinc-700 mt-2">
-                Conceitos Vinculados <span class="text-emerald-500 ml-1">(${selectedConceptIds.length} selecionados)</span>
+          <div class="mb-4">
+            <div class="flex items-center justify-between mb-2">
+              <label class="text-[10px] font-medium text-zinc-500">
+                Conceitos <span class="text-zinc-800 font-semibold">(${selectedConceptIds.length})</span>
               </label>
-              <div class="flex flex-col sm:flex-row gap-2 w-full sm:w-auto">
-                <select id="moduloFilterInput" class="bg-zinc-50 border border-zinc-200 text-zinc-800 text-sm rounded-xl px-3 py-2 focus:outline-none focus:border-emerald-500 cursor-pointer">
-                  <option value="Todos" ${filterModulo === 'Todos' ? 'selected' : ''}>Todos Módulos</option>
-                  <option value="01-07" ${filterModulo === '01-07' ? 'selected' : ''}>Mód. 01-07</option>
-                  <option value="08-11" ${filterModulo === '08-11' ? 'selected' : ''}>Mód. 08-11</option>
-                  <option value="12-18" ${filterModulo === '12-18' ? 'selected' : ''}>Mód. 12-18</option>
-                  <option value="19-29" ${filterModulo === '19-29' ? 'selected' : ''}>Mód. 19-29</option>
-                  <option value="30-36" ${filterModulo === '30-36' ? 'selected' : ''}>Mód. 30-36</option>
-                  <option value="37-42" ${filterModulo === '37-42' ? 'selected' : ''}>Mód. 37-42</option>
-                  <option value="43-46" ${filterModulo === '43-46' ? 'selected' : ''}>Mód. 43-46</option>
-                  <option value="47-50" ${filterModulo === '47-50' ? 'selected' : ''}>Mód. 47-50</option>
+              <div class="flex gap-2">
+                <select id="moduloFilterInput" class="bg-white border border-zinc-200 text-zinc-600 text-[10px] rounded px-2 py-1 focus:outline-none">
+                  <option value="Todos" ${filterModulo === 'Todos' ? 'selected' : ''}>Todos</option>
+                  <option value="01-07" ${filterModulo === '01-07' ? 'selected' : ''}>01-07</option>
+                  <option value="08-11" ${filterModulo === '08-11' ? 'selected' : ''}>08-11</option>
+                  <option value="12-18" ${filterModulo === '12-18' ? 'selected' : ''}>12-18</option>
+                  <option value="19-29" ${filterModulo === '19-29' ? 'selected' : ''}>19-29</option>
+                  <option value="30-36" ${filterModulo === '30-36' ? 'selected' : ''}>30-36</option>
+                  <option value="37-42" ${filterModulo === '37-42' ? 'selected' : ''}>37-42</option>
+                  <option value="43-46" ${filterModulo === '43-46' ? 'selected' : ''}>43-46</option>
+                  <option value="47-50" ${filterModulo === '47-50' ? 'selected' : ''}>47-50</option>
                 </select>
-                <div class="relative w-full sm:w-64">
-                  <i data-lucide="search" class="w-4 h-4 text-zinc-500 absolute left-3 top-1/2 -translate-y-1/2"></i>
-                  <input 
-                    type="text" 
-                    id="conceptSearchInput"
-                    placeholder="Buscar conceito..." 
-                    value="${conceptSearch}"
-                    class="bg-zinc-50 border border-zinc-200 text-zinc-800 text-sm rounded-xl pl-9 pr-4 py-2 focus:outline-none focus:border-emerald-500 w-full transition-colors"
-                  />
+                <div class="relative w-48">
+                  <i data-lucide="search" class="w-3 h-3 text-zinc-400 absolute left-2 top-1/2 -translate-y-1/2"></i>
+                  <input type="text" id="conceptSearchInput" placeholder="Buscar..." value="${conceptSearch}"
+                    class="bg-white border border-zinc-200 text-zinc-700 text-[10px] rounded pl-6 pr-2 py-1 focus:outline-none w-full" />
                 </div>
               </div>
             </div>
-            <div class="flex justify-end gap-3 mb-2">
-                <button id="addAllBtn" class="text-[11px] uppercase tracking-wider font-bold text-emerald-600 hover:text-emerald-700 transition-colors">Vinclular Todos Abaixo</button>
-                <span class="text-zinc-300">|</span>
-                <button id="clearAllBtn" class="text-[11px] uppercase tracking-wider font-bold text-red-600 hover:text-red-700 transition-colors">Limpar Seleção</button>
+            <div class="flex justify-end gap-2 mb-1.5">
+                <button id="addAllBtn" class="text-[10px] font-semibold text-zinc-500 hover:text-zinc-800 transition-colors">Vincular Todos</button>
+                <span class="text-zinc-300 text-[10px]">|</span>
+                <button id="clearAllBtn" class="text-[10px] font-semibold text-red-500 hover:text-red-700 transition-colors">Limpar</button>
             </div>
-            <div class="h-64 overflow-y-auto bg-zinc-50 border border-zinc-200 rounded-2xl p-3 space-y-1.5 custom-scrollbar">
+            <div class="h-48 overflow-y-auto bg-zinc-50 border border-zinc-200 rounded-lg p-2 space-y-0.5">
               ${filteredConcepts.map(concept => {
         const isSelected = selectedConceptIds.includes(concept.id);
         return `
                   <button
-                    class="concept-toggle-btn w-full text-left px-4 py-3 rounded-xl text-sm flex items-center justify-between transition-all ${isSelected ? "bg-emerald-600/10 text-emerald-600 border border-emerald-600/20" : "text-zinc-500 hover:bg-zinc-50 border border-transparent hover:border-zinc-200"}"
+                    class="concept-toggle-btn w-full text-left px-3 py-2 rounded-md text-xs flex items-center justify-between transition-all ${isSelected ? "bg-zinc-200 text-zinc-800 font-medium" : "text-zinc-500 hover:bg-zinc-100"}"
                     data-id="${concept.id}"
                   >
-                    <div class="flex flex-col">
-                      <span class="font-medium truncate">${concept.name}</span>
-                      <span class="text-xs opacity-70 mt-0.5">${concept.category}</span>
-                    </div>
-                    ${isSelected ? `<i data-lucide="check-circle-2" class="w-5 h-5 shrink-0"></i>` : ''}
+                    <span class="truncate">${concept.name}</span>
+                    ${isSelected ? `<i data-lucide="check" class="w-3.5 h-3.5 shrink-0 text-zinc-600"></i>` : ''}
                   </button>
                 `;
     }).join('')}
               ${filteredConcepts.length === 0 ? `
-                <div class="text-center text-zinc-500 py-8 text-sm flex flex-col items-center">
-                  <i data-lucide="book-open" class="w-8 h-8 mb-2 opacity-50"></i>
-                  Nenhum conceito encontrado.
-                </div>
+                <div class="text-center text-zinc-400 py-6 text-xs">Nenhum conceito encontrado.</div>
               ` : ''}
             </div>
           </div>
 
-          <div class="flex justify-end gap-3 pt-4 border-t border-zinc-200">
-            <button 
-              id="cancelSessionBtn"
-              class="px-6 py-2.5 rounded-xl text-zinc-500 hover:text-zinc-900 hover:bg-zinc-100 font-medium transition-colors"
-            >
-              Cancelar
-            </button>
-            <button 
-              id="saveSessionBtn"
-              class="bg-emerald-600 hover:bg-emerald-500 disabled:bg-zinc-200 disabled:text-zinc-500 text-white px-6 py-2.5 rounded-xl font-medium transition-colors shadow-sm"
-              disabled
-            >
-              Salvar Sessão
-            </button>
+          <div class="flex justify-end gap-2 pt-3 border-t border-zinc-100">
+            <button id="cancelSessionBtn" class="px-4 py-2 rounded-lg text-xs text-zinc-500 hover:text-zinc-900 hover:bg-zinc-100 font-medium transition-colors">Cancelar</button>
+            <button id="saveSessionBtn" class="bg-zinc-900 hover:bg-zinc-800 disabled:bg-zinc-200 disabled:text-zinc-400 text-white px-4 py-2 rounded-lg text-xs font-medium transition-colors" disabled>Salvar</button>
           </div>
         </div>
       ` : ''}
 
-      <div class="space-y-4">
+      <div class="space-y-2">
         ${sortedSessions.length === 0 ? `
-          <div class="text-center py-16 text-zinc-500 bg-white/50 border border-zinc-200 rounded-3xl border-dashed">
-            <i data-lucide="calendar-days" class="w-16 h-16 mx-auto mb-4 text-zinc-500"></i>
-            <p class="text-lg font-medium text-zinc-500">Nenhuma sessão programada.</p>
-            <p class="text-sm mt-2">Crie sua primeira sessão para organizar seus estudos.</p>
+          <div class="text-center py-12 text-zinc-400 bg-zinc-50 border border-zinc-200 rounded-xl border-dashed">
+            <p class="text-sm font-medium">Nenhuma sessão programada.</p>
+            <p class="text-xs mt-1">Crie sua primeira sessão.</p>
           </div>
         ` : `
           ${sortedSessions.map(session => {
         const isPast = new Date(session.date).getTime() < new Date().setHours(0, 0, 0, 0);
         const sessionConcepts = concepts.filter(c => session.conceptIds.includes(c.id));
-
-        const borderClass = session.completed ? "border-emerald-500/30 opacity-75 bg-emerald-950/5" : isPast ? "border-red-500/30 bg-red-950/5" : "border-zinc-200 hover:border-zinc-300";
+        const borderClass = session.completed ? "border-emerald-200 bg-emerald-50/30 opacity-70" : isPast ? "border-red-200 bg-red-50/30" : "border-zinc-200 hover:border-zinc-300";
 
         return `
-              <div class="bg-white border rounded-2xl p-5 md:p-6 flex flex-col sm:flex-row gap-5 transition-all hover:shadow-md ${borderClass}">
-                <div class="flex items-start gap-4 flex-1">
-                  <button 
-                    class="toggle-complete-btn mt-1 shrink-0 transition-colors ${session.completed ? "text-emerald-500" : "text-zinc-500 hover:text-emerald-600"}"
-                    data-id="${session.id}"
-                  >
-                    ${session.completed ? `<i data-lucide="check-circle-2" class="w-7 h-7"></i>` : `<i data-lucide="circle" class="w-7 h-7"></i>`}
-                  </button>
-                  
-                  <div class="flex-1">
-                    <div class="flex flex-wrap items-center gap-3 mb-2">
-                      <h3 class="text-lg font-semibold ${session.completed ? "text-zinc-500 line-through" : "text-zinc-900"}">
-                        ${session.title}
-                      </h3>
-                      <span class="text-xs font-semibold px-2.5 py-1 rounded-lg border ${getSessionTypeColor(session.type)}">
-                        ${session.type}
-                      </span>
-                    </div>
-                    <div class="text-sm text-zinc-500 mb-4 flex items-center gap-2 font-medium">
-                      <i data-lucide="calendar-days" class="w-4 h-4 text-zinc-500"></i>
-                      ${new Date(session.date).toLocaleDateString()}
-                      ${isPast && !session.completed ? '<span class="text-red-600 ml-2 bg-red-600/10 px-2 py-0.5 rounded-md border border-red-600/20 text-xs">Atrasada</span>' : ''}
-                    </div>
-                    
-                    <div class="flex flex-wrap gap-2">
-                      ${sessionConcepts.map(c => `
-                        <div class="flex items-center gap-1.5 bg-zinc-50 border border-zinc-200 rounded-lg px-3 py-1.5 text-xs text-zinc-700 font-medium">
-                          <i data-lucide="book-open" class="w-3.5 h-3.5 text-zinc-500"></i>
-                          ${c.name}
-                        </div>
-                      `).join('')}
-                    </div>
+              <div class="bg-white border rounded-lg px-4 py-3 flex items-center gap-4 transition-all ${borderClass}">
+                <button class="toggle-complete-btn shrink-0 ${session.completed ? "text-emerald-500" : "text-zinc-300 hover:text-zinc-500"}" data-id="${session.id}">
+                  ${session.completed ? `<i data-lucide="check-circle-2" class="w-5 h-5"></i>` : `<i data-lucide="circle" class="w-5 h-5"></i>`}
+                </button>
+                
+                <div class="flex-1 min-w-0">
+                  <div class="flex items-center gap-2 mb-0.5">
+                    <h3 class="text-sm font-medium ${session.completed ? "text-zinc-400 line-through" : "text-zinc-800"} truncate">${session.title}</h3>
+                    <span class="text-[10px] font-semibold px-1.5 py-0.5 rounded border shrink-0 ${getSessionTypeColor(session.type)}">${session.type}</span>
+                    ${isPast && !session.completed ? '<span class="text-[10px] font-semibold text-red-600 bg-red-50 px-1.5 py-0.5 rounded border border-red-200 shrink-0">Atrasada</span>' : ''}
+                  </div>
+                  <div class="flex items-center gap-2 text-[10px] text-zinc-400">
+                    <span>${new Date(session.date).toLocaleDateString()}</span>
+                    <span>·</span>
+                    <span>${sessionConcepts.length} conceitos</span>
                   </div>
                 </div>
                 
-                <div class="flex items-start justify-end sm:flex-col gap-2 shrink-0">
-                  <button 
-                    class="delete-session-btn p-2.5 text-zinc-500 hover:text-red-600 hover:bg-red-600/10 rounded-xl transition-colors"
-                    title="Excluir Sessão"
-                    data-id="${session.id}"
-                  >
-                    <i data-lucide="trash-2" class="w-5 h-5"></i>
-                  </button>
-                </div>
+                <button class="delete-session-btn p-1.5 text-zinc-300 hover:text-red-500 rounded transition-colors shrink-0" title="Excluir" data-id="${session.id}">
+                  <i data-lucide="trash-2" class="w-4 h-4"></i>
+                </button>
               </div>
             `;
     }).join('')}
@@ -221,15 +161,13 @@ export function renderSessions(container, state) {
 
     if (window.lucide) window.lucide.createIcons();
 
-    // Create Toggle
     document.getElementById('newSessionBtn')?.addEventListener('click', () => {
         isCreating = true;
         renderSessions(container, state);
     });
 
     if (isCreating) {
-        const cancelBtn = document.getElementById('cancelSessionBtn');
-        cancelBtn?.addEventListener('click', () => {
+        document.getElementById('cancelSessionBtn')?.addEventListener('click', () => {
             isCreating = false;
             selectedConceptIds = [];
             renderSessions(container, state);
@@ -242,15 +180,12 @@ export function renderSessions(container, state) {
         });
         if (isFocused) setTimeout(() => document.getElementById('conceptSearchInput')?.focus(), 0);
 
-
-        const moduloSelect = document.getElementById('moduloFilterInput');
-        moduloSelect?.addEventListener('change', (e) => {
+        document.getElementById('moduloFilterInput')?.addEventListener('change', (e) => {
             store.setState({ sessionFilterModulo: e.target.value });
         });
 
         document.getElementById('addAllBtn')?.addEventListener('click', () => {
             const idsToAdd = filteredConcepts.map(c => c.id);
-            // Evitar duplicações
             const uniqueIds = new Set([...selectedConceptIds, ...idsToAdd]);
             selectedConceptIds = Array.from(uniqueIds);
             renderSessions(container, state);
@@ -285,7 +220,6 @@ export function renderSessions(container, state) {
         titleInput?.addEventListener('input', updateSaveBtnState);
         dateInput?.addEventListener('input', updateSaveBtnState);
 
-        // Attempt re-hydration of values if re-rendering while creating
         if (store.getState()._tempTitle) titleInput.value = store.getState()._tempTitle;
         if (store.getState()._tempDate) dateInput.value = store.getState()._tempDate;
         if (store.getState()._tempType) typeInput.value = store.getState()._tempType;
@@ -305,7 +239,6 @@ export function renderSessions(container, state) {
         });
     }
 
-    // Session Actions
     container.querySelectorAll('.toggle-complete-btn').forEach(btn => {
         btn.addEventListener('click', (e) => {
             toggleSessionComplete(e.currentTarget.getAttribute('data-id'));
