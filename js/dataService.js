@@ -376,3 +376,20 @@ export async function deleteEvaluationById(id) {
         .eq('id', id);
     if (error) console.error('deleteEvaluationById:', error);
 }
+
+// ─── CONCEPT_IMAGES ───────────────────────────────────────────────────────────
+
+/**
+ * Busca todas as imagens de um conceito.
+ * @param {string} conceitoName
+ * @returns {Promise<Array>}
+ */
+export async function getConceptImages(conceitoName) {
+    const { data, error } = await supabase
+        .from('concept_images')
+        .select('*')
+        .eq('conceito_name', conceitoName)
+        .order('created_at', { ascending: false });
+    if (error) { console.error('getConceptImages:', error); return []; }
+    return data;
+}

@@ -4,6 +4,7 @@ import { addNote, deleteNote, addEvaluation, deleteEvaluation, updateImportance,
 import { upsertConceptDescription } from './dataService.js';
 import { renderTagPills, attachTagListeners } from './tags.js';
 import { createRichEditor, attachFloatingToolbar } from './rich-editor.js';
+import { renderImageGallery } from './image-gallery.js';
 
 let activeTab = 'descricao';
 
@@ -295,6 +296,7 @@ export function renderConceptDetail(container, concept) {
         { id: 'descricao', label: 'Descrição', icon: 'file-text' },
         { id: 'anotacoes', label: 'Anotações', icon: 'message-square' },
         { id: 'autoavaliacao', label: 'Avaliação', icon: 'bar-chart-2' },
+        { id: 'galeria', label: 'Galeria', icon: 'image' },
         { id: 'configuracao', label: 'Configuração', icon: 'settings' },
     ];
 
@@ -302,6 +304,7 @@ export function renderConceptDetail(container, concept) {
         descricao: renderDescTab,
         anotacoes: renderNotesTab,
         autoavaliacao: renderEvalTab,
+        galeria: () => `<div class="p-5"><div id="gallery-mount" class="min-h-[200px] flex items-center justify-center text-zinc-400 text-xs">Carregando galeria...</div></div>`,
         configuracao: renderConfigTab,
     };
 
@@ -381,6 +384,14 @@ export function renderConceptDetail(container, concept) {
   `;
 
     if (window.lucide) window.lucide.createIcons();
+
+    // ── Galeria de Imagens ──
+    if (activeTab === 'galeria') {
+        const galleryMount = document.getElementById('gallery-mount');
+        if (galleryMount) {
+            renderImageGallery(galleryMount, concept.name);
+        }
+    }
 
     // ── Editor Rico (Tab Descrição) ──
     if (activeTab === 'descricao') {

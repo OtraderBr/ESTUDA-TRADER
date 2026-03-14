@@ -1,0 +1,1755 @@
+Eu sou Al Brooks, e estou gravando este vídeo bônus
+
+Hoje eu irei falar sobre três pequenos padrões
+relativamente comuns:
+
+padrões ii, IOI e OO
+
+Neste vídeo, o primeiro de dois vídeos,
+
+Eu irei definir o que quero dizer com estes termos.
+
+Todos os três são padrões de Modo Rompimento.
+
+Todos eles são barras de lateralidade.
+
+Traders estão procurando entrar no rompimento,
+comprar acima ou vender abaixo,
+
+e se for para um lado e depois para o outro lado,
+
+teoricamente, o trader irá pegar as duas operações.
+
+Um ii é um padrão de barra Interna - Interna
+
+São barras internas consecutivas.
+
+Uma barra interna é uma barra em que a sua máxima está
+na mesma máxima que a barra anterior ou abaixo dela,
+
+e sua mínima está na mesma mínima da barra anterior
+ou acima dela
+
+Em seguida, eu irei falar sobre o padrão IOI, o qual é
+uma barra externa seguido de uma barra interna.
+
+Por definição, se uma barra é uma barra externa,
+
+a máxima da barra está acima da máxima da barra anterior
+
+e sua mínima está abaixo da mínima da barra anterior,
+
+portanto, a barra anterior à barra externa é uma barra interna.
+
+Então é uma barra interna, uma externa e,
+no fim, outra barra interna.
+
+E, por último, eu irei falar sobre padrões OO,
+consecutivas barras externas.
+
+Uma barra externa é uma barra em que sua máxima está
+no mesmo ponto da máxima da barra anterior ou acima dela
+
+e sua mínima está na mesma mínima da barra anterior
+ou abaixo dela
+
+Eu quero começar com
+uma visão geral dos três padrões.
+
+Novamente, eles são padrões de Modo Rompimento.
+
+Traders irão procurar entrar em rompimentos,
+
+esperando que estejam pegando
+o início de uma tendência.
+
+Na esquerda eu tenho 3 barras.
+
+Esta barra é uma barra interna desta barra;
+e esta barra é uma barra interna desta barra.
+
+Portanto, é uma barra interna,
+dentro de outra barra interna.
+
+Barras internas consecutivas ou ii.
+
+Na sequência eu tenho uma barra externa
+seguida de uma barra interna,
+
+portanto temos uma barra interna,
+uma externa e uma interna.
+
+Sempre que você tem uma barra externa,
+a barra anterior é uma barra interna.
+
+E finalmente, eu tenho 3 barras
+e as barras estão ficando maiores.
+
+A máxima da barra está na mesma máxima que
+a barra anterior ou acima dela;
+
+A mínima desta barra está na mesma
+mínima da barra anterior ou abaixo dela.
+
+É uma barra externa, e é seguida
+por uma segunda barra externa.
+
+Estes são padrões de Modo Rompimento.
+
+Teoricamente, o trader compra acima
+e vende abaixo, esperando uma tendência.
+
+Se o rompimento falha e reverte,
+
+teoricamente o trader pegaria
+o rompimento para o outro lado.
+
+Por exemplo, se uma pessoa comprou
+com ordem stop acima da máxima de um ii
+
+e então o mercado caiu e rompeu
+abaixo do fundo ii,
+
+o trader iria vender.
+
+Então ele compra acima do ii e vende
+
+se o preço cair abaixo das mínimas
+das duas barras internas.
+
+Sempre que você olhar para um padrão de 3 barras
+como este, um padrão lateral assim,
+
+sempre assuma que há pelo menos
+duas pernas para cima
+
+e duas pernas para baixo em um tempo gráfico menor.
+
+Geralmente, um padrão ii é um triângulo
+em um tempo gráfico menor,
+
+e um padrão OO é um triângulo expandido
+em um tempo gráfico menor.
+
+Um triângulo tem três puxadas
+para um lado e duas para o outro.
+
+Agora, o que há de tão especial nestes padrões?
+
+Porque eu estou falando sobre eles?
+
+Bem, a questão mais importante é
+todos eles têm uma boa Equação do Trader.
+
+Se pensarmos a respeito,
+se você comprar acima da máxima dessa barra
+
+e seu stop estar abaixo da mínima do ii,
+
+na mínima das duas barras internas, o risco é pequeno.
+
+Você estará comprando aqui e seu stop
+está aqui ou abaixo disso aqui.
+
+Um risco pequeno se você está procurando
+por um movimento que pode durar de 10 a 20 barras.
+
+Portanto um excelente risco/retorno e
+a probabilidade é muito boa.
+
+sempre que você tiver um padrão Modo Rompimento,
+
+Em geral a probabilidade de um rompimento
+ser bem sucedido ou falhar é em torno de 50% das vezes.
+
+Portanto, 50% de chances de ir acima do ii,
+
+50% de chance de continuar
+indo para cima para um swing,
+
+50% de chances de reverter para baixo e cair.
+
+E se romper para baixo,
+50% de chances de ir para baixo para um swing.
+
+E as vezes, se o padrão for
+especialmente bom
+
+- bom contexto (barras à esquerda),
+
+uma boa barra de sinal
+- a probabilidade pode ser maior que 60%.
+
+Por exemplo, se você tiver algum desses
+padrôes após uma venda climática,
+
+geralmente é uma excelente compra se a
+terceira barra for uma barra de alta fechando na sua máxima.
+
+E, se estiver vindo no final de um
+clímax de compra, especialmente se houver uma resistência,
+
+como um topo duplo, então se você tiver
+uma terceira barra fechando na sua mínima,
+
+é uma alta probabilidade de venda.
+
+Dentro dessas circunstâncias, a probabilidade
+pode ser de 60% em conseguir um trade de swing.
+
+Alguns exemplos.
+
+Isto é uma barra de baixa.
+
+Abri aqui, fecha aqui.
+
+Isto é uma barra de alta.
+
+Abri aqui, fecha aqui.
+
+Uma tendência de alta raramente
+reverte abruptamente em uma tendência de baixa.
+
+O contrário é verdadeiro para uma reversão em tendência de alta.
+
+Uma tendência de baixa raramente reverte instantâneamente
+e imediatamente em uma tendência de alta.
+
+Normalmente uma tendência de alta precisa parar de subir,
+
+pelo menos por algumas barras,
+antes de uma tendência de baixa começar.
+
+E algumas vezes para de subir
+e anda lateral por algumas barras
+
+e cria um destes padrôes.
+
+As vezes você tem mais que 3 barras,
+mas hoje eu estou falando sobre padrões de 3 barras.
+
+É uma alta probabilidade se você
+está procurando vender
+
+e aparecer uma barra de baixa fechando
+próximo ou na sua mínima.
+
+você poderia vender abaixo da mínima dessa barra.
+
+Aqui, IOI.
+
+Interna-Externa-Interna.
+
+Você vende com uma ordem stop 1 tick
+abaixo da mínima dessa barra.
+
+Se é no mercado de Forex,
+você vende 1 pip abaixo da mínima dessa barra.
+
+Não importa o tempo gráfico.
+
+Isto se aplica em todos os tempos gráficos.
+
+Barra externa, barra externa ainda maior.
+
+Teoricamente, você vende abaixo da mínima dessa barra.
+
+Mas no geral, vender abaixo de uma grande barra de alta
+
+Não é algo particularmente de
+alta probabilidade a se fazer.
+
+Nesse caso, é melhor provavelmente esperar
+
+até que você tenha uma barra de baixa fechando na sua mínima
+
+e então vender com uma ordem stop abaixo dessa barra.
+
+Aqui tem um exemplo.
+
+Você vende com ordem stop 1 tick abaixo dessa barra
+
+e pode colocar seu stop acima do topo do ii,
+
+acima da barra mais alta, ou
+no topo do movimento.
+
+Então se isso é uma tendência de alta e
+reverter para baixo e formar um ii,
+
+você pode botar uma ordem stop
+bem acima do topo da tendência de alta
+
+desde de que não esteja muito acima disso.
+
+Então você esta arriscando um pouco mais
+e ganhando maior probabilidade.
+
+A mesma coisa aqui, IOI.
+
+Você vende com ordem stop
+1 tick abaixo dessa barra
+
+- se for mercado de Forex, 1 pip abaixo
+dessa barra - e coloca seu stop acima da máxima.
+
+E então aqui, um OO.
+
+Vamos dizer que está vindo em uma tendência de alta.
+
+Se você vender aqui, abaixo dessa barra de baixa,
+
+Você pode colocar seu stop acima dessa barra de baixa,
+mas isso não é muito alto.
+
+Provavelmente é melhor colocar
+o stop acima do topo da tendência de alta.
+
+Nós estamos assumindo que isso é uma tendência de alta.
+
+Tivemos um OO e então uma reversão para baixo.
+
+Bem, eu disse que padrões Modo Rompimento
+no geral,
+
+tem 50% de chance do rompimento ser bem sucedido
+e 50% de chance de reverter.
+
+Aqui nós temos um ii, e nós temos uma barra
+de baixa fechando na sua mínima.
+
+então é razoável procurar vender
+abaixo da mínima dessa barra.
+
+Isto assumindo que isso esteja ocorrendo
+ou em uma tendência de baixa ou de alta.
+
+é menos confiável operar qualquer
+um desses padrões.
+
+se o mercado estiver lateral ou em uma lateralidade estreita(TTR).
+
+Um trader colocará uma ordem
+para vender 1 tick abaixo da mínima
+
+dessa barra de baixa fechando próximo ou na sua mínima.
+
+Aqui no seu terço de baixa.
+
+Ele seria acionado aqui, e ele colocaria um
+stop ou 1 tick acima do ii,
+
+na mais alta das duas barras, ou
+1 tick acima do topo do movimento,
+
+O que seria por aqui.
+
+Se o mercado reverter abruptamente como assim,
+
+Ele seria stopado da sua venda
+ou acima disso ou acima daqui,
+
+e então ele deve considerar realizar uma compra.
+
+Ainda é um padrão Modo Rompimento,
+
+é um rompimento de baixa que falhou,
+e que agora está fazendo um rompimento de alta.
+
+Teoricamente, um trader poderia comprar
+com uma ordem stop 1 tick acima da barra de alta
+
+ou 1 tick acima da máxima, assumindo que isto
+é um rally e que agora temos uma alta.
+
+Ou ele poderia esperar e comprar acima
+da máxima da barra externa de alta.
+
+Isto é uma grande barra externa de alta,
+uma barra de alta fechando próximo de sua máxima.
+
+Ele poderia comprar com uma ordem stop acima dela.
+
+Aqui a barra de continuidade. (Follow-through bar)
+
+Ele poderia comprar com uma ordem stop acima
+da máxima da barra de continuidade (FT).
+
+Se o vendedor vendesse aqui, ele poderia reverter
+para compra acima disso ou acima da ii aqui.
+
+Maior probabilidade se você conseguir
+barras de alta consecutivas.
+
+Nós temos um fechamento acima do topo da tendência,
+
+assumindo que isso seja uma tendência de alta,
+o que é bom para os compradores.
+
+Você pode comprar com ordem stop acima dessa barra
+ou você pode comprar com ordem stop acima dessa máxima
+
+ou na barra de continuidade (Follow-through),
+
+especialmente quando você tem
+uma boa barra de continuidade(FT).
+
+Isso aqui é um exemplo.
+
+Você tem uma boa barra de continuidade (FT),
+você tem consecutivas,
+
+barras de alta com tamanhos decentes fechando
+nas suas máximas, ambas fechando acima do padrão.
+
+Maior probabilidade comprar com ordem stop
+acima da máxima dessa barra de continuidade (FT).
+
+Você seria acionado por aqui.
+
+Alta probabilidade, stop bem distante.
+
+Mas essa é sempre a troca.
+
+Sempre que você tiver um trade de alta probabilidade,
+o risco/retorno será pior.
+
+A menos espaço para lucro porque
+muito do movimento já aconteceu
+
+e seu stop fica bem distante.
+
+Padrões ii, IOI e OO são padrões
+de Modo Rompimento.
+
+Traders procuram operar eles em tendências.
+
+Eles querem movimentos sustentáveis.
+
+Eles querem um mercado onde
+provavelmente tenha traders
+
+entrando com ordens stops acima ou abaixo.
+
+Portanto, eles estão procurando
+por padrões de reversão ou bandeiras.
+
+Por exemplo, aqui nós temos uma tendência de alta
+
+e então nós temos um padrão OO
+(Externa, Externa).
+
+Traders estão procurando ou por uma retomada
+da tendência de alta
+
+- em outras palavras, uma bandeira de alta
+- ou o topo, uma reversão de baixa.
+
+Neste caso eles irão procurar vender
+abaixo da barra de baixa com ordem stop
+
+1 tick abaixo da barra e
+eles conseguiram a reversão.
+
+Então, OO.
+
+Poderia ter sido uma bandeira de alta.
+
+Neste caso, foi um topo.
+
+E aqui, nós temos um padrão IOI.
+
+Tem uma barra interna depois de uma externa.
+
+Está vindo de uma tendência.
+
+O mercado rompeu acima e conseguiu mais tendência.
+
+Aqui, nós temos uma IOI, mas também uma segunda
+barra interna, então é ambos, uma IOI e ii.
+
+Você pode chamar de IOII.
+
+É assim que eu chamo.
+
+Traders irão entrar com uma ordem
+stop acima ou abaixo.
+
+No geral, se você tem barras de alta
+fechando próximo de suas máximas
+
+no final do padrão, traders irão estar
+mais interessados em comprar acima.
+
+E se você tiver uma barra de baixa
+como a terceira barra no padrão,
+
+especialmente uma forte barra de baixa, traders
+irão estar mais interessados em vender abaixo,
+
+e menos interessados em comprar acima.
+
+Esses são padrões de tendência, mesmo para
+reversão de tendência ou continuação de tendência.
+
+Eles não são padrões de ordem limitada.
+
+Aqui nós temos consecutivas barras internas.
+
+Nós temos 3 delas, mas elas estão
+vindo de uma lateralidade estreita(TTR).
+
+Isso é um mercado de ordem limitada,
+não um mercado de ordem stop.
+
+Um mercado de ordem stop, se você vende abaixo de barras,
+
+você espera uma série de barras
+para baixo, como nós temos aqui.
+
+Você está procurando por uma tendência.
+
+Em mercados de ordem limitada,
+você espera mais compradores
+
+abaixo de barras e mais vendedores acima de barras.
+
+É um mercado de ordem limitada, e portanto,
+
+você não deveria estar operando
+com ordens stop em uma lateralidade estreita (TTR).
+
+Qualquer um desses padrões
+- esse é um ii, compre qualquer um desses padrões,
+
+se eles estiverem vindo de uma lateralidade estreita(TTR),
+
+especialmente se as barras são bem pequenininhas
+e o corpo também é bem pequeno,
+
+é melhor não operá-las.
+
+Então sim, nós temos uma ii.
+
+Na verdade, nós temos uma III, 3 barras internas.
+
+Nós temos uma barra de baixa fechando próximo da sua mínima.
+
+Nós temos outra barra de baixa aqui.
+
+Mas as barras são pequenas e estão
+vindo de uma lateralidade estreita (TTR).
+
+Isso é um mercado de ordens limitadas.
+
+Provavelmente irá ter mais compradores abaixo
+de barras de baixa do que vendedores.
+
+Um mercado de ordens limitadas é um mercado
+onde os traders procuram comprar
+
+na mínima da barra anterior e comprar mais
+baixo, e sair em scalps.
+
+e eles vendem acima da máxima da
+barra anterior e vendem mais acima,
+
+e saem em scalps.
+
+Isso não é um tipo de padrão onde
+os traders deveriam entrar com ordens stop.
+
+Então se você ver algum desses padrões
+em uma lateralidade estreita (TTR),
+
+é melhor não operá-los com ordens stop, espere
+por um outro tipo de padrão.
+
+É melhor esperar por um forte
+rompimento para cima ou para baixo,
+
+ou por um rompimento que reverta,
+
+por exemplo um rompimento de alta que reverta,
+e então talvez vender isso.
+
+Ou um rompimento para baixo
+que reverta, talvez comprar isso.
+
+Ou um forte rompimento para baixo,
+
+e então começar a vender
+porque então é uma tendência de baixa.
+
+Ou um rompimento de alta, então procure
+comprar porque então é uma tendência de alta.
+
+Consecutivas barras internas (ii).
+
+Esta barra está dentro dessa barra.
+
+Esta barra está dentro dessa barra.
+
+Portanto, ii (Interna - Interna).
+
+Isso aqui é que eu chamo de barras internas perfeitas.
+
+Lembre-se do que eu disse
+uma barra interna tem sua mínima
+
+na mesma mínima ou acima da mínima anterior.
+
+Se for acima, eu a considero perfeita.
+
+Então isso é uma perfeita barra interna.
+
+Aqui é a segunda, mínima acima dessa mínima,
+não na mesma mínima;
+
+máxima abaixo dessa máxima, não na mesma máxima.
+
+Perfeiras barras internas têm alta
+probabilidade de levar a operações lucrativas.
+
+Aqui temos algumas variações dos padrões ii.
+
+Esta barra está dentro dessa barra,
+
+E eu diria que essa aqui também está
+dentro dessa barra aqui.
+
+Máxima da barra está na máxima dessa barra,
+e a mínima está acima dessa mínima,
+
+Então eu ainda chamaria isso de ii,
+
+mas eu acho que isso é um pouco
+menos confiável do que um padrão perfeito
+
+onde as máximas estão mais baixo
+e as mínimas estão mais altas.
+
+Outro exemplo.
+
+Então ao invés de duas barras internas
+terem máximas idênticas,
+
+estas duas barras internas
+têm mínimas idênticas.
+
+E aqui está um exemplo onde todas
+as 3 barras têm as mesmas máximas,
+
+e as duas barras internas têm a mesma mínima.
+
+As duas barras internas têm máximas idênticas
+e mínimas idênticas, mas ainda são uma ii.
+
+O corpo pode ser maior,
+
+mas geralmente se você tiver barras diminuindo
+de tamanho, você terá corpos também diminuindo.
+
+Então mais frequente ou não, o corpo será
+do mesmo tamanho da segunda barra ou menor.
+
+É incomum termos um
+corpo maior na segunda barra.
+
+Nestes exemplos, eu não estou mostrando
+se os corpos são de alta ou de baixa.
+
+Isso não importa.
+
+De todo modo, o que eu expliquei aqui,
+os corpos não interessam.
+
+Mas como eu disse, se você está procurando comprar,
+é melhor se a terceira barra,
+
+a segunda barra do ii,
+fechar perto ou na sua máxima.
+
+Se você está procurando vender,
+
+É melhor que tenha um corpo de baixa
+e fecha próximo ou na sua mínima.
+
+No geral, quanto mais perfeito um padrão for,
+
+maior será a probabilidade de você
+conseguir um trade lucrativo.
+
+Se você tiver um ii perfeito, máximas mais baixas,
+mínimas mais altas, e você está procurando vender,
+
+e esta barra fechar próximo ou na sua mínima,
+será uma probabilidade alta de venda
+
+do que se você tivesse, vamos dizer, um corpo de alta.
+
+Quanto mais óbvio um padrão,
+mais perfeito ele é,
+
+mais computadores irão reconhecê-los,
+mais computadores irão operá-los,
+
+mais traders irão operá-los,
+e mais traders e computadores
+
+irão correr atrás conforme o mercado subir
+cada vez mais, se você estiver falando de compras nesse exemplo.
+
+Para vendedores, será o oposto.
+
+Se todo mundo observar o mercado caindo
+
+e começar a ter uma série de barras de baixa
+fechando em suas mínimas, isto é perfeito.
+
+Você terá mais e mais traders
+querendo vender conforme o mercado cai.
+
+Isto aumenta a probabilidade de
+que você faça um bom lucro.
+
+Uma barra de alta, uma de baixa, uma de alta.
+
+Barras internas consecutivas, e elas são perfeitas.
+
+Esta mínima está acima dessa mínima, esta mínima
+está acima dessa mínima, e você tem máximas mais baixas.
+
+Você tem uma barra de alta fechando próximo de sua máxima.
+
+Não importa se isso é uma tendência de alta;
+Isto seria uma bandeira de alta.
+
+Se fosse uma tendência de baixa,
+poderia ser uma reversão para cima,
+
+e você deveria comprar acima da máxima dessa barra.
+
+Coloque uma ordem stop para entrar 1 tick
+acima da máxima dessa segunda barra.
+
+Como eu disse antes, se essa segunda
+barra dessa ii tem um corpo de baixa
+
+e rompe para cima, é maior probabilidade
+esperar para ver se a barra de entrada
+
+é uma barra de alta fechando na sua máxima e então
+comprar acima dessa barra de entrada.
+
+A probabilidade é maior comprando acima de barras de alta,
+
+especialmente se as barras de alta
+fecharem próximo ou na sua máxima.
+
+Teoricamente o stop é abaixo dessa ii.
+
+Se isso se transformar em uma
+tendência de baixa e tivermos uma ii,
+
+você poderia colocar o stop aqui
+ou abaixo da mínima da tendência de baixa.
+
+Lembre-se, se for acima da ii, é compra.
+
+Se for abaixo da mínima das
+duas barras, é venda.
+
+Então teoricamente, você poderia
+sair abaixo de uma barra de baixa
+
+ou você poderia vender abaixo de uma barra de baixa,
+
+ou você poderia sair ou vender
+abaixo do fundo da tendência de baixa,
+
+assumindo que isso é uma ii
+vindo de uma tendência de baixa.
+
+Eu mencionei há alguns minutos atrás,
+se estiver rompendo acima de uma ii
+
+e a segunda barra interna for uma barra de baixa,
+ainda é uma compra acima dessa barra.
+
+Alguns traders irão comprar acima de uma barra de alta.
+
+Isso é uma barra de alta.
+
+Eles irão comprar acima disso.
+
+Outros irão esperar pelo rompimento da barra,
+
+e se for uma barra de alta fechando
+próximo da sua máxima, eles irão comprar acima disso.
+
+Isso tem uma probabilidade maior.
+
+O stop está bem distante, mas o risco
+maior - é o preço que se paga
+
+para ter maior probabilidade, e
+isso é algo interessante a se fazer.
+
+Você pode comprar acima da segunda barra interna,
+
+e você pode botar o stop ou abaixo
+do ii ou, se isso for uma tendência de baixa,
+
+Você pode botar o stop abaixo
+do fundo da tendência de baixa.
+
+Maior probabilidade, comprar 1 tick
+ou 1 pip acima da máxima de uma barra de alta.
+
+Nesse caso, a barra de entrada,
+a barra de rompimento, é uma barra de alta.
+
+Aqui nós temos uma barra interna seguida
+de uma barra interna, e está rompendo abaixo dela.
+
+Mas o fechamento da barra está
+acima do terço de cima da barra,
+
+particularmente, isso não é uma
+forte barra de sinal de venda
+
+porque quando o mercado estava aqui em baixo,
+traders compraram e o preço subiu.
+
+Isso reduziu as chances de termos mais
+vendedores se o preço fosse abaixo dela.
+
+E aqui temos outra barra com uma grande sombra abaixo.
+
+Teoricamente, você pode vender
+com ordem stop abaixo dessa barra,
+
+mas muitos traders preferem
+vender abaixo de barras de baixa
+
+que feche próximo ou na sua mínima, então
+a probabilidade é maior de vender abaixo dessa barra,
+
+1 tick ou 1 pip abaixo dessa barra, e coloque o stop
+
+ou acia da ii ou acima do
+topo do padrão.
+
+Se isso for uma tendência de alta,
+você pode colocar o stop acima daqui.
+
+Se for uma tendência de baixa, então isso
+é uma bandeira de baixa e você pode colocar o stop acima daqui.
+
+Você pode vender abaixo da ii ou,
+se você quiser uma probabilidade maior
+
+- e muitos traders querem - eles irão esperar
+por uma barra de baixa fechando próximo ou na sua mínima,
+
+e irão vender abaixo dessa barra
+e serão acionados por aqui.
+
+Aqui nós temos uma ii, e o que nós notamos?
+
+Negociou abaixo do ii,
+acionou a venda, e na mesma barra,
+
+imediatamente foi acima da máxima do ii,
+na primeira das duas barras internas.
+
+Então o que você faz?
+
+Primeiro de tudo, eu não gosto de
+vender abaixo de uma barra de alta,
+
+mas tecnicamente é ok fazer isso.
+
+Se você vendeu abaixo da barra de alta,
+você irá ser acionado aqui na sua venda.
+
+Na mesma barra, seu stop iria ser
+acionado, e tá tudo bem.
+
+Você pode reverter para compra
+acima daqui ou você pode esperar
+
+por uma barra de alta fechando próximo
+da sua máxima e comprar acima disso.
+
+Aqui, nesse caso, nós temos o oposto.
+
+Nós temos uma ii onde
+a segunda barra tem um corpo de alta.
+
+Apenas um pequeno corpo de alta, mas um corpo de alta.
+
+Você pode vender abaixo da mínima
+dessa barra de alta.
+
+Você pode vender abaixo dessa barra
+porque é abaixo de um ii
+
+e é uma barra de baixa fechando
+próximo da sua mínima, ou você pode vender
+
+abaixo da mínima dessa barra,
+uma barra de baixa fechando na sua mínima.
+
+Nós temos 4 barras, e a segunda e a terceira barra
+são consecutivas barras internas, ii, ii.
+
+Agora, eu quero olhar para isso.
+
+Lembre-se do que eu disse toda ii, ioi,
+
+OO têm pelo menos alguma coisa de
+topo duplo ou fundo duplo.
+
+Aqui nós fomos para baixo, fomos
+para cima da máxima dessa barra,
+
+viemos para baixo no fechamento dessa barra
+- em algum momento formos para cima
+
+na máxima dessa barra e então
+nós fechamos aqui em baixo.
+
+Nesse caso em particular, nós tivemos
+uma mínima e uma mínima mais alta,
+
+então não parece um fundo duplo,
+mas é um tipo de fundo duplo,
+
+e nós temos duas máximas.
+
+Então aqui temos um topo duplo
+e um fundo duplo.
+
+Nesse caso, a mesma coisa.
+
+Nós temos uma mínima, temos a segunda mínima,
+e temos uma máxima e a segunda máxima.
+
+Lembre-se que eu disse que uma ii
+em um tempo gráfico menor geralmente são triângulos.
+
+No mínimo, eles irão ser pelo menos
+um micro topo duplo
+
+e um micro fundo duplo, e isso é
+o que eu chamo de um padrão Modo Rompimento.
+
+É uma lateralidade pequena.
+
+Micro fundo duplo, essa mínima
+e essa correção
+
+até o fechamento dessa barra
+vindo da máxima da barra.
+
+Micro topo duplo.
+
+Subimos aqui, caiu até o fechamento,
+subimos aqui, e desceu até o fechamento.
+
+Como eu disse, provavelmente é
+um triângulo em um tempo gráfico menor.
+
+Nesse tempo gráfico, há um micro topo duplo
+
+e um micro fundo duplo.
+
+Mesma coisa aqui.
+
+Um micro topo duplo nesse tempo gráfico
+e um micro fundo duplo nesse tempo gráfico
+
+- essa mínima então uma correção vindo da
+máxima até o fechamento.
+
+E se você olhar um tempo gráfico menor,
+provavelmente você verá um triângulo.
+
+Aqui uma ii, gráfico de 5 minutos,
+e está rompendo acima disso.
+
+Barras internas consecutivas.
+
+Geralmente um triângulo em um tempo gráfico menor.
+
+Se você olhar para um gráfico de
+1 minuto, você verá que temos três mínimas
+
+- uma, duas, três
+- e duas máximas e uma lateralidade
+
+onde temos uma máxima mais baixa e duas mínimas
+mais altas, isso é um triângulo.
+
+Isso se parece com isso.
+
+Isto é a versão do 1-minuto daquilo.
+
+Você pode ver que é um triângulo
+e estamos rompendo acima do topo.
+
+Nem todo triângulo é um ii em um
+tempo gráfico maior,
+
+então provavelmente você pode encontrar algum tempo gráfico
+
+onde o triângulo é um ii,
+mas não vale a pena ficar procurando.
+
+E também, se você ver uma ii no
+tempo gráfico em que está operando,
+
+não vale a pena ficar procurando em
+um tempo gráfico menor para ver o triângulo.
+
+Você sabe que está lá.
+
+Isso é o gráfico mensal do Bitcoin.
+
+Consecutivas barras internas.
+
+Aqui o gráfico semanal do Bitcoin.
+
+Nós temos 3 máximas
+- uma, duas e três - e duas mínimas.
+
+Um triângulo.
+
+E nós temos um rompimento de baixa aqui, e isso
+é um rompimento de baixa no gráfico semanal.
+
+Olhe isso aqui: 4 barras internas consecutivas.
+
+Essa barra está dentro dessa, e então nós temos
+mais 3 barras internas.
+
+Então temos 4 barras internas consecutivas.
+
+Nada diferente de uma ii.
+
+Não interessa se o padrão tem
+3 barras internas
+
+ou 4 barras internas ou 100 barras internas;
+ele ainda é um padrão de Modo Rompimento,
+
+e será um triângulo em um tempo
+gráfico menor.
+
+60 minutos, 4 barras internas consecutivas.
+
+5 minutos, você pode ver que é um triângulo.
+
+Sempre assuma que uma ii ou III ou IIII é
+um triângulo em um tempo gráfico menor.
+
+E isso realmente não te ajuda.
+
+Pode te ajudar a se sentir mais confortável
+de que é um padrão Modo Rompimento
+
+porque triângulos são mais comuns
+
+ou são padrões clássicos de Modo Rompimento,
+mas não importa.
+
+O mercado está lateral e está
+contraindo; nós estamos em Modo Rompimento.
+
+Independente disso, nós sabemos que é um
+triângulo em um tempo gráfico menor,
+
+iremos operar como um padrão de Modo Rompimento
+no tempo gráfico da nossa frente.
+
+Em um padrão Modo Rompimento, como eu disse,
+50% de chance do primeiro rompimento de alta
+
+ou baixa falharem, e 50% de chance de
+conseguir um rompimento de alta,
+
+50% de chance de conseguir um rompimento de baixa.
+
+E as vezes você consegue os dois.
+
+Aqui nós fomos para baixo e para cima.
+
+Aqui é um triângulo tarde em uma tendência de baixa,
+portanto uma tendência de baixa e um triângulo.
+
+Um triângulo tarde em uma tendência de baixa é
+tipicamente uma bandeira final, bandeira final de baixa.
+
+É uma área de concordância.
+
+Traders pensam que esse é um preço justo.
+
+Se rompermos para baixo ou
+para cima,
+
+O mercado tenderá a gravitar de volta
+para o preço justo.
+
+Portanto é geralmente uma bandeira final em uma
+tendência de baixa; se você tiver um rompimento para baixo,
+
+É provavel que em breve o preço voltará
+ao ápice do triângulo.
+
+Isso é um gráfico de 5 minutos,
+e no gráfico de 60 minutos,
+
+se você olhar para ele, você irá descobrir
+que esse triângulo de fato é um ii.
+
+Se você está operando o gráfico de 60 minutos,
+você deve assumir que esse ii é um triângulo
+
+em um tempo gráfico menor,
+como o gráfico de 5 minutos.
+
+ioi, uma barra interna depois de uma externa.
+
+Nós temos uma barra interna.
+
+A barra anterior é uma barra externa e,
+portanto, a barra anterior a externa
+
+é uma barra interna, e portanto
+nós temos um padrão Interna-Externa-Interna.
+
+Novamente, um padrão Modo Rompimento.
+
+Isso é um exemplo de um perfeito ioi.
+
+A mínima da barra externa está abaixo e
+não na mesma mínima da barra anterior.
+
+A máxima da barra externa está acima, não
+na mesma máxima da barra anterior.
+
+E então a barra interna em sequência tem a máxima
+abaixo da máxima da barra externa
+
+e a mínima acima da mínima da barra externa.
+
+Aqui temos algumas variações.
+
+Está barra é uma barra interna por que
+sua mínima está acima da mínima dessa barra
+
+e sua máxima está na máxima dessa barra.
+
+Novamente, quanto mais perfeito for o padrão,
+
+maior é a probabilidade de
+você fazer dinheiro.
+
+Mas aqui temos algumas variações
+onde barras internas
+
+tem a máxima na mesma máxima da
+barra externa, não abaixo.
+
+Aqui temos outro exemplo onde
+todas as 3 barras tem mínimas idênticas,
+
+mas a barra externa está
+acima das duas barras internas.
+
+Outro exemplo onde a barra externa
+é perfeita,
+
+mas a barra depois dela tem a máxima
+na mesma máxima dessa barra
+
+e a mínima na mesma mínima dessa barra.
+
+Portanto, essa barra é uma barra interna,
+mas sua máxima está na mesma máxima dessa barra,
+
+então também é uma barra externa.
+
+Sua mínima está nessa mínima,
+então também é uma barra externa.
+
+Isso é uma ioi, e também é uma OO.
+
+Essa barra é uma barra externa; essa barra
+é tanto uma barra interna quanto uma externa,
+
+então você pode chamá-las tanto de ioi quanto de OO.
+
+Não importa.
+
+Ambas são padrões de Modo Rompimento.
+
+Nós temos uma barra externa e a
+segunda barra é uma barra de baixa.
+
+Isto poderia ser uma tendência de baixa;
+poderia ser uma tendência de alta,
+
+então poderia ser o topo de uma tendência de alta.
+
+Poderia ser uma bandeira de baixa em uma tendência de baixa.
+
+Nós temos uma barra de baixa fechando próximo ou na sua mínima.
+
+Traders irão vender com ordem stop 1 tick
+ou 1 pip abaixo da mínima dessa barra de baixa.
+
+é uma ioi de alta probabilidade
+porque ela é perfeita.
+
+Parece muito bom.
+
+Nós temos uma grande barra de alta e então
+temos uma barra de baixa fechando próximo ou na sua mínima.
+
+Esse é um padrão bastante confiável.
+
+Você coloca seu stop cima do topo
+do padrão, o ioi.
+
+Aqui é um exemplo de uma ioi.
+
+Em vez de ter um rompimento de baixa,
+nós tivemos um rompimento de alta.
+
+Mas lembre-se do que falei.
+
+Tem probabilidade maior, no geral, comprar
+acima de uma barra de alta fechando próximo
+
+ou na sua máxima,
+e não acima de uma barra de baixa.
+
+Teoricamente, você poderia comprar
+com ordem stop acima dessa barra.
+
+Aqui é uma barra de alta.
+
+Você poderia comprar com ordem stop acima dessa barra.
+
+Eu geralmente espero para ver a barra de entrada
+e então compro com ordem stop acima dessa barra.
+
+Quando você tem uma barra de sinal ruim
+como essa - isso é uma barra de baixa
+
+- seria melhor se fosse para baixo
+e acionasse vendas.
+
+Ao invés disso, foi para cima, e acionou uma compra.
+
+Isso é baixa probabilidade.
+
+Então ao invés de comprar acima dessa barra,
+eu compraria acima dessa barra.
+
+E se essa barra fosse abaixo dessa barra,
+eu venderia abaixo dessa barra interna.
+
+Você pode comprar acima de uma ioi,
+mas se você quer uma alta probabilidade,
+
+é melhor comprar acima de
+uma barra de alta fechando na sua máxima.
+
+Então você pode comprar com uma ordem stop 1 tick ou 1 pip
+
+acima da máxima dessa barra e
+ser acionado por aqui.
+
+Aqui nós temos 5 barras.
+
+Temos uma ioi.
+
+Barras 2, 3, 4.
+
+Modo rompimento, e nós rompemos para cima,
+
+e aqui nós temos o mesmo padrão
+mas rompemos para baixo.
+
+Razoável vender abaixo da barra 4,
+uma barra de baixa fechando na sua mínima e uma ioi.
+
+Aqui, menos razoável comprar acima dessa
+barra porque é uma barra de baixa.
+
+Barras 2, 3 e 4 formam um padrão ioi.
+
+Nós fomos para cima e então
+para baixo até essa mínima, certo?
+
+Nós fomos para cima aqui e aqui o fechamento,
+então nós estamos indo para baixo.
+
+E então nessa barra nós fomos acima dessa barra,
+
+e então nós temos uma barra de baixa aqui,
+então fomos para baixo aqui.
+
+Então nesse padrão, nós temos pelo menos um
+micro topo duplo e um micro fundo duplo.
+
+Isso é o que você frequentemente vê
+no padrão Modo Rompimento
+
+- o mercado fazendo diversas tentativas
+de ir acima ou abaixo
+
+e então os traders estão procurando por um rompimento.
+
+Aqui, há um micro fundo duplo e
+também temos um micro topo duplo,
+
+essa máxima e essa máxima.
+
+Aqui estamos em uma tendência de alta.
+
+Isso é uma bandeira de alta em High 1.
+
+Essa é a máxima da tendência de alta.
+
+Nós temos uma correção.
+
+é uma High 1 (H1) acima dessa barra.
+
+Você pode comprar acima de uma barra de baixa,
+você pode comprar acima de uma barra de alta,
+
+você pode esperar por uma barra de rompimento e,
+
+se fechar próximo de sua máxima,
+compre acima da máxima dessa barra.
+
+Nesse gráfico o mercado foi daqui dessa mínima
+para cima desse fechamento e para cima dessa máxima,
+
+e então foi para baixo dessa mínima,
+
+e então foi para cima dessa máxima,
+e então aqui para baixo.
+
+Barra de baixa, então está indo para baixo.
+
+Isso é um micro topo duplo.
+
+Barra 2 e 3 formam micro topo duplo.
+
+E a 2 e 4 é um topo e Low 2(L2).
+
+Nós fomos para cima aqui, fomos para baixo;
+Nós fomos para cima aqui, fomos para baixo.
+
+Essa barra foi abaixo dessa,
+então foi a primeira reversão,
+
+e agora nós temos uma segunda reversão,
+então isso é um topo em L2.
+
+Barra 4 é uma bandeira de alta em H1, mas
+tem um corpo de baixa, então é uma compra de baixa probabilidade.
+
+Eu falo sobre isso aqui.
+
+Nesse exemplo, essa H1 não foi acionada.
+
+Nesse exemplo aqui ela acionou,
+mas no exemplo da direita,
+
+a compra não foi acionada mas o topo em L2 sim.
+
+Externa - Externa (OO).
+
+Uma barra externa seguida de outra barra externa.
+
+A máxima da barra está
+acima da máxima dessa barra;
+
+a mínima da barra está abaixo
+da mínima dessa barra.
+
+É uma barra externa, e então há
+uma segunda barra externa.
+
+Uma perfeita OO por que as mínimas estão
+mais baixas e as máximas estão mais altas.
+
+Não interessa, as barras podem ter
+corpos de alta ou corpos de baixa.
+
+O que importa é se os corpos são grandes
+e as sombras pequenas.
+
+Se as três barras são pequenos dojis em
+uma lateralidade estreita(TTR),
+
+é um mercado de ordem limitada.
+
+Você não deveria comprar acima
+ou vender abaixo.
+
+Mas se os corpos são muito grandes
+- por exemplo, se você tem uma grande barra de alta,
+
+uma grande barra de baixa, uma grande de alta
+- você tem traders mais interessados
+
+em comprar acima dessa máxima dessa barra de alta.
+
+Variações.
+
+Aqui, a mínima está abaixo dessa barra, essa mínima
+está abaixo dessa barra,
+
+e a máxima está na mesma máxima ao invés de estar acima.
+
+No entanto, é ainda um padrão OO,
+mas não é perfeito como esse,
+
+onde a máxima está acima dessa máxima.
+
+E então, aqui um exemplo onde a terceira
+barra, a segunda barra externa,
+
+tem a mínima na mesma mínima da primeira
+barra externa, não abaixo.
+
+E então um exemplo onde a segunda barra
+externa tem idênticas máximas
+
+e tem idênticas máximas e mínimas.
+
+Um OO perfeito.
+
+Nós temos uma barra de alta, uma barra de baixa
+ainda maior fechando próximo ou na sua mínima,
+
+seguido de uma barra de alta ainda maior
+fechando próximo ou na sua máxima.
+
+Digamos que isso seja uma tendência de alta.
+
+Você tem uma grande barra de alta fechando na sua máxima.
+
+Alguns traders irão comprar acima
+da máxima dessa barra de alta
+
+e eles irão sair ou abaixo da mínima
+dessa barra de alta
+
+ou irão esperar por uma barra de baixa
+e sair abaixo da mínima dessa barra.
+
+Outros traders irão reverter para vendas.
+
+Se você tiver uma falha de compras e então uma
+barra externa de baixa,
+
+eles irão vender abaixo da mínima dessa barra.
+
+E então aqui, voltou para acima
+da máxima dessa barra,
+
+então você tem compradores comprando acima dessa barra,
+
+e você tem alguns vendedores vendendo
+abaixo dessa barra, e estes compradores perderam dinheiro
+
+quando foi abaixo dessa barra ou
+dessa barra; esses vendedores perderam dinheiro
+
+quando foi acima dessa máxima dessa
+barra de sinal ou acima dessa barra.
+
+Então você armadilhou compradores em uma
+compra ruim, armadilhou vendedores em uma venda ruim.
+
+Isto aumentou as chances de se tivermos um
+outro rompimento, será lucrativo.
+
+Para os vendedores, eles veem uma reversão de 2 barras.
+
+Foi para cima, foi para baixo.
+
+Eles venderam com ordem stop abaixo dessa barra,
+
+logo após os compradores terem falhado
+acima dessa bonita barra de alta.
+
+E então os vendedores foram stopados e os
+compradores têm uma segunda barra de sinal de compra.
+
+Eu não estou dizendo que você
+deveria pegar essa compra e essa venda.
+
+Isso depende do contexto.
+
+Talvez você deva,
+talvez você não deva pegar esses dois sinais.
+
+Entretanto, uma vez que você ver os
+dois sinais e então você vê o mercado
+
+ir acima dessa barra de alta,
+isso geralmente é um bom sinal de compra.
+
+Você tem compradores armadilhados, vendedores armadilhados,
+
+e agora uma barra de alta fechando próximo de sua máxima.
+
+Isso é uma razoável compra.
+
+Poderia estar em uma tendência de alta,
+nesse caso é uma bandeira de alta em OO.
+
+Poderia estar em uma tendência de baixa,
+neste caso é um fundo em OO.
+
+Se você está procurando comprar,
+
+você quer comprar acima de uma barra de alta
+fechando próximo ou na sua máxima.
+
+Agora, uma diferença entre um OO e
+os outros dois padrões, ii e ioi,
+
+é quea terceira barra nos outros
+padrões são pequenas.
+
+É uma barra interna, então o stop não
+está tão distante e o risco é relativamente menor.
+
+Quando você está operando um padrão OO,
+a terceira barra é grande.
+
+É a segunda barra externa consecutiva,
+e o stop está bem distante.
+
+Seu risco é maior.
+
+Você sempre deve operar pequeno
+o suficiente assim você não está arriscando
+
+mais em um trade do que estaria
+arriscando em outro.
+
+Com muita frequência, um padrão OO,
+
+você precisa operar com uma
+posiçao um pouco menor.
+
+Um perfeito OO e um não perfeito OO.
+
+Essa mínima não foi abaixo dessa barra,
+
+e portanto, sim, você poderia acionar
+uma compra acima dessa barra,
+
+mas a venda abaixo dessa barra não foi acionada.
+
+Nós não fomos abaixo da mínima dessa barra.
+
+Alguns compradores permanecerão comprados.
+
+Eles colocariam um stop abaixo dessa barra de baixa,
+e eles não teriam sido stopados.
+
+Por aqui, teoricamente traders iriam comprar
+acima da barra de alta, vender abaixo da barra de baixa.
+
+Então você tem compradores perdendo dinheiro, vendedores
+perdendo dinheiro, e você tem um terceiro rompimento,
+
+o qual você teve aqui,
+é um trade de alta probabilidade.
+
+Probabilidade alta de que você irá fazer dinheiro.
+
+Novamente, você não precisa necessariamente
+fazer a primeira compra ou a primeira venda.
+
+Depende, sim, do contexto.
+
+Mas se você ver o OO e um perfeito OO
+como esse, você sabe que tem compradores armadilhados,
+
+você sabe que tem vendedores armadilhados,
+isto se torna uma compra de alta probabilidade.
+
+Aqui, dependendo do contexto, você
+pode comprar acima dessa barra de alta,
+
+mas você nunca conseguiu a venda.
+
+Nunca foi abaixo da mínima dessa barra de baixa.
+
+Muitos compradores que compraram aqui
+poderão segurar e sair abaixo de uma barra de baixa,
+
+então diversos desses compradores ainda estão comprados,
+mesmo que fossemos abaixo desta barra.
+
+Se você comprou aqui e não foi stopado,
+você pode comprar mais aqui.
+
+Se você comprar aqui e for stopado,
+você pode comprar lá.
+
+É um segundo sinal de compra.
+
+O que você pensa disso aqui?
+
+Nós temos 3 barras com máximas
+e mínimas idênticas.
+
+É uma variação de um
+padrão interna-interna (ii).
+
+Isso é uma barra interna.
+
+Não foi abaixo daqui.
+
+É uma barra interna, não foi acima disso,
+e então você tem uma segunda barra interna.
+
+Mas também é uma variação de uma ioi.
+
+Essa barra, é uma barra interna,
+mas também é uma barra externa.
+
+Uma barra interna tem uma máxima abaixo ou
+na mesma máxima que a barra anterior;
+
+uma barra externa tem uma máxima acima
+ou na mesma máxima da barra anterior.
+
+Então essa barra é uma barra interna
+e também uma barra externa.
+
+E a mesma coisa com essa barra.
+
+São ambas, barra interna e
+barra externa.
+
+Então além de ser uma ii,
+é também uma ioi.
+
+Você pode ver isso como uma
+barra externa e isso como uma barra interna.
+
+Portanto isso é uma ii e uma ioi.
+
+Não demora muito para
+perceber que isso também é uma OO
+
+porque isso se qualifica como
+uma barra externa, então isso também é.
+
+Então são barras externas consecutivas
+bem como barras internas consecutivas.
+
+É uma ii, é uma ioi,
+é um OO?
+
+Como eu disse, são todos os três,
+e não importa como você o chame.
+
+Você está procurando por um padrão Modo Rompimento,
+e não importa como você o enxerga,
+
+é um padrão Modo Rompimento.
+
+Traders irão comprar acima,
+eles irão vender abaixo.
+
+Gráfico de 5 minutos.
+
+Nós temos barras externas consecutivas.
+
+Em um tempo gráfico menor
+- aqui, gráfico de 1 minuto
+
+- você deve assumir que isto
+será um triângulo expandido.
+
+Bem como o espelho da imagem disso,
+barras internas consecutivas,
+
+é um triângulo contraindo,
+consecutivas barras externas
+
+em um tempo gráfico menor é
+um triângulo expandido.
+
+Não importa se você tem um
+triângulo contraindo
+
+ou um triângulo expandindo;
+ambos são padrões de Modo Rompimento.
+
+Aqui o gráfico de 60 minutos, e nós temos
+uma barra externa e então uma barra externa ainda maior.
+
+É preciso assumir que isso será
+um triângulo expandido
+
+em um tempo gráfico menor.
+
+Aqui é aquele gráfico mas no 5 minutos.
+
+A caixa marrom aqui é a mesma de lá.
+
+2 horas de negociação aqui,
+2 horas de negociação aqui,
+
+e o OO aqui é um
+triângulo expandido aqui.
+
+Eu falei sobre 3 pequenos padrões de lateralidade.
+
+Todos eles são padrões de Modo Rompimento,
+e eles poderiam ser bandeiras de alta,
+
+eles podem ser bandeiras de baixa,
+eles podem ser padrões de reversão.
+
+Então se você tiver um desses padrões
+no topo de uma tendência de alta,
+
+é uma bandeira de alta e um possível topo.
+
+Você compra acima, e vende abaixo.
+
+Se você tiver um desses padrões
+no fundo de uma tendência de baixa,
+
+são ambos bandeira de baixa e
+um padrão de reversão.
+
+Você vende abaixo, compra acima.
+
+ii, consecutivas barras internas; ioi,
+Barras internas antes e depois de barra externa;
+
+e então uma OO, barras externas consecutivas.
+
+Eu sou Al Brooks. Muito obrigada pela sua atenção.
+
+Espero que você tenha achado esse vídeo útil.

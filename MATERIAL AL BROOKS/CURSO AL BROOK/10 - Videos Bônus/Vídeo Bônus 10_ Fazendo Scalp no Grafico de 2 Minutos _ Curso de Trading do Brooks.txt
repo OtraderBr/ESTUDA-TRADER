@@ -1,0 +1,2159 @@
+Aqui é o Al Brooks.
+
+Muito obrigado por assistir a este vídeo.
+
+É a segunda parte de uma série
+sobre fazer scalp.
+
+Estou usando um gráfico Emini
+de 2 minutos como exemplo.
+
+Se você estiver interessado em encontrar
+algumas regras detalhadas sobre scalp,
+
+consulte o Brooks Trading Course,
+onde você pode ver as regras básicas
+
+e o vídeo gratuito de regras
+de scalp (Parte 1 dessa série).
+
+Esta é a Parte 2.
+
+Estou usando um gráfico
+de 2 minutos como exemplo,
+
+mas você o opera da mesma forma
+que faria com um gráfico de 5 minutos,
+
+um gráfico de 60 minutos,
+um gráfico diário ou um gráfico semanal.
+
+Se você assiste a programas
+de televisão com traders profissionais,
+
+como na CNBC, Bloomberg ou Fox,
+eles às vezes mostram gráficos horários,
+
+às vezes gráficos diários, às vezes gráficos
+semanais e às vezes gráficos mensais,
+
+e você não os ouve dizer:
+"Ah, isso é um gráfico semanal
+
+e, portanto, vou operá-lo de forma diferente
+de como opero um gráfico diário.”
+
+Todo mundo opera todos
+os gráficos da mesma forma.
+
+Eles são todos baseados na natureza humana,
+no comportamento humano racional.
+
+Não importa qual seja o tempo gráfico.
+
+Aqui temos barras de baixa consecutivas,
+e uma delas é uma barra muito grande
+
+e está fechando perto de sua mínima.
+
+Para mim, esse é o mínimo que eu quero ver
+para uma tendência de baixa de venda em fechamento.
+
+Modo sempre vendido.
+
+Uma tendência de baixa.
+
+Eu quero ver 2 barras de baixa, uma com um corpo
+grande fechando em, ou perto de, sua mínima.
+
+Pode ser a segunda barra assim,
+mas também pode ser a primeira barra.
+
+E às vezes ambas as barras
+serão barras de baixa muito grandes.
+
+Alguns traders, assim que virem este
+fechamento perto da mínima da barra,
+
+uma segunda barra de baixa consecutiva,
+barra grande fechando perto de sua mínima,
+
+eles simplesmente clicarão
+em “vender a mercado”
+
+e terão sua ordem executada por volta
+da abertura da próxima barra.
+
+Outros operarão com um stop 1 tick
+abaixo da mínima dessa barra.
+
+A maioria dos traders ganhará mais
+dinheiro se operar com ordens stop.
+
+Às vezes, as barras são extremamente grandes
+e o mercado está se movendo muito rápido,
+
+e quando esse é o caso, geralmente
+é melhor operar com ordens limitadas
+
+porque a aparência da barra pode
+mudar drasticamente nos segundos finais,
+
+e você não sabe onde a mínima da barra
+estará até exatamente quando ela fechar.
+
+E então a próxima barra
+geralmente se move muito rápido,
+
+e você não tem tempo
+desde o fechamento da barra
+
+para colocar um stop 1 tick
+abaixo da mínima da barra.
+
+Aqui temos uma barra de baixa grande,
+e então esta barra é interna.
+
+É uma barra interna.
+
+Sua mínima está acima da mínima dessa barra;
+sua máxima está abaixo da máxima dessa barra.
+
+Então temos uma segunda
+barra interna consecutiva.
+
+Mínima acima dessa mínima,
+máxima abaixo dessa máxima.
+
+Em geral, se você tem um padrão ii (interna-interna),
+padrão de barra interna consecutiva,
+
+e a segunda barra está fechando perto de sua
+mínima, você procuraria vender abaixo dela.
+
+Não importa se esta é uma bandeira
+de baixa em uma tendência de baixa.
+
+Não importa se é o topo
+de um clímax de compra.
+
+Pode ser uma reversão.
+
+Em geral, se você tiver uma barra
+de baixa forte para a segunda barra,
+
+é melhor apenas procurar vender
+e não procurar comprar acima.
+
+É um padrão de modo rompimento.
+
+É um triângulo em um tempo
+gráfico mais baixo,
+
+e alguns traders simplesmente o operam
+como um padrão de modo rompimento.
+
+Eles vão vender abaixo,
+eles vão comprar acima.
+
+Se for acima,
+aciona a compra e reverte para baixo,
+
+eles sairão das compras e possivelmente
+reverterão para vendas abaixo.
+
+Se ele for abaixo e acionar a venda
+e depois for acima da máxima do padrão ii,
+
+a primeira barra, eles sairão
+da venda e muitos ficarão comprados.
+
+Padrão de modo rompimento, portanto,
+é um setup de compra e venda.
+
+Venda abaixo, 1 tick abaixo.
+
+Compre acima, 1 tick acima.
+
+E aqui temos um rompimento de baixa.
+
+Como eu disse, com a barra de baixa
+fechando perto de sua mínima,
+
+com o mercado abaixo da média
+móvel exponencial de 10 barras,
+
+com uma grande barra de baixa aqui,
+provavelmente teremos
+
+uma segunda perna lateral para baixo.
+
+Essa é uma venda de boa aparência.
+
+Venda em um stop 1 tick
+abaixo da mínima dessa barra.
+
+E essas barras têm cerca de 4 pontos de altura,
+3 pontos, 4 pontos, 5 pontos de altura.
+
+Você tem que decidir quanto deseja
+fazer scalp se estiver fazendo scalp.
+
+Em geral,
+você provavelmente estará fazendo scalp
+
+por cerca de metade do tamanho
+de uma amplitude média.
+
+Então, se essas barras são cerca de 4 pontos,
+você pode tentar fazer scalp por 2 pontos.
+
+Você vende em um stop 1 abaixo dessa
+barra e tem sua ordem executada aqui.
+
+E você imediatamente coloca uma ordem
+bracket, talvez um stop aqui em cima
+
+e uma ordem limitada de realização
+de lucro 2 pontos abaixo.
+
+Ele caiu 10 ticks abaixo
+da mínima dessa barra,
+
+que é exatamente o que tinha que fazer
+para você fazer scalp para sair com 2 pontos.
+
+Você vende 1 tick abaixo dessa barra
+e, se estiver tentando fazer 2 pontos,
+
+8 ticks, tem que cair 8 ticks.
+
+E se você tiver uma ordem limitada
+para comprar novamente sua venda,
+
+a ordem limitada geralmente não será
+executada a menos que caia mais 1 tick.
+
+Então, a mínima dessa barra
+tem que ser 10 ou mais ticks
+
+abaixo da mínima dessa barra
+para você vender 1 tick abaixo dessa barra
+
+e fazer scalp para sair
+com 2 pontos (8 ticks).
+
+Estamos no início
+de uma tendência de baixa.
+
+Revertemos para baixo
+a partir da média móvel,
+
+revertemos para baixo novamente perto da média
+móvel, revertemos para baixo novamente.
+
+É uma tendência de baixa de venda em fechamento,
+então os traders venderão a mercado.
+
+Eles venderão assim que uma barra
+de baixa fechar perto de sua mínima,
+
+e venderão com um stop
+abaixo da mínima da barra.
+
+Novamente, como eu disse,
+isso é no início do dia.
+
+As barras são grandes
+e, se você estiver fazendo scalp,
+
+provavelmente é bom
+fazer scalp por 2 pontos.
+
+Se as barras tivessem 20 pontos de altura,
+você poderia fazer scalp por 5 ou 10 pontos,
+
+cerca de metade dos pontos
+que existem na barra média.
+
+Se as barras tiverem apenas 2 ou 3 pontos
+de altura, você fará scalp por 1 ponto.
+
+Aqui temos outra grande barra
+de baixa fechando em sua mínima.
+
+Se você vendesse abaixo
+da mínima dessa barra
+
+e tivesse uma ordem limitada para realizar
+lucro de 2 pontos 8 ticks abaixo da sua entrada,
+
+você teria tido sua ordem
+executada nessa barra.
+
+Você faria scalp para sair com 2 pontos.
+
+Temos outra barra fechando em sua mínima.
+
+Corpos de bom tamanho.
+
+Ainda é uma tendência de baixa
+de venda em fechamento,
+
+então você ainda pode vender
+a mercado no fechamento da barra.
+
+Venda a mercado enquanto a barra está se formando
+ou venda em um stop abaixo da mínima dessa barra.
+
+Há um problema aqui.
+
+Isso pode estar formando uma micro
+cunha em um tempo gráfico mais baixo.
+
+Fomos para baixo aqui,
+fomos para cima aqui.
+
+Fomos para baixo aqui
+e fomos para cima aqui.
+
+Então essa é realmente uma segunda perna para baixo
+e, portanto, essa é uma terceira perna para baixo.
+
+Portanto, é uma micro cunha, uma pequena
+cunha em um tempo gráfico mais baixo,
+
+e que pode atrair alguns
+realizadores de lucro
+
+e, portanto,
+podemos obter uma reversão em breve.
+
+Portanto, se você vender
+abaixo da mínima dessa barra,
+
+precisará tomar decisões rápidas.
+
+Além disso, os corpos estão ficando
+maiores – aqui, um pouco maiores aqui,
+
+e um pouco maiores aqui.
+
+Portanto, está acelerando
+para baixo em uma cunha parabólica,
+
+e isso geralmente atrai
+realizadores de lucros.
+
+Então, se você está vendendo aqui,
+você só realiza a venda abaixo dessa barra
+
+se puder tomar decisões rápidas,
+porque há risco de reversão.
+
+Além disso, um padrão ii em uma tendência
+de baixa geralmente é a bandeira final de baixa,
+
+então ela rompe abaixo
+e depois volta para o padrão ii.
+
+Lembre-se, um padrão ii é um triângulo
+em um tempo gráfico mais baixo.
+
+Um triângulo é uma área de concordância.
+
+Os traders pensaram que este era um preço justo,
+e agora é mais barato que um preço justo,
+
+então os compradores podem começar a comprar
+agressivamente e os vendedores param de vender,
+
+e isso pode voltar ao padrão ii,
+o ápice desse triângulo.
+
+Portanto, há um risco
+aumentado aqui de uma reversão.
+
+Era razoável vender abaixo dessa barra
+
+porque poderíamos continuar indo
+para baixo, para baixo, para baixo,
+
+e se você vendesse abaixo e tivesse
+essa barra de alta fechando em sua máxima,
+
+é uma compra confiável.
+
+É uma cunha parabólica
+e temos um ímã aqui, um padrão ii.
+
+Os traders pensaram que este era um preço justo
+e que poderíamos voltar a esse preço justo,
+
+e temos uma barra de alta
+fechando em sua máxima.
+
+Se você vendesse abaixo dessa barra,
+sairia acima dessa barra
+
+e sofreria uma perda de 11 ticks.
+
+Se você é plano,
+você pode ir muito acima dessa barra,
+
+tentando obter um scalp
+- um scalp de 2 pontos
+
+ou talvez esperar
+um teste desse triângulo.
+
+Você poderia segurar a venda após um micro
+canal de baixa de 7 barras, 7 barras,
+
+a cada máxima igual ou abaixo
+da máxima da barra anterior?
+
+Bem, geralmente a primeira reversão para cima
+a partir de um micro canal de 7 barras
+
+e a reversão para cima após 3
+barras de baixa serão minoritárias.
+
+Vamos para cima um certo número
+de barras – não sei, 2 barras, 10 barras
+
+– mas provavelmente voltaremos a testar
+de volta para baixo em algum ponto.
+
+Portanto, alguns vendedores
+venderão à medida que for mais alto.
+
+Lembre-se, alguns vendedores venderam
+o fechamento dessa barra ou abaixo de sua mínima
+
+e ficaram desapontados com essa barra.
+
+Eles nunca tiveram a oportunidade
+de sair no ponto de equilíbrio.
+
+A maioria sairia aqui com uma perda,
+mas alguns segurarão,
+
+esperando que esse fechamento
+seja testado.
+
+Então eles vão vender e depois
+vão procurar vender mais alto,
+
+esperando que o mercado volte
+para baixo por volta desse fechamento.
+
+Isso permitiria que eles saíssem
+no ponto de equilíbrio nessa venda,
+
+e com lucro na venda mais alta.
+
+Se você está fazendo scalp,
+você não faz isso.
+
+Você apenas entra rapidamente,
+você sai rapidamente.
+
+Portanto, se você vendesse abaixo,
+sairia acima
+
+dessa barra de alta
+ou até reverteria para compra.
+
+Lembre-se que no primeiro
+vídeo sobre scalp, falei sobre isso.
+
+Eu disse que quando
+está perto da média móvel
+
+e você está obtendo barras de baixa
+revertendo para baixo, você vende abaixo.
+
+Mas se você estiver razoavelmente longe
+da média móvel exponencial de 10 barras
+
+e obtiver uma boa barra de alta,
+
+o mercado geralmente tenta voltar à média
+móvel, então os compradores vão comprar.
+
+Cunha parabólica, barra de alta
+fechando perto de sua máxima.
+
+Estamos muito abaixo da média móvel, por
+isso é uma reversão climática para cima.
+
+E porque é uma cunha parabólica, podemos
+ter algumas pernas laterais para cima.
+
+Temos uma segunda barra de alta
+fechando em sua máxima.
+
+Os traders vão comprar
+acima da máxima dessa barra.
+
+E essa barra fechando em sua máxima
+com um corpo de bom tamanho,
+
+eles vão comprar
+no fechamento dessa barra.
+
+Alguns dos compradores que compraram aqui
+têm uma ordem limitada para sair com 2 pontos,
+
+então eles sairão em algum
+lugar aqui com 2 pontos.
+
+Outros vão olhar para isso
+e dizer: “Essa é uma barra muito boa.
+
+Temos um magneto acima da média móvel.
+
+Nós temos esse padrão ii.
+
+Talvez eu segure a compra
+e talvez até compre mais
+
+acima de uma barra
+de alta fechando em sua máxima."
+
+Então eles podem comprar aqui e podem comprar
+mais aqui, esperando que vá para cima lá.
+
+Eu disse que se um trader vendesse abaixo
+dessa barra e saísse acima dessa barra,
+
+ele provavelmente não reverteria.
+
+A maioria dos traders não gosta de reverter
+porque se você está pensando na venda,
+
+é difícil emocionalmente
+ser completamente objetivo.
+
+Portanto, a probabilidade de você
+fazer a avaliação correta é menor.
+
+Você não tem muita vantagem como trader
+
+e, se a qualquer momento se sentir
+menos do que no seu melhor,
+
+geralmente é melhor
+não realizar a operação.
+
+A maioria dos traders
+acaba não revertendo.
+
+Eles saem e esperam uma barra ou duas,
+
+e então começam a operar na nova direção.
+
+Barras de alta consecutivas, corpos
+de tamanho decente, fechando na máxima.
+
+Provavelmente estamos
+em modo sempre comprado.
+
+Provavelmente estamos indo mais alto,
+talvez para o padrão ii.
+
+Pode ser uma tendência de alta.
+
+Como eu disse, se você comprou acima disso,
+você pode tentar fazer scalp com 2 pontos.
+
+Ou você pode olhar para essa barra e dizer:
+“Bem, estamos em modo sempre comprado.
+
+Provavelmente estamos indo mais alto.
+
+Eu vou segurar e sair talvez sair
+aqui em cima, ou segurar até parar
+
+e depois sair,
+ou possivelmente até comprar mais.”
+
+Outra barra de alta.
+
+Um corpo menor e uma sombra visível no topo,
+então um pouco de perda de momentum.
+
+Ainda é uma compra em fechamento.
+
+Ainda está fechando na metade superior,
+no terço superior, mas é menos confiável.
+
+Se você comprou 1 tick acima da máxima
+dessa barra e está fazendo scalp por 2 pontos,
+
+você sairia imediatamente.
+
+É uma tendência de alta
+de compra em fechamento.
+
+Como eu disse, você não tem que sair.
+
+Você pode segurar ou comprar mais
+ou comprar mais acima dessa barra também.
+
+Ok, então este é um exemplo
+onde você compra.
+
+Você vê uma barra de alta muito forte.
+
+Barras de alta fortes consecutivas.
+
+Agora modo sempre comprado.
+
+Provavelmente vamos obter
+algumas pernas para cima.
+
+Você poderia comprar mais.
+
+Este é um gráfico de 2 minutos.
+
+Tudo acontece muito rapidamente.
+
+Além disso,
+a aparência da barra muitas vezes
+
+muda drasticamente
+último segundo ou dois.
+
+Então, quando você está olhando para uma imagem
+como essa, é fácil ver onde entrar.
+
+Você vende abaixo, vende abaixo,
+compra acima, compra acima.
+
+Mas em tempo real, muitas vezes,
+provavelmente na maioria das vezes,
+
+a barra não fica assim
+até o final da barra.
+
+Então você tem que tomar decisões rápidas
+e colocar ordens rapidamente.
+
+Agora temos 3 barras de alta consecutivas,
+todas fechando em, ou perto de, suas máximas,
+
+mas estamos em uma correção em torno de 50%
+e estamos chegando perto do padrão ii, um magneto.
+
+Pode obter alguns realizadores de lucro.
+
+E estamos no preço médio.
+
+Pode obter alguns realizadores de lucro.
+
+Então pode parar aqui.
+
+Agora, para os vendedores,
+eles esperam que chegue a esse fechamento.
+
+Eles ficaram desapontados
+com essa barra de alta.
+
+Eles nunca tiveram a chance
+de sair no ponto de equilíbrio.
+
+Então, alguns vendedores
+estão segurando a venda.
+
+Se for para baixo perto desse fechamento,
+eles comprarão de volta suas vendas.
+
+Alguns deles estão querendo
+vender aqui em algum lugar
+
+se conseguirem obter uma barra de baixa
+fechamento perto de sua mínima,
+
+arriscando que voltaremos
+para baixo aqui.
+
+3 barras de alta consecutivas
+após um clímax de venda.
+
+Devemos obter uma segunda
+perna para cima e, portanto,
+
+você acha que haverá mais compradores
+ou vendedores na mínima dessa barra?
+
+Provavelmente compradores, então eu
+não colocaria uma ordem stop 1 tick abaixo.
+
+Em vez disso, se estou fazendo scalp, colocaria
+uma ordem limitada exatamente na mínima da barra.
+
+Geralmente, terá que ir 1 tick
+abaixo da mínima dessa barra
+
+para que minha ordem
+limitada seja executada.
+
+Barra de baixa fechando em,
+ou perto de, sua mínima.
+
+Temos os vendedores que vendem
+o fechamento decepcionados com isso.
+
+Eles podem vender mais abaixo aqui,
+esperando que venha aqui embaixo.
+
+Eles poderiam sair no ponto de equilíbrio
+em sua primeira venda e com lucro nessa venda.
+
+Mas agora estamos em modo sempre comprado, e as chances
+são de que vamos obter algumas pernas para cima,
+
+e, portanto, provavelmente há compradores
+não muito abaixo da mínima dessa barra.
+
+Você pode comprar com uma ordem
+limitada na mínima dessa barra?
+
+É um micro canal de alta de 5 barras.
+
+5 barras, as mínimas são iguais
+ou superiores à mínima da barra anterior.
+
+Você está na média móvel.
+
+Temos uma barra de baixa
+fechando perto de sua mínima.
+
+Temos um magneto aqui.
+
+Acho que provavelmente não vale a pena
+comprar na mínima dessa barra.
+
+No entanto, você pode comprar um ponto ou dois
+abaixo e usar um stop para baixo abaixo disso.
+
+E para os vendedores,
+não acho que seja uma venda muito boa.
+
+Temos 3 boas barras de alta,
+estamos em modo sempre comprado.
+
+É provável que ocorra
+uma segunda perna lateral para cima.
+
+Eu geralmente gosto de operar
+na direção da tendência,
+
+e acho que a tendência agora é de compra.
+
+Temos uma tendência de baixa, uma correção, então
+essa é uma barra de sinal de venda em forma de L1.
+
+Mas agora também está em modo sempre comprado,
+então pode ser uma tendência de alta de correções rasas
+
+onde o mercado fica um pouco
+abaixo disso e continua indo para cima.
+
+Em outras palavras, temos uma tendência
+de alta antecipada, uma tentativa de reversão,
+
+e é apenas uma correção nisso.
+
+Então, ela cai por alguns ticks
+e depois vai mais alto.
+
+Cai por alguns ticks
+e depois vai mais alto.
+
+Portanto, pode ser o início
+de uma tendência de alta de correções rasas.
+
+Fomos para baixo abaixo da mínima
+da barra e revertemos para cima.
+
+Eu disse que muitos compradores
+não comprariam essa mínima,
+
+mas eles poderiam colocar uma ordem
+limitada para comprar 1 ponto mais baixo,
+
+2 pontos mais baixo, 3 pontos mais baixo.
+
+E se eles tivessem comprado essa
+mínima com uma ordem limitada,
+
+e ela caiu 4 ticks abaixo disso
+e agora está de volta lá em cima,
+
+eles poderiam ter feito 1 ponto.
+
+Outros compradores não comprariam na mínima
+de uma barra de baixa na média móvel,
+
+mas poderiam começar a comprar
+um ou dois pontos mais baixo,
+
+e ganhariam dinheiro quando
+voltassem à mínima dessa barra.
+
+Essa mínima está 9 ticks
+abaixo dessa mínima.
+
+É uma armadilha de baixa de 9 ticks.
+
+Agora, por que eu chamo isso
+de armadilha de baixa de 9 ticks?
+
+Lembra do que eu disse
+alguns minutos atrás?
+
+Eu disse que se você vender
+em um stop abaixo da mínima de uma barra,
+
+a próxima barra tem que cair 10 ticks abaixo
+dessa mínima para fazer scalp por 2 pontos.
+
+Há muitos vendedores
+que venderam 1 tick abaixo dessa barra.
+
+Eles colocaram uma ordem limitada para comprar
+de volta suas vendas 8 ticks abaixo,
+
+e, portanto, há muitos vendedores
+
+com ordens limitadas comprando
+9 ticks abaixo dessa mínima.
+
+E se atingir sua ordem limitada,
+a maioria delas não será executada,
+
+e, se começar a subir, os vendedores entrarão
+em pânico e comprarão de volta suas vendas.
+
+Eles estão emboscados em uma operação ruim, e é
+por isso que eu chamo isso de armadilha de 9 ticks.
+
+Agora, temos uma barra doji aqui,
+uma barra doji aqui.
+
+Essas são as barras de lateralidade.
+
+O mercado foi para baixo, foi para cima,
+foi para baixo, foi para cima.
+
+Então, estamos obtendo muitas reversões.
+
+Esses dojis podem ser um sinal de que estamos
+começando a entrar em uma lateralidade estreita.
+
+Se o mercado estiver em uma lateralidade estreita,
+os traders comprarão abaixo, comprarão mais baixo.
+
+Eles vão vender acima, vender mais alto.
+
+Então o que você deve fazer aqui?
+
+Você deve comprar?
+
+Sim.
+
+Você deve vender?
+
+Sim.
+
+Se estivermos em uma lateralidade estreita,
+provavelmente não iremos muito para cima
+
+ou para baixo nas próximas barras,
+então alguns traders vão vender,
+
+vender mais alto, comprar, comprar mais
+baixo e então ambos irão fazer scalp.
+
+Se um comprador comprou essa mínima e comprou
+mais 2 pontos abaixo, teve que cair 9 ticks.
+
+Se ele comprar nessa mínima, 2 pontos abaixo
+são 8 ticks abaixo da mínima dessa barra.
+
+Tem que cair 9 ticks
+para ele ter sua ordem executada.
+
+Ele teria sua ordem executada aqui.
+
+Ele poderia sair no ponto de equilíbrio em sua
+primeira compra e com lucro em sua compra mais baixa.
+
+Mas os vendedores de ordem
+stop estão emboscados.
+
+Tinha que cair 10 ticks
+para eles ganharem dinheiro.
+
+Eles vendem 1 tick abaixo.
+
+Os compradores de ordem limitada
+compram na mínima, não 1 tick abaixo.
+
+Portanto, os compradores
+de ordem limitada só precisavam cair 9 ticks
+
+para fracionar a entrada
+em 2 pontos abaixo.
+
+Os vendedores da ordem stop precisam
+cair 10 ticks para fazer 2 pontos.
+
+Aqui temos uma barra de baixa
+de tamanho significativo.
+
+Fechado em sua metade inferior, mas
+fechou na mínima dessa barra, não abaixo.
+
+Portanto, nem tudo é tão baixista.
+
+Provavelmente ainda estamos
+em modo sempre comprado.
+
+Isso parece mais altista
+do que isso parece baixista.
+
+Lembre-se que eu disse que havia vendedores que vendem
+o fechamento aqui que estão chateados com isso,
+
+e eles estão tentando
+sair no ponto de equilíbrio.
+
+Depois de tudo isso,
+em vez de colocar uma ordem limitada
+
+para sair no ponto de equilíbrio
+no fechamento dessa barra,
+
+eles podem estar dispostos
+a sofrer uma pequena perda.
+
+Eles podem colocar uma ordem limitada 2 ou 3
+ou 4 ticks acima do fechamento dessa barra,
+
+e, se o fizessem,
+teriam suas ordens executadas aqui,
+
+e compraram de volta suas vendas
+a partir daqui com uma pequena perda.
+
+Os vendedores de ordem stop que venderam
+abaixo aqui agora fizeram 2 pontos.
+
+4 barras sem corpo de alta.
+
+Ainda é provável que tenhamos uma segunda perna
+lateral para cima após uma cunha parabólica
+
+e uma forte reversão para cima, mas essa não é
+uma ordem stop de compra de boa aparência.
+
+E para os vendedores, acho que ainda
+estamos em modo sempre comprado.
+
+Eles não obtiveram grandes barras
+de baixa consecutivas fechando
+
+em suas mínimas – além disso,
+ainda estamos acima dessa mínima.
+
+Eu não estaria vendendo aqui embaixo.
+
+Compradores,
+tivemos uma grande reversão para cima,
+
+e veja a partir de onde ela reverteu
+para cima - de baixo para cima.
+
+Então, os vendedores que seguraram
+e venderam mais abaixo aqui e eles começaram
+
+a sair perto do ponto de equilíbrio, eles
+conseguiram sair no ponto de equilíbrio no fechamento
+
+que eles venderam aqui e com um lucro lá.
+
+Em parte, essa sombra grande, essa reversão para cima,
+é de vendedores comprando de volta suas vendas.
+
+Bem, adivinhe?
+
+Os compradores não são estúpidos.
+
+Eles sabem que os vendedores que venderam
+esse fechamento ficaram emboscados,
+
+e esses vendedores estarão ansiosos
+para comprar naquele fechamento.
+
+Então, se você é um comprador,
+o que você vai fazer?
+
+Você pode colocar uma ordem
+limitada para comprar nesse fechamento,
+
+ou um ou dois ticks acima desse fechamento,
+pensando que um monte de vendedores
+
+vai comprar de volta suas vendas.
+
+Os vendedores estão dizendo:
+“Oh, obrigado, posso sair sem prejuízo”,
+
+e não estão ansiosos
+para vender novamente.
+
+Portanto, essa sombra é causada tanto por esses
+vendedores que vendem o fechamento saindo,
+
+sendo gratos por poder sair sem perdas,
+
+quanto por compradores apostando
+que os vendedores entrariam em pânico,
+
+comprariam de volta suas vendas e que teríamos
+uma segunda perna para cima depois disso.
+
+Uma barra de sinal
+de compra de boa aparência.
+
+Poderia ser melhor.
+
+Uma barra pode fechar em sua máxima.
+
+Pode fechar na média móvel.
+
+Mas ainda é uma barra
+de sinal de compra muito boa.
+
+Em um tempo gráfico mais baixo, provavelmente
+é um fundo duplo em forma de cunha.
+
+Fomos para baixo, fomos para cima,
+fomos para baixo, fomos para cima,
+
+e fomos para baixo,
+estamos indo para cima.
+
+Portanto, são três pernas para baixo e é
+uma mínima mais baixa em forma de fundo duplo.
+
+Esse é um padrão de compra
+bastante confiável e bastante comum
+
+e uma barra de sinal de compra muito boa.
+
+Portanto, é uma compra credível aqui.
+
+E isso pode ser uma reversão
+majoritária de tendência.
+
+Uma reversão majoritária de tendência significa um par
+de pernas para cima, talvez 10 barras ou mais para cima.
+
+Em um gráfico de 2 minutos,
+10 barras são 20 minutos.
+
+Em um gráfico de 2 minutos,
+pode ser uma reversão majoritária,
+
+mas em um gráfico de 5 minutos
+ou de 15 minutos,
+
+seria uma reversão minoritária,
+apenas uma barra ou duas.
+
+Portanto, temos uma mínima mais alta em forma de fundo
+duplo, uma forte queda em forma de cunha parabólica,
+
+e uma reversão para cima
+com uma barra de alta muito boa.
+
+Como eu disse, poderíamos obter algumas
+pernas para cima nas próximas 10 barras,
+
+para que você pudesse comprar isso
+para um swing para cima ou para um scalp.
+
+Você compra em um stop
+acima da máxima dessa barra.
+
+Você está desapontado
+que essa barra não é tão grande.
+
+Se você realizasse a compra, eu colocaria
+o stop abaixo da mínima dessa barra.
+
+Eu falei sobre isso.
+
+Os vendedores que venderam esse fechamento
+ou abaixo da mínima dessa barra
+
+conseguiram sair perto
+do ponto de equilíbrio.
+
+Agora, o que você faria se comprasse
+acima da máxima dessa barra?
+
+Isso é muito decepcionante?
+
+Você está pensando:
+"Oh meu Deus, eu tenho que sair?"
+
+Ou você está pensando:
+“É, isso não é tão baixista,
+
+devemos obter algumas pernas para cima;
+
+vou manter um stop abaixo
+dessa barra e me arriscar?"
+
+Possível tendência de alta
+de correções rasas.
+
+Neste momento temos uma lateralidade.
+
+Temos um fundo duplo e um topo duplo.
+
+É o modo rompimento.
+
+Mas estamos em modo
+sempre comprado a partir disso,
+
+e agora temos uma reversão majoritária
+de tendência de mínima mais alta.
+
+Portanto, é um pouco mais altista
+do que de baixista.
+
+Você pode chamar isso de triângulo.
+
+Temos três mínimas - uma, duas e três
+- e duas máximas e uma lateralidade.
+
+Temos uma máxima mais baixa,
+mínima mais alta, mínima mais alta.
+
+Modo rompimento.
+
+Mas um pouco mais altista.
+
+Essa não é uma venda de boa aparência
+e, se não for uma venda de boa aparência,
+
+provavelmente haverá compradores abaixo.
+
+Portanto, os compradores de ordem limitada colocariam
+uma ordem limitada para comprar na mínima dessa barra
+
+e colocariam um stop aqui embaixo.
+
+Eles podem comprar mais
+um ponto ou dois mais baixo.
+
+Os compradores estão esperando que este
+seja o início de uma tendência de alta.
+
+Eles veem isso como uma correção.
+
+Agora temos um padrão ioi.
+
+Temos uma barra externa
+e depois uma barra interna.
+
+A barra antes de uma barra externa é sempre
+uma barra interna, então é um padrão ioi.
+
+É outro padrão do modo rompimento
+como um padrão ii aqui.
+
+É uma barra de alta
+fechando perto de sua máxima.
+
+Quando você tem esses pequenos
+padrões de modo rompimento
+
+e a terceira barra é uma barra de alta
+fechando perto de sua máxima,
+
+é melhor não procurar vender.
+
+É melhor apenas procurar comprar.
+
+E aqui, uma barra fechando em sua
+mínima abaixo da média móvel,
+
+é melhor apenas procurar vender
+abaixo e não comprar acima.
+
+E agora estamos acima da média
+móvel e temos um padrão ioi
+
+e uma barra de alta fechando perto de sua máxima,
+então é uma compra de ordem stop acima dessa máxima.
+
+Ainda estamos em um triângulo,
+e poderíamos ficar mais de lado,
+
+mas é mais altista do que baixista.
+
+Se você realizar essa compra
+acima dessa barra,
+
+seu stop provavelmente ainda
+estará abaixo dessa mínima.
+
+Os compradores de ordem limitada
+que compraram na mínima dessa barra,
+
+eles tiveram sua ordem executada aqui.
+
+Eles poderiam fazer scalp
+para sair aqui mesmo.
+
+Eles também poderiam segurar a compra.
+
+Novamente, como eu disse, este era um padrão ioi,
+uma barra externa seguida por uma barra interna.
+
+Portanto, a barra antes da barra
+externa deve estar dentro.
+
+Se estiver do lado de fora,
+a barra anterior tem que estar dentro.
+
+Ainda estamos no fundo duplo aqui.
+
+Temos a compra acima do fundo duplo,
+e isso é uma correção.
+
+É uma bandeira de alta.
+
+Os compradores estão esperando que seja
+uma tendência de alta de correções rasas,
+
+então uma tendência de alta em que você obtém
+uma correção rasa, uma barra ou duas, não muito baixa,
+
+e você vai para cima, e depois
+outra correção rasa e vai para cima.
+
+Você pode comprar acima
+do topo desse padrão ioi?
+
+Eu acho que está tudo bem.
+
+Está fechando acima da média móvel.
+
+Estamos em modo sempre comprado.
+
+O problema é que você está comprando
+no topo de uma lateralidade,
+
+no topo de um triângulo, e isso é
+uma probabilidade um pouco mais baixa.
+
+Agora, o que você faz?
+
+Temos outro padrão ii.
+
+Par de barras internas,
+e também é um padrão ioii.
+
+Então ainda temos o padrão ioi aqui,
+e agora é ioii.
+
+Não importa que agora seja uma barra interna;
+ainda é um padrão de modo rompimento.
+
+É uma barra de baixa
+fechando perto de sua mínima,
+
+então você começará a ter alguns vendedores
+vendendo abaixo da mínima dessa barra.
+
+Mas ainda temos uma barra de alta
+fechando perto de sua máxima.
+
+Você terá compradores comprando
+acima da máxima dessa barra.
+
+Mesmo que esta barra seja uma barra de baixa,
+esta barra é uma barra de alta muito boa.
+
+É o modo rompimento.
+
+Os traders comprarão acima dessa barra de alta,
+que também é a máxima dessa barra de baixa,
+
+e venderão abaixo dessa barra.
+
+Duas pernas para cima – uma, correção,
+duas.
+
+Duas pernas para cima – uma, correção,
+duas.
+
+Lembre-se, aqui eu disse que o objetivo
+mínimo para os compradores
+
+era algumas pernas para cima,
+e é isso que temos.
+
+Uma, correção, duas.
+
+No momento, ainda está na compra
+acima disso e na compra acima disso.
+
+É um pouco mais altista do que baixista.
+
+Não poderia estar indo para o lado se fosse 60%
+ou 70% certo de que estávamos indo para cima.
+
+É melhor que 50%, mas não 60%.
+
+Agora, você pode realizar essa venda?
+
+Você pode.
+
+As barras são bem pequenas.
+
+Você pode tentar fazer scalp por 2 pontos
+e pode mudar para 1 ponto,
+
+já que estamos em uma lateralidade estreita
+por 8 barras aqui, daqui até aqui.
+
+Sem muito potencial de lucro.
+
+Se você vendeu abaixo dessa barra,
+provavelmente ficará desapontado com isso.
+
+Se você vendeu abaixo dela, caiu 6 ticks.
+
+Se você está fracionando a entrada por 1 ponto,
+tem que cair 6 ticks para fazer 1 ponto.
+
+Você vende 1 tick abaixo da barra
+de baixa, tem que ir mais 4 ticks
+
+para atingir sua ordem limitada, e tem que ir
+mais 1 tick para ter sua ordem limitada executada.
+
+Fez exatamente isso.
+
+Essa mínima está
+exatamente 6 ticks abaixo disso.
+
+Assim, os vendedores que venderam isso
+conseguiram fazer scalp por 1 ponto.
+
+Agora, e os compradores?
+
+Eles vão comprar acima dessa barra?
+
+Bem, temos barras de baixa consecutivas.
+
+Você pode retraçar o triângulo.
+
+Em vez de uma, duas, três,
+agora pode ser uma, duas e três.
+
+Mas 2 barras de baixa não é
+uma ordem stop de compra muito boa.
+
+Por ser uma lateralidade estreita, você
+obterá traders de ordens limitadas comprando.
+
+Eles podem não comprar
+a mínima dessa barra,
+
+mas podem comprar um ponto ou mais
+abaixo – 1 ponto abaixo, 2 pontos abaixo
+
+– apostando que continuaremos a reverter.
+
+Os vendedores que venderam abaixo do padrão
+ii, as barras estão ficando menores.
+
+Se eles tivessem feito scalp por 1 ponto,
+eles teriam feito seu 1 ponto.
+
+Eles teriam saído aqui,
+1 tick abaixo da mínima da barra.
+
+Essa sombra no fundo da barra
+informa que os vendedores
+
+que venderam abaixo
+dessa barra de baixa fizeram scalp.
+
+Eles fizeram scalp por 1 ponto.
+
+Ela caiu 6 ticks e reverteu para cima.
+
+Isso indica que havia muitos
+compradores lá embaixo.
+
+A maioria desses compradores
+são vendedores fazendo scalp.
+
+Alguns desses compradores são compradores comprando
+um ponto ou mais abaixo da mínima dessa barra de baixa,
+
+apostando que os vendedores
+iriam fazer scalp - e também,
+
+porque é uma lateralidade estreita,
+
+os traders comprarão abaixo das coisas
+e fracionarão a entrada mais baixo.
+
+Você pode retraçar o triângulo.
+
+Ainda é uma lateralidade estreita,
+desde aqui, mas uma barra de alta.
+
+Não é uma boa venda abaixo.
+
+Uma barra de baixa.
+
+Não é uma boa compra acima.
+
+Provavelmente mais traders de ordens limitadas,
+comprando um ou dois pontos abaixo de uma barra anterior,
+
+vendendo um ou dois pontos acima de uma barra
+anterior e tentando fazer scalp por 1 ponto.
+
+Compradores de ordem limitada, se eles
+comprassem, eles teriam feito 1 ponto.
+
+Não tenho certeza se vale a pena comprar
+com uma ordem stop após 2 barras de baixa
+
+no topo de uma lateralidade estreita.
+
+Sombra grande no topo,
+então outra reversão para baixo.
+
+Você pode retraçar o triângulo.
+
+Ainda no modo rompimento, mas acho
+que ainda estamos em modo sempre comprado.
+
+Uma boa reversão aqui
+e uma boa reversão aqui.
+
+Isso não é tão bom assim.
+
+Isso não é tão bom assim.
+
+Então eu acho que ainda é
+um pouco mais altista.
+
+Como eu disse, é pouco melhor que 50/50.
+
+Não poderíamos estar indo para o lado
+em uma lateralidade estreita se um lado
+
+ou o outro tivesse 60% ou 70%
+de chance de um rompimento.
+
+Se fosse tão obviamente altista
+ou tão obviamente baixista,
+
+estaria rompendo bem agora.
+
+Não estaríamos indo de lado assim.
+
+Barra muito boa.
+
+Por quê?
+
+Bem, olhe para a máxima da barra.
+
+Primeiro de tudo, é uma grande
+barra de alta fechando em sua máxima.
+
+Barras de alta consecutivas,
+e fechou acima dessa máxima
+
+e fechou acima daquela máxima,
+e fechou acima dessas barras.
+
+Então fechou acima
+da máxima das últimas 15 barras.
+
+Barra de rompimento muito boa.
+
+Alguns compradores comprarão o fechamento,
+alguns comprarão em um stop acima da máxima,
+
+esperando que finalmente
+iremos para cima.
+
+Temos um fundo duplo, uma reversão majoritária
+de tendência de mínima ligeiramente mais alta,
+
+e uma lateralidade.
+
+Duas pernas para baixo – uma, correção,
+duas.
+
+Não é uma boa barra de sinal de compra,
+mas agora estamos indo para o lado de cima.
+
+Quando você deseja comprar, você quer
+barras de sinal de compra de boa aparência
+
+com bom contexto – tem que fazer
+sentido quando você olha para a esquerda
+
+– ou espera por um forte rompimento.
+
+Este é um exemplo de uma barra de sinal
+de compra ruim, mas um bom rompimento.
+
+Fechou acima de todas essas barras,
+até aqui fora.
+
+Isso aumenta as chances
+de que estamos indo mais alto,
+
+então você terá compradores
+comprando acima da máxima dessa barra.
+
+Alguns compradores esperarão
+para ver a barra de continuidade,
+
+e se a barra de continuidade for uma grande
+barra de alta fechando perto de sua máxima,
+
+ou mesmo uma pequena barra de alta,
+eles comprarão o fechamento da barra,
+
+ou comprarão acima da máxima da barra.
+
+Barras ficando maiores novamente, então se você
+estiver fazendo scalp, você volta para 2 pontos.
+
+Grandes barras de alta consecutivas
+fechando em suas máximas.
+
+Dois fechamentos acima da lateralidade.
+
+Provavelmente vamos para cima.
+
+Essa é claramente
+uma retomada da tendência de alta,
+
+e é o movimento mais forte para cima
+ou para baixo durante todo o dia.
+
+Então é uma compra de fechamento,
+comprar a mercado.
+
+Você compra acima das barras.
+
+Você pode fazer swing ou scalp.
+
+É uma surpresa de alta.
+
+Isso é uma surpresa, mas agora temos 2 grandes
+barras de alta fechando perto de suas máximas.
+
+Isso é ainda mais uma surpresa.
+
+Uma surpresa normalmente terá pelo menos
+um par de pernas laterais para cima.
+
+Os traders comprarão a primeira
+tentativa de reverter para baixo,
+
+confiantes de que obteremos
+uma segunda perna para cima.
+
+Se você comprou acima da máxima dessa
+barra, você pode fazer scalp por 2 ponto,
+
+ou pode segurar para fazer um swing.
+
+Uma vez que essa barra fecha,
+é outra compra acima da máxima da barra
+
+ou a mercado assim que a barra fecha.
+
+Se você comprou acima dessa barra
+e não fez scalp, pode comprar mais aqui.
+
+Você pode fazer várias compras no caminho para cima
+se o tamanho da sua conta for grande o suficiente,
+
+e se você estiver operando
+uma posição pequena o suficiente.
+
+Uma barra de alta,
+mas uma barra de alta menor.
+
+No entanto, ainda está fechando em,
+ou se aproximando de, sua máxima
+
+e estamos rompendo
+para uma nova máxima do dia.
+
+Ainda é uma comprar em fechamento,
+compre a mercado assim que a barra fechar
+
+ou compre acima da máxima da barra.
+
+Mas possível topo duplo aqui,
+então podemos realizar lucros em breve.
+
+Os compradores podem comprar
+acima da máxima dessa barra.
+
+Eles poderiam comprar
+acima da máxima dessa barra.
+
+Desapontamento.
+
+Então, se você comprou acima da máxima
+dessa barra e não fez scalp para sair,
+
+ou se você comprou acima
+da máxima dessa barra
+
+e vê um pequeno doji de baixa revertendo
+para baixo, possível topo duplo,
+
+muitos dos compradores sairão e então
+espere pelo próximo sinal de compra.
+
+Você não precisa.
+
+Temos 4 barras de alta,
+uma surpresa de alta.
+
+Devemos obter
+uma segunda perna para cima.
+
+Você poderia usar um stop mais amplo.
+
+Minha regra geral no gráfico de 2 minutos é
+sair um tick abaixo de uma barra de baixa forte;
+
+saia 4 ticks ou mais abaixo de uma barra
+de alta ou uma barra de baixa fraca.
+
+Então você pode sair
+4 ticks abaixo disso.
+
+E quanto à venda?
+
+Uma grande L2.
+
+Uma perna para cima, correção,
+segunda perna para cima.
+
+Um topo duplo.
+
+Isso é muito forte.
+
+Lembre-se, é uma surpresa de alta.
+
+Devemos ter uma segunda perna para cima
+
+e, portanto, eu não estaria vendendo
+abaixo dessa barra.
+
+Alguns compradores compraram
+acima da máxima da barra.
+
+Eles ficaram desapontados
+com a barra quando ela fechou,
+
+e podem tentar sair
+no ponto de equilíbrio.
+
+Eles poderiam sair
+no ponto de equilíbrio.
+
+Uma vez que essa barra fecha, eles podem colocar
+uma ordem limitada para sair no ponto de equilíbrio
+
+ou com um ou dois ticks de perda.
+
+Ou eles podem sair um ponto ou dois
+abaixo da mínima dessa barra.
+
+É provável que haja
+compradores abaixo dessa barra.
+
+Não é uma venda de boa aparência,
+e temos 4 barras de alta,
+
+3 fechando em, ou perto de, suas máximas.
+
+Devemos ir para cima,
+então provavelmente há mais compradores
+
+do que vendedores abaixo dessa barra.
+
+Então, alguns compradores realmente comprarão nessa
+mínima ou comprarão um ponto abaixo, 2 pontos abaixo.
+
+Máxima mais alta, então é uma máxima mais alta
+em forma de topo duplo com uma barra de baixa,
+
+mas um micro canal de alta de 6 barras
+e uma reversão para cima muito boa.
+
+Devemos obter uma segunda perna,
+então eu não estaria vendendo ainda.
+
+Agora temos um micro
+canal de alta de 7 barras.
+
+A barra de alta está fechando na metade
+superior, mas essas 2 barras são pequenas.
+
+Os corpos estão encolhendo.
+
+Aqui, menor, barra de baixa,
+barra pequena.
+
+Portanto, estamos obtendo lucros aqui,
+
+e essa é uma compra em fechamento menos confiável
+ou compre acima da máxima da barra.
+
+Podemos estar entrando
+em uma lateralidade estreita.
+
+Você ainda pode comprar, mas provavelmente
+precisa de um stop largo.
+
+Um stop largo significa coisas
+diferentes para pessoas diferentes.
+
+Em geral, quando você
+está fracionando a entrada por 2 pontos,
+
+provavelmente é melhor sair um ponto
+ou dois abaixo de uma barra de alta
+
+e um tick abaixo de uma barra de baixa
+fechando abaixo de seu ponto médio
+
+e tendo mais de um corpo
+de baixa de 1 ponto.
+
+Temos uma barra de baixa significativa.
+
+É razoável sair abaixo
+da mínima da barra.
+
+Não foi abaixo da mínima da barra.
+
+Por que não?
+
+Os compradores sabiam que se fosse
+abaixo da mínima dessa barra,
+
+muitos compradores começariam a sair.
+
+Então, o que os compradores fizeram?
+
+Assim que a barra de baixa fechou,
+eles compraram.
+
+Eles não queriam que a próxima
+barra ficasse abaixo de sua mínima.
+
+Eles não querem sair.
+
+Eles acham que vamos conseguir
+uma segunda perna para cima.
+
+Os compradores que compraram aqui, os compradores que compraram
+acima daquela barra tiveram sua ordem executada aqui.
+
+Eles poderiam fazer scalp para sair aqui.
+
+Agora, isso pode ser uma terceira
+perna para cima – uma, duas, três.
+
+Assim, podemos realizar algum lucro.
+
+Ainda não há motivo para vender,
+mas estamos obtendo barras de baixa aqui.
+
+Podemos começar a ter ordens limitadas -
+esta é uma bandeira de alta em forma de H1.
+
+Temos uma barra de baixa aqui,
+uma segunda barra de baixa.
+
+Então você pode começar a obter
+alguns vendedores vendendo,
+
+seja na máxima dessa barra ou um ponto
+ou dois acima da máxima da barra,
+
+apostando que essas barras são um sinal
+de que o mercado está ficando exausto
+
+e podemos entrar em uma lateralidade.
+
+H1, mas 2 barras de baixa e uma barra
+de baixa de tamanho significativo
+
+e uma terceira perna para cima
+– uma, duas, três.
+
+Lembre-se, os compradores estão procurando
+uma segunda perna para cima depois disso.
+
+Eles conseguiram.
+
+Eles podem obter uma terceira,
+quarta e quinta perna para cima,
+
+mas no mínimo estão procurando
+uma segunda perna para cima.
+
+Além disso, passamos muito tempo
+andando de lado aqui.
+
+Isso pode não acabar
+como uma tendência de alta muito forte.
+
+Em breve,
+poderá entrar em uma lateralidade.
+
+Agora, alguns vendedores vão vender essa máxima
+e começar a fracionar a entrada mais alto,
+
+um ponto ou dois mais alto,
+apostando que voltaremos a essas mínimas,
+
+que esta é uma área de concordância
+– 3 barras laterais e temos uma cunha.
+
+Em geral, quando o mercado está
+em uma tendência de alta razoavelmente forte,
+
+você não deve vender
+com ordens limitadas.
+
+Às vezes eu faço isso,
+mas você tem que ter muito cuidado.
+
+Você tem que ter certeza de que isso
+não vai continuar indo para cima.
+
+Tem que haver alguma razão para você pensar
+que não vai continuar indo para cima.
+
+Bem, tivemos muitas barras de baixa aqui,
+uma lateralidade aqui,
+
+e agora estamos começando a obter barras
+de baixa aqui e é uma terceira perna para cima.
+
+Então, alguns vendedores vão vender isso
+e vender mais alto, ou em vez de vender aqui,
+
+eles podem começar
+a vender 2 pontos mais alto.
+
+Os traders não gostam de reverter,
+então os traders que vendem aqui
+
+não são compradores
+que realizam lucros e revertem.
+
+Estes são simplesmente vendedores apostando
+que vamos para baixo o suficiente para um scalp.
+
+Barra de baixa fechando em sua mínima.
+
+Na verdade, é um padrão ioi.
+
+Essa é uma barra externa,
+e agora temos uma barra interna.
+
+Então, teoricamente,
+é uma venda abaixo aqui.
+
+É um topo em forma de L2 - L1, L2, além
+de termos uma cunha – uma, duas e três.
+
+Não estou pronto para vender com um stop.
+
+Ainda é uma tendência de alta de correções
+rasas, um canal estreito de alta.
+
+Para os compradores, isso é uma H1,
+
+mas estamos começando a obter
+barras de baixa – aqui, aqui, aqui.
+
+A contagem pode mudar.
+
+Então pode ser que seja perna 1,
+correção, perna 2, correção, perna 3.
+
+Então, em vez de uma cunha
+estar aqui – uma, duas, três
+
+– isso pode ter começado
+a contagem novamente,
+
+então isso é uma, correção,
+duas, correção, três.
+
+Em geral, se é uma terceira perna para cima clara
+e você está começando a obter barras de baixa,
+
+você só realiza a compra se puder
+tomar decisões muito rápidas,
+
+porque muitas vezes ela irá
+para cima apenas uma barra ou duas
+
+e depois reverterá
+e obterá um par de pernas para baixo.
+
+Alguns vendedores venderam essa máxima, venderam
+mais alto, ou simplesmente venderam mais alto,
+
+e tiveram que cair 1 tick abaixo da máxima
+dessa barra para que eles saíssem
+
+com lucro em sua venda mais alta e no ponto
+de equilíbrio na primeira venda - foi isso que aconteceu.
+
+Isso foi apenas 1 tick abaixo disso,
+
+para que os vendedores pudessem sair com lucro
+nessa venda e no ponto de equilíbrio nessa venda.
+
+Os vendedores estão
+começando a ganhar dinheiro.
+
+Se os vendedores estão começando a ganhar
+dinheiro em uma tendência de alta,
+
+a tendência de alta está
+se tornando mais fraca
+
+e aumenta as chances de obtermos
+uma lateralidade em breve.
+
+Uma H1, mas uma terceira perna para cima
+– uma, correção, duas, correção, três.
+
+É uma compra confiável, mas se você é
+um comprador que comprou acima dessa barra
+
+e você tem isso para sua barra
+de entrada e então você tem isso,
+
+muitos compradores tentarão sair
+em torno do ponto de equilíbrio,
+
+pensando que podemos
+começar a corrigir em breve.
+
+4 barras pequenas
+em uma lateralidade estreita
+
+e depois 3 barras
+em uma lateralidade estreita aqui.
+
+Essa não é uma boa operação
+de ordem stop.
+
+É mais um mercado de ordens limitadas,
+uma lateralidade estreita.
+
+E foi isso que fizemos.
+
+Andamos de lado lá.
+
+Lateralidade estreita.
+
+É um mercado de ordens limitadas.
+
+Os traders compram abaixo,
+compram mais baixo, fazem scalp para sair.
+
+Eles vendem acima,
+vendem mais alto e fazem scalp para sair.
+
+A maioria dos traders não deve operar
+em uma lateralidade estreita,
+
+especialmente quando as barras
+são pequenas como essa.
+
+Eles vão perder dinheiro.
+
+São cerca de 2 horas
+de operação e, nessas 2 horas,
+
+se você somasse todos os ganhos e perdas,
+
+terminaria com 18 pontos em 2 horas.
+
+Isso é cerca de US$ 900 no Emini
+e, em seguida, você subtrai as comissões.
+
+Mas se você operasse perfeitamente,
+
+poderia ganhar US$ 900
+em algumas horas por contrato.
+
+No gráfico de 2 minutos, há pelo menos 50
+ou mais scalps razoáveis ​​por dia.
+
+Um scalper realmente agressivo pode
+realizar metade deles ou um terço deles.
+
+A maioria dos traders que operam de forma muito
+intensa e agressiva o faz por uma ou duas horas
+
+de cada vez,
+porque se torna muito estressante.
+
+Eles ficam cansados.
+
+Eles têm dificuldade em se concentrar.
+
+Eles perdem a vantagem.
+
+Eles não podem tomar
+decisões rápido o suficiente.
+
+Se operaram bem, já têm muito lucro,
+então há menos incentivo.
+
+Lembre-se, quando você está operando,
+você tem dois objetivos.
+
+Um é ganhar dinheiro
+e o outro é ser feliz.
+
+Você está planejando fazer isso
+por uma carreira, por muito, muito tempo,
+
+e não pode ficar estressado o tempo todo.
+
+Se você tentar realizar todas
+as operações, ficará infeliz.
+
+Você não será capaz de fazer isso.
+
+Você pode ir no YouTube e assistir aquele
+episódio de “I Love Lucy” na década de 1950,
+
+o episódio “I Love Lucy
+and the Chocolate Factory”,
+
+e isso lhe dá uma ideia do que acontece
+quando você tenta fazer demais.
+
+É um vídeo de apenas 2 minutos,
+então você pode se divertir.
+
+Há muitas opções disponíveis
+para scalpers, certo?
+
+Existem diferentes maneiras de fazê-lo.
+
+Mas esta é uma versão razoável
+do que os scalpers fariam.
+
+Novamente, a maioria dos scalpers
+não realizará todas essas operações,
+
+mas um bom scalper realizará muitas delas
+e terá uma porcentagem de vitórias muito alta.
+
+Isso é teórico.
+
+É uma boa prática pensar em setups.
+
+É bom ser rápido
+no reconhecimento de padrões.
+
+A maioria dos traders ganhará mais dinheiro
+nas operações de swing e entrará com stops.
+
+No entanto, existem alguns traders
+que são scalpers extremamente bons.
+
+Eles ganham 80%, 90% das vezes e podem
+fazer 10, 20, 30 operações por dia,
+
+e podem ter uma vida muito boa.
+
+A maioria dos traders ficará
+estressada e não gostará de fazer isso.
+
+A maioria dos traders não pode fazer isso, mas aqueles
+que podem, muitos que podem, ficarão estressados.
+
+Não há problema em fazê-lo em arrancadas
+por meia hora ou uma hora ou mais,
+
+mas ao tentar fazer isso para ganhar a vida,
+você não será capaz de fazê-lo.
+
+É muito melhor procurar fazer operações
+de swing, entrar com ordens stop.
+
+Muito menos estresse, muito mais lucro.
+
+Eu faço muito scalp.
+
+Muitas vezes eu realizo uma operação
+que é uma possível operação de swing,
+
+mas isso me decepciona assim que eu entro,
+e eu acabo fazendo scalp.
+
+Eu nunca fiz scalps
+perfeitamente por um dia inteiro,
+
+e faço isso há quase 35 anos.
+
+Eu nunca conheci ninguém que tenha
+feito scalp perfeitamente por um dia inteiro.
+
+Mas se você for um bom scalper,
+poderá ganhar muito dinheiro
+
+se realizar muitas operações
+e gerenciá-las bem.
+
+Mais uma vez, aqui é o Al Brooks.
+
+Muito obrigado pela sua atenção.
+
+Espero que você ache este vídeo útil.

@@ -1,0 +1,1751 @@
+This is Al Brooks.
+
+Thank you for watching
+the Brooks Trading Course.
+
+This is the third of
+five videos on scalping.
+
+Ticks are an indicator,
+and most brokers provide data on ticks.
+
+The New York Stock Exchange has
+about 3,000 stocks – for example, IBM
+
+- and if IBM goes up on the current trade,
+
+then it has a tick value
+of +1 in the ticks index.
+
+If Apple goes down on the current trade
+compared to the last trade,
+
+it has a value of -1.
+
+The ticks indicator is the sum
+of all of those +1’s and -1’s.
+
+Stocks that are unchanged
+have a value of zero.
+
+Ticks provide a tool to find some trades.
+
+If the ticks are constantly
+above zero, the market is bullish.
+
+Traders typically look to buy.
+
+If the ticks are below zero, the market
+is bearish and traders look to sell.
+
+There are also tick divergences.
+
+In an extremely strong market,
+the price can get higher and higher
+
+- the price of the Emini
+– and the tick value can get less high.
+
+That often signals an upcoming reversal.
+
+Finally, I want to talk
+about gap open bars.
+
+On the 5-minute chart of the Emini
+– well in fact, any timeframe
+
+- if the current bar opens
+above the close of the last bar,
+
+there’s a gap, and that’s a gap open bar.
+
+Also, if the current bar opens
+below the close of the prior bar,
+
+that is also a gap bar.
+
+If you have a series of gap up bars
+and the bars are bull trend bars,
+
+that is bullish and it usually
+leads to higher prices.
+
+If you have a series of gap down bars
+within a series of bear bars,
+
+that’s a sign of very aggressive selling,
+and it usually leads to lower prices.
+
+I have a 1-minute chart of the Emini,
+and I have the tick chart down below,
+
+a 1-minute chart of the ticks.
+
+The red line is -1,000.
+
+The top red line is +1,000,
+and then the blue lines are +700 and -700.
+
+The New York Stock Exchange has
+about 3,000 stocks on the exchange.
+
+If the current trade of a stock is above
+the last trade, that adds +1 to the ticks.
+
+If the current trade is the same as
+the last trade, it adds 0 to the ticks.
+
+If the stock is now trading below
+its last trade, it adds -1 to the ticks.
+
+The current tick value on
+the chart below is the sum
+
+of all the ticks for the 3,000 or so stocks.
+
+If the ticks equal 1,000
+– here, slightly above 1,000
+
+- then 1,000 more stocks went up
+than down on the last trade.
+
+For example, let’s say right here,
+at that instant 600 stocks were unchanged
+
+(their last trade was
+the same as the trade before),
+
+and 2,200 stocks went up
+(the current trade is above the prior trade),
+
+and 1,200 stocks traded
+below their last price.
+
+Then the value of the ticks is 0, +2200,
+-1200, and you get a 1,000 tick reading.
+
+The opposite took place down here,
+where you got a -1,000 tick reading.
+
+You can see the low of that bar was -1,009.
+
+That means there were 1,009 more stocks
+on the New York Stock Exchange
+
+that went down on their last trade
+compared to those that went up.
+
+The high of this bar
+on the tick chart is 1,052.
+
+Therefore, the difference
+between the number of stocks
+
+that went up on their last trade
+compared to the number of stocks
+
+that went down on the last trade was 1,052.
+
+That means most stocks are going up.
+
+It makes sense that if most stocks
+are going up, then the indices would go up.
+
+The Emini is the futures contract
+based upon the S&P 500 contract.
+
+Not the New York Stock Exchange,
+but a very high degree of correlation.
+
+If the Emini is sideways to up
+and then has a bear breakout,
+
+traders look for the first reading
+below -700 or even below -1,000 as a sign
+
+that the momentum down is strong.
+
+Most stocks are going down.
+
+When that’s the case, usually
+the first reversal up will fail
+
+and the market will go
+at least a little bit lower.
+
+Very strong bear breakout.
+
+Even without looking at the ticks, you know
+the odds are high the first reversal up
+
+will fail and lead to a new low.
+
+Traders watch the ticks.
+
+When they see a new bear breakout
+and a tick reading below -1,000,
+
+some of them will sell
+instantly at the market,
+
+thinking that the market will
+go at least a little bit lower.
+
+It’s a reasonable scalp trade.
+
+They might sell the close of the next bar.
+
+They might sell at the market
+as soon as the tick reading hit -1,000.
+
+They might sell above a reversal bar,
+
+betting that the first reversal up will fail
+and you’ll have to have a Higher Low
+
+in ticks and a Lower Low in price
+before there’s much chance of a bounce.
+
+In the Emini, it’s a high probability
+trade for a 1 point scalp.
+
+If a trader sold that close
+and scaled in, sold more 1 point higher,
+
+his stop would be all the way up here.
+
+He’s never going to let that stop get hit.
+
+He would exit long before then.
+
+However, he would sell the close,
+sell more higher,
+
+and then possibly look to get out
+breakeven on his first entry
+
+and then with a 1 point scalp
+on his second entry.
+
+Or he could exit at the low, thinking that
+the odds were high the low in ticks
+
+will not be the low in price.
+
+Price will go down a little bit more.
+
+Here, ticks fell
+almost to the blue line, -700,
+
+but we’re getting near the end of the day.
+
+Remember, this is a 1-minute chart.
+
+You can see it’s already 12:50 Pacific Time,
+
+so there’s not much trading left to the day,
+
+and therefore selling with limit orders
+on a rally is a risky thing to do.
+
+When the bears see this
+very strong reading in ticks
+
+during an initial bear breakout,
+the start of a possible bear trend,
+
+they’ll sell for any reason.
+
+They’ll sell the close
+of the bar that hit -1,000.
+
+They’ll sell a reversal up.
+
+Here we got a small Double Top bear flag
+– this high and then that high.
+
+So Low 1, Low 2.
+
+Sell that for a scalp.
+
+We have a strong rally up,
+but again, it’s a 1-minute chart.
+
+First pullback to the Moving Average.
+
+Traders will look to sell.
+
+After 6 bull bars, they might
+take the second entry down,
+
+which would be to sell below
+this bear bar closing on its low.
+
+Again, this is a 1-minute chart,
+
+and most traders should not
+be trading the 1-minute chart.
+
+However, these are the kinds
+of things that scalpers will do
+
+when they see a dramatic drop in ticks
+or a dramatic rally in ticks.
+
+They’ll do the opposite up here,
+expecting the high in ticks
+
+will not be the final high in price.
+
+Remember, these are scalps, so traders
+are looking to exit with a 1 point profit.
+
+The range here, while it looks big,
+is really not all that big.
+
+This is a 1-minute chart,
+and this is about a 6 point range,
+
+and therefore scalping
+for 1 point is reasonable.
+
+If the market is sideways to down
+but then has a bull breakout,
+
+traders look for the first tick reading
+
+above 700 (the blue line) or above 1,000.
+
+Once they see it, they expect
+the market to go a little bit higher.
+
+Here, you can see we touched the blue line,
+
+700 in ticks, and we’re in a bear trend.
+
+We’re getting a pretty good reversal.
+
+Again, 1-minute chart.
+
+It’s a scalp.
+
+A lot of traders will buy at the market
+or they’ll buy a 1 point pullback
+
+on the first touch of +700 on
+a reversal up, expecting that the market
+
+will go at least high enough up for a scalp.
+
+Let’s say you buy the close of that bar
+when it first hit a tick reading of 700.
+
+You can buy more lower,
+betting that the odds
+
+are high you’ll be able to make a profit.
+
+So, for example, you buy
+a 1 point pullback from the first entry,
+
+and then you get out
+breakeven on your first entry
+
+and then with a 1 point scalp
+on your second entry.
+
+You can buy for any reason.
+
+You can buy at the close
+of the bar that hit 1,000.
+
+You can buy below its low,
+a bull bar, a bad sell.
+
+You can buy 1 point down.
+
+You can buy at a pullback
+to the 1-minute Moving Average.
+
+Your risk is at least below here,
+
+so you’re risking 3 or 4 points
+to make a 1 point scalp.
+
+If you manage the trade properly
+and are willing to scale in
+
+and are quick to decide that the trade
+is bad, it’s a profitable strategy.
+
+There are many “ifs” in that sentence.
+
+Some traders will exit with a 1 point scalp,
+
+wherever they bought
+– below bars, above bars.
+
+Very strong bull breakout.
+
+Ticks hit 1,000.
+
+They went above 1,000,
+and therefore a new high in ticks
+
+and a new extreme in ticks.
+
+Very bullish.
+
+Most stocks are going up.
+
+Traders will buy at the market.
+
+They’ll buy a reversal down,
+they’ll buy a resumption up,
+
+betting that the final price will be
+above the price when ticks hit 1,000.
+
+Usually the high in ticks does not
+correspond to the final high in price.
+
+Usually price goes higher
+after you get an extreme reading
+
+of ticks early in a trend.
+
+Traders will therefore bet
+the first reversal down will fail.
+
+They’ll buy below the bull bar.
+
+They’ll buy above the High 1.
+
+We have a little pullback.
+
+They’ll look to buy at the Moving Average.
+
+They’ll buy the breakout
+of this small bull flag
+
+- bull breakout,
+small pullback, it’s a bull flag
+
+- and then look to take profits
+about a point higher.
+
+If they buy up here, their stop
+is probably going to be below the bottom
+
+of this very strong bull breakout.
+
+It should not fall below here,
+if in fact the trade is good.
+
+First pullback to the Moving Average,
+a Double Bottom bull flag.
+
+A breakout.
+
+Again, this is a 1-minute chart,
+and most traders should not be doing this.
+
+However, scalpers – experienced scalpers
+– do trade like this.
+
+They look for all kinds
+of little tricks on the tick chart
+
+to help them find trades on the Emini chart.
+
+Now here, again,
+we’re hitting 1,000 in ticks.
+
+The first time during a rally
+that has gone on for 30, 40, 50 bars.
+
+Look at the rally.
+
+It’s a stair-step pattern.
+
+We have a breakout,
+a pullback below the breakout.
+
+A new high and a pullback
+below the breakout.
+
+A new high.
+
+We’re probably going
+to pull back below the breakout,
+
+and we’re also probably near
+the potential top of a Trading Range.
+
+This looks like
+a bull leg in a Trading Range.
+
+When that’s the case,
+when you get an extreme reading
+
+in ticks occurring late in a trend,
+you have to be careful
+
+that it might be
+an exhaustive end of the trend
+
+and not the start of
+an even stronger part of the trend.
+
+Again, subjective, but in general
+if you’re looking to buy ticks,
+
+you want to buy them early
+in a trend, not late in a trend.
+
+Late in a trend, it’s more likely
+to be a climactic end of the trend
+
+than the start of an even stronger leg up.
+
+We’re stair-stepping up.
+
+We go above this high, we pull back.
+
+Above this high, we pull back.
+
+Above this Double Top, we pull back.
+
+Well, what do you think is going to happen
+
+when we get above this high and this high?
+
+We’re probably going to pull back.
+
+With this many stairs,
+chances are the market’s going to enter
+
+a Trading Range fairly soon,
+or possibly even a bear trend,
+
+and therefore buying a new high reading
+in ticks is a low probability bet.
+
+A possible blow-off in ticks,
+possible blow-off in the stock market.
+
+Traders will wait to see
+if the bears get stronger.
+
+For example, like a very Tight Bear Channel,
+
+in which case they’ll stop looking to buy.
+
+You want high tick readings
+early in a reversal or early in a trend.
+
+Those have a high probability
+of follow-through trading.
+
+Again, we have a 1-minute Emini chart,
+a 1-minute tick chart.
+
+Look at this.
+
+The ticks hit about -1,000.
+
+I don’t know if it’s quite there,
+but very close to it on this bar.
+
+It’s also a fourth new low in ticks.
+
+Ticks made a new low here,
+a new low here, new low here, new low here.
+
+This is a possible climactic end of a trend.
+
+Usually the low value in ticks
+is not the final low value in price.
+
+Here we have ticks almost to 1,000,
+-1,000, and here’s the price.
+
+Usually that will not be
+the end of the trend.
+
+Usually you’ll get at least
+a little bit lower price
+
+and a higher value in ticks.
+
+You get some kind of divergence,
+a tick divergence,
+
+and it leads to at least a bounce.
+
+Again, a low tick reading,
+-1,000, late in a trend
+
+- especially a trend that’s stair-stepping
+down either in price or in ticks
+
+- there’s a higher chance that
+it is a climactic end of the trend
+
+rather than an acceleration
+into an even stronger trend.
+
+I want to talk now about tick divergences.
+
+Sometimes when you have a Buy Climax,
+the highs of the ticks will get less,
+
+and sometimes the buying
+will get less as well,
+
+and it often leads to a scalp
+in the opposite direction.
+
+The opposite’s true at a low.
+
+If you have a series of Sell Climaxes,
+the tick value can get less negative
+
+and it can result in a buy setup.
+
+Stock market is rallying.
+
+Emini 1-minute chart.
+
+We have a new high in price,
+but look at this.
+
+Ticks hit 1,000 over here,
+and we have a new high in price
+
+and a Lower High in ticks.
+
+Therefore, fewer stocks are going up
+compared to the number of stocks
+
+that went up over here,
+yet the prices are going higher.
+
+Then here, we have a strong breakout
+to a new high, and look at ticks.
+
+We have fewer stocks trading above
+their last trade at this Higher High
+
+in price than what we had over here.
+
+This is a tick divergence,
+and it increases the chances
+
+that the bull trend
+will either turn into a bear trend
+
+or a Trading Range very soon.
+
+The high in ticks, the first time you hit
+1,000, usually not the end of the move.
+
+We went up a little bit more, and then
+we went up more again 30 bars later.
+
+Bulls will buy the first high in ticks,
+which would be over here,
+
+or they’ll buy the reversal down, betting
+that the first reversal down will fail.
+
+The traders who did buy this breakout,
+some of them will buy more lower.
+
+If they bought this,
+they might buy more lower as well.
+
+They always want
+the second entry to be at least as big
+
+as a scalp below their first entry,
+
+and then they look to get out
+at their first entry.
+
+For example, if you bought that high close
+and you bought more down here,
+
+this entry, you want it
+to be at least a point below that
+
+so that when it gets back
+to that high close,
+
+you get out with a 1 point scalp here
+and you can get out breakeven here.
+
+The Emini sold off at this price.
+
+It pulled back at around that price again,
+
+and it might pull back when
+it’s up at that price a third time.
+
+We’re getting a tick divergence.
+
+You can see at this price,
+we have ticks here,
+
+and the ticks here, later, are lower.
+
+So, we have a tick divergence from
+this high to that high, ticks getting lower,
+
+and we have a tick divergence
+from this high to that high.
+
+So, ticks getting lower.
+
+That increases the chances that
+this is near the end of the move
+
+and that the rally might soon be converting
+
+into either a Trading Range or a bear trend.
+
+I had a friend years ago – I traded
+with him for a year or two in a chatroom,
+
+and this is what he did all day long.
+
+He would simply look at a 1-minute chart
+of the Emini versus ticks
+
+and look for one
+or two tick divergences a day.
+
+He was trading 25 contracts,
+looking for a 1 point scalp.
+
+I have no idea whether
+or not he was profitable.
+
+However, the way he talked
+made me believe that he was profitable,
+
+that he was picking
+the right trades to fade.
+
+We have a bull trend on the 1-minute chart,
+and it’s pretty strong right here.
+
+Therefore, only experts should
+ever consider selling a tick divergence
+
+in a reasonably strong bull trend.
+
+It’s just too easy to make mistakes
+– and remember, this is a 1-minute chart,
+
+and most traders should
+not be trading the 1-minute chart.
+
+However, as I said,
+experienced traders are looking for scalps,
+
+and some of them do trade 1-minute
+tick divergences and 1-minute tick extremes.
+
+Ticks are going down over here.
+
+Traders will expect that
+this bear reversal, 20 bars or so,
+
+is probably enough so that
+we’re converting into a Trading Range.
+
+This looks like Trading Range price action.
+
+This looks like Trading Range price action.
+
+Traders therefore will
+look to sell at a prior high,
+
+especially when the ticks
+are at a Lower High.
+
+They’ll sell either with a limit order
+at that prior high or on a reversal down.
+
+Here we have an ioi
+and a bear bar closing on its low.
+
+Some traders will sell
+on a stop below that bear bar
+
+and then try to exit 1 or 2 points down.
+
+Tick divergence.
+
+Here we got a very strong Sell Climax,
+and the low in ticks is about -1,000.
+
+That’s probably not going
+to be the low in price.
+
+However, if we make a low in price
+and ticks do not make a new low,
+
+that increases the chances
+that we’ll get a reversal
+
+at least into a Trading Range.
+
+The first time down
+– ticks to -1,000 in a new bear breakout
+
+- traders will sell for any reason.
+
+They’ll sell bear closes, they’ll sell
+above bars, they’ll sell reversals down,
+
+looking for at least a scalp,
+
+expecting the Emini to make
+at least one more new low.
+
+Then they try to exit at
+the prior low or with a 1 point scalp.
+
+If the Emini is at a confluence of support
+
+- for example, you don’t see
+the bars to the left here,
+
+but if this is the 5-minute
+Moving Average and a Wedge Bottom
+
+on the 5-minute chart,
+a 50% pullback of a rally
+
+- if there are many things going on here
+that increase the probability
+
+that bulls will come in,
+if you then also see a tick divergence,
+
+this could be the end of the pullback
+and it could lead to a resumption
+
+of the rally that you see
+on the higher timeframe chart.
+
+When that happens, bulls will
+start buying at prior lows in price,
+
+expecting that the tick divergence
+will lead to at least a bounce
+
+and possibly a resumption of
+the bull trend on the higher timeframe chart.
+
+Again, you have a very strong bear breakout.
+
+Buying in a very strong bear trend
+based upon anything, a tick divergence,
+
+is a very difficult way to make a living.
+
+Only expert traders
+should consider doing this.
+
+There are many decisions
+that a trader has to make
+
+when trading a 1-minute chart
+in a tick divergence.
+
+Most beginners cannot make the decisions
+accurately fast enough in the time
+
+that they have on a 1-minute chart,
+and therefore it’s a dangerous strategy.
+
+If an expert trader did buy
+the reversal up, he could scalp,
+
+get out with a 1 point scalp,
+or he could hold for a swing trade,
+
+especially if this is at a support area
+on a higher timeframe chart,
+
+like the 5-minute chart.
+
+Here the market’s in a bear trend.
+
+Some traders will watch tick rallies
+when the Emini is in a bear trend,
+
+expecting the tick rallies to correspond
+to a bear flag on the 1-minute chart,
+
+and therefore they’ll look to sell.
+
+For example, strong bull close above
+zero in ticks probably is not going to lead
+
+to a tick reversal if the ticks
+have been mostly negative.
+
+Sometimes they’ll sell with
+limit orders at prior highs and ticks.
+
+We have ticks going above this high,
+and as soon as that happens,
+
+an Emini trader might sell at the market,
+
+looking for at least
+a little bit lower in price.
+
+Again, a new high in ticks,
+but in a bear trend,
+
+so as soon as it happens
+some traders might sell at the market,
+
+expecting that they’ll be able
+to make at least a scalp.
+
+Ticks going above the prior high in ticks.
+
+Traders sell at the market,
+looking for a scalp down.
+
+This high in ticks
+is above that high in ticks,
+
+and traders will therefore
+look to sell at the market
+
+when this bar goes above
+the high of that tick bar,
+
+looking for at least a 1 point scalp.
+
+We have a Wedge in price
+– one, two, three
+
+- a Wedge Bottom,
+and ticks are making a Higher Low.
+
+We’re getting a tick divergence,
+a new low in price, a Higher Low in ticks.
+
+Often leads to a transition
+into a Trading Range.
+
+Then look what’s taking place over here.
+
+The market’s sideways in a bear trend.
+
+After about 20 or 30 bars,
+the probability of trend reversal up
+
+is about the same as trend resumption down.
+
+But take a look at what took place here.
+
+Most of the ticks are above zero.
+
+That increases the chances
+that we’ll get a bull breakout.
+
+In any case, because
+the market’s in a Trading Range,
+
+bulls will look to buy whenever
+the ticks get near prior lows
+
+or slightly below prior lows.
+
+Here you can see we were right
+at that low and we got a little bounce.
+
+Bulls might buy here, risk 2 or 3 points,
+and try to get a 1 point scalp.
+
+Again, ticks are at this prior low.
+
+Bulls will look to buy.
+
+Now we’re starting to get a bull breakout,
+and we’re getting a big bear bar.
+
+Again, ticks are at the prior low in ticks.
+
+Every time the market has been here,
+the selling has stopped.
+
+We’re getting a little bit of a bounce.
+
+Bulls will buy this little tail
+at the prior low in ticks
+
+because every time the market
+gets to this tick level,
+
+we’ve been getting a bounce in ticks,
+
+and it usually corresponds
+to a bounce in price.
+
+It can be the start of a swing,
+but I’m talking about scalps,
+
+and most traders taking
+that kind of a trade will scalp.
+
+I mentioned that we had a bear trend
+
+and we were sideways
+for about 30 bars, maybe 40 bars.
+
+But look at ticks during that time.
+
+Ticks are mostly above zero,
+yet price is below the Moving Average
+
+and we’re in a bear trend.
+
+That increases the chances that
+we’re going to get a bull breakout.
+
+Also, we have several
+tick readings around 700.
+
+We have no tick readings around -700.
+
+So ticks are getting bullish
+and price is neutral.
+
+That increases the chances
+that we’ll get a bull breakout.
+
+If the current bar opens
+above or below the close of the prior bar,
+
+that is a gap open bar, and sometimes
+
+that can be useful in
+making decisions on your trades.
+
+If you have a gap open, it can increase
+the probability of a trend continuing
+
+or it can increase the probability of
+a trend reversing, depending on the context.
+
+It’s good to help traders find scalps.
+
+Also, if you’re in a strong trend,
+it’s a good sign that a trend is strong
+
+and you can enter in the direction
+of the trend, expecting a swing.
+
+We’re in a bull trend,
+and then we have a bull flag
+
+- a High 1, High 2, both with bull bodies.
+
+Then we have this very big outside down bar.
+
+This looks like it’s reversing
+this strong bull bar,
+
+and therefore instead of a bull flag
+leading to a resumption of the bull trend,
+
+we’re getting a bear breakout
+below the bull flag.
+
+That’s bearish.
+
+Then look at the next bar.
+
+Its open is below
+the close of the prior bar.
+
+What does that tell you?
+
+It tells you that a lot of traders
+concluded by the close of this bar
+
+that the market’s probably going lower,
+and as soon as this bar closed,
+
+a lot of traders just hit
+the button to sell the market,
+
+and there were so many traders
+eager to sell at the close of this bar,
+
+the next bar opened below that close.
+
+That is a sign of eager bears or bulls
+eagerly giving up, desperate to give up.
+
+Then we have another bear bar here,
+
+and look what happened
+when the next bar opened.
+
+Another gap.
+
+The open of this bar
+is below the close of that bar
+
+- a sign of strong selling
+early in a bear trend.
+
+The market is probably going lower
+and probably will have a couple legs down.
+
+Therefore, traders are selling the close.
+
+As soon as they see that close,
+they’re hitting sell the close.
+
+That tells you that it’s probably
+a good thing to do as well.
+
+You either start to sell closes
+or you sell at the market,
+
+and you sell closes
+because you’re confident
+
+that one of two things is going to happen.
+
+One is the market will go straight down
+and you’ll be able to make a profit.
+
+Or if the market reverses,
+the reversal will be minor
+
+and either become a bear flag,
+in which case prices go lower,
+
+or become a Trading Range, in which case
+it’ll come down to your original sell
+
+and you’ll be able
+to get out without a loss.
+
+Look at this.
+
+We have a close here,
+and look at the open of the next bar,
+
+its open above the close of this bar.
+
+There’s a gap up.
+
+However, it’s a very strong bear trend,
+and the reversal up is minor.
+
+Also, the entry bar
+for the bulls above this bar is a doji,
+
+and the follow-through is a doji.
+
+This looks like a weak trend,
+and therefore this gap up
+
+is probably not going to lead to a reversal.
+
+It’s probably going to lead to
+a bear flag and lower prices.
+
+Traders will then either sell the open
+as soon as they see a gap above this close,
+
+or they’ll sell a bull bar, or they’ll
+look to sell after a reversal down.
+
+They expect that this gap up
+is not a sign of strong bulls;
+
+it’s a sign of a bear flag.
+
+Now look at this open.
+
+This bar, a big bear bar, and then
+the next bar opens below that close.
+
+It’s similar to this and this,
+and pretty much this.
+
+This opened at the close,
+but a strong bear bar followed
+
+by a strong open for the bears.
+
+What’s different this time?
+
+Consecutive Sell Climaxes.
+
+We have a Sell Climax, a Sell Climax,
+and then a second leg down
+
+and a very big bear bar.
+
+Just about the biggest bear bar
+in the entire bear trend.
+
+It’s therefore more likely to be
+an exhaustive end of the trend
+
+than the start of a new leg down.
+
+Experienced traders who see the biggest
+bear bar in about 20 bars in a bear trend,
+
+especially after a Low 2
+late in the trend, a potential Final Flag,
+
+and then sideways bars, bull bars, tail
+– they will be thinking
+
+that this big bear bar is more likely
+an exhaustive end of the trend.
+
+They’ll either buy the close of that bar,
+or if they see it reverse up quickly,
+
+even if it’s a gap down,
+they’ll assume that the gap down is a trap
+
+and that the market’s going higher.
+
+Sell Climax.
+
+Low 2 bear flag.
+
+The biggest bear bar late in a trend.
+
+A lot of two-sided trading here,
+big tail here.
+
+Probably an exhaustive Sell Climax.
+
+The bulls will probably
+get at least a scalp
+
+and possibly a strong minor reversal up.
+
+A lot of bulls will just buy the close,
+and then when they see the gap down
+
+and the market start to reverse up,
+they’ll think that the bears are trapped
+
+and buying back their shorts.
+
+Here we have a gap up.
+
+The open of this bear bar
+is above the close of this bull bar.
+
+There’s a gap up here as well.
+
+The open of this bar
+is above the close of that bar.
+
+We have a strong reversal.
+
+However, it’s a very Tight Bear Channel,
+
+and the first reversal up is probably minor.
+
+It could go up a long way,
+but it’s still probably a minor reversal.
+
+Strong enough reversal up,
+a second leg up is likely.
+
+Some bulls will buy at
+the low of this bar and scale in lower,
+
+betting that we’ll get a Higher Low
+and either sideways or a second leg up.
+
+We have a gap down on this bar, following
+3 dojis, and a second leg up is likely.
+
+It’s a small cup and handle pattern.
+
+We have a reversal and then a bull flag.
+
+The market’s probably going higher.
+
+Traders are looking for reasons to buy.
+
+They’ll either buy
+at the low of the prior bar
+
+or they’ll buy at the close of this bar,
+and if they see a gap down,
+
+a lot of traders, as soon as they see
+the gap down, will hit Buy the Market,
+
+looking for at least a scalp up.
+
+Tight Trading Range.
+
+If the market’s trying
+to break to the downside,
+
+the odds are it’s not going to get very far.
+
+If it tries to break to the upside,
+
+it’s probably not going
+to get very far as well.
+
+Also, the first reversal up in a very
+strong bear trend is still a minor reversal
+
+and the bear trend will probably resume.
+
+Once it resumes, then you might
+get a Major Trend Reversal.
+
+Here we have an attempt
+at a Higher Low Major Trend Reversal,
+
+and another one here.
+
+So now it’s a Double Bottom Higher Low.
+
+A lot of bear bars here.
+
+Probably a minor reversal.
+
+A lot of bear bars here.
+
+This is also probably a minor reversal.
+
+Bull bar.
+
+We have a bull bar, a doji
+– in other words, not a bear bar
+
+- another bull bar,
+and now we have a gap up,
+
+the open of this bar
+above the close of that bar.
+
+A lot of bulls will buy the close
+looking for at least a scalp up.
+
+Look at this rally.
+
+Spike, pullback, channel.
+
+On a smaller timeframe chart,
+it’s probably a Parabolic Wedge.
+
+We have a bull bar and then a pause,
+2 bull bars and then a doji,
+
+a pause, and then a small rally.
+
+So, it’s a Spike and Channel.
+
+A Parabolic Wedge – first push
+or first push, second push, third push.
+
+It’s a breakout test of the low of the day
+and it’s about a 50% pullback.
+
+There’s a gap below the low of
+this bar and the Moving Average,
+
+and the same with all 4 of these bars.
+
+These are Moving Average Gap bars
+in a bear trend.
+
+It usually leads to
+a resumption of the bear trend.
+
+But when that bear trend resumes,
+there’s usually an attempt
+
+at a Major Trend Reversal
+after this minor reversal.
+
+The bulls got two Major Trend Reversal
+attempts, and both failed.
+
+That’s likely.
+
+All Major Trend Reversals only have
+about a 40% chance of leading to a swing up.
+
+60% chance of a small profit,
+like here and here, or a small loss.
+
+Look at the open of this small bull doji
+and the close of that bear bar.
+
+There’s a gap up.
+
+Do you think this is
+a resumption of the trend?
+
+Well, we thought we were
+going to get two legs up
+
+after this Sell Climax
+– one, pullback, two.
+
+We have a series of gap bars
+to resistance and a minor reversal.
+
+The market’s probably going down
+for at least a couple legs.
+
+One and then maybe sideways and then two.
+
+Therefore, a lot of bears, when they see
+this gap up, think that it’s a bull trap.
+
+It’s trapping bulls into buying high,
+and aggressive bears
+
+will sell the close of
+that bull bar or sell at the market
+
+when they see that gap up, looking for
+at least a second leg down to support.
+
+Spike, pullback, channel.
+
+This is the beginning of the channel.
+
+This is probably two legs down to
+the area of the beginning of the channel.
+
+These are advanced trades.
+
+Beginners are not going to be taking
+these trades, but experts will take them.
+
+This open is above this close.
+
+The bulls tried to get a reversal;
+they failed.
+
+A lot of bulls bought that close.
+
+A lot of bulls, when they saw
+this bear close, thought it was a bear trap
+
+and were hoping that the market would
+immediately reverse up, as it did here.
+
+The close of this bar,
+the market never went below it.
+
+The bulls were so eager to buy
+that they bought the close
+
+and the market rallied strongly.
+
+The bulls were hoping that
+this was going to be the same case here,
+
+that it was going to be a bear trap.
+
+A big bear breakout below a bull flag,
+a bear breakout below a bull flag.
+
+The bears were hoping for this.
+
+However, this was
+a strong enough minor reversal
+
+that more traders thought
+we were going to try to resume up.
+
+Tight Bear Channel, a lot of bear bars.
+
+This is probably also going
+to be a minor reversal,
+
+even though when you look at it,
+it is a Higher Low Major Trend Reversal.
+
+Some bears might sell
+on the close of this bar,
+
+looking for a little bit more down.
+
+I suspect that more bulls bought it,
+and that’s why this close is above this bar.
+
+The bears got a small second leg down.
+
+Gap down.
+
+We have a gap up here
+and we have a gap down here,
+
+but look at the bars before the gap.
+
+A big bear bar – good
+– but then a couple dojis,
+
+testing the bottom of the channel,
+and a possible
+
+Higher Low Major Trend Reversal
+after gap bars in a bear trend
+
+and a very strong minor reversal up.
+
+A lot of traders, when they see
+the bear trend weakening, getting small body
+
+and smaller body, as soon as it opens
+below that close, a lot of bulls will buy,
+
+thinking that it’s not going lower
+
+and maybe it’ll be
+a  Higher Low Major Trend Reversal.
+
+Experienced traders
+know the selloff is so tight,
+
+the reversal is probably going to be minor,
+
+and therefore they’re looking for a scalp.
+
+But it is a reasonable scalp.
+
+It’s also testing the high of this
+buy signal bar, and it’s around this price.
+
+The market reversed up,
+the market reversed up,
+
+the market reversed up at this price level,
+
+and now we’re testing that level again.
+
+We reversed up, we reversed up.
+
+A lot of bulls, as soon as they saw
+the market open below the close of that bar,
+
+they bought, betting that
+it would reverse up again.
+
+Low of this bar below the close of that bar.
+
+Tight Trading Range.
+
+Possible bull flag.
+
+Rally, pullback.
+
+A lot of bulls in a Tight Trading Range
+are looking for reasons to buy.
+
+They’ll buy below bars, like below this bar,
+
+and if the market gaps down below a close,
+
+they’ll buy looking for
+at least a small second leg up.
+
+Testing the top of the range.
+
+It sold off, sold off, sold off,
+sold off at this general price area.
+
+Therefore, it’s probably
+not going a lot higher.
+
+Even though Major Trend Reversal,
+very Tight Bear Channel,
+
+this is more likely going to be
+a bull leg in a Trading Range.
+
+Strong enough for a second leg up
+– one and then a two-legged pullback down.
+
+Reasonable to buy looking
+for at least a scalp up.
+
+Close of this bar is above
+the open of that bar – a sign of buying.
+
+But a tail on the top of the bull bar.
+
+3 bear bars closing below their midpoints,
+having decent size bodies.
+
+Probably a strong enough reversal down
+for at least a small second leg down.
+
+Some bears, as soon as they saw
+this bar open above that close,
+
+thought it would be a bull trap,
+trapping traders into buying
+
+a possible Major Trend Reversal
+when we’re probably going
+
+to get at least a small second leg down.
+
+Now we have another attempt
+at a Higher Low Major Trend Reversal.
+
+It’s a big High 2.
+
+First leg down, so High 1, not a good-looking
+High 1, and then a second leg down.
+
+So, it’s a High 2.
+
+But a very Tight Bear Channel.
+
+Probably, again, a minor reversal
+like this, and it reversed up strongly
+
+but stalled at the top of the Trading Range.
+
+Reasonable to buy.
+
+We have a gap up above
+the close of this bull bar.
+
+That tells you that a lot of bulls
+think this is a Major Trend Reversal
+
+or a Double Bottom
+at the bottom of a Trading Range,
+
+and that the market
+should come up and test here.
+
+It might continue a lot higher,
+but it should come up
+
+and test near the top of the range
+– here, here, here, somewhere up here.
+
+Enough room for a scalp.
+
+Big gap up.
+
+The open of this bar
+above the close of this bar.
+
+But look to the left.
+
+What happened at this price prior?
+
+It sold off, it sold off,
+it sold off, it sold off.
+
+This is two legs up – one, pullback, two.
+
+Not a good location for a buy,
+especially late in the session.
+
+If you have a Buy The Close finish,
+
+normally it’ll last 4 or 5, 6 bars,
+and then you get a reversal.
+
+One, two, three, four, five, and you’re
+buying the close of the fifth bar.
+
+I would not do that.
+
+I think it’s more likely going
+to stall at the top of the range.
+
+At the end of the day, a Buy The Close
+rally and you get 4 or 5 bull bars,
+
+it’s usually better not to buy,
+especially at resistance.
+
+If traders do buy – if they buy
+the close of this bar or this bar –
+
+if they buy the close of this bar,
+they get filled here.
+
+If they buy the close of this bar,
+immediately reverses down.
+
+A Buy The Close finish, end of the day.
+
+Traders get out either 1 tick below
+a bear bar or 3 or 4 ticks below a bull bar.
+
+Once it gets 3 or 4 ticks
+below that bar, the bulls sell.
+
+The bears know the bulls sell.
+
+The bears sell as well for a scalp down.
+
+Ticks can be useful
+to help traders find scalps,
+
+either with the trend or against the trend.
+
+If the ticks are positive,
+traders tend to look to buy.
+
+If they’re negative,
+they tend to look to sell.
+
+If there’s a tick divergence after a climax,
+
+traders will often look for a scalp
+in the opposite direction (a minor reversal).
+
+Then gap bars.
+
+If the open of the current bar is
+above or below the close of the past bar,
+
+that’s a gap bar, and that
+can either be a sign of strength
+
+and lead to continuation
+or it can be a reversal.
+
+This is Al Brooks.
+
+This is the third of
+five videos on scalping.
+
+Thank you for watching
+the Brooks Trading Course.

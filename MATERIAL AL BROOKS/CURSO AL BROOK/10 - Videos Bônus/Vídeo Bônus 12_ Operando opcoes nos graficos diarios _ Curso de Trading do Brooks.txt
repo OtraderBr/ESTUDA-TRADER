@@ -1,0 +1,2201 @@
+This is Al Brooks, and this is
+my Price Action Trading Course.
+
+The current module is about
+trading options based on daily charts.
+
+So, why trade options on the daily charts?
+
+One obvious answer is traders are
+always looking for ways to make money.
+
+Day traders don’t like much overnight
+risk, and options allow day traders
+
+to take positions on patterns
+that they see on the daily charts
+
+– patterns that might take
+several days to reach targets,
+
+and the day traders can take those
+positions without much overnight risk.
+
+The absolute risk is smaller than
+on the underlying stock.
+
+So if you trade puts or calls
+or spreads, what you stand to lose
+
+if the absolute worse happens is always going
+
+to be much less than the underlying stock.
+
+I’m talking about if you’re buying options;
+
+I’m not talking about if you’re selling.
+
+Obviously, if you’re selling
+naked puts or naked calls,
+
+you could lose as much
+as you can trading stocks.
+
+Also, the cost of execution
+and the profit trading options
+
+is about the same as it is for stocks.
+
+Most importantly for
+most traders is peace of mind.
+
+The less you have to worry about money,
+
+the more objective
+you are about your decisions.
+
+And if you have a big gap against you in
+the morning and you have an option position,
+
+it’s going to be much less costly
+
+than if you were holding
+a position in the underlying.
+
+Traders always ask me about
+the Greeks when trading options.
+
+Professional option traders
+pay attention to certain things
+
+that they describe with Greek symbols,
+like delta, theta, gamma, and vega.
+
+You do not need them to trade profitably.
+
+If you’re a professional options trader,
+you’re trying to maximize your profits
+
+and you’re looking at the options all
+day long, and you can get slightly better
+
+or optimal positions/strategies
+if you pay attention to the Greeks.
+
+But most option traders
+who trade options profitably, pay
+
+virtually no attention to
+the Greeks whatsoever.
+
+You also don’t have to
+worry about taking the perfect option
+
+because all the different strike prices
+are arbitraged, one with another.
+
+Everything is just tightly arbitraged
+and it’s all done by computers,
+
+so nothing can get that much out of line.
+
+So as long as you pick something reasonable
+
+– for example, around At The Money
+and not too near.
+
+So if you’re looking for a trade that’s
+going to last 3 days, a week, or 2 weeks,
+
+make sure to pick an option that’s going
+
+to expire 4 to 8 weeks out
+and around At The Money.
+
+That’s all you have to do, and I would
+give no thought at all to the Greeks.
+
+You hear me many times in this
+course talk about trading small,
+
+especially when the stop has to go far away.
+
+However, for option traders,
+they can use stock replacement strategies
+
+as an alternative to trading small.
+
+For example, let’s say the market
+is in a strong bull trend,
+
+and the stock has to go
+three times further away
+
+than you normally want your stop to be.
+
+What an options trader
+will do or what a stock trader
+
+who also trades options
+will do is he’ll sell one of his stock
+
+and he’ll replace his stock
+with an options strategy.
+
+The most obvious and easy ones are
+you might buy a call or a call spread.
+
+If the market’s in the breakout phase
+of a bear trend and there are no pullbacks
+
+and the stop has to go far,
+far above where you are right now,
+
+an alternative to trading very small
+and putting the stop far away
+
+is to buy back your short and
+replace it with a simple options strategy
+
+– for example, buying a put
+or buying a put spread.
+
+Therefore, you’ve immediately
+greatly contained your risk.
+
+For example, if you buy a put, the
+most you can lose is the price of your put,
+
+and that might be 1% or 2% of
+the current price of the underlying stock.
+
+So your risk has become greatly smaller
+by replacing your stock position
+
+with a position in the options market.
+
+A lot of traders don’t trade options,
+
+but that is a very popular strategy for
+traders who trade both stocks and options.
+
+There are other, more advanced
+strategies, like collaring up,
+
+but I’m not going to go
+through them in this course.
+
+Sometimes there’s something going on
+in a stock that makes you want to be long,
+
+but the risk is too great.
+
+Option traders have an alternative
+to trading a very small size.
+
+So let’s say you have a very large open
+profit and the profit just keeps growing,
+
+and now your stop is very, very far away.
+
+The total dollars at risk is much greater
+than you’re accustomed to trading,
+
+so you know you have to
+reduce your position size.
+
+Beginners tend to look at
+their big open profits and say,
+
+“Hey, it’s other people’s money.” No, it’s not.
+
+It’s in your account.
+
+It’s your money.
+
+So you have to adjust your position size
+based upon your Actual Risk at the moment.
+
+You can either greatly
+reduce your position size
+
+– if that makes your position size
+so small that it’s not worth continuing
+
+to hold the position,
+you have an alternative.
+
+You could simply sell out
+of your entire position
+
+and replace it with an options strategy.
+
+The obvious one if it’s
+a bull market is to buy a call,
+
+or to buy a call spread if
+you’re expecting a move that will go up
+
+for 4, 5, or 10 more percent over
+the course of the next several weeks.
+
+Then go ahead and buy a call spread.
+
+If you’re expecting a more modest move
+or if you’re expecting a much faster
+
+or very sharp move up,
+just go ahead and buy a call.
+
+Other strategies, like collaring up,
+
+are beyond the scope of
+my intentions for this course.
+
+But right now, I do want to talk a
+little bit about what you do as an alternative
+
+to using a stop that’s just too far away
+and you don’t want to trade too small.
+
+Sometimes if you either own
+a stock and the stop is very far away
+
+or if you’re thinking about buying
+a stock and the stop is very far away,
+
+you can have an alternative
+to simply trading very small.
+
+Options offer a very good alternative.
+
+Let me give you two examples.
+
+One is let’s say you bought
+a stock somewhere down here,
+
+the SPDR on the daily chart,
+and now it’s up here.
+
+And let’s say your stop is down here,
+and you’ve been scaling out.
+
+So now you’re down to maybe 100 shares,
+
+but your 100 shares times $5
+– that might be more than you care to risk.
+
+That would be $500.
+
+You might say,
+“Well, I don’t want to get down to zero.
+
+I still want to participate.” An alternative
+is to sell out of your SPDR shares
+
+and instead replace your
+stock position with an options position,
+
+and an obvious one would be a call.
+
+You just buy an At The Money call,
+1 month out or 2 months out.
+
+So at this point you’d be long a call.
+
+If you’re looking to hold for 2 to 3
+months, maybe for a 5% or 10% gain,
+
+you could go ahead and buy a call spread.
+
+But if you’re thinking
+the market might just go up
+
+another 2% or 3% over the next few weeks,
+just go ahead and buy the call.
+
+Let’s say instead of being long
+all the way down here,
+
+let’s say you’re flat for whatever reason
+
+and you decide you want to buy up in this area.
+
+You know your stop goes down here,
+
+and if that results in a risk that’s
+too big for you, don’t buy the stock.
+
+Just go ahead and buy the call.
+
+You might be able to buy an
+At The Money call 3 or 4 weeks out for $2.
+
+In other words, times 100 shares,
+your actual cost would be about $200.
+
+Yes, you won’t make as much
+as you would had you bought
+
+100 shares of the SPDR,
+but risk will be less.
+
+If you buy the SPDR and your stop is
+down here, you’re risking $500 on 100 shares.
+
+If you buy a call for $2, your risk is $2.
+
+The most you can lose is $2,
+and yet you’ll still have a good gain
+
+if the market goes up here.
+
+So options provide an alternative to stocks
+
+whenever the risk is big – in other words,
+whenever your stop is far away.
+
+For those traders who did buy
+down here, if the market is up here,
+
+they can argue,
+“Well, I’m trading other people’s money,
+
+and therefore I don’t care if I lose $5.”
+That’s not true.
+
+Once the money is in your account,
+it’s your money.
+
+It’s not other people’s money.
+
+It’s your money, and you have to trade it
+
+as if you just put the trade on right here,
+
+not as if you put the trade on down here.
+
+You always have to mark
+your position to the market.
+
+So if you’re long, it doesn’t matter
+if you bought down here.
+
+If this is today and you’re
+currently long and your stop is down here,
+
+this is your risk.
+
+It’s not other people’s money that’s at risk.
+
+It’s your risk.
+
+You constantly have to be reassessing
+your position based upon your current stop,
+
+your current position size,
+and the current price.
+
+It’s your money.
+
+It’s always your money
+if it’s in your account.
+
+Here’s the 5-minute Emini chart,
+and let’s say for whatever reason,
+
+you did not get long earlier
+and you decide to get long up here.
+
+You know that your stop
+is below the bottom of the bull spike.
+
+You say, “Wow, that’s 8 points away.
+
+I can’t risk 8 points.
+
+And yet I only trade 1 Emini contract,
+so I can’t take the trade.”
+
+An alternative to doing that
+is to use options.
+
+You could simply go ahead and
+buy an At The Money weekly SPDR call.
+
+Or if it’s still too expensive,
+buy a slightly Out of The Money SPDR call.
+
+Options are a very good alternative to stocks,
+
+especially a big market
+like the Emini or the SPDR.
+
+SPDR calls have a tremendous volume.
+
+They’re excellent alternatives
+to taking outright positions
+
+in the SPDR or the Emini.
+
+Let’s give an alternate example here.
+
+Let’s say you happen to buy here,
+and you’re still long here.
+
+Your stop is now 7 points away
+and you don’t want to risk that much,
+
+yet you think the market
+is still going a lot higher.
+
+You should be reducing your
+position size to keep the risk the same,
+
+but if it’s too far away and
+you can’t reduce your position size,
+
+instead of continuing to hold your Emini
+and using a stop that might be too tight,
+
+like maybe below this bar,
+what you could do is simply sell out
+
+of your Emini position
+and go ahead and buy a SPDR call,
+
+an At The Money SPDR call, a weekly call,
+
+and that would be a very good alternative.
+
+Let’s say you bought it and it cost 80 cents.
+
+Let’s say you bought a weekly call.
+
+The most you can lose is 80 cents,
+which times 100 shares is $80.
+
+So the most you can lose is $80, and
+if the market goes up for a Measured Move
+
+based on the height of this spike,
+
+you probably will make
+$80 by the end of the day.
+
+There are stock replacement
+strategies for bearish positions.
+
+If a trader finds that his stop
+has to be so far above his entry price,
+
+the position would be so small it’s
+not worth taking, yet he feels the trend
+
+is strong and he wants to participate,
+he has a stock alternative,
+
+and that is in the options market.
+
+He could buy a put or
+he could buy a put spread.
+
+Let’s say he sold way up here
+and the market’s way down here,
+
+and his stop has to be much higher up
+than what he is comfortable using.
+
+He could just buy back his stock,
+his short, for a profit and then go ahead
+
+and put on an option position
+like buying a put or buying a put spread,
+
+and that will allow him to continue
+to participate on the downside.
+
+There are other alternatives,
+like ratio put spreads
+
+and calendar put spreads and put flys,
+
+but they’re beyond what
+I want to discuss in this course.
+
+Here’s an example of a bear trend
+in the SPDR on the daily chart.
+
+I want to talk about it in two different ways.
+
+Let’s say you are flat and
+you see this big bear spike occurring
+
+late in the bear trend, and you decide
+that the market is going down more.
+
+You’re correct.
+
+That makes sense whenever
+the trend is this strong.
+
+And you decide you want to sell, to go short,
+
+but your stop might be above
+the top of this bear spike.
+
+It might be above the most recent Lower High.
+
+It might even be simply above
+the beginning of this bear spike.
+
+In any case, let’s say
+it’s further away than you want to risk,
+
+yet you want to participate on the downside.
+
+A good alternative is to
+simply go ahead and buy a put.
+
+You can wait for a pullback
+and buy the put at the market,
+
+or you can wait to see if the market trades
+
+below the low of the prior bar
+and at this point buy a put.
+
+If you buy a put here and the market
+goes up here, that’s $2 on the SPDR.
+
+You might be very nervous
+if you shorted the SPDR,
+
+but if you bought an At The Money put,
+maybe you paid $2 for it here.
+
+At this point it might be down to $1.
+
+But your risk is still $2.
+
+Even if the put goes to zero,
+you lose no more than $2.
+
+It allows you to hold on,
+and at this point you might be able
+
+to exit your put for $3 and have a $1 profit.
+
+You might not be comfortable
+emotionally as you shorted here, the SPDR,
+
+if the market ran up a dollar
+or two above your entry price.
+
+But the put is a good alternative to that.
+
+The other alternative that I was talking
+about is instead of being flat down here
+
+and wanting to get short,
+let’s say you were short from up here
+
+and now the market’s down here,
+and you think,
+
+“Gosh, my stop has to be above the bear spike
+
+or above the Lower High,
+and that’s far more than I want to risk.
+
+Let’s say it’s five times more
+than I want to risk.”
+
+You can reduce your
+position size to a 20% size,
+
+but if the position size is so small
+that you don’t want to continue to hold,
+
+you can replace your stock position,
+your short SPDR position, with a put.
+
+You simply buy back your stock for a profit
+
+– if you sold it up here,
+you have a big profit.
+
+You can then go ahead
+and buy a put or a put spread
+
+to try to capture any additional gain
+that the market might offer you.
+
+Abbreviations.
+
+These are probably familiar with everyone.
+
+At The Money, ATM.
+
+Out of The Money, OTM.
+
+In The Money, ITM.
+
+So if a stock is at 100
+and you buy a 100 call, it’s At The Money.
+
+If you buy a 100 put, it’s At The Money.
+
+If you buy a 90 put,
+it’s way Out of The Money.
+
+If you buy a 90 call,
+it’s way In The Money.
+
+AIL, Always In Long.
+
+It means it’s a clear bull trend.
+
+Always In Short, a clear bear trend.
+
+And how long should you hold options?
+
+Day traders are always
+looking for a quick profit.
+
+When I trade options, most of
+my exits are usually within 1 to 3 days,
+
+although sometimes I’ll hold
+positions for several weeks.
+
+For example, if I’m trading based
+on a pattern on the weekly chart,
+
+I may be trading an option
+that expires 2 or 3 months out,
+
+and I’m willing to hold
+the option for several weeks
+
+if I think that’s how long it will take
+for the option to reach my profit target.
+
+Which option to use,
+an At The Money put or a call?
+
+Monthly options?
+
+Weekly?
+
+In general, I use At The Money puts and calls.
+
+I also do a lot of spread trading,
+and I usually use monthly options
+
+and not weekly options when
+I’m planning on holding trades overnight.
+
+The weekly options expire on Friday,
+
+so you don’t want to be
+taking an overnight position
+
+if today’s Wednesday because
+you’ll lose too much due to time decay.
+
+I usually trade the nearest option
+that has at least 2 to 3 weeks remaining.
+
+I usually prefer 1 to 2 weeks
+remaining in case I get into the position
+
+and the market starts to go sideways,
+yet I still think my position is valid.
+
+If the option expires in 2 weeks,
+the time decay is too great.
+
+I lose too much every day,
+and it makes it harder to make a profit.
+
+How much does a $1 call really cost?
+
+If I pay a dollar for a call,
+that call entitles me
+
+to buy 100 shares of stock
+at whatever strike price it is.
+
+So let’s say it’s a stock that trades at $50,
+
+and I buy a $50 call
+and I pay a dollar for that call.
+
+I’m entitled to buy that call for $50,
+even if the stock goes up to $60.
+
+So in other words, I can pay $50
+for it even though it’s currently $60,
+
+so I immediately have a $10 profit,
+and I paid $1 for the option.
+
+My net profit is $9.
+
+If the call costs $1, that’s $1 per share.
+
+One option, one call,
+controls 100 shares of stock.
+
+So if I pay a dollar,
+if the price on my computer says
+
+that it’s a dollar for the call,
+I’m actually paying $100 for that call.
+
+If I pay a dollar for the call
+and sell it for $2.50, I made a $1.50,
+
+but that’s times 100 shares,
+so my actual profit is $150.
+
+Execution costs: you can usually find brokers
+
+that will charge you
+a dollar commission to buy
+
+and then another
+dollar commission to sell.
+
+So if you buy 10 calls,
+your round trip commission would be $20.
+
+$10 to enter, $10 to exit.
+
+And there’s also
+a bid/ask spread to consider.
+
+Any time you buy anything – a stock or
+a future – there’s always a bid/ask spread.
+
+The bid/ask spread is very big
+on thinly traded options,
+
+and because it’s so big on
+options that don’t trade very actively,
+
+it’s better not to trade them.
+
+In huge markets like the SPDR,
+the spread is usually only 1 tick,
+
+which is 1 penny, times 100 shares
+is $1 per call or per put.
+
+The bid/ask spread can be huge.
+
+When Apple’s trading around $600,
+
+the bid/ask spread can be 10 cents,
+sometimes 20 cents.
+
+You can say, “I don’t want
+to pay 10 cent spread on a call.
+
+That’s way too much.”
+But on a percentage basis,
+
+a 10 cent spread on
+a $600 stock is exactly the same
+
+as a 1 penny spread on a $60 stock,
+and that’s a very good spread.
+
+Very small spread for traders.
+
+So when Apple has a 10 cent spread
+or even a 20 cent spread,
+
+that’s actually a very good deal for traders.
+
+What are the execution costs?
+
+Let’s say you’re talking about the SPDR
+
+and you bought a call and paid $1.70 for it.
+
+You’re buying it at the asking price.
+
+If you immediately turned around and sold it
+
+and the SPDR itself did not move a single
+tick, you’d have to sell it at the bid.
+
+Let’s say it’s $1.69.
+
+So you’d immediately lose $1,
+that 1 penny spread times 100 shares.
+
+But you would also pay $1 to buy,
+$1 to sell in commissions,
+
+so your total loss would be $3.
+
+So even though the SPDR did not
+move a tick, it would cost you $3.
+
+And if you were trading
+100 calls, that would be $300.
+
+At The Money volume can be huge, and
+that creates the tightest bid/ask spread.
+
+With very big volume stocks and ETFs,
+
+that allows you to use
+market orders – like the SPDR.
+
+You can usually use market orders
+when you’re trading At The Money
+
+calls on near dated options,
+like weekly options
+
+or options expiring just a few weeks out.
+
+What exactly is At The Money (ATM)?
+
+The stock is really exactly
+at the options strike price.
+
+For example, let’s say
+the stock is 140.25.
+
+There is no strike at that price.
+
+There’s a 140, there’s a
+140.50, a 141, but no 140.25.
+
+One nice thing about the SPDR
+is a lot of times they’ll have strikes
+
+that are 50 cents apart,
+so on the weekly options,
+
+a lot of times
+they’ll have a 140.50 call or put.
+
+If the SPDR’s at 140.40, you’re not
+forced to buy the 140 call or the 141 put.
+
+You can buy the 140.50.
+
+So At The Money to me is the approximate
+nearest strike price to the underlying.
+
+I prefer slightly In The Money
+to Out of The Money
+
+because the In The Money
+option will have a broader range
+
+than the Out of The Money option, and
+that gives me more opportunity for profit.
+
+When you can’t decide In The Money
+or Out of The Money, doesn’t matter.
+
+Just choose either.
+
+An example.
+
+Let’s say a stock is at somewhere
+in the range between 99.80 and 100.70.
+
+I would trade the 100 calls.
+
+Even 99.80, the 100 calls would be slightly
+Out of The Money, but only slightly.
+
+At 100.70, the calls are way In The Money,
+
+but I would still probably trade
+the 100 calls instead of the 101s.
+
+If it’s at 99.40, I would trade the 100 puts
+even though that’s way In The Money.
+
+But I’d rather do that than trade the 99s,
+which is Out of The Money.
+
+Here’s an example comparing
+Out of The Money and At The Money calls.
+
+On the left, here’s the SPDR.
+
+It’s a line chart, not a bar chart.
+
+This is what took place today.
+
+We had a 90 cent range.
+
+The market opened up
+– At The Money was 141 earlier in the day.
+
+That’s the closest strike.
+
+So At The Money is 141.
+
+Had I bought an At The Money call
+
+at the absolute low tick
+– well, let me put it this way.
+
+The 141 call had a range of 59 cents today.
+
+The SPDR itself had a range of 90 cents.
+
+But if I instead bought
+the Out of The Money call,
+
+the next strike up,
+the 142, it’s a lot cheaper.
+
+It’s 20 cents instead of 60 cents to buy it.
+
+But the range was only 32 cents.
+
+If your commissions are
+a penny in and a penny out
+
+and the spread is a penny in and a penny
+out, that means your overhead is 4 cents.
+
+When your range is 32 cents
+and you have 4 cents’ built-in overhead,
+
+it’s very hard to make much
+of a profit because you’re not going
+
+to be buying the low tick you’re
+not going to be selling the high tick.
+
+You’ll be buying somewhere in here, 30 cents,
+and you’ll be selling here, 40 cents,
+
+and then you have 4 cents’ overhead,
+so you’re making 6 cents’ profit on a win,
+
+and you’re losing 14 cents on a loss.
+
+It’s impossible to make a living
+when your losses are two times
+
+or more greater than your wins.
+
+On the other hand, if you have
+a 60 cent range, 59 cent range,
+
+it’s much easier to make a profit.
+
+You buy down here around 70,
+you sell up here for around a dollar,
+
+and you can make 30 cents on a good move.
+
+So use the chart of the stock
+to make your trading decisions.
+
+I don’t look at the chart of
+the options when I’m deciding,
+
+should I buy or should I sell?
+
+To me, the options are a reflection of
+what’s going on with the underlying stock.
+
+I place my entry orders
+in the options market.
+
+I can exit with limit or market orders,
+but I’m making my decisions
+
+based upon what
+the underlying stock is doing.
+
+So for example, if the SPDR looks
+like it’s a buy and I’d rather buy options,
+
+I immediately buy at the market or
+with a limit order, an At The Money call,
+
+assuming that I’m trading
+the options today instead
+
+of the SPDR – which I sometimes do.
+
+Sometimes I’ll take swing trades
+in the SPDR calls or SPDR puts,
+
+day trade swing trades,
+holding for an hour or two or three,
+
+and I’ll take scalps in the Emini,
+the futures contract.
+
+Usually when I’m trading options,
+I’m doing it for a trade,
+
+trading options on the daily chart.
+
+And a trade means that my goal is to
+reach a profit target within 1 to 3 days,
+
+and then I get out.
+
+So I get out with a profit
+or with a loss within 1 to 3 days.
+
+I rarely lose more than half
+of the cost of the option,
+
+but I also never hold on to the option
+and hope that the option goes my way,
+
+and I never get greedy.
+
+Once my goal is no longer likely,
+I just take my loss and get out.
+
+And once I achieve my goal,
+I take my profit and get out.
+
+Profits disappear very,
+very quickly in options.
+
+So if you get a surprisingly
+big profit within a day or two,
+
+it’s usually better to
+exit most or all of your position.
+
+In general, if the value of the option
+doubles in price, take at least half off.
+
+So if you paid a dollar
+for the option and then yesterday
+
+and today it’s worth $2,
+take at least half off,
+
+if not all off if it’s achieved your goal.
+
+Time decay erodes profits.
+
+Let’s say you buy a SPDR call
+and the SPDR stays the same.
+
+It does not move a tick up or down.
+
+Well, tomorrow,
+your call will be worth 10 cents less.
+
+The next day it’ll be worth 10 cents less.
+
+So there’s a certain amount of time decay,
+usually about 10 cents a day,
+
+in the SPDR, and you have to be aware of that.
+
+So don’t hold options too long.
+
+If you buy an option, a put or a call,
+while the market is moving up very quickly,
+
+the option price usually
+goes up faster than expected
+
+because a certain amount of uncertainty
+gets built into the cost of the option.
+
+The increase in volatility
+increases the uncertainty
+
+and the risk to anyone selling the option,
+
+so the price of the option
+goes up faster than the market.
+
+If the market suddenly reaches
+your target and then starts to go sideways,
+
+the value of the option will
+shrink very fast as volatility shrinks.
+
+So if you have a big profit
+on a very quick move,
+
+the option is extra inflated
+because of the quickness of the move.
+
+You should always take at least part, half,
+and sometimes all of the position off.
+
+And what about the spreads?
+
+Spreads take a big move to become profitable.
+
+If, for example, let’s say the stock
+is at 100 and you buy a 100-105 spread.
+
+For you to make a profit on that spread,
+
+you need the market to move up close to 105.
+
+And if it does not get close to 105,
+you’re not going to make much profit.
+
+If your goal is to get out
+in 1 to 3 days – in other words,
+
+if you think the stock is going to go
+to 101 – don’t buy a spread, 105 spread.
+
+Don’t even buy a 100-101 spread.
+
+Simply buy the call outright,
+because if your goal is short term
+
+to get out in 1 to 3 days,
+the spread will not have enough time
+
+and the market will not move enough
+for you to make a profit.
+
+Also, you’re paying double commissions,
+you’re paying double bid/ask spread costs.
+
+So if you’re buying
+a call spread or a put spread,
+
+you have to be going for a much bigger move,
+
+like a 3% or a 4% or 5% move in the stock.
+
+If you’re just looking for a little 1% move,
+
+just go ahead and buy the call outright
+if you think the market’s going up.
+
+Or if you think the market’s
+going to fall 1% tomorrow,
+
+you just go ahead and buy a put.
+
+In general, if you’re buying a spread,
+it’s only going to be worthwhile
+
+if you’re expecting a move of about 5%
+
+or even 10% at some point
+over the next several weeks.
+
+For example, let’s say
+you buy a 3% to 5% spread.
+
+The strikes are 3% to 5% apart.
+
+So let’s say the SPDR’s at 140,
+and you buy a 140-145 call spread.
+
+So you buy the 140 call
+and you sell the 145 call
+
+to help finance the cost of the purchase.
+
+When you’re buying a spread, you
+want the space between the strikes
+
+to be two to three times
+bigger than the cost.
+
+If you’re buying let’s say a put spread
+
+– let’s say you’re buying
+a 140 put and selling a 135.
+
+The difference in price is $5.
+
+So if you’re going to buy the 140,
+sell the 135 put spread,
+
+you don’t want to be
+paying more than 170 for it.
+
+170 is good.
+
+A lot of times it’ll be as high as 250,
+but never pay more than 250.
+
+So never pay more than half
+of the distance in the spread.
+
+Sometimes if you want to make the ratio 3:1,
+
+you have to go a little bit
+Out of The Money, which is okay.
+
+But if you’re expecting
+a big move, 5% to 10% move,
+
+going a little Out of The Money is okay
+because you’re expecting the move
+
+to go well beyond your
+short strike price anyway.
+
+Let’s say the SPDR’s at 140
+and you think it probably
+
+will fall to 135 – in other words,
+about a 4% move in the next couple of weeks.
+
+You might buy a 1 to 2
+month out 140-135 put spread,
+
+and you can usually
+place it as a spread order.
+
+Most brokers allow you to place that
+as a spread order using limit orders.
+
+For example, you might
+buy it at 170 or better.
+
+So you get filled
+– let’s say you get filled at 170.
+
+I’m sure you’ve read about
+more complex options strategies,
+
+and if you watch television, there are shows
+
+that sometimes discuss options strategies.
+
+Every now and then,
+an options trader on television will talk
+
+about a strategy that will have
+a payout much bigger than the risk.
+
+So for example, he might buy
+a put fly, a put butterfly trade,
+
+which is basically buying a put spread
+and then selling a lower priced put spread.
+
+So for example, let’s say
+he buys a put fly and he pays $1 for it.
+
+He’ll argue that, hey, you might
+be able to make $5 on your $1 investment.
+
+The most you can lose is $1,
+
+and the most you can win is $5,
+so why not take the trade?
+
+In fact, why not take all
+kinds of butterfly trades?
+
+Besides the obvious problem
+of four legs to the trade
+
+and four times the commissions
+and four times the spread,
+
+there’s a much more important problem.
+
+Remember, there are no perfect trades,
+and any time you see a trade
+
+where the reward is
+much greater than the risk,
+
+you know that you’re going
+to lose most of the time.
+
+The Trader’s Equation tells you
+the probability will be very low.
+
+Remember, you’re trying to
+take money from institutions,
+
+and they’re not going to smile
+and happily hand you their money.
+
+So any time they’re going
+to dangle a big reward
+
+in front of you with very little risk,
+you have to be aware
+
+that you’re going to lose most of the time.
+
+If you don’t mind losing
+most of the time, then go ahead,
+
+take those strategies like
+put flys or call butterflies
+
+and occasionally make five times your risk.
+
+But that means you’re probably losing
+three or four times every time you win,
+
+and you have to also
+consider the emotional factor.
+
+Are you going to be happy losing
+70% of the time, 80% of the time?
+
+I’m personally not that way,
+so I usually avoid trades
+
+where the reward is
+so much greater than the risk
+
+because I know that the only way that
+can happen is if I lose most of the time.
+
+And I like to win.
+
+I don’t like to lose.
+
+So I usually avoid
+very low probability trades.
+
+Remember, if the stock falls a dollar,
+
+the value of your call will fall 50 cents.
+
+If you look at the bid/ask spread, you’ll see
+
+that the bid/ask spread is 50 cents
+below the price that you paid.
+
+However, unless a trade
+takes place in your particular call,
+
+the stop won’t get triggered.
+
+Let me give you an example.
+
+Let’s say Baidu is at 100.
+
+You buy the At The Money call,
+the 100 call, and you pay $3 for it.
+
+You say, “Well, I don’t want
+to lose more than 20 cents.
+
+I’m going to put a stop to exit at 2.80.
+
+So if my call falls to 2.80, I’m going
+to get out and take a 20 cent loss.”
+
+There’s a problem with that.
+
+Let’s say Baidu starts
+to sell off and it falls down to 99.
+
+That means the value of your call
+is probably now worth about 2.50,
+
+and if you look over at your positions,
+
+you might find you’re still holding
+that 100 call and it’s now worth 2.50.
+
+How could it fall to 2.50,
+well below your 2.80 stop,
+
+and your stop not get filled?
+
+Well, it’s because the Baidu
+options are not actively traded,
+
+and it’s possible that no trades
+took place in the Baidu calls,
+
+even though Baidu fell a dollar
+and the value of the call fell 2.50.
+
+Your stop at 2.80
+only gets hit if there’s a trade
+
+that takes place in
+that call at 2.80 or below.
+
+So right now you’re looking
+and you’re saying, “Huh, Baidu’s at 99.
+
+My call is at 2.50, and I’m still long
+and the market’s falling.
+
+What am I going to do?”
+
+If someone finally places
+a trade in that call at 2.10
+
+– if someone buys the call, sells a call
+at 2.10 – remember, you bought it at 3.
+
+It’s way below your 2.80 stop.
+
+So somebody finally buys a call or sells
+a call and the trade takes place at 2.10.
+
+This is the first trade that took place
+at or below your stop price,
+
+so now your 2.80 stop becomes a market order.
+
+You’ll get filled at the bid,
+but the bid might be 1.90.
+
+There might be a 20 cent
+bid/ask spread in the Baidu 100 calls,
+
+so now you’ll get filled
+at the bid, which is 1.90.
+
+So your 2.80 stop got filled at 1.90,
+
+90 cents worse than
+you thought it should be filled.
+
+That’s why you cannot use stops
+when you trade options,
+
+or why you should not use stops.
+
+What you do instead is
+you look at the underlying.
+
+You look at the chart
+of Baidu, the stock itself,
+
+and if it looks like the premise is no
+longer valid, if it looks like your premise,
+
+your thought that the market
+was going up, is wrong, you get out.
+
+So you quickly go to Baidu
+and you get out with a limit order
+
+at the best price you can,
+which usually means at the bid.
+
+Don’t be greedy.
+
+You’re wrong.
+
+Just accept it.
+
+You’re going to be wrong a lot
+in trading, and when you’re wrong,
+
+just accept it, get out,
+and look for the next trade.
+
+Take your loss.
+
+Don’t get greedy and
+try to minimize your loss,
+
+hoping that the market
+will go your way a little bit
+
+so you can get out with a smaller loss.
+
+When you’re wrong, just get out.
+
+So once you decide that you’re wrong
+and that your underlying premise
+
+is no longer working, place a limit order
+that gets you out within seconds.
+
+You can exit at the bid
+or even a little bit worse.
+
+Just get out.
+
+Don’t try to save a couple ticks.
+
+Just get out when you’re wrong.
+
+So, when should you
+enter an option position?
+
+As soon as the setup is clear.
+
+You look at the daily chart,
+the weekly chart, the 60-minute chart.
+
+I typically enter
+just before the close of the day.
+
+Sometimes I’ll enter at any time
+during the day if the market action
+
+seems like it warrants
+putting on an option position.
+
+But a lot of times, if I’m trading
+the daily chart or even the 60-minute chart,
+
+I wait for just before the close of the day
+
+because I want a strong
+signal bar before I enter.
+
+When to exit an option?
+
+Usually when the position on the underlying
+tells you that the trade is over.
+
+For example, you stay in until
+the Always In direction reverses.
+
+If a stop on the underlying
+would have been hit
+
+had you taken a position in the underlying,
+
+then you just go ahead
+and exit the option immediately.
+
+If you had taken
+a position in the underlying
+
+and the profit would’ve
+reached twice your risk,
+
+or if the option itself doubles in price,
+
+that’s a good time to take half off
+or sometimes even your entire position off.
+
+So if you buy a call for a dollar
+and it’s now worth 2 dollars,
+
+take at least half off.
+
+If the underlying risk
+was let’s say a dollar
+
+and the underlying has moved 2 dollars,
+twice the size of the underlying risk,
+
+then you could take half
+of your option position off.
+
+Let’s take an example of the SPDR at $140.
+
+The cost of 100 shares is $14,000.
+
+If you bought a 1 month out monthly call,
+
+At The Money call or put,
+you might pay $150.
+
+In other words, $1.50.
+
+That’s your maximum loss on the call,
+even if the market crashed.
+
+On the other hand,
+if the SPDR rallied 1% today,
+
+the profit would be $140
+if you bought 100 shares of the SPDR,
+
+and it might be $50 if you bought one call.
+
+If the SPDR fell 2% today and you had a call,
+
+the loss on the SPDR
+would be $280 in the SPDR,
+
+and only $50 if you
+bought the call, approximately.
+
+If the SPDR fell 5% today and
+you owned 100 shares of the SPDR,
+
+you’d lose $700 if you bought the SPDR,
+
+but you might only lose $65
+if you bought one call.
+
+Most daily stocks have a range
+of about 1% a day, and often more.
+
+Most move 2% to 10%
+within the next several days.
+
+The options tend to move about half as much.
+
+If the SPDR’s at 140,
+it very often would be 5% higher
+
+over the course of the next week.
+
+It might be 145, and the option
+might move up, if you bought a call,
+
+it might move up $2, $2.50.
+
+Let’s take an example of a stock
+that’s currently trading at $100
+
+and let’s say you bought
+a 1 month out At The Money call.
+
+At The Money, 100.
+
+So you paid $2 for an
+At The Money call, a 100 call.
+
+$2 is 400 shares of stock,
+so one call controls 100 shares of stock.
+
+You actually paid $200 for that call.
+
+If the stock rallies 3%
+over the next 3 days, 3% would be $3.
+
+The stock would be $103.
+
+The call would probably be up about $1.50.
+
+You could sell it for $3.50, approximately.
+
+Maybe a little bit less,
+maybe a little bit more.
+
+So you would have made $1.50 on your $2 call.
+
+That $1.50 is times 100 shares,
+
+so you would’ve made $150
+on your Initial Risk of $200.
+
+Let’s take an example of Apple.
+
+Let’s say today it’s trading at $600,
+and you thought it was going to fall,
+
+so you went ahead and you bought
+a 1 month out At The Money put.
+
+You might’ve had to pay $27 for that put.
+
+Remember, that’s times 100 shares,
+so your actual cost,
+
+what you actually had to pay, was $2,700.
+
+If Apple falls 3% over
+the next 3 days, 3% is $18.
+
+The put would move about half as much.
+
+It would increase in value about $9,
+and you could sell
+
+that put for $36, approximately,
+and you would’ve made $9 on your put.
+
+That’s $9 times the 100 shares
+that each put represents,
+
+so you would’ve bought the put for $2,700
+and you would’ve sold it for $3,600,
+
+and you would’ve had
+a net profit of about $900.
+
+Some stocks are fantastic.
+
+For example, Apple, the At The Money
+options for the nearest contracts
+
+on the monthly options,
+the volume is often 3,000 options a day,
+
+which is very good volume.
+
+In general, better to enter and
+exit monthly options with limit orders,
+
+although with huge markets
+like Apple and the SPDR,
+
+you usually can enter
+and exit at the market.
+
+And the bid/ask spread
+on stocks like Apple is really good.
+
+It might be 10 cents when Apple’s
+trading at $600, which is very good.
+
+If it was a $60 stock,
+that would be a penny,
+
+and that’s a very tight bid/ask spread.
+
+So you get very good fills.
+
+Which stocks do you use?
+
+You can use any stock or any ETF,
+and you want the open interest
+
+of the options to – of the At The Money
+options in general to be 1,000 or more.
+
+Sometimes less.
+
+5,000 or more is better because
+the more actively traded the options,
+
+the tighter the bid/ask spread,
+so the less your execution costs.
+
+Also, you want the options
+to be traded fairly actively
+
+so that if you’re trying to get out,
+you want your order to be filled quickly.
+
+You don’t want to place an order,
+a limit order to get out
+
+and it just sits there for
+an hour or two or three,
+
+because then you’ll end up having
+to change it to make it a better price
+
+for the person on the other side,
+which is a worse price for you.
+
+So you either make less money,
+
+or if you’re trying to get out of
+a losing trade, you lose more money.
+
+Which stocks do you trade?
+
+You can look at the daily
+or 60-minute charts for setups.
+
+You look for best trade setups.
+
+If you see a setup, a Best Trade
+type of setup on the daily chart
+
+or 60-minute chart, then
+you should consider trading put
+
+or a call or a spread on
+that particular underlying stock.
+
+Examples in 2012 of stocks that have very
+reliable options – SPDR, Apple, Amazon,
+
+Google, Goldman Sachs, IBM, gold.
+
+There are far more than that,
+
+but those are the ones
+that I look at pretty regularly.
+
+Just about any stock can be
+good on any day if it moves enough.
+
+So if there’s a
+special situation, some news event,
+
+some very boring stock
+can suddenly have very big daily ranges
+
+and huge volume in the options.
+
+Stocks with small option volume,
+sometimes they become very active
+
+and the bid/ask spreads
+then become very small,
+
+and the options can be
+traded extremely well,
+
+just like any other big
+volume option stock.
+
+Here’s an example.
+
+The daily chart of TLT, which is the ETF
+that follows the 30-year Treasury Bond.
+
+Let’s say you have a possible
+Major Trend Reversal, a top.
+
+You could look to buy
+one month out At The Money puts.
+
+Once the price of the puts doubles,
+you can take half off
+
+and then you could swing the balance
+as long as the TLT chart remains
+
+Always In Short, and you can
+hold until expiration if your thesis
+
+is still correct that
+the market is still Always In Short.
+
+Here’s the daily chart of TLT.
+
+The market’s clearly in a bull trend
+and had a very strong bear spike,
+
+and then it went sideways
+for about 20 bars or so.
+
+It broke the trend line by going sideways.
+
+It tested the Moving Average.
+
+Traders can look to sell a reversal down
+
+from a test of the high of the bull trend
+for a possible Major Trend Reversal.
+
+Here we have a rally.
+
+We tried to reverse here,
+but below a bull bar,
+
+and after 5 or 6 bars up,
+I would not take that short.
+
+Here we’re around a Double Top,
+and this would be a second entry short,
+
+this being the first,
+and we have a decent bear bar.
+
+You can argue that the Micro Channel
+is extremely tight, and it is.
+
+It’s a very, very Tight Channel.
+
+We had a Micro Channel here, a breakout,
+now a pullback back into the channel.
+
+This is an extremely Tight Channel.
+
+In general, whenever the market
+is in a very Tight Channel
+
+and I’m looking for a trade in the opposite
+direction, I wait for a second signal.
+
+I wait for the market to go sideways
+a little and then have a second signal.
+
+And that’s what we had.
+
+We had the channel.
+
+We broke through the Tight Channel for
+a few bars, so we had some Selling Pressure,
+
+and now we have another bear bar.
+
+So now we have a Higher High
+Major Trend Reversal,
+
+and we have a decent second signal.
+
+This bear bar was a first signal.
+
+I would not call
+this bull bar a decent signal.
+
+I would say this is a signal,
+this is a signal.
+
+It’s still in a fairly Tight Channel.
+
+Maybe it’s better for it
+to round over some more.
+
+In fact, it probably is
+when the channel is this tight.
+
+That means the momentum up is so strong.
+
+But I would not be opposed
+to taking this short.
+
+Since we’re talking
+about options, buying puts.
+
+Let’s say you bought puts and were willing
+
+to let the market
+go against you a little bit.
+
+You’d still be holding your puts
+when the market did this.
+
+If you did not buy puts and
+you were waiting for a second signal
+
+and you saw the market fall below that bar
+and then had a strong bear close,
+
+you might go ahead and buy the
+one month out August At The Money put.
+
+Right now, the TLT is around 131,
+so the At The Money put would be 131,
+
+and you probably could’ve
+paid about $1.50 for it.
+
+You have a Micro Double Top.
+
+The market went up and down, up and down.
+
+A second signal, and it’s
+a Higher High Major Trend Reversal.
+
+My concern would be
+the tightness of the channel,
+
+but we’re starting to turn down
+repeatedly here – one, two, three, four.
+
+I think the chances are pretty good
+of making a profitable trade.
+
+So you bought your put there
+and then you got this gift,
+
+a big gap down and a big,
+big bear bar through the Moving Average.
+
+Your put now is over $3,
+so it doubled in price.
+
+In general, I don’t like
+to get greedy with options
+
+because option profits
+disappear very quickly.
+
+Even if the market goes sideways,
+your profits disappear.
+
+So I always take at least half off.
+
+So here, option, you bought it for $1.50.
+
+It’s now $3.
+
+I would take half off or even all off.
+
+If you took half off and planned to exit,
+if TLT went above your signal bar
+
+and then you were going to let the
+rest swing, you might’ve taken some off here.
+
+Tight Channel.
+
+I probably would hold.
+
+Here we have a third push down
+– one, two, three.
+
+We fell below the bottom
+of a trend channel line.
+
+I don’t have it drawn in.
+
+The puts expired over here
+on this day for $9.50,
+
+so $9.50 would have been in your account.
+
+You paid $1.50.
+
+The puts expired at $9.50.
+
+Your profit was $8.
+
+You would’ve ended up
+with $800 profit per put.
+
+Alternatively, let’s say you
+had taken the earlier entry
+
+when the TLT was at 130
+and you bought the 130 put.
+
+You would’ve paid $2 for it at that time.
+
+When the option expired over here, the
+TLT fell $8 from your entry price to 122,
+
+so your 130 put would have
+a value of $800 when it expired,
+
+and since you paid $2 for it,
+it’s now worth $8.
+
+Your total profit would’ve been $600.
+
+$6 on the put times 100 contracts
+or 100 shares of the underlying.
+
+If your premise is no longer valid, get out.
+
+Never hold on to a position and hope
+that it will once again go your way.
+
+Just exit, take your loss, and move on.
+
+Look for another trade.
+
+Remember, you’re going
+to lose a lot as a trader.
+
+If you’re good,
+you’ll win 60-70% of the time.
+
+If you’re really good,
+you can win 80% or 90% of the time.
+
+If you’re winning 60% of the time, be happy,
+
+but that still means
+you’re going to lose 40% of the time.
+
+So never, never get upset by a loss.
+
+Just take it and move on.
+
+Look for another trade.
+
+Here’s Apple.
+
+We have a bull trend and a very strong
+break below the bull trend line
+
+and a test of the Moving Average.
+
+We fell well below the Moving Average,
+so you probably would start
+
+to look for a reversal down
+on any test of the high.
+
+So in other words, you look for a
+Major Trend Reversal Top on the next rally.
+
+Here we have a rally.
+
+It has three pushes up – a bar up and then
+down, up and then bear bar and then up.
+
+So we have a Lower High Major Trend Reversal
+in the shape of a Wedge bear flag.
+
+So that’s a decent setup.
+
+A bull body for the signal bar, not ideal.
+
+So if you don’t take the first entry,
+you could take the second.
+
+At The Money, 380, so you can buy
+a one month out At The Money 380 put,
+
+September in this case,
+and you might pay $15 for it
+
+for this Lower High Major Trend Reversal.
+
+And then you see a few days later, Apple
+fell $25 and your 380 put rose $12 to $27.
+
+You paid $15, it’s at $27.
+
+It’s not quite two times your cost, but
+it’s close, and it’s closing on its low.
+
+It’s reasonable to hold for more.
+
+But this is what you got instead.
+
+So instead of the market going down
+and hitting your initial target
+
+of two times the cost,
+the market reversed up quickly.
+
+The market had
+6 consecutive bull bodies here,
+
+and you’re well above the entry price.
+
+At this point the Major Trend Reversal
+is unlikely and the bull is resuming.
+
+If you held through
+all of this – most traders
+
+would not have held through
+4 big bull bars like this,
+
+but had you held through it,
+
+you could have sold your put
+for $11 just before the close.
+
+So you paid $15, you’d sell for $11.
+
+You’d lose $4 times 100 shares;
+you would lose $400.
+
+Most traders in fact
+probably would have bought calls in here.
+
+Bull trend, looks like it’s resuming.
+
+Or here, or here.
+
+And that is the end of my module
+on trading options on daily charts.

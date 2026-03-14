@@ -1,0 +1,1106 @@
+Hi, everyone.
+
+I’m Al Brooks.
+
+Thank you so much for your attention.
+
+I’m creating a series
+of videos on scalping.
+
+The first video is going to
+be about the rules for scalping,
+
+and then the other videos in the
+series will be about how to scalp.
+
+I hope that you find the material useful.
+
+This is the first of a series of
+videos that I created on scalping.
+
+In this first video,
+
+I want to talk about some general
+rules that scalpers should follow.
+
+Today I’m trading with a 2-minute chart.
+
+Every bar is 2 minutes.
+
+This is 2 minutes later, 2 minutes later,
+
+and the red line is a 10-bar
+Exponential Moving Average.
+
+When I’m scalping, I often put up a
+10-bar Exponential Moving Average
+
+instead of my usual
+20-bar Exponential Moving Average.
+
+A scalp, it simply is a quick profit,
+
+and you often enter
+and exit on the same bar.
+
+For example, if you
+sold with a stop 1 tick
+
+below the low of that bar,
+you’d get filled right there.
+
+If you were scalping, you might have a
+limit order to exit with a 2-point profit.
+
+And if you did, you would’ve
+been filled right here,
+
+2 points below your entry,
+all within the same 2-minute bar.
+
+Can you scalp for 1 tick? No.
+
+You’ll certainly lose money.
+
+These are minimum sizes that
+traders should use when scalping.
+
+You should never scalp for
+less than 1 point in the Emini.
+
+In the Forex market, you should
+never scalp for fewer than 10 pips.
+
+And for the stock market, you should
+never scalp for less than 10 cents.
+
+In general, the profit that
+you’re going to make as a scalper
+
+is about half the size of an average bar,
+
+and the risk is about
+the size of an average bar.
+
+If you sold below the low of this bar,
+
+you might have a stop
+above the high of the bar.
+
+Now, if the risk is twice the reward,
+
+you have to be right 67% of
+the time just to break even,
+
+and that’s excluding
+commissions and mistakes.
+
+You really need to be right 70% or
+more of the time just to break even,
+
+and most traders cannot
+do that consistently.
+
+But a great scalper can win 90% of
+the time, and he can make a lot of money.
+
+This is a time & sales window for the Emini,
+and I want you to focus on the size.
+
+You’ll see that most of
+the position sizes are small.
+
+This is a 2-second period
+between here and here.
+
+That’s 2 seconds, and this is sampled data.
+
+This is not all the trades
+that took place in 2 seconds.
+
+Far more trades took place.
+
+However, it shows the point
+that I want to make:
+
+that most of the trading is done
+with very small position sizes.
+
+You know that 95% of all of the volume
+traded in the Emini is done by institutions,
+
+and 75% of it is done by high frequency
+trading firms, which are scalping,
+
+and they might scalp for
+1 tick, or 2 ticks, or 3 ticks.
+
+How can an institution with hundreds
+of millions of dollars in the account
+
+or in the fund make any
+money by trading one contract?
+
+Well, they can’t.
+
+But that’s not what’s happening.
+
+It might look like that’s what’s happening,
+but that’s not what’s happening.
+
+The institution is repeatedly trading
+one contract and building a position.
+
+Very often, the position
+will be several hundred contracts,
+
+maybe even thousands of contracts big.
+
+You’ll sometimes see a very
+large position – maybe 407 contracts
+
+or 809 contracts – being
+traded, and some of that
+
+is from institutions
+closing their positions.
+
+If high frequency trading firms
+are trading most of the volume
+
+and most of them are scalping,
+shouldn’t you be scalping as well?
+
+You know they’re making money.
+
+No, you cannot do that because
+you cannot scalp the way that they do.
+
+They have carefully tested algorithms,
+all their trades are automated,
+
+they have tremendous flexibility
+in choosing their position size.
+
+For example, a trade might end
+after just five entries, five contracts.
+
+The computer may determine that the algorithm
+is no longer valid and it will exit.
+
+At other times, the trade
+may go on a long time.
+
+They may enter 300 times or even
+1,000 times before they take profits.
+
+So a huge variation in position size.
+
+You cannot do that.
+
+If you want to trade like a
+high frequency trading firm, fine.
+
+Get a $200 million account,
+
+hire a group of quantitative
+analysts to write your software,
+
+pay them $500,000 each a year,
+
+and then you can trade like
+a high frequency trading firm.
+
+Obviously that’s not realistic,
+and you cannot trade like that,
+
+even though most of the trades that
+you see taking place are traded that way.
+
+This is a couple hours of trading.
+
+The Emini, 2-minute chart.
+
+In general, if you’re
+looking for a stop entry,
+
+you’re looking to trade
+in the direction of the trend.
+
+If the market’s below the Moving Average
+and you have a bar closing on its low,
+
+turning down from below
+the Moving Average,
+
+it’s reasonable to look to sell on
+a stop 1 tick below the low of that bar.
+
+Here’s another bar turning down
+from the Moving Average.
+
+You sell below the low of that bar.
+
+Here’s a third one, and you could
+sell below the low of this bar.
+
+I’m not going to go into the
+reasons why the probability is less,
+
+but if you did sell below that bar,
+you’d get filled here.
+
+You could scale into shorts,
+selling more as it goes up
+
+as long as it does not go above that
+bar or the ii, consecutive inside bars.
+
+You could take your profit when the market
+fell back to your original entry price.
+
+You could get out around
+breakeven on your first sell and then,
+
+if you scaled in, you’d make
+a profit on your higher sells.
+
+If you’re looking to buy with a stop,
+
+what you want to see is
+the market above the Moving Average.
+
+You want to see a bull bar
+turning up from the Moving Average,
+
+and you want the bar
+to be closing on its high.
+
+Then you’ll buy 1 tick
+above the high of that bar.
+
+Several more examples.
+
+Here we tried to reverse,
+but it’s going back up.
+
+A bull bar closing near its high,
+turning up from around the Moving Average.
+
+You buy above the high of that bar
+and get filled right there.
+
+Sometimes the market is far from
+the Moving Average and it reverses.
+
+Sometimes you can take a reversal trade.
+
+An ii, consecutive inside bars,
+in a bear trend.
+
+Often the final bear flag, which
+means you’ll soon get a reversal.
+
+And here we have a decent
+size bull bar closing on its high.
+
+You could buy on a stop 1 tick above the
+high of that bar, and then get filled here.
+
+I’m going to talk more
+about these types of trades
+
+in Part 2 of this series
+of videos on scalping.
+
+Now, this is a video on scalping, but most
+traders should swing trade and not scalp.
+
+You need a positive Trader’s Equation,
+and by Trader’s Equation,
+
+what I mean is your percentage
+of winning trades times
+
+the size of your average
+win has to be greater
+
+than the percentage of your losing
+trades times the size of your average loss.
+
+You’re not going to be calculating
+that every time you put on a trade,
+
+but you have to be aware of it.
+
+It’s difficult to structure a trade
+with a positive Trader’s Equation
+
+when you’re scalping because
+the reward is usually less than the risk,
+
+and therefore you need to
+win more than 70% of the time.
+
+In fact, a good scalper is going to
+be winning 80% to 90% of the time.
+
+It’s easier just to swing trade.
+
+If you take that short, you hold onto
+the trade until the trade is no longer valid.
+
+You have a credible buy signal here
+and you’d get out there.
+
+This is a small profit, but sometimes
+swing trades result in very big profits.
+
+Reward’s much, much bigger than the risk,
+
+and therefore you can win 40% of the time,
+30% of the time, and still make money.
+
+When you look at this chart,
+it looks like, “Gosh, it’s easy.
+
+I sell here, I exit with 2 points here
+or above this bar, and I’ll make money,
+
+and I just keep doing that
+all day long.” This is 1 bar.
+
+Every bar is 2 minutes.
+
+This is just a few minutes later,
+and you’d make a pretty good profit.
+
+However, when you look at
+this chart, nothing’s moving.
+
+This is a picture of the market,
+
+and a picture can be very different
+from your experience in real time.
+
+For example, this really good-looking
+buy signal bar may have been a bear bar,
+
+and then in the final second,
+suddenly closed on its high.
+
+And this bear bar closing on its low,
+
+may have been a doji bar
+with a close in the middle.
+
+It may even have been a bull bar,
+and then in the final couple seconds,
+
+suddenly closed on the low of the bar.
+
+If you’re looking to place an
+order below the low of this bar
+
+and the market is falling quickly,
+you don’t know exactly
+
+where the low of the bar
+will be until the bar closes,
+
+and by then the market may be
+several ticks below the low of the bar.
+
+I’m highlighting perfect looking signal bars,
+
+but many of them only
+became perfect in the final second,
+
+and it then becomes
+too late to take the trade,
+
+so you’ll end up missing
+a lot of the very best trades.
+
+Also, you sometimes have signal bars
+
+that are perfect until the final
+second, and then they become bad.
+
+So the opposite happens, and
+you don’t have enough time to think
+
+that the market is no longer
+doing what you thought it will do.
+
+For example, you might be looking
+to sell below the low of a bar.
+
+The bar is closing on its low,
+and then in the final second,
+
+it closes several ticks
+above the low of the bar,
+
+and then you take the short
+and you end up taking a bad trade.
+
+You did not have
+enough time to change your mind
+
+about what you were planning to do.
+
+Here’s an analogy.
+
+Here’s a little statue of a
+jackrabbit sitting on your desk,
+
+and here is a jackrabbit in real life.
+
+This is what it’s like when you’re
+looking at a chart at the end of the day.
+
+It’s easy to grab a trade
+because the bars are not moving.
+
+But in real time, it’s like
+trying to catch that jackrabbit.
+
+It’s easy to grab a jackrabbit
+when it’s a statue on your desk,
+
+but it’s not so easy to grab a jackrabbit
+when it’s running across a field,
+
+and it’s not so easy
+to trade when the bars
+
+are actually changing constantly
+as you’re trying to place a trade.
+
+A professional scalper, he’s
+going to enter with a stop order
+
+when he’s betting on a successful
+breakout, when he’s looking for a trend.
+
+For example, we’re below the Moving Average.
+
+We have an ii.
+
+We have a bear bar closing on its low.
+
+The trader will sell with
+a stop below the low of that bar,
+
+betting that we’re going
+to go down quite a bit.
+
+So he’s betting that the breakout
+below this bar will be successful,
+
+that the market will fall
+enough for him to make a profit.
+
+But that doesn’t always happen.
+
+When he’s buying
+with a stop, he’s expecting
+
+that the market will go far enough
+above the high of the bar – in other words,
+
+that the new trend will continue far enough
+
+– for him to be able to
+scalp out with a profit.
+
+So he’s betting on a successful breakout.
+
+But not all breakouts are successful.
+
+Sometimes a trader will expect a breakout
+not to go very far, and instead reverse.
+
+In that case, he’s going to
+be entering with a limit order,
+
+which is the opposite of a stop order.
+
+A stop order, you’re betting
+the trend will continue.
+
+You buy above this bar,
+betting we’re going to go up.
+
+A limit order is betting
+that the breakout will fail,
+
+so you might sell at the high of this bar,
+
+betting that it’s not going to continue
+up and instead it’s going to reverse.
+
+Limit order traders often
+have to use wide stops,
+
+and they also often
+scale in after their position.
+
+So, for example,
+we have a good reversal up,
+
+a big enough bull surprise so that traders
+
+will expect at least
+a small second leg up.
+
+And therefore, even though this is
+a credible sell signal, some traders,
+
+instead of selling with a stop below
+that low, looking for a trend down,
+
+will buy with a limit order at that low,
+
+betting that it will go only
+a little bit below the bar
+
+and then have a second leg up.
+
+Or it’ll go lower, they can buy more,
+and then we’ll get the second leg up.
+
+So the limit order, bulls betting
+on a second leg up after this,
+
+are betting that if we do go down,
+we’ll have a second leg up
+
+before the selloff makes a new low.
+
+So, he’ll put a stop below
+the low of that bar, this line here.
+
+He’ll buy with a limit order at the low
+of that bar and he’ll buy more lower,
+
+maybe 1 point lower, 2 points
+lower, 3 points, 4 points lower,
+
+betting that we’ll get a second leg up.
+
+As I said, he’ll often buy more
+as the market goes against him.
+
+He might buy 2 points below his
+first entry and then 2 points below that.
+
+So, he buys here, he buys more 2 points
+lower, and then 2 points lower again.
+
+And then when it gets
+back to his first price,
+
+he can get out breakeven on
+his first entry and with a profit here,
+
+2 points, and with a profit here, 4 points.
+
+Or he may hold part or all of his
+position, hoping that we begin a trend up.
+
+Beginners should only be trading
+with stop orders and not scale in.
+
+Most traders, in fact,
+should always be trading with stop orders
+
+and they should not be scaling in.
+
+You want the market
+to be going in your direction.
+
+You’ll have a better chance of making money.
+
+Example: you sell below that bear bar
+
+or you buy above this bull bar,
+looking for a reversal up.
+
+You will lose too much money with
+limit orders scaling in and using wide stops,
+
+even though professional
+scalpers often do that.
+
+As a scalper, your reward
+is small relative to your risk.
+
+That means you have terrible risk/reward.
+
+Every trade has three variables:
+risk, reward, and probability.
+
+Those three variables are what you need
+to consider when you’re placing a trade.
+
+You can look at risk/reward
+as a single variable
+
+and probability as the second variable.
+
+As a trader, in general
+you’re either going to have a trade
+
+with really good risk/reward
+which always has bad probability,
+
+or a trade with really good probability
+which always has bad risk/reward.
+
+A scalper, he has bad risk/reward,
+so he needs very high probability.
+
+Look at the lottery, for example.
+
+Your state makes money
+by selling you a lottery ticket.
+
+They have a very high probability
+of being able to keep your one dollar,
+
+but they have terrible risk/reward.
+
+Sometimes they have
+to pay a million dollars
+
+to a person who bought
+a ticket for one dollar.
+
+A scalper has more risk than reward.
+
+He has terrible risk/reward.
+
+He can only make money
+if he has a very high probability.
+
+There are things he can do
+to increase his probability.
+
+The two that scalpers most often use
+are they scale into trades
+
+– they add to their trade as it goes against
+them – and they use a very wide stop.
+
+Some scalpers don’t even use stops at all
+
+if they’re very confident
+about their position.
+
+Scaling in and wide stops
+increases your risk;
+
+however, it greatly
+increases your probability.
+
+Professional scalpers, they trade small.
+
+Very small, so that if the market
+goes quickly far against them,
+
+they’re not going to lose more on that
+trade, than they would on any other trade,
+
+and they also will not panic if
+the market goes far against them.
+
+For example, let’s say the scalper
+thought this was a Sell Climax,
+
+and that this was
+the start of a reversal up.
+
+He might buy the close of that bull bar,
+
+but he might want to use a wide stop
+or no stop at all and scale in.
+
+He might buy more
+a point below that bear bar,
+
+betting that this will be the final bear flag
+and that we will not fall very far.
+
+But what will happen with
+the beginner? He’ll see 3 bear bars.
+
+This body is bigger than that body.
+
+This body is bigger than that body, and
+he’s afraid the market’s going to crash.
+
+He’s seeing the market accelerate down
+and he can’t take the pain.
+
+After a few bear bars,
+he will exit right here
+
+and take a very big loss on this position.
+
+Beginners, they have
+an incredible talent at exiting
+
+right before a trade goes their way.
+
+That’s just the reality.
+
+They’re weak traders.
+
+Weak traders usually exit right
+when the market is about to reverse.
+
+Once all the weak traders have exited,
+
+there’s no one left
+to make the market go down.
+
+As the market’s going down, the
+weak bulls are selling, selling, selling,
+
+and then once you have a very big bar,
+
+the final bulls give up
+and there’s no one left to sell.
+
+No more weak traders left,
+and the market goes the other way.
+
+Now, what would a professional trader do
+if he bought that close?
+
+Well, he’d see the ii,
+bear bar closing on its low.
+
+He knows it’s probably going
+to go at least a little bit down.
+
+He might exit below the low of that bar
+
+or he might even reverse
+– reverse to short.
+
+Alternatively, he might be confident
+
+that an ii is a Triangle
+on a smaller timeframe chart.
+
+If you have a Triangle late in
+a bear trend, and you get a bear breakout,
+
+the market’s probably going to
+come back to that Triangle later on,
+
+so he might hold onto
+his position and then wait
+
+for a bull bar closing
+near its high, a reversal,
+
+and then buy more above
+the high of that bull bar.
+
+And then when the rally gets back
+to around his original entry price
+
+or below that bear bar, or if the
+bars start to stall, he might get out.
+
+If he did that,
+he’d have a loss on that entry,
+
+he’d be out around breakeven on this entry,
+
+and he’d make a profit on this lower entry.
+
+Basically, the whole trade
+would be a scratch trade.
+
+He’d have a small profit.
+
+However, by not
+panicking during a big selloff
+
+and being able to do the right thing
+– buy more,
+
+betting on the reversal – a scalper
+is able to avoid a loss on a bad trade
+
+and sometimes he’ll make money.
+
+Professional traders, just like
+beginners have an uncanny ability
+
+to get out exactly at the
+wrong time, professional traders
+
+are very good at entering
+just before the trade goes their way.
+
+I mentioned that some scalpers
+are confident about their position
+
+and they’ll trade even without a stop.
+
+This is because they’re
+trading small enough; therefore,
+
+the risk will never be too great.
+
+Most traders cannot trade
+small enough position sizes,
+
+and they cannot use
+wide enough stops to do that profitably.
+
+Therefore, that’s really
+not an option for most traders.
+
+Remember that beginner.
+
+He bought here, he bought here.
+
+At some point he has to get out,
+and 3 big bear bars – a lot of beginners
+
+would get out below that third bear bar.
+
+Remember, this beginner
+has been scalping for 2 points, and here,
+
+he’s going to lose
+– what is that? 8 or 9 points on that,
+
+and then he’ll lose
+6 or 7 points on that,
+
+so he’ll lose 13, 14 points on one trade,
+and he’s been scalping for 2 points.
+
+So that one trade
+wipes out six or seven good trades.
+
+A lot of scalpers, when they’re
+starting out, think that all they need to do
+
+is get a little bit better, but they
+really don’t understand the math.
+
+Unless they can use wide stops and scale
+in and greatly increase their probability,
+
+it’s impossible to make
+a living as a scalper.
+
+As you know, I trade
+mostly the 5-minute chart.
+
+Now, what about scalping
+on a 1-minute chart?
+
+The problem is you don’t have
+enough time to make decisions.
+
+Just like on this 2-minute chart,
+everything looks easy.
+
+You see the close here,
+you see the close here.
+
+Real time, the bars often look
+very different before they close.
+
+But if you print out a chart at the
+end of the day, everything looks perfect.
+
+But if you’re trading a 1-minute chart,
+
+even a 2-minute chart,
+most traders cannot do it.
+
+They don’t have enough time
+to make decisions
+
+and they’ll end up making too many mistakes.
+
+And yes, your stops are not too far away.
+
+You might lose 2, 3, or 4 points.
+
+However, your account will bleed
+to death from a thousand papercuts.
+
+Now, why am I making
+this video if most traders
+
+are going to lose money if they scalp?
+
+Well, first of all, I get a lot of
+requests to make videos on scalping.
+
+Also, the patterns that you’re
+looking for when you’re scalping,
+
+are the same as
+the patterns that you’re looking
+
+for when you’re swing trading,
+so it’s an opportunity to practice.
+
+The faster you get at recognizing a pattern,
+
+the better chance you have to make money.
+
+So, it’s good to practice.
+
+It’s important to realize that
+most swing trades do not go very far.
+
+Most of them end up as scalps,
+and therefore,
+
+if you know some basic scalping techniques,
+you can improve the profit
+
+that you make from
+the swing trades that do not go very far.
+
+Finally, some scalpers
+are truly great traders
+
+and they make an incredible amount of money.
+
+It’s interesting to think
+about what they’re doing.
+
+In fact, one of the traders in my chatroom
+– he’s been in the chatroom for years
+
+– he runs a hedge fund
+and he’s an extremely good scalper.
+
+I’ve seen some of his results,
+and I’m confident
+
+that he makes 20 or more points
+trading the Emini everyday scalping.
+
+So, it’s interesting and fun to think about
+what successful scalpers are doing.
+
+I want to go back to
+the point that I keep making.
+
+It’s easier to make money as a swing trader.
+
+Swing traders, they can enter a
+little late, they can enter a little early,
+
+they can exit a little late,
+they can exit a little early.
+
+They don’t have to trade perfectly,
+and they can still make a lot of money.
+
+A scalper, every tick matters.
+
+They must enter and exit
+precisely at the right time.
+
+They cannot make mistakes,
+and it’s really too difficult
+
+to do that long term for most people.
+
+If you play golf, anybody
+can hit a great shot occasionally,
+
+but it’s really hard to hit
+72 of them in a row like a pro.
+
+Scalping and thinking
+about scalping, it can be fun.
+
+Everybody knows that
+scalpers make a lot of money,
+
+and it’s reasonable to think,
+“Hey, why not me?”
+
+Well, first of all, you need
+the ability to do it, and it’s difficult.
+
+Most traders do not have that ability.
+
+And then equally important
+is you have to be having fun.
+
+Your career has to match your personality
+if you’re going to do it forever.
+
+As I said, most traders will make
+more money and have more fun swing trading.
+
+Everybody tries scalping at some point.
+
+However, you should look at it as a hobby,
+which means something fun to try.
+
+Hobbies cost money,
+and most scalpers will lose money,
+
+or they’ll find it too stressful, not fun.
+
+If you do it, only trade
+a small position size,
+
+and do not spend too much time
+or too much money doing it.
+
+Remember, your career is as a swing trader,
+
+and that’s where you should
+be focusing your energy.
+
+Look at this chart.
+
+It’s an example of scalps over
+the course of a couple of hours,
+
+and on this scalp you can make 2 points,
+on that one you can make 2 points.
+
+If you sold below here, you’d lose 3 points.
+
+But when you add all of that up,
+you’d make about 18 points,
+
+$900 per contract in a couple of hours.
+
+In Part 2 of this series, I’m going to
+go through every one of these trades
+
+and explain what is going on.
+
+Again, I’m Al Brooks.
+
+I want to thank you so
+much for your attention.
+
+I hope that you found
+this information about scalping useful.
+
+I also wish you the best
+of luck in your trading.
