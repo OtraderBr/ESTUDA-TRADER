@@ -15,12 +15,12 @@ export function setConceptInitialTab(tab) { activeTab = tab; }
 
 function getCatStyle(cat) {
     switch (cat) {
-        case 'A': return { color: 'text-indigo-600', bg: 'bg-indigo-50 border-indigo-200', bar: 'bg-indigo-500' };
-        case 'B': return { color: 'text-emerald-600', bg: 'bg-emerald-50 border-emerald-200', bar: 'bg-emerald-500' };
-        case 'C': return { color: 'text-amber-600', bg: 'bg-amber-50 border-amber-200', bar: 'bg-amber-500' };
+        case 'A': return { color: 'text-emerald-600', bg: 'bg-emerald-50 border-emerald-200', bar: 'bg-emerald-500' };
+        case 'B': return { color: 'text-amber-600', bg: 'bg-amber-50 border-amber-200', bar: 'bg-amber-500' };
+        case 'C': return { color: 'text-red-600', bg: 'bg-red-50 border-red-200', bar: 'bg-red-500' };
         case 'D': return { color: 'text-violet-600', bg: 'bg-violet-50 border-violet-200', bar: 'bg-violet-500' };
         case 'E': return { color: 'text-zinc-500', bg: 'bg-zinc-100 border-zinc-300', bar: 'bg-zinc-400' };
-        default:  return { color: 'text-emerald-600', bg: 'bg-emerald-50 border-emerald-200', bar: 'bg-emerald-500' };
+        default:  return { color: 'text-red-600', bg: 'bg-red-50 border-red-200', bar: 'bg-red-500' };
     }
 }
 
@@ -50,8 +50,8 @@ export function renderConceptDetail(container, concept) {
           <div class="mb-4 flex items-start gap-3 bg-zinc-100 border border-zinc-300 rounded-xl px-4 py-3">
             <i data-lucide="eye-off" class="w-4 h-4 text-zinc-400 shrink-0 mt-0.5"></i>
             <div>
-              <p class="text-xs font-semibold text-zinc-600">Conceito Inativo</p>
-              <p class="text-[11px] text-zinc-500 mt-0.5">Completamente excluído de todos os cálculos, estatísticas e plano de estudos.</p>
+              <p class="text-xs font-semibold text-zinc-600">Pré-Conhecimento</p>
+              <p class="text-[11px] text-zinc-500 mt-0.5">Você já sabia isso antes de iniciar este sistema. Completamente excluído dos cálculos, estatísticas e plano de estudos.</p>
             </div>
           </div>`;
         return '';
@@ -63,6 +63,12 @@ export function renderConceptDetail(container, concept) {
       <div class="flex items-center justify-between mb-3">
         <h3 class="text-xs font-semibold text-zinc-400 uppercase tracking-wider">Descrição do Conceito</h3>
         <div class="flex items-center gap-2">
+          <button id="ai-desc-btn"
+            class="flex items-center gap-1.5 text-[11px] font-semibold px-3 py-1.5 rounded-lg bg-emerald-500 hover:bg-emerald-600 text-white transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+            title="Gerar descrição completa usando o material do Al Brooks">
+            <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+            Gerar com IA
+          </button>
           <span id="save-indicator" class="text-[10px] text-emerald-600 font-medium opacity-0 transition-opacity duration-300">Salvo</span>
           <button id="desc-focus-btn" title="Modo foco"
             class="p-1 rounded hover:bg-zinc-100 text-zinc-400 hover:text-zinc-700 transition-colors">
@@ -70,6 +76,35 @@ export function renderConceptDetail(container, concept) {
           </button>
         </div>
       </div>
+
+      <!-- Painel resultado da IA (oculto por padrão) -->
+      <div id="ai-desc-panel" class="hidden mb-4 rounded-xl border border-emerald-200 overflow-hidden">
+        <div class="flex items-center justify-between px-4 py-2.5 bg-gradient-to-r from-emerald-50 to-zinc-50 border-b border-emerald-100">
+          <div class="flex items-center gap-2">
+            <i data-lucide="sparkles" class="w-3.5 h-3.5 text-emerald-500"></i>
+            <span class="text-xs font-semibold text-emerald-700">Descrição gerada pela IA — Al Brooks</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <button id="ai-desc-insert-btn"
+              class="flex items-center gap-1.5 text-[11px] font-semibold px-2.5 py-1 rounded-lg bg-emerald-500 hover:bg-emerald-600 text-white transition-colors"
+              title="Inserir este conteúdo no editor de descrição">
+              <i data-lucide="download" class="w-3 h-3"></i>
+              Inserir no Editor
+            </button>
+            <button id="ai-desc-close-btn"
+              class="p-1 rounded hover:bg-zinc-100 text-zinc-400 hover:text-zinc-600 transition-colors"
+              title="Fechar painel">
+              <i data-lucide="x" class="w-3.5 h-3.5"></i>
+            </button>
+          </div>
+        </div>
+        <div id="ai-desc-content"
+          class="px-4 py-4 text-xs text-zinc-700 leading-relaxed bg-white max-h-96 overflow-y-auto prose prose-xs prose-zinc">
+        </div>
+        <div id="ai-desc-sources" class="px-4 py-2 bg-zinc-50 border-t border-zinc-100 flex flex-wrap gap-1.5 hidden">
+        </div>
+      </div>
+
       <div class="relative">
         <div class="rich-toolbar" id="rich-toolbar" style="display: none;">
           <button data-action="bold" title="Negrito"><i data-lucide="bold" class="w-3.5 h-3.5 text-inherit"></i></button>
@@ -243,11 +278,11 @@ export function renderConceptDetail(container, concept) {
     // ── TAB: Configuração ──
     const renderConfigTab = () => {
         const catDescriptions = {
-            A: { title: 'Prioritário', desc: 'Conceito crítico para sua operação. Máxima prioridade no plano de estudos.', color: 'text-indigo-700', bg: 'bg-indigo-50 border-indigo-200' },
-            B: { title: 'Em Progresso', desc: 'Prioridade normal. Incluído nos cálculos e plano de estudos regularmente.', color: 'text-emerald-700', bg: 'bg-emerald-50 border-emerald-200' },
-            C: { title: 'Suporte', desc: 'Baixa prioridade. Revisar eventualmente. Incluído nos cálculos com menor peso.', color: 'text-amber-700', bg: 'bg-amber-50 border-amber-200' },
-            D: { title: 'Validado ✓', desc: 'Você já domina este conceito. Contado como 100% em todas as estatísticas. Excluído do plano de estudos e SM-2.', color: 'text-violet-700', bg: 'bg-violet-50 border-violet-200' },
-            E: { title: 'Inativo ⊘', desc: 'Pré-conhecimento ou irrelevante. Completamente excluído de todos os cálculos, estatísticas e plano de estudos.', color: 'text-zinc-600', bg: 'bg-zinc-100 border-zinc-300' },
+            A: { title: 'Domínio Total', desc: 'Você domina este conceito profundamente. Apenas revisão de manutenção (10-20% do seu tempo). Retenção: 90%.', color: 'text-emerald-700', bg: 'bg-emerald-50 border-emerald-200' },
+            B: { title: 'Precisa de Atenção', desc: 'Boa base, mas ainda tem lacunas. Estudo focado nas falhas (30-40% do tempo). Retenção: 55%.', color: 'text-amber-700', bg: 'bg-amber-50 border-amber-200' },
+            C: { title: 'Não Domino', desc: 'Conceito novo ou difícil. Imersão total: teoria, aulas, mapas mentais (50-60% do tempo). Retenção: 15%.', color: 'text-red-700', bg: 'bg-red-50 border-red-200' },
+            D: { title: 'Validado ✓', desc: 'Conceito totalmente dominado e validado. Contado como 100% em todas as estatísticas. Excluído do plano de estudos.', color: 'text-violet-700', bg: 'bg-violet-50 border-violet-200' },
+            E: { title: 'Pré-Conhecimento ⊘', desc: 'Você já sabia isso antes de iniciar este sistema. Completamente excluído dos cálculos, estatísticas e plano de estudos.', color: 'text-zinc-600', bg: 'bg-zinc-100 border-zinc-300' },
         };
         const desc = catDescriptions[category] || catDescriptions.B;
 
@@ -282,11 +317,11 @@ export function renderConceptDetail(container, concept) {
         <div>
           <label class="block text-[10px] font-medium text-zinc-500 mb-1.5">Categoria ABCDE</label>
           <select id="abcSelect" class="w-full bg-white border border-zinc-200 text-zinc-700 text-xs rounded-md px-3 py-2 focus:outline-none focus:border-zinc-400 cursor-pointer">
-            <option value="A" ${category === 'A' ? 'selected' : ''}>A — Prioritário</option>
-            <option value="B" ${category === 'B' ? 'selected' : ''}>B — Em Progresso</option>
-            <option value="C" ${category === 'C' ? 'selected' : ''}>C — Suporte</option>
+            <option value="A" ${category === 'A' ? 'selected' : ''}>A — Domínio Total</option>
+            <option value="B" ${category === 'B' ? 'selected' : ''}>B — Precisa de Atenção</option>
+            <option value="C" ${category === 'C' ? 'selected' : ''}>C — Não Domino</option>
             <option value="D" ${category === 'D' ? 'selected' : ''}>D — Validado ✓</option>
-            <option value="E" ${category === 'E' ? 'selected' : ''}>E — Inativo ⊘</option>
+            <option value="E" ${category === 'E' ? 'selected' : ''}>E — Pré-Conhecimento ⊘</option>
           </select>
         </div>
       </div>
@@ -462,6 +497,87 @@ export function renderConceptDetail(container, concept) {
                         });
                     });
                 }
+
+                // ── Botão "Gerar com IA" ──────────────────────────────────────
+                let _aiDescText = '';
+
+                document.getElementById('ai-desc-btn')?.addEventListener('click', async () => {
+                    const btn       = document.getElementById('ai-desc-btn');
+                    const panel     = document.getElementById('ai-desc-panel');
+                    const content   = document.getElementById('ai-desc-content');
+                    const sourcesEl = document.getElementById('ai-desc-sources');
+
+                    if (!btn || !panel || !content) return;
+
+                    btn.disabled = true;
+                    btn.innerHTML = `<i data-lucide="loader-2" class="w-3.5 h-3.5 animate-spin"></i> Gerando...`;
+                    if (window.lucide) window.lucide.createIcons({ nodes: btn.querySelectorAll('[data-lucide]') });
+
+                    panel.classList.remove('hidden');
+                    content.innerHTML = `<div class="flex items-center gap-2 text-zinc-400 py-4">
+                        <i data-lucide="loader-2" class="w-4 h-4 animate-spin"></i>
+                        <span>Pesquisando no material do Al Brooks...</span>
+                    </div>`;
+                    if (window.lucide) window.lucide.createIcons({ nodes: content.querySelectorAll('[data-lucide]') });
+
+                    try {
+                        const res  = await fetch('/api/rag/describe', {
+                            method:  'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body:    JSON.stringify({ concept: concept.name }),
+                        });
+                        const data = await res.json();
+
+                        if (data.error) {
+                            content.innerHTML = `<p class="text-red-500">❌ Erro: ${data.error}</p>`;
+                        } else {
+                            _aiDescText = data.description || '';
+                            // Renderizar markdown simples
+                            content.innerHTML = _aiDescText
+                                .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+                                .replace(/^## (.+)$/gm, '<h3 class="text-xs font-bold text-zinc-800 uppercase tracking-wider mt-4 mb-1.5 border-b border-zinc-100 pb-1">$1</h3>')
+                                .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+                                .replace(/\n/g, '<br>');
+
+                            // Fontes
+                            if (data.sources?.length > 0) {
+                                sourcesEl.classList.remove('hidden');
+                                sourcesEl.innerHTML = '<span class="text-[10px] text-zinc-400 font-medium mr-1">Fontes:</span>' +
+                                    data.sources.map(s =>
+                                        `<span class="text-[10px] px-2 py-0.5 rounded-full bg-zinc-100 text-zinc-500">Aula ${s.lesson} · ${s.similarity}%</span>`
+                                    ).join('');
+                            }
+                        }
+                    } catch (e) {
+                        content.innerHTML = `<p class="text-red-500">❌ Não foi possível conectar ao servidor. Verifique se o start.bat está rodando.</p>`;
+                    }
+
+                    btn.disabled = false;
+                    btn.innerHTML = `<i data-lucide="sparkles" class="w-3.5 h-3.5"></i> Gerar com IA`;
+                    if (window.lucide) window.lucide.createIcons({ nodes: btn.querySelectorAll('[data-lucide]') });
+                });
+
+                // Inserir conteúdo da IA no editor
+                document.getElementById('ai-desc-insert-btn')?.addEventListener('click', () => {
+                    if (!_aiDescText || !editor) return;
+                    // Converter texto em HTML básico para o Tiptap
+                    const html = _aiDescText
+                        .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+                        .replace(/^## (.+)$/gm, '<h2>$1</h2>')
+                        .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+                        .split('\n')
+                        .map(line => line.startsWith('<h2>') ? line : (line.trim() ? `<p>${line}</p>` : ''))
+                        .join('');
+                    editor.commands.setContent(html, true);
+                    // Fechar o painel
+                    document.getElementById('ai-desc-panel')?.classList.add('hidden');
+                });
+
+                // Fechar painel
+                document.getElementById('ai-desc-close-btn')?.addEventListener('click', () => {
+                    document.getElementById('ai-desc-panel')?.classList.add('hidden');
+                });
+
             })();
     }
 
@@ -477,8 +593,11 @@ export function renderConceptDetail(container, concept) {
                 t.classList.toggle('active', t.getAttribute('data-tab-id') === newTab));
 
             // Troca painéis sem re-render
-            container.querySelectorAll('.tab-panel').forEach(p =>
-                p.style.display = p.getAttribute('data-panel-id') === newTab ? '' : 'none');
+            container.querySelectorAll('.tab-panel').forEach(p => {
+                const isActive = p.getAttribute('data-panel-id') === newTab;
+                p.classList.toggle('active', isActive);
+                p.style.display = isActive ? '' : 'none';
+            });
 
             // Lazy-init da galeria (só na primeira vez)
             if (newTab === 'galeria') {

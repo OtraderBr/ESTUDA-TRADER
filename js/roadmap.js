@@ -13,9 +13,10 @@ export function renderRoadmap(container, state) {
       macroGroups[macro] = { name: macro, concepts: [], mastered: 0, inProgress: 0, notStarted: 0 };
     }
     macroGroups[macro].concepts.push(c);
-    const mastery = c.masteryPercentage || 0;
-    if (mastery >= 85) macroGroups[macro].mastered++;
-    else if (mastery > 0) macroGroups[macro].inProgress++;
+    const abc = c.abcCategory || 'C';
+    if (abc === 'E') { /* pré-conhecimento: não conta nas estatísticas */ }
+    else if (abc === 'A' || abc === 'D') macroGroups[macro].mastered++;
+    else if (abc === 'B') macroGroups[macro].inProgress++;
     else macroGroups[macro].notStarted++;
   });
 
@@ -71,15 +72,18 @@ export function renderRoadmap(container, state) {
                          <h3 class="text-[10px] font-bold text-zinc-400 uppercase tracking-widest mb-2">${category}</h3>
                          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-1.5">
                             ${cats.map(c => {
-                               const mastery = c.masteryPercentage || 0;
-                               let dotColor = 'bg-zinc-300';
-                               let borderStatus = 'border-zinc-200 hover:border-zinc-300';
-                               if(mastery >= 85) {
+                               const abcDot = c.abcCategory || 'C';
+                               let dotColor = 'bg-red-400';
+                               let borderStatus = 'border-red-100 hover:border-red-200';
+                               if (abcDot === 'A' || abcDot === 'D') {
                                   dotColor = 'bg-emerald-500';
                                   borderStatus = 'border-emerald-200 hover:border-emerald-300';
-                               } else if (mastery > 0) {
+                               } else if (abcDot === 'B') {
                                   dotColor = 'bg-amber-500';
                                   borderStatus = 'border-amber-200 hover:border-amber-300';
+                               } else if (abcDot === 'E') {
+                                  dotColor = 'bg-zinc-300';
+                                  borderStatus = 'border-zinc-200 hover:border-zinc-300';
                                }
 
                                return `
@@ -90,7 +94,7 @@ export function renderRoadmap(container, state) {
                                   <div class="w-2 h-2 rounded-full ${dotColor} shrink-0"></div>
                                   <div class="flex-1 min-w-0">
                                      <div class="text-xs font-medium text-zinc-700 truncate group-hover:text-zinc-900">${c.name}</div>
-                                     <div class="text-[10px] text-zinc-400 mt-0.5">${mastery}%</div>
+                                     <div class="text-[10px] text-zinc-400 mt-0.5">${c.masteryPercentage || 0}%</div>
                                   </div>
                                </button>
                                `;

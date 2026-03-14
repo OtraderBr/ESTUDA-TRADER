@@ -8,16 +8,18 @@ export async function renderDashboard(container, state) {
     let searchTerm = store.getState().dashboardSearchTerm || '';
 
     const unlockedConcepts = concepts.filter(c => {
+        if (c.abcCategory === 'D' || c.abcCategory === 'E') return false;
         if ((c.masteryPercentage || 0) >= 85) return false;
         if (c.prerequisite === 'Nenhum' || !c.prerequisite) return true;
         const prereq = concepts.find(p => p.name === c.prerequisite);
         return prereq && ((prereq.masteryPercentage || 0) >= 50 || prereq.level >= 7);
     });
 
-    // E = excluído de tudo; D = contado como dominado automaticamente
+    // Motor ABC: E = Pré-Conhecimento excluído; D = Validado conta como dominado
     const activeConcepts = concepts.filter(c => c.abcCategory !== 'E' && !(c.tags || []).includes('knowledge_only'));
-    const masteredCount = activeConcepts.filter(c => c.abcCategory === 'D' || (c.masteryPercentage || 0) >= 85).length;
-    const inProgressCount = activeConcepts.filter(c => c.abcCategory !== 'D' && (c.masteryPercentage || 0) > 0 && (c.masteryPercentage || 0) < 85).length;
+    const dominioCount = activeConcepts.filter(c => c.abcCategory === 'A' || c.abcCategory === 'D').length;
+    const atencaoCount = activeConcepts.filter(c => c.abcCategory === 'B').length;
+    const focusCount   = activeConcepts.filter(c => c.abcCategory === 'C').length;
     const pendingSessions = sessions.filter(s => !s.completed).length;
 
     const filteredConcepts = concepts.filter(c =>
@@ -27,21 +29,21 @@ export async function renderDashboard(container, state) {
     );
 
     function getCategoryColor(cat) {
-        if (cat === 'A') return 'text-indigo-600 bg-indigo-50 border-indigo-200';
-        if (cat === 'B') return 'text-emerald-600 bg-emerald-50 border-emerald-200';
-        if (cat === 'C') return 'text-amber-600 bg-amber-50 border-amber-200';
+        if (cat === 'A') return 'text-emerald-600 bg-emerald-50 border-emerald-200';
+        if (cat === 'B') return 'text-amber-600 bg-amber-50 border-amber-200';
+        if (cat === 'C') return 'text-red-600 bg-red-50 border-red-200';
         if (cat === 'D') return 'text-violet-600 bg-violet-50 border-violet-200';
         if (cat === 'E') return 'text-zinc-500 bg-zinc-100 border-zinc-300';
-        return 'text-emerald-600 bg-emerald-50 border-emerald-200';
+        return 'text-red-600 bg-red-50 border-red-200';
     }
 
     const getBarColor = (cat) => {
-        if (cat === 'A') return "bg-indigo-500";
-        if (cat === 'B') return "bg-emerald-500";
-        if (cat === 'C') return "bg-amber-500";
+        if (cat === 'A') return "bg-emerald-500";
+        if (cat === 'B') return "bg-amber-500";
+        if (cat === 'C') return "bg-red-500";
         if (cat === 'D') return "bg-violet-500";
         if (cat === 'E') return "bg-zinc-400";
-        return "bg-emerald-500";
+        return "bg-red-500";
     };
 
     const [dailyPlan, gapAnalysis] = await Promise.all([
@@ -63,26 +65,29 @@ export async function renderDashboard(container, state) {
       </div>
       
       <div class="grid grid-cols-2 lg:grid-cols-4 gap-3">
-        <div class="bg-white border border-zinc-200 p-4 rounded-xl">
-          <div class="text-xs font-medium text-zinc-400 uppercase tracking-wider mb-2">Dominados (A)</div>
+        <div class="bg-white border border-emerald-200 p-4 rounded-xl">
+          <div class="text-xs font-medium text-emerald-600 uppercase tracking-wider mb-2">Domínio Total (A+D)</div>
           <div class="flex items-baseline gap-2">
-            <span class="text-2xl font-bold text-zinc-900">${masteredCount}</span>
+            <span class="text-2xl font-bold text-zinc-900">${dominioCount}</span>
             <span class="text-xs text-zinc-400">conceitos</span>
           </div>
+          <p class="text-[10px] text-zinc-400 mt-1">Revisão de manutenção</p>
         </div>
-        <div class="bg-white border border-zinc-200 p-4 rounded-xl">
-          <div class="text-xs font-medium text-zinc-400 uppercase tracking-wider mb-2">Em Progresso (B)</div>
+        <div class="bg-white border border-amber-200 p-4 rounded-xl">
+          <div class="text-xs font-medium text-amber-600 uppercase tracking-wider mb-2">Precisa Atenção (B)</div>
           <div class="flex items-baseline gap-2">
-            <span class="text-2xl font-bold text-zinc-900">${inProgressCount}</span>
+            <span class="text-2xl font-bold text-zinc-900">${atencaoCount}</span>
             <span class="text-xs text-zinc-400">conceitos</span>
           </div>
+          <p class="text-[10px] text-zinc-400 mt-1">30-40% do seu tempo</p>
         </div>
-        <div class="bg-white border border-zinc-200 p-4 rounded-xl">
-          <div class="text-xs font-medium text-zinc-400 uppercase tracking-wider mb-2">Foco Atual (C)</div>
+        <div class="bg-white border border-red-200 p-4 rounded-xl">
+          <div class="text-xs font-medium text-red-600 uppercase tracking-wider mb-2">Não Domino (C)</div>
           <div class="flex items-baseline gap-2">
-            <span class="text-2xl font-bold text-zinc-900">${unlockedConcepts.length}</span>
+            <span class="text-2xl font-bold text-zinc-900">${focusCount}</span>
             <span class="text-xs text-zinc-400">conceitos</span>
           </div>
+          <p class="text-[10px] text-zinc-400 mt-1">50-60% do seu tempo</p>
         </div>
         <div class="bg-white border border-zinc-200 p-4 rounded-xl">
           <div class="text-xs font-medium text-zinc-400 uppercase tracking-wider mb-2">Sessões Pendentes</div>
@@ -90,6 +95,7 @@ export async function renderDashboard(container, state) {
             <span class="text-2xl font-bold text-zinc-900">${pendingSessions}</span>
             <span class="text-xs text-zinc-400">sessões</span>
           </div>
+          <p class="text-[10px] text-zinc-400 mt-1">aguardando conclusão</p>
         </div>
       </div>
 

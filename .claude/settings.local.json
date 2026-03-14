@@ -6,7 +6,8 @@
       "mcp__claude_ai_Supabase__apply_migration",
       "Bash(grep -E \"\\\\.js$\")",
       "Bash(grep -E \"package|\\\\.json$|\\\\.csv$\")",
-      "mcp__claude_ai_Supabase__list_tables"
+      "mcp__claude_ai_Supabase__list_tables",
+      "Bash(python3 -c \":*)"
     ]
   }
 }

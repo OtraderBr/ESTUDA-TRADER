@@ -68,6 +68,7 @@ const navItems = [
   { id: 'graph',         label: 'Grafo',             icon: 'network' },
   { id: 'decision-tree', label: 'Árvore de Decisão', icon: 'git-merge' },
   { id: 'sessions',      label: 'Sessões',           icon: 'calendar-days' },
+  { id: 'chat',          label: 'Chat Al Brooks IA', icon: 'bot' },
 ];
 
 function renderNavItems(currentPage) {

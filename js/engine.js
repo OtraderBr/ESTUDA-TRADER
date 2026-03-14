@@ -78,6 +78,20 @@ async function migrateIfNeeded() {
     console.log('[Migration] Concluída com sucesso.');
 }
 
+// ─── Motor ABC: Retenção baseada em categorização ──────────────────────────────
+function getMasteryFromABC(abcCategory) {
+    const map = { A: 90, B: 55, C: 15, D: 100, E: 0 };
+    return map[abcCategory] ?? 15;
+}
+
+function getNextReviewFromABC(abcCategory) {
+    const days = { A: 30, B: 7, C: 1 }[abcCategory];
+    if (!days) return null;
+    const d = new Date();
+    d.setDate(d.getDate() + days);
+    return d.toISOString();
+}
+
 // ─── Inicialização ────────────────────────────────────────────────────────────
 
 export async function initializeEngine() {
@@ -117,7 +131,7 @@ export async function initializeEngine() {
             abcCategory:       p.abc_category || 'B',
             macroCategory:     p.macro_category || c.macroCategoryStr || inferMacroCategory(c.category, c.subcategory),
             importance:        p.importance || 'Média',
-            masteryPercentage: p.mastery_percentage || 0,
+            masteryPercentage: getMasteryFromABC(p.abc_category || 'C'),
             lastStudied:       p.last_studied_at || '',
             nextReview:        p.next_review_at || '',
             sm2EaseFactor:     p.sm2_ease_factor || 2.5,
@@ -188,7 +202,6 @@ export async function addEvaluation(conceptName, flashcardScore, selfScore, expl
     await dbAddEvaluation(conceptName, flashcardScore, selfScore, explanation, mastery, quality);
 
     await upsertProgress(conceptName, {
-        mastery_percentage: mastery,
         last_studied_at:    now,
         next_review_at:     sm2Result.next_review_at.toISOString(),
         sm2_ease_factor:    sm2Result.sm2_ease_factor,
@@ -214,7 +227,6 @@ export async function addEvaluation(conceptName, flashcardScore, selfScore, expl
         return {
             ...c,
             evaluations:       [newEvaluation, ...(c.evaluations || [])],
-            masteryPercentage: mastery,
             lastStudied:       now,
             nextReview:        sm2Result.next_review_at.toISOString(),
             sm2EaseFactor:     sm2Result.sm2_ease_factor,
@@ -243,9 +255,20 @@ export async function updateImportance(conceptName, importance) {
 }
 
 export async function updateABC(conceptName, abcCategory) {
-    await upsertProgress(conceptName, { abc_category: abcCategory });
+    const mastery = getMasteryFromABC(abcCategory);
+    const nextReview = getNextReviewFromABC(abcCategory);
+    const fields = { abc_category: abcCategory, mastery_percentage: mastery };
+    if (nextReview) fields.next_review_at = nextReview;
+    await upsertProgress(conceptName, fields);
     const { concepts } = store.getState();
-    store.setState({ concepts: concepts.map(c => c.name === conceptName ? { ...c, abcCategory } : c) });
+    store.setState({
+        concepts: concepts.map(c => c.name === conceptName ? {
+            ...c,
+            abcCategory,
+            masteryPercentage: mastery,
+            ...(nextReview ? { nextReview } : {})
+        } : c)
+    });
     bustPlanCache();
 }
 

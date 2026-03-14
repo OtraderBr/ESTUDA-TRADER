@@ -23,12 +23,12 @@ export function renderConceptList(container, state) {
     });
 
     const getCategoryColor = (cat) => {
-        if (cat === 'A') return 'text-indigo-600 bg-indigo-50 border-indigo-200';
-        if (cat === 'B') return 'text-emerald-600 bg-emerald-50 border-emerald-200';
-        if (cat === 'C') return 'text-amber-600 bg-amber-50 border-amber-200';
+        if (cat === 'A') return 'text-emerald-600 bg-emerald-50 border-emerald-200';
+        if (cat === 'B') return 'text-amber-600 bg-amber-50 border-amber-200';
+        if (cat === 'C') return 'text-red-600 bg-red-50 border-red-200';
         if (cat === 'D') return 'text-violet-600 bg-violet-50 border-violet-200';
         if (cat === 'E') return 'text-zinc-500 bg-zinc-100 border-zinc-300';
-        return 'text-emerald-600 bg-emerald-50 border-emerald-200';
+        return 'text-red-600 bg-red-50 border-red-200';
     };
 
     const getMasteryDisplay = (c) => c.abcCategory === 'D' ? 100 : (c.masteryPercentage || 0);
@@ -57,11 +57,11 @@ export function renderConceptList(container, state) {
           </select>
           <select id="abc-filter" class="bg-white border border-zinc-200 text-zinc-600 text-xs rounded-lg px-3 py-2 focus:outline-none focus:border-zinc-400 cursor-pointer shadow-sm">
             <option value="Todos" ${filterABC === 'Todos' ? 'selected' : ''}>Categoria</option>
-            <option value="A" ${filterABC === 'A' ? 'selected' : ''}>A — Prioritário</option>
-            <option value="B" ${filterABC === 'B' ? 'selected' : ''}>B — Em Progresso</option>
-            <option value="C" ${filterABC === 'C' ? 'selected' : ''}>C — Suporte</option>
+            <option value="A" ${filterABC === 'A' ? 'selected' : ''}>A — Domínio Total</option>
+            <option value="B" ${filterABC === 'B' ? 'selected' : ''}>B — Precisa de Atenção</option>
+            <option value="C" ${filterABC === 'C' ? 'selected' : ''}>C — Não Domino</option>
             <option value="D" ${filterABC === 'D' ? 'selected' : ''}>D — Validado</option>
-            <option value="E" ${filterABC === 'E' ? 'selected' : ''}>E — Inativo</option>
+            <option value="E" ${filterABC === 'E' ? 'selected' : ''}>E — Pré-Conhecimento</option>
           </select>
           <select id="tag-filter" class="bg-white border border-zinc-200 text-zinc-600 text-xs rounded-lg px-3 py-2 focus:outline-none focus:border-zinc-400 cursor-pointer shadow-sm">
             <option value="Todos" ${filterTag === 'Todos' ? 'selected' : ''}>Tags</option>
@@ -76,7 +76,7 @@ export function renderConceptList(container, state) {
         ${filteredConcepts.map(concept => {
             const mastery = getMasteryDisplay(concept);
             const abc = concept.abcCategory || 'B';
-            const barColor = abc === 'A' ? 'bg-indigo-500' : abc === 'B' ? 'bg-emerald-500' : abc === 'C' ? 'bg-amber-500' : abc === 'D' ? 'bg-violet-500' : 'bg-zinc-400';
+            const barColor = abc === 'A' ? 'bg-emerald-500' : abc === 'B' ? 'bg-amber-500' : abc === 'C' ? 'bg-red-500' : abc === 'D' ? 'bg-violet-500' : 'bg-zinc-400';
             const masteryColor = mastery >= 85 ? 'text-emerald-600' : mastery >= 50 ? 'text-amber-500' : mastery > 0 ? 'text-red-500' : 'text-zinc-400';
             return `
           <button
