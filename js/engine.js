@@ -6,7 +6,8 @@ import { loadConcepts, getAllProgress, getAllNotes, getAllEvaluations,
          getAllSessions, upsertProgress, addNote as dbAddNote,
          addEvaluation as dbAddEvaluation, upsertConceptDescription,
          createSession, setSessionCompleted, deleteSessionById,
-         hasAnyProgress } from './dataService.js';
+         hasAnyProgress, deleteNoteById, deleteEvaluationById } from './dataService.js';
+import { buildGraphDataFromConcepts } from './graph.js';
 import { applySM2, calculateQuality, calculateMastery } from './sm2.js';
 import { bustPlanCache } from './daily-plan.js';
 
@@ -30,19 +31,17 @@ function inferMacroCategory(category, subcategory) {
 // ─── Migração única do localStorage para Supabase ────────────────────────────
 
 async function migrateIfNeeded() {
-    // Se já há dados no Supabase, migração não é necessária
     if (await hasAnyProgress()) return;
 
     const raw = localStorage.getItem('brooks_progress_v4');
-    if (!raw) return; // Nada a migrar
+    if (!raw) return;
 
     console.log('[Migration] Iniciando migração do localStorage para Supabase...');
     const progressMap = JSON.parse(raw);
 
     for (const [name, data] of Object.entries(progressMap)) {
-        // Migra o registro de progresso
         await upsertProgress(name, {
-            abc_category:      data.abcCategory || 'C',
+            abc_category:      data.abcCategory || 'B',
             macro_category:    data.macroCategory || 'Fundamento',
             importance:        data.importance || 'Média',
             mastery_percentage: data.masteryPercentage || 0,
@@ -50,7 +49,6 @@ async function migrateIfNeeded() {
             next_review_at:    data.nextReview || null,
         });
 
-        // Migra notas (texto plano → HTML simples)
         if (data.notesList && data.notesList.length > 0) {
             for (const note of data.notesList) {
                 const html = `<p>${note.text.replace(/\n/g, '</p><p>')}</p>`;
@@ -58,18 +56,16 @@ async function migrateIfNeeded() {
             }
         }
 
-        // Migra avaliações (quizScore → self_score)
         if (data.evaluations && data.evaluations.length > 0) {
             for (const ev of data.evaluations) {
                 const fs = ev.flashcardScore || 0;
-                const ss = ev.quizScore || 0; // quizScore mapeado para self_score
+                const ss = ev.quizScore || 0;
                 const quality = calculateQuality(fs, ss);
                 await dbAddEvaluation(name, fs, ss, ev.explanation || '', ev.masteryPercentage || 0, quality);
             }
         }
     }
 
-    // Migra sessões
     const rawSessions = localStorage.getItem('brooks_sessions_v1');
     if (rawSessions) {
         const sessions = JSON.parse(rawSessions);
@@ -85,10 +81,8 @@ async function migrateIfNeeded() {
 // ─── Inicialização ────────────────────────────────────────────────────────────
 
 export async function initializeEngine() {
-    // Migrar dados legados se necessário
     await migrateIfNeeded();
 
-    // Carregar tudo do Supabase em paralelo
     const [loadedConcepts, progressData, allNotes, allEvals, sessions] = await Promise.all([
         loadConcepts(),
         getAllProgress(),
@@ -97,11 +91,10 @@ export async function initializeEngine() {
         getAllSessions()
     ]);
 
-    // Indexar por nome para lookup O(1)
     const progressMap = Object.fromEntries(progressData.map(p => [p.conceito_name, p]));
 
-    const notesMap = {};         // conceito_name → anotações avulsas[]
-    const descriptionsMap = {};  // conceito_name → nota tipo 'Descrição'
+    const notesMap = {};
+    const descriptionsMap = {};
     allNotes.forEach(note => {
         if (note.type === 'Descrição') {
             descriptionsMap[note.conceito_name] = note;
@@ -111,18 +104,17 @@ export async function initializeEngine() {
         }
     });
 
-    const evalsMap = {};         // conceito_name → avaliações[]
+    const evalsMap = {};
     allEvals.forEach(ev => {
         if (!evalsMap[ev.conceito_name]) evalsMap[ev.conceito_name] = [];
         evalsMap[ev.conceito_name].push(ev);
     });
 
-    // Mesclar dados do DB com progresso salvo
     const finalConcepts = loadedConcepts.map(c => {
         const p = progressMap[c.name] || {};
         return {
             ...c,
-            abcCategory:       p.abc_category || 'C',
+            abcCategory:       p.abc_category || 'B',
             macroCategory:     p.macro_category || c.macroCategoryStr || inferMacroCategory(c.category, c.subcategory),
             importance:        p.importance || 'Média',
             masteryPercentage: p.mastery_percentage || 0,
@@ -138,7 +130,8 @@ export async function initializeEngine() {
         };
     });
 
-    store.setState({ concepts: finalConcepts, sessions, loading: false });
+    const { graphNodes, graphEdges } = buildGraphDataFromConcepts(finalConcepts);
+    store.setState({ concepts: finalConcepts, sessions, graphNodes, graphEdges, loading: false });
 }
 
 // ─── Ações sobre Conceitos ────────────────────────────────────────────────────
@@ -162,8 +155,18 @@ export async function addNote(conceptName, type, text) {
     });
     store.setState({ concepts: updatedConcepts });
 
-    // Atualiza last_studied_at no Supabase
     await upsertProgress(conceptName, { last_studied_at: new Date().toISOString() });
+}
+
+export async function deleteNote(conceptName, noteId) {
+    await deleteNoteById(noteId);
+    const { concepts } = store.getState();
+    store.setState({
+        concepts: concepts.map(c => c.name !== conceptName ? c : {
+            ...c,
+            notesList: (c.notesList || []).filter(n => String(n.id) !== String(noteId))
+        })
+    });
 }
 
 export async function addEvaluation(conceptName, flashcardScore, selfScore, explanation) {
@@ -182,10 +185,8 @@ export async function addEvaluation(conceptName, flashcardScore, selfScore, expl
 
     const now = new Date().toISOString();
 
-    // Persiste avaliação no Supabase
     await dbAddEvaluation(conceptName, flashcardScore, selfScore, explanation, mastery, quality);
 
-    // Persiste progresso atualizado no Supabase
     await upsertProgress(conceptName, {
         mastery_percentage: mastery,
         last_studied_at:    now,
@@ -195,7 +196,6 @@ export async function addEvaluation(conceptName, flashcardScore, selfScore, expl
         sm2_repetitions:    sm2Result.sm2_repetitions
     });
 
-    // Invalida cache do plano diário (dados de progresso mudaram)
     bustPlanCache();
 
     const newEvaluation = {
@@ -225,6 +225,17 @@ export async function addEvaluation(conceptName, flashcardScore, selfScore, expl
     store.setState({ concepts: updatedConcepts });
 }
 
+export async function deleteEvaluation(conceptName, evalId) {
+    await deleteEvaluationById(evalId);
+    const { concepts } = store.getState();
+    store.setState({
+        concepts: concepts.map(c => c.name !== conceptName ? c : {
+            ...c,
+            evaluations: (c.evaluations || []).filter(e => String(e.id) !== String(evalId))
+        })
+    });
+}
+
 export async function updateImportance(conceptName, importance) {
     await upsertProgress(conceptName, { importance });
     const { concepts } = store.getState();
@@ -235,6 +246,7 @@ export async function updateABC(conceptName, abcCategory) {
     await upsertProgress(conceptName, { abc_category: abcCategory });
     const { concepts } = store.getState();
     store.setState({ concepts: concepts.map(c => c.name === conceptName ? { ...c, abcCategory } : c) });
+    bustPlanCache();
 }
 
 export async function updateMacroCategory(conceptName, macroCategory) {
@@ -282,28 +294,39 @@ export async function deleteSession(sessionId) {
     store.setState({ sessions: sessions.filter(s => s.id !== sessionId) });
 }
 
-// ─── Seletores (sem mudança) ──────────────────────────────────────────────────
+// ─── Seletores ────────────────────────────────────────────────────────────────
 
 export function getUnlockedConcepts() {
     const { concepts } = store.getState();
+    // D e E são excluídos do "precisa ser estudado"
     return concepts.filter(c => {
+        if (c.abcCategory === 'D' || c.abcCategory === 'E') return false;
+        if ((c.masteryPercentage || 0) >= 85) return false;
         if (c.prerequisite === 'Nenhum' || !c.prerequisite) return true;
         const prereq = concepts.find(p => p.name === c.prerequisite);
+        // D conta como pré-requisito satisfeito
+        if (prereq && (prereq.abcCategory === 'D')) return true;
         return prereq && ((prereq.masteryPercentage || 0) >= 50 || prereq.level >= 7);
     });
 }
 
 export function getCategoryProgress() {
     const { concepts } = store.getState();
-    const categories = Array.from(new Set(concepts.map(c => c.category)));
+    // Exclui conceitos E dos cálculos
+    const activeConcepts = concepts.filter(c => c.abcCategory !== 'E');
+    const categories = Array.from(new Set(activeConcepts.map(c => c.category)));
     return categories.map(cat => {
-        const catConcepts = concepts.filter(c => c.category === cat);
-        const totalMastery = catConcepts.reduce((sum, c) => sum + (c.masteryPercentage || 0), 0);
+        const catConcepts = activeConcepts.filter(c => c.category === cat);
+        // D conta como 100% de domínio
+        const totalMastery = catConcepts.reduce((sum, c) => {
+            const mastery = c.abcCategory === 'D' ? 100 : (c.masteryPercentage || 0);
+            return sum + mastery;
+        }, 0);
         const maxMastery = catConcepts.length * 100;
         return {
             category: cat,
             progress: maxMastery > 0 ? (totalMastery / maxMastery) * 100 : 0,
-            completed: catConcepts.filter(c => (c.masteryPercentage || 0) >= 85).length,
+            completed: catConcepts.filter(c => c.abcCategory === 'D' || (c.masteryPercentage || 0) >= 85).length,
             total: catConcepts.length
         };
     });

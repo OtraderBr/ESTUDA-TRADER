@@ -14,9 +14,10 @@ export async function renderDashboard(container, state) {
         return prereq && ((prereq.masteryPercentage || 0) >= 50 || prereq.level >= 7);
     });
 
-    const activeConcepts = concepts.filter(c => !(c.tags || []).includes('knowledge_only'));
-    const masteredCount = activeConcepts.filter(c => (c.masteryPercentage || 0) >= 85).length;
-    const inProgressCount = activeConcepts.filter(c => (c.masteryPercentage || 0) > 0 && (c.masteryPercentage || 0) < 85).length;
+    // E = excluído de tudo; D = contado como dominado automaticamente
+    const activeConcepts = concepts.filter(c => c.abcCategory !== 'E' && !(c.tags || []).includes('knowledge_only'));
+    const masteredCount = activeConcepts.filter(c => c.abcCategory === 'D' || (c.masteryPercentage || 0) >= 85).length;
+    const inProgressCount = activeConcepts.filter(c => c.abcCategory !== 'D' && (c.masteryPercentage || 0) > 0 && (c.masteryPercentage || 0) < 85).length;
     const pendingSessions = sessions.filter(s => !s.completed).length;
 
     const filteredConcepts = concepts.filter(c =>
@@ -26,15 +27,21 @@ export async function renderDashboard(container, state) {
     );
 
     function getCategoryColor(cat) {
-        if (cat === 'A') return 'text-emerald-600 bg-emerald-50 border-emerald-200';
-        if (cat === 'B') return 'text-amber-600 bg-amber-50 border-amber-200';
-        return 'text-red-600 bg-red-50 border-red-200';
+        if (cat === 'A') return 'text-indigo-600 bg-indigo-50 border-indigo-200';
+        if (cat === 'B') return 'text-emerald-600 bg-emerald-50 border-emerald-200';
+        if (cat === 'C') return 'text-amber-600 bg-amber-50 border-amber-200';
+        if (cat === 'D') return 'text-violet-600 bg-violet-50 border-violet-200';
+        if (cat === 'E') return 'text-zinc-500 bg-zinc-100 border-zinc-300';
+        return 'text-emerald-600 bg-emerald-50 border-emerald-200';
     }
 
     const getBarColor = (cat) => {
-        if (cat === 'A') return "bg-emerald-500";
-        if (cat === 'B') return "bg-amber-500";
-        return "bg-red-500";
+        if (cat === 'A') return "bg-indigo-500";
+        if (cat === 'B') return "bg-emerald-500";
+        if (cat === 'C') return "bg-amber-500";
+        if (cat === 'D') return "bg-violet-500";
+        if (cat === 'E') return "bg-zinc-400";
+        return "bg-emerald-500";
     };
 
     const [dailyPlan, gapAnalysis] = await Promise.all([
@@ -165,18 +172,18 @@ export async function renderDashboard(container, state) {
                   <span class="text-[10px] font-semibold text-zinc-500 uppercase tracking-wider px-1.5 py-0.5 bg-zinc-100 rounded">${concept.macroCategory}</span>
                   <span class="text-[10px] font-semibold text-zinc-400 uppercase tracking-wider px-1.5 py-0.5 bg-zinc-50 rounded">${concept.category}</span>
                 </div>
-                <span class="text-[10px] font-bold px-2 py-0.5 rounded border ${getCategoryColor(concept.abcCategory || 'C')}">
-                  ${concept.abcCategory || 'C'}
+                <span class="text-[10px] font-bold px-2 py-0.5 rounded border ${getCategoryColor(concept.abcCategory || 'B')}">
+                  ${concept.abcCategory || 'B'}
                 </span>
               </div>
               <h3 class="text-sm font-semibold text-zinc-800 group-hover:text-zinc-900 transition-colors mb-3 flex-1">${concept.name}</h3>
               <div class="w-full space-y-1.5">
                 <div class="flex justify-between text-[10px] font-medium text-zinc-400">
-                  <span>${concept.masteryPercentage || 0}% retenção</span>
+                  <span>${concept.abcCategory === 'D' ? 100 : (concept.masteryPercentage || 0)}% retenção</span>
                   <span>${concept.nextReview ? new Date(concept.nextReview).toLocaleDateString() : 'Não estudado'}</span>
                 </div>
                 <div class="h-1 w-full bg-zinc-100 rounded-full overflow-hidden">
-                  <div class="h-full transition-all ${getBarColor(concept.abcCategory || 'C')}" style="width: ${concept.masteryPercentage || 0}%"></div>
+                  <div class="h-full transition-all ${getBarColor(concept.abcCategory || 'B')}" style="width: ${concept.abcCategory === 'D' ? 100 : (concept.masteryPercentage || 0)}%"></div>
                 </div>
               </div>
             </button>

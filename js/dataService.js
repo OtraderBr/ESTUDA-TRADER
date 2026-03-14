@@ -352,3 +352,27 @@ export async function deleteFreeNote(id) {
         .eq('id', id);
     if (error) console.error('deleteFreeNote:', error);
 }
+
+/**
+ * Deleta uma nota pelo ID.
+ * @param {string|number} id
+ */
+export async function deleteNoteById(id) {
+    const { error } = await supabase
+        .from('concept_notes')
+        .delete()
+        .eq('id', id);
+    if (error) console.error('deleteNoteById:', error);
+}
+
+/**
+ * Deleta uma avaliação pelo ID.
+ * @param {string|number} id
+ */
+export async function deleteEvaluationById(id) {
+    const { error } = await supabase
+        .from('concept_evaluations')
+        .delete()
+        .eq('id', id);
+    if (error) console.error('deleteEvaluationById:', error);
+}

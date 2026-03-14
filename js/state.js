@@ -6,10 +6,14 @@ class Store {
         this.state = {
             concepts: [],
             sessions: [],
+            graphNodes: [],
+            graphEdges: [],
             loading: true,
             sidebarOpen: false,
             currentPage: 'dashboard',
-            selectedConceptId: null
+            selectedConceptId: null,
+            conceptPanelOpen: true,
+            conceptInitialTab: null
         };
         this.listeners = [];
     }

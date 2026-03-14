@@ -1,19 +1,53 @@
 // js/concept-detail.js
 import { store } from './state.js';
-import { addNote, addEvaluation, updateImportance, updateABC, updateMacroCategory, updateTags } from './engine.js';
+import { addNote, deleteNote, addEvaluation, deleteEvaluation, updateImportance, updateABC, updateMacroCategory } from './engine.js';
 import { upsertConceptDescription } from './dataService.js';
-import { cn } from './utils.js';
 import { renderTagPills, attachTagListeners } from './tags.js';
 import { createRichEditor, attachFloatingToolbar } from './rich-editor.js';
 
 let activeTab = 'descricao';
 
-export function renderConceptDetail(container, concept) {
-    const mastery = concept.masteryPercentage || 0;
-    const category = concept.abcCategory || 'C';
+// Permite que outros módulos definam a aba inicial antes de renderizar
+export function setConceptInitialTab(tab) { activeTab = tab; }
 
-    const catColor = category === 'A' ? 'text-emerald-600' : category === 'B' ? 'text-amber-600' : 'text-red-600';
-    const catBg = category === 'A' ? 'bg-emerald-50 border-emerald-200' : category === 'B' ? 'bg-amber-50 border-amber-200' : 'bg-red-50 border-red-200';
+// ─── Helpers de cor para categorias ABCDE ─────────────────────────────────────
+
+function getCatStyle(cat) {
+    switch (cat) {
+        case 'A': return { color: 'text-indigo-600', bg: 'bg-indigo-50 border-indigo-200', bar: 'bg-indigo-500' };
+        case 'B': return { color: 'text-emerald-600', bg: 'bg-emerald-50 border-emerald-200', bar: 'bg-emerald-500' };
+        case 'C': return { color: 'text-amber-600', bg: 'bg-amber-50 border-amber-200', bar: 'bg-amber-500' };
+        case 'D': return { color: 'text-violet-600', bg: 'bg-violet-50 border-violet-200', bar: 'bg-violet-500' };
+        case 'E': return { color: 'text-zinc-500', bg: 'bg-zinc-100 border-zinc-300', bar: 'bg-zinc-400' };
+        default:  return { color: 'text-emerald-600', bg: 'bg-emerald-50 border-emerald-200', bar: 'bg-emerald-500' };
+    }
+}
+
+export function renderConceptDetail(container, concept) {
+    const mastery = concept.abcCategory === 'D' ? 100 : (concept.masteryPercentage || 0);
+    const category = concept.abcCategory || 'B';
+    const { color: catColor, bg: catBg } = getCatStyle(category);
+
+    // ── Banner especial para D e E ──
+    const renderStatusBanner = () => {
+        if (category === 'D') return `
+          <div class="mb-4 flex items-start gap-3 bg-violet-50 border border-violet-200 rounded-xl px-4 py-3">
+            <i data-lucide="shield-check" class="w-4 h-4 text-violet-500 shrink-0 mt-0.5"></i>
+            <div>
+              <p class="text-xs font-semibold text-violet-700">Conceito Validado</p>
+              <p class="text-[11px] text-violet-600 mt-0.5">Contado automaticamente como 100% dominado. Não aparece no plano de estudos nem no SM-2.</p>
+            </div>
+          </div>`;
+        if (category === 'E') return `
+          <div class="mb-4 flex items-start gap-3 bg-zinc-100 border border-zinc-300 rounded-xl px-4 py-3">
+            <i data-lucide="eye-off" class="w-4 h-4 text-zinc-400 shrink-0 mt-0.5"></i>
+            <div>
+              <p class="text-xs font-semibold text-zinc-600">Conceito Inativo</p>
+              <p class="text-[11px] text-zinc-500 mt-0.5">Completamente excluído de todos os cálculos, estatísticas e plano de estudos.</p>
+            </div>
+          </div>`;
+        return '';
+    };
 
     // ── TAB: Descrição (Editor Tiptap) ──
     const renderDescTab = () => `
@@ -97,7 +131,7 @@ export function renderConceptDetail(container, concept) {
 
       ${concept.notesList && concept.notesList.length > 0 ? `
         <div>
-          <h4 class="text-xs font-semibold text-zinc-400 uppercase tracking-wider mb-3">Histórico</h4>
+          <h4 class="text-xs font-semibold text-zinc-400 uppercase tracking-wider mb-3">Histórico (${concept.notesList.length})</h4>
           <div class="space-y-2">
             ${concept.notesList.map((note) => {
         let badgeColor = "bg-zinc-100 text-zinc-600 border-zinc-200";
@@ -111,10 +145,19 @@ export function renderConceptDetail(container, concept) {
             : `<p class="text-zinc-600 text-xs whitespace-pre-wrap leading-relaxed">${note.content_text || ''}</p>`;
 
         return `
-                <div class="bg-white border border-zinc-200 rounded-lg p-4">
+                <div class="bg-white border border-zinc-200 rounded-lg p-4 group">
                   <div class="flex justify-between items-center mb-2">
-                    <span class="text-[10px] font-semibold px-2 py-0.5 rounded border ${badgeColor}">${note.type}</span>
-                    <span class="text-[10px] text-zinc-400">${noteDate ? new Date(noteDate).toLocaleString() : ''}</span>
+                    <div class="flex items-center gap-2">
+                      <span class="text-[10px] font-semibold px-2 py-0.5 rounded border ${badgeColor}">${note.type}</span>
+                      <span class="text-[10px] text-zinc-400">${noteDate ? new Date(noteDate).toLocaleString() : ''}</span>
+                    </div>
+                    <button
+                      class="delete-note-btn opacity-0 group-hover:opacity-100 p-1.5 rounded-lg text-zinc-300 hover:text-red-500 hover:bg-red-50 transition-all"
+                      data-note-id="${note.id}"
+                      title="Excluir anotação"
+                    >
+                      <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
+                    </button>
                   </div>
                   ${noteContent}
                 </div>
@@ -122,7 +165,7 @@ export function renderConceptDetail(container, concept) {
     }).join('')}
           </div>
         </div>
-      ` : ''}
+      ` : '<p class="text-xs text-zinc-400 text-center py-8">Nenhuma anotação ainda.</p>'}
     </div>
     `;
 
@@ -157,7 +200,7 @@ export function renderConceptDetail(container, concept) {
 
       ${concept.evaluations && concept.evaluations.length > 0 ? `
         <div>
-          <h4 class="text-xs font-semibold text-zinc-400 uppercase tracking-wider mb-3">Histórico</h4>
+          <h4 class="text-xs font-semibold text-zinc-400 uppercase tracking-wider mb-3">Histórico (${concept.evaluations.length})</h4>
           <div class="space-y-2">
             ${concept.evaluations.map((evalItem) => {
         const fs = evalItem.flashcard_score ?? evalItem.flashcardScore ?? 0;
@@ -165,12 +208,19 @@ export function renderConceptDetail(container, concept) {
         const avg = Math.round((fs + ss) / 2);
         const evalDate = evalItem.created_at || evalItem.date;
         return `
-                <div class="bg-white border border-zinc-200 rounded-lg p-4">
+                <div class="bg-white border border-zinc-200 rounded-lg p-4 group">
                   <div class="flex flex-wrap items-center gap-2 mb-2">
                     <span class="text-[10px] text-zinc-400">${evalDate ? new Date(evalDate).toLocaleString() : ''}</span>
                     <span class="text-[10px] font-semibold bg-zinc-100 text-zinc-600 px-2 py-0.5 rounded border border-zinc-200">FC: ${fs}%</span>
                     <span class="text-[10px] font-semibold bg-zinc-100 text-zinc-600 px-2 py-0.5 rounded border border-zinc-200">FN: ${ss}%</span>
                     <span class="text-[10px] font-semibold bg-emerald-50 text-emerald-700 px-2 py-0.5 rounded border border-emerald-200">${avg}%</span>
+                    <button
+                      class="delete-eval-btn ml-auto opacity-0 group-hover:opacity-100 p-1.5 rounded-lg text-zinc-300 hover:text-red-500 hover:bg-red-50 transition-all"
+                      data-eval-id="${evalItem.id}"
+                      title="Excluir avaliação"
+                    >
+                      <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
+                    </button>
                   </div>
                   <p class="text-xs text-zinc-600 whitespace-pre-wrap leading-relaxed">${evalItem.explanation}</p>
                 </div>
@@ -178,12 +228,22 @@ export function renderConceptDetail(container, concept) {
     }).join('')}
           </div>
         </div>
-      ` : ''}
+      ` : '<p class="text-xs text-zinc-400 text-center py-8">Nenhuma avaliação ainda.</p>'}
     </div>
     `;
 
     // ── TAB: Configuração ──
-    const renderConfigTab = () => `
+    const renderConfigTab = () => {
+        const catDescriptions = {
+            A: { title: 'Prioritário', desc: 'Conceito crítico para sua operação. Máxima prioridade no plano de estudos.', color: 'text-indigo-700', bg: 'bg-indigo-50 border-indigo-200' },
+            B: { title: 'Em Progresso', desc: 'Prioridade normal. Incluído nos cálculos e plano de estudos regularmente.', color: 'text-emerald-700', bg: 'bg-emerald-50 border-emerald-200' },
+            C: { title: 'Suporte', desc: 'Baixa prioridade. Revisar eventualmente. Incluído nos cálculos com menor peso.', color: 'text-amber-700', bg: 'bg-amber-50 border-amber-200' },
+            D: { title: 'Validado ✓', desc: 'Você já domina este conceito. Contado como 100% em todas as estatísticas. Excluído do plano de estudos e SM-2.', color: 'text-violet-700', bg: 'bg-violet-50 border-violet-200' },
+            E: { title: 'Inativo ⊘', desc: 'Pré-conhecimento ou irrelevante. Completamente excluído de todos os cálculos, estatísticas e plano de estudos.', color: 'text-zinc-600', bg: 'bg-zinc-100 border-zinc-300' },
+        };
+        const desc = catDescriptions[category] || catDescriptions.B;
+
+        return `
     <div class="p-5 space-y-4">
       <div>
         <h4 class="text-xs font-semibold text-zinc-400 uppercase tracking-wider mb-3">Tags</h4>
@@ -212,34 +272,24 @@ export function renderConceptDetail(container, concept) {
           </select>
         </div>
         <div>
-          <label class="block text-[10px] font-medium text-zinc-500 mb-1.5">Categoria ABC</label>
+          <label class="block text-[10px] font-medium text-zinc-500 mb-1.5">Categoria ABCDE</label>
           <select id="abcSelect" class="w-full bg-white border border-zinc-200 text-zinc-700 text-xs rounded-md px-3 py-2 focus:outline-none focus:border-zinc-400 cursor-pointer">
-            <option value="A" ${category === 'A' ? 'selected' : ''}>A — Domínio Alto</option>
-            <option value="B" ${category === 'B' ? 'selected' : ''}>B — Em Desenvolvimento</option>
-            <option value="C" ${category === 'C' ? 'selected' : ''}>C — Prioridade Máxima</option>
+            <option value="A" ${category === 'A' ? 'selected' : ''}>A — Prioritário</option>
+            <option value="B" ${category === 'B' ? 'selected' : ''}>B — Em Progresso</option>
+            <option value="C" ${category === 'C' ? 'selected' : ''}>C — Suporte</option>
+            <option value="D" ${category === 'D' ? 'selected' : ''}>D — Validado ✓</option>
+            <option value="E" ${category === 'E' ? 'selected' : ''}>E — Inativo ⊘</option>
           </select>
         </div>
       </div>
 
-      <div class="bg-zinc-50 border border-zinc-200 rounded-lg p-4">
-        <h4 class="text-xs font-semibold text-zinc-500 uppercase tracking-wider mb-2">Método ABC — Como Estudar</h4>
-        <div class="text-xs text-zinc-600 space-y-1">
-          ${category === 'A' ? `
-            <p><strong class="text-zinc-800">Ação:</strong> Revisar com simulados e questões, sem repetir videoaulas ou PDFs.</p>
-            <p><strong class="text-zinc-800">Objetivo:</strong> Manter o domínio e identificar falhas de interpretação.</p>
-          ` : ''}
-          ${category === 'B' ? `
-            <p><strong class="text-zinc-800">Ação:</strong> Revisar com PDFs, videoaulas pontuais e questões focadas.</p>
-            <p><strong class="text-zinc-800">Dica:</strong> Reservar 30 minutos por dia para esses tópicos.</p>
-          ` : ''}
-          ${category === 'C' ? `
-            <p><strong class="text-zinc-800">Ação:</strong> Estudar com videoaulas, PDFs e resumos como primeiro contato.</p>
-            <p><strong class="text-zinc-800">Prioridade:</strong> Máxima no cronograma inicial.</p>
-          ` : ''}
-        </div>
+      <div class="border rounded-xl p-4 ${desc.bg}">
+        <h4 class="text-xs font-semibold ${desc.color} uppercase tracking-wider mb-1.5">Categoria ${category} — ${desc.title}</h4>
+        <p class="text-xs ${desc.color} opacity-80 leading-relaxed">${desc.desc}</p>
       </div>
     </div>
     `;
+    };
 
     const tabs = [
         { id: 'descricao', label: 'Descrição', icon: 'file-text' },
@@ -257,7 +307,7 @@ export function renderConceptDetail(container, concept) {
 
     container.innerHTML = `
     <div class="p-6 max-w-4xl mx-auto h-full overflow-y-auto pb-20" id="concept-detail-content">
-      
+
       <!-- Header -->
       <div class="mb-4">
         <div class="flex items-center gap-1.5 mb-1 text-[10px] text-zinc-400 font-medium uppercase tracking-wider">
@@ -268,6 +318,8 @@ export function renderConceptDetail(container, concept) {
         </div>
         <h1 class="text-xl font-bold text-zinc-900 tracking-tight">${concept.name}</h1>
       </div>
+
+      ${renderStatusBanner()}
 
       <!-- Metrics Bar -->
       <div class="flex flex-wrap items-center gap-3 mb-5 pb-5 border-b border-zinc-200">
@@ -347,7 +399,6 @@ export function renderConceptDetail(container, concept) {
                     }
                 });
 
-                // ── Modo Foco ──
                 document.getElementById('desc-focus-btn')?.addEventListener('click', () => {
                     const editorContainer = document.getElementById('rich-editor-container');
                     const isFocus = editorContainer?.classList.toggle('desc-focus-mode');
@@ -421,6 +472,11 @@ export function renderConceptDetail(container, concept) {
     });
     document.getElementById('abcSelect')?.addEventListener('change', (e) => {
         updateABC(concept.name, e.target.value);
+        // Re-render para atualizar banner e estilos visuais
+        setTimeout(() => {
+            const updatedConcept = store.getState().concepts.find(c => c.id === concept.id);
+            if (updatedConcept) renderConceptDetail(container, updatedConcept);
+        }, 120);
     });
 
     // Tags
@@ -429,13 +485,37 @@ export function renderConceptDetail(container, concept) {
         attachTagListeners(tagPillsContainer, concept.name, concept.tags || []);
     }
 
-    // Note form
+    // ── Delete note buttons ──
+    container.querySelectorAll('.delete-note-btn').forEach(btn => {
+        btn.addEventListener('click', async (e) => {
+            e.stopPropagation();
+            const noteId = btn.getAttribute('data-note-id');
+            if (confirm('Excluir esta anotação permanentemente?')) {
+                await deleteNote(concept.name, noteId);
+                const updatedConcept = store.getState().concepts.find(c => c.id === concept.id);
+                if (updatedConcept) renderConceptDetail(container, updatedConcept);
+            }
+        });
+    });
+
+    // ── Delete eval buttons ──
+    container.querySelectorAll('.delete-eval-btn').forEach(btn => {
+        btn.addEventListener('click', async (e) => {
+            e.stopPropagation();
+            const evalId = btn.getAttribute('data-eval-id');
+            if (confirm('Excluir esta avaliação permanentemente?')) {
+                await deleteEvaluation(concept.name, evalId);
+                const updatedConcept = store.getState().concepts.find(c => c.id === concept.id);
+                if (updatedConcept) renderConceptDetail(container, updatedConcept);
+            }
+        });
+    });
+
+    // ── Note form ──
     const saveNoteBtn = document.getElementById('saveNoteBtn');
     if (saveNoteBtn) {
         const noteTextEl = document.getElementById('noteText');
-        const updateBtnState = () => {
-            saveNoteBtn.disabled = !noteTextEl.value.trim();
-        };
+        const updateBtnState = () => { saveNoteBtn.disabled = !noteTextEl.value.trim(); };
         noteTextEl.addEventListener('input', updateBtnState);
         updateBtnState();
 
@@ -446,7 +526,7 @@ export function renderConceptDetail(container, concept) {
         });
     }
 
-    // Eval Form
+    // ── Eval Form ──
     const saveEvalBtn = document.getElementById('saveEvalBtn');
     if (saveEvalBtn) {
         const fsEl = document.getElementById('flashcardScore');
