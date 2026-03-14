@@ -222,12 +222,12 @@ export async function renderImageGallery(container, conceitoName) {
     }
     document.addEventListener('paste', onPaste);
 
-    // ── Listeners da grade ──
-    function attachGridListeners() {
-        // Botão "+" no toolbar
-        root.querySelector('#img-add-btn')?.addEventListener('click', () => fileInput.click());
-        fileInput.addEventListener('change', () => { handleFiles(fileInput.files); fileInput.value = ''; }, { once: true });
+    // ── Listeners do toolbar (adicionados UMA ÚNICA VEZ) ──
+    root.querySelector('#img-add-btn')?.addEventListener('click', () => fileInput.click());
+    fileInput.addEventListener('change', () => { handleFiles(fileInput.files); fileInput.value = ''; });
 
+    // ── Listeners da grade (re-aplicados a cada renderGrid) ──
+    function attachGridListeners() {
         // Lightbox
         grid.querySelectorAll('[data-lightbox]').forEach(el => {
             el.addEventListener('click', () => {

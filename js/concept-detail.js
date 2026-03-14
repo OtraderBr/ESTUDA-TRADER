@@ -24,7 +24,14 @@ function getCatStyle(cat) {
     }
 }
 
+let _lastConceptName = null;
+
 export function renderConceptDetail(container, concept) {
+    // Ao trocar de conceito, volta para a aba inicial
+    if (concept.name !== _lastConceptName) {
+        activeTab = 'descricao';
+        _lastConceptName = concept.name;
+    }
     const mastery = concept.abcCategory === 'D' ? 100 : (concept.masteryPercentage || 0);
     const category = concept.abcCategory || 'B';
     const { color: catColor, bg: catBg } = getCatStyle(category);
@@ -375,7 +382,7 @@ export function renderConceptDetail(container, concept) {
           `).join('')}
         </div>
         ${tabs.map(t => `
-          <div class="tab-panel ${activeTab === t.id ? 'active' : ''}" data-panel-id="${t.id}">
+          <div class="tab-panel ${activeTab === t.id ? 'active' : ''}" data-panel-id="${t.id}" style="${activeTab !== t.id ? 'display:none;' : ''}">
             ${tabRenderers[t.id]()}
           </div>
         `).join('')}
@@ -385,18 +392,20 @@ export function renderConceptDetail(container, concept) {
 
     if (window.lucide) window.lucide.createIcons();
 
-    // ── Galeria de Imagens ──
+    // ── Galeria de Imagens (lazy-init: initiada no primeiro click na aba) ──
     if (activeTab === 'galeria') {
-        const galleryMount = document.getElementById('gallery-mount');
-        if (galleryMount) {
-            renderImageGallery(galleryMount, concept.name);
+        const galleryPanel = container.querySelector('[data-panel-id="galeria"]');
+        if (galleryPanel && !galleryPanel.dataset.initialized) {
+            galleryPanel.dataset.initialized = 'true';
+            const galleryMount = galleryPanel.querySelector('#gallery-mount');
+            if (galleryMount) renderImageGallery(galleryMount, concept.name);
         }
     }
 
     // ── Editor Rico (Tab Descrição) ──
-    if (activeTab === 'descricao') {
-        const editorContainer = document.getElementById('rich-editor-container');
-        if (editorContainer) {
+    // Sempre inicializa: a aba Descrição é sempre renderizada no HTML inicial
+    const editorContainer = document.getElementById('rich-editor-container');
+    if (editorContainer) {
             const initialHtml = concept.description?.content_html || '';
             const toolbarEl = document.getElementById('rich-toolbar');
 
@@ -454,14 +463,32 @@ export function renderConceptDetail(container, concept) {
                     });
                 }
             })();
-        }
     }
 
-    // ── Tab Switching ──
+    // ── Tab Switching in-place (sem re-render) ──
     container.querySelectorAll('.tab').forEach(tabBtn => {
         tabBtn.addEventListener('click', () => {
-            activeTab = tabBtn.getAttribute('data-tab-id');
-            renderConceptDetail(container, store.getState().concepts.find(c => c.id === concept.id));
+            const newTab = tabBtn.getAttribute('data-tab-id');
+            if (newTab === activeTab) return;
+            activeTab = newTab;
+
+            // Atualiza botões de aba
+            container.querySelectorAll('.tab').forEach(t =>
+                t.classList.toggle('active', t.getAttribute('data-tab-id') === newTab));
+
+            // Troca painéis sem re-render
+            container.querySelectorAll('.tab-panel').forEach(p =>
+                p.style.display = p.getAttribute('data-panel-id') === newTab ? '' : 'none');
+
+            // Lazy-init da galeria (só na primeira vez)
+            if (newTab === 'galeria') {
+                const galleryPanel = container.querySelector('[data-panel-id="galeria"]');
+                if (galleryPanel && !galleryPanel.dataset.initialized) {
+                    galleryPanel.dataset.initialized = 'true';
+                    const galleryMount = galleryPanel.querySelector('#gallery-mount');
+                    if (galleryMount) renderImageGallery(galleryMount, concept.name);
+                }
+            }
         });
     });
 
