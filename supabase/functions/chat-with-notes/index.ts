@@ -10,7 +10,7 @@ const SUPABASE_URL        = Deno.env.get('SUPABASE_URL')!;
 const SUPABASE_SERVICE_KEY = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!;
 const GEMINI_KEY          = Deno.env.get('GEMINI_API_KEY') || 'AIzaSyCX5i8hgbxYu_JCEHFiXIXnjySK--9jBHc';
 const EMBED_MODEL         = 'gemini-embedding-001';
-const CHAT_MODEL          = 'gemini-2.0-flash';
+const CHAT_MODEL          = 'gemini-2.5-flash';
 
 const CORS_HEADERS = {
     'Access-Control-Allow-Origin': '*',
