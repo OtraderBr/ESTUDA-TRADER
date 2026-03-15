@@ -3,15 +3,16 @@ import { store } from './state.js';
 import { initializeEngine } from './engine.js';
 import { initSidebar } from './sidebar.js';
 
-import { renderDashboard } from './dashboard.js';
-import { renderRoadmap } from './roadmap.js';
-import { renderConceptList } from './concept-list.js';
-import { renderSessions } from './sessions.js';
-import { renderConceptDetail } from './concept-detail.js';
+import { renderDashboard }    from './dashboard.js';
+import { renderRoadmap }      from './roadmap.js';
+import { renderConceptList }  from './concept-list.js';
+import { renderSessions }     from './sessions.js';
+import { renderConceptDetail} from './concept-detail.js';
 import { renderDecisionTree } from './decision-tree.js';
-import { renderNotes } from './notes.js';
-import { renderGraph } from './graph.js';
-import { runCourseMapper } from './course-mapper.js';
+import { renderNotes }        from './notes.js';
+import { renderGraph }        from './graph.js';
+import { renderCourseSearch } from './course-search.js';
+import { runCourseMapper }    from './course-mapper.js';
 
 window.__runCourseMapper = runCourseMapper;
 
@@ -123,6 +124,9 @@ function renderApp(state) {
             if (currentViewType !== 'graph') {
                 renderGraph(viewContainer, state);
             }
+            break;
+        case 'course-search':
+            renderCourseSearch(viewContainer, state);
             break;
         default:
             viewContainer.innerHTML = `<div class="p-6 text-zinc-500">Página não encontrada.</div>`;
