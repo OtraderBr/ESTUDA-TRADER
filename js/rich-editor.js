@@ -3,6 +3,43 @@
 // Aguarda o carregamento assíncrono do TipTap via tiptap-loader.js.
 
 /**
+ * Converte conteúdo para HTML pronto para o Tiptap.
+ * - Se já tem tags de formatação real (<strong>, <h1>, etc.) → mantém
+ * - Se contém sintaxe markdown (mesmo dentro de <p>) → re-parseia com marked
+ * - Caso contrário → retorna como está
+ */
+function prepareContent(content) {
+    if (!content?.trim()) return '';
+
+    // Já tem HTML rico com formatação real → usa como está
+    if (/<(strong|em|b|i|h[1-6]|ul|ol|li|blockquote|pre|code)\b/i.test(content)) {
+        return content;
+    }
+
+    // Detecta markdown (com ou sem wrapper de <p>)
+    const hasMarkdown = /\*\*[\s\S]+?\*\*|\*[^*\s][^*]*\*|^#{1,6}\s|^\s*[-*+]\s|^\s*\d+\.\s|^\s*>\s?|^```/m.test(content);
+    if (!hasMarkdown || typeof window.marked === 'undefined') return content;
+
+    // Extrai texto puro preservando quebras de linha entre parágrafos
+    let text = content;
+    if (/</.test(content)) {
+        text = content
+            .replace(/<\/p>\s*<p[^>]*>/gi, '\n\n')
+            .replace(/<br\s*\/?>/gi, '\n')
+            .replace(/<[^>]+>/g, '')
+            .replace(/&amp;/g, '&')
+            .replace(/&lt;/g, '<')
+            .replace(/&gt;/g, '>')
+            .replace(/&nbsp;/g, ' ')
+            .trim();
+    }
+
+    const html = window.marked.parse(text, { gfm: true, breaks: false });
+    // Tiptap não aceita <p> dentro de <li>
+    return html.replace(/<li>\s*<p>([\s\S]*?)<\/p>\s*<\/li>/g, '<li>$1</li>');
+}
+
+/**
  * Aguarda as extensões do TipTap ficarem disponíveis (carregadas via ESM).
  * @returns {Promise<Object>} - { Editor, StarterKit, Highlight, Placeholder }
  */
@@ -55,6 +92,9 @@ export async function createRichEditor(containerId, initialHtml, onUpdate) {
     // Limpar o loading
     el.innerHTML = '';
 
+    const processedContent = prepareContent(initialHtml);
+    const contentWasConverted = !!processedContent && processedContent !== initialHtml;
+
     let saveTimeout;
     let editor;
 
@@ -67,7 +107,7 @@ export async function createRichEditor(containerId, initialHtml, onUpdate) {
                 placeholder: 'Escreva sua análise, regras e observações sobre este conceito...'
             })
         ],
-        content: initialHtml || '',
+        content: processedContent,
         editorProps: {
             attributes: { class: 'tiptap-editor focus:outline-none min-h-[150px] prose prose-sm max-w-none p-4' },
             handlePaste: (view, event, slice) => {
@@ -105,6 +145,16 @@ export async function createRichEditor(containerId, initialHtml, onUpdate) {
             }, 1500);
         }
     });
+
+    // Se o conteúdo foi convertido de markdown → HTML, salva a versão convertida
+    // no banco para que próximas cargas não precisem converter novamente
+    if (contentWasConverted) {
+        setTimeout(() => {
+            const html = editor.getHTML();
+            const text = editor.getText();
+            if (html && html !== '<p></p>') onUpdate(html, text);
+        }, 300);
+    }
 
     return editor;
 }
