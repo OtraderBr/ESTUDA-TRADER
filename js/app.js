@@ -11,7 +11,6 @@ import { renderConceptDetail } from './concept-detail.js';
 import { renderDecisionTree } from './decision-tree.js';
 import { renderNotes } from './notes.js';
 import { renderGraph } from './graph.js';
-import { renderChat } from './chat-rag.js';
 import { runCourseMapper } from './course-mapper.js';
 
 window.__runCourseMapper = runCourseMapper;
@@ -123,11 +122,6 @@ function renderApp(state) {
         case 'graph':
             if (currentViewType !== 'graph') {
                 renderGraph(viewContainer, state);
-            }
-            break;
-        case 'chat':
-            if (currentViewType !== 'chat') {
-                renderChat(viewContainer);
             }
             break;
         default:
