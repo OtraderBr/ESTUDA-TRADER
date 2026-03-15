@@ -129,13 +129,19 @@ body {
 .tiptap-editor p { margin-bottom: 0.5rem; }
 .tiptap-editor h1 { font-size: 1.35rem; font-weight: 700; margin-top: 1.25rem; margin-bottom: 0.6rem; color: #18181b; }
 .tiptap-editor h2 { font-size: 1.1rem; font-weight: 600; margin-top: 1rem; margin-bottom: 0.4rem; color: #27272a; }
+.tiptap-editor h3 { font-size: 0.95rem; font-weight: 600; margin-top: 0.9rem; margin-bottom: 0.35rem; color: #3f3f46; }
 .tiptap-editor ul { list-style-type: disc; padding-left: 1.25rem; margin: 0.4rem 0; }
 .tiptap-editor ol { list-style-type: decimal; padding-left: 1.25rem; margin: 0.4rem 0; }
+.tiptap-editor li { margin-bottom: 0.2rem; }
 .tiptap-editor strong { font-weight: 700; }
 .tiptap-editor em { font-style: italic; }
 .tiptap-editor s { text-decoration: line-through; }
 .tiptap-editor mark { background-color: rgba(250,204,21,0.25); color: #854d0e; border-bottom: 1.5px solid rgba(250,204,21,0.7); padding: 0 3px; border-radius: 2px; }
-.tiptap-editor blockquote { border-left: 2px solid #d1d5db; padding-left: 0.75rem; color: #6b7280; margin: 0.5rem 0; }
+.tiptap-editor blockquote { border-left: 3px solid #e4e4e7; padding-left: 0.75rem; color: #71717a; margin: 0.75rem 0; font-style: italic; }
+.tiptap-editor pre { background: #18181b; color: #e4e4e7; border-radius: 0.5rem; padding: 0.75rem 1rem; font-size: 0.8rem; overflow-x: auto; margin: 0.75rem 0; }
+.tiptap-editor code { background: #f4f4f5; color: #be185d; border-radius: 3px; padding: 0.1em 0.35em; font-size: 0.85em; font-family: monospace; }
+.tiptap-editor pre code { background: transparent; color: inherit; padding: 0; font-size: inherit; }
+.tiptap-editor hr { border: none; border-top: 1px solid #e4e4e7; margin: 1.25rem 0; }
 
 p.is-editor-empty:first-child::before {
   color: #a1a1aa;

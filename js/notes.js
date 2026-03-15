@@ -171,6 +171,9 @@ export async function renderNotes(container) {
         ?.addEventListener('click', () => createAndOpenNote(null));
     document.getElementById('notes-focus-btn')
         ?.addEventListener('click', toggleFocusMode);
+
+    // ESC sai do modo foco
+    document.addEventListener('keydown', _escFocusHandler);
     document.getElementById('notes-delete-btn')
         ?.addEventListener('click', handleDeleteNote);
     document.getElementById('notes-add-child-btn')
@@ -190,6 +193,13 @@ function openMobileDrawer() {
 }
 function closeMobileDrawer() {
     document.getElementById('notes-mobile-drawer')?.classList.add('hidden');
+}
+
+// ─── Handler ESC para sair do modo foco ───────────────────────────────────────
+function _escFocusHandler(e) {
+    if (e.key === 'Escape' && document.getElementById('notes-root')?.classList.contains('notes-focus-mode')) {
+        toggleFocusMode();
+    }
 }
 
 // ─── Árvore de notas livres ───────────────────────────────────────────────────
@@ -477,10 +487,19 @@ function toggleFocusMode() {
         sidebar?.classList.add('!hidden');
         focusBtn?.querySelector('[data-lucide]')?.setAttribute('data-lucide', 'minimize-2');
         focusBtn?.setAttribute('title', 'Sair do modo foco');
+        // Botão flutuante visível para fechar o modo foco
+        const btn = document.createElement('button');
+        btn.id = 'focus-exit-float';
+        btn.className = 'fixed top-4 right-4 z-[60] flex items-center gap-1.5 px-3 py-2 bg-zinc-900/90 text-white text-xs font-semibold rounded-xl hover:bg-zinc-900 transition-colors shadow-lg backdrop-blur-sm';
+        btn.innerHTML = `<i data-lucide="minimize-2" class="w-3.5 h-3.5"></i> Sair do foco`;
+        btn.addEventListener('click', toggleFocusMode);
+        document.body.appendChild(btn);
+        if (window.lucide) window.lucide.createIcons({ nodes: btn.querySelectorAll('[data-lucide]') });
     } else {
         sidebar?.classList.remove('!hidden');
         focusBtn?.querySelector('[data-lucide]')?.setAttribute('data-lucide', 'maximize-2');
         focusBtn?.setAttribute('title', 'Modo foco');
+        document.getElementById('focus-exit-float')?.remove();
     }
     if (window.lucide) window.lucide.createIcons({ nodes: focusBtn?.querySelectorAll('[data-lucide]') });
 }

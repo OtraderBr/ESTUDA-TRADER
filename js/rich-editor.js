@@ -71,24 +71,29 @@ export async function createRichEditor(containerId, initialHtml, onUpdate) {
         editorProps: {
             attributes: { class: 'tiptap-editor focus:outline-none min-h-[150px] prose prose-sm max-w-none p-4' },
             handlePaste: (view, event, slice) => {
-                if (!window.marked) return false;
-                
-                const text = event.clipboardData?.getData('text/plain');
-                if (!text) return false;
+                const text = event.clipboardData?.getData('text/plain') || '';
+                if (!text.trim() || typeof window.marked === 'undefined') return false;
 
-                // Detect basic markdown signals
-                const isMarkdown = /(^#{1,6}\s|^\s*[-*+]\s|^\s*>|```|\*\*.*?\*\*|__.*?__)/m.test(text);
+                // Detecta padrões markdown: títulos, listas, blockquote, código, negrito, itálico
+                const hasBlockMd  = /^#{1,6}\s|^\s*[-*+]\s|^\s*\d+\.\s|^\s*>\s?|^```/m.test(text);
+                const hasInlineMd = /\*\*[\s\S]+?\*\*|\*[^*\s][^*]*?\*|`[^`]+`|_{2}[\s\S]+?_{2}/.test(text);
+                if (!hasBlockMd && !hasInlineMd) return false;
 
-                if (isMarkdown) {
-                    event.preventDefault();
-                    const html = marked.parse(text);
+                event.preventDefault();
+                try {
+                    const html = window.marked.parse(text, { gfm: true, breaks: false });
+                    // Tiptap não aceita <p> dentro de <li> — remove o wrapper
+                    const normalized = html.replace(/<li>\s*<p>([\s\S]*?)<\/p>\s*<\/li>/g, '<li>$1</li>');
                     setTimeout(() => {
-                        editor.commands.insertContent(html);
+                        if (!editor) return;
+                        editor.chain().focus().insertContent(normalized, {
+                            parseOptions: { preserveWhitespace: false }
+                        }).run();
                     }, 0);
-                    return true;
+                } catch {
+                    return false;
                 }
-                
-                return false;
+                return true;
             }
         },
         onUpdate({ editor }) {
