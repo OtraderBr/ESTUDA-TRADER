@@ -1,8 +1,7 @@
 // supabase/functions/chat-with-notes/index.ts
-// Motor RAG: recebe pergunta → embedding → busca vetorial → Gemini responde com contexto
-//
-// Secrets necessários (supabase secrets set):
-//   GEMINI_API_KEY   – chave da API Google AI Studio
+// Motor RAG: pergunta → embedding → busca vetorial → Gemini Pro responde com contexto
+// Fallback automático: gemini-2.5-pro → gemini-2.5-flash → gemini-2.0-flash
+// Retry com backoff exponencial em caso de rate limit (429)
 
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
 
@@ -10,51 +9,75 @@ const SUPABASE_URL        = Deno.env.get('SUPABASE_URL')!;
 const SUPABASE_SERVICE_KEY = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!;
 const GEMINI_KEY          = Deno.env.get('GEMINI_API_KEY') || 'AIzaSyCX5i8hgbxYu_JCEHFiXIXnjySK--9jBHc';
 const EMBED_MODEL         = 'gemini-embedding-001';
-const CHAT_MODEL          = 'gemini-2.5-flash';
+
+// Modelos em ordem de preferência: mais inteligente primeiro, fallback para mais rápido
+const CHAT_MODELS = ['gemini-2.5-pro', 'gemini-2.5-flash', 'gemini-2.0-flash'];
 
 const CORS_HEADERS = {
     'Access-Control-Allow-Origin': '*',
     'Access-Control-Allow-Headers': 'authorization, content-type, apikey, x-client-info',
 };
 
-// ── Helpers ───────────────────────────────────────────────────────────────────
+function sleep(ms: number) { return new Promise(r => setTimeout(r, ms)); }
+
+// ── Embedding com retry ─────────────────────────────────────────────────────
 
 async function embedQuery(text: string): Promise<number[]> {
     const url = `https://generativelanguage.googleapis.com/v1beta/models/${EMBED_MODEL}:embedContent?key=${GEMINI_KEY}`;
-    const res = await fetch(url, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-            model: `models/${EMBED_MODEL}`,
-            content: { parts: [{ text }] },
-            outputDimensionality: 768,
-        }),
-    });
 
-    if (!res.ok) throw new Error(`Embed falhou: ${res.status} ${await res.text()}`);
-    const data = await res.json();
-    return data.embedding.values;
+    for (let attempt = 0; attempt < 3; attempt++) {
+        const res = await fetch(url, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                model: `models/${EMBED_MODEL}`,
+                content: { parts: [{ text }] },
+                outputDimensionality: 768,
+            }),
+        });
+
+        if (res.ok) {
+            const data = await res.json();
+            return data.embedding.values;
+        }
+
+        if (res.status === 429 && attempt < 2) {
+            await sleep((attempt + 1) * 2000);
+            continue;
+        }
+
+        throw new Error(`Embed falhou: ${res.status} ${await res.text()}`);
+    }
+    throw new Error('Embed: máximo de tentativas excedido');
 }
 
-async function generateAnswer(context: string, query: string, history: Array<{role: string; text: string}>): Promise<string> {
-    const url = `https://generativelanguage.googleapis.com/v1beta/models/${CHAT_MODEL}:generateContent?key=${GEMINI_KEY}`;
+// ── Geração com fallback de modelos + retry ─────────────────────────────────
 
-    const systemPrompt = `Você é um Professor e Mentor Especialista em Price Action, focado exclusivamente na metodologia de Al Brooks. Sua função é ensinar e responder perguntas baseando-se ESTRITAMENTE nos documentos do curso fornecidos abaixo como contexto.
+const SYSTEM_PROMPT = `Você é o **Professor Brooks**, um Mentor Especialista de nível mundial em Price Action baseado na metodologia completa de Al Brooks. Você tem domínio absoluto de todo o conteúdo do curso e ensina com a profundidade de quem operou por décadas.
 
-REGRAS RÍGIDAS:
-1. Responda APENAS com base nas informações presentes no CONTEXTO fornecido.
-2. Se a pergunta NÃO puder ser respondida com o contexto, diga: "Não encontrei essa informação nos materiais do curso. Tente reformular a pergunta ou perguntar sobre outro conceito."
-3. Cite o módulo e a aula de onde a informação foi extraída quando possível.
-4. Use linguagem didática, clara e objetiva. Você está ensinando um trader que estuda Al Brooks.
-5. Formate a resposta em Markdown: use **negrito** para conceitos-chave, listas quando apropriado, e organize bem o texto.
-6. Não invente regras, setups ou probabilidades que não estejam no material.
+SUA MISSÃO:
+Ensinar Price Action de forma clara, profunda e prática, sempre fundamentado nos documentos do curso.
+
+COMO RESPONDER:
+1. **Base estrita no contexto** — Responda APENAS com informações presentes nos DOCUMENTOS fornecidos. Nunca invente regras, setups, probabilidades ou exemplos.
+2. **Citação de fontes** — Sempre cite o módulo e aula de onde veio a informação (ex: "Módulo 3, Aula 25").
+3. **Didática de professor** — Explique como se estivesse dando aula particular. Use analogias quando ajudar, exemplos práticos do gráfico, e construa o raciocínio passo a passo.
+4. **Profundidade** — Não dê respostas superficiais. Aprofunde nos detalhes, nuances e exceções que Al Brooks ensina. Conecte conceitos relacionados quando relevante.
+5. **Formatação Markdown rica**:
+   - **Negrito** para conceitos-chave e termos técnicos
+   - Listas organizadas para características e regras
+   - Separação clara entre tópicos
+   - Use cabeçalhos (##) quando a resposta cobrir múltiplos aspectos
+6. **Se não encontrar** — Diga honestamente: "Não encontrei essa informação nos materiais do curso. Tente reformular ou perguntar sobre outro conceito."
+7. **Linguagem** — Português brasileiro, tom profissional mas acessível. Trate o aluno como um trader sério que está se aprofundando.
 
 CONTEXTO DOS DOCUMENTOS DO CURSO:
 ---
-${context}
----`;
+`;
 
-    // Montar histórico de conversa
+async function generateAnswer(context: string, query: string, history: Array<{role: string; text: string}>): Promise<{answer: string; model: string}> {
+    const fullSystemPrompt = SYSTEM_PROMPT + context + '\n---';
+
     const contents = [];
     for (const msg of history) {
         contents.push({
@@ -62,30 +85,66 @@ ${context}
             parts: [{ text: msg.text }],
         });
     }
-    // Última mensagem do usuário
     contents.push({ role: 'user', parts: [{ text: query }] });
 
-    const res = await fetch(url, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-            system_instruction: { parts: [{ text: systemPrompt }] },
-            contents,
-            generationConfig: {
-                temperature: 0.3,
-                maxOutputTokens: 2048,
-                topP: 0.85,
-            },
-        }),
-    });
+    const requestBody = {
+        system_instruction: { parts: [{ text: fullSystemPrompt }] },
+        contents,
+        generationConfig: {
+            temperature: 0.25,
+            maxOutputTokens: 4096,
+            topP: 0.9,
+            topK: 40,
+        },
+    };
 
-    if (!res.ok) throw new Error(`Gemini chat falhou: ${res.status} ${await res.text()}`);
+    // Tenta cada modelo em ordem de preferência
+    for (const model of CHAT_MODELS) {
+        const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${GEMINI_KEY}`;
 
-    const data = await res.json();
-    return data.candidates?.[0]?.content?.parts?.[0]?.text || 'Sem resposta gerada.';
+        // Até 2 tentativas por modelo (retry em 429)
+        for (let attempt = 0; attempt < 2; attempt++) {
+            try {
+                const res = await fetch(url, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(requestBody),
+                });
+
+                if (res.ok) {
+                    const data = await res.json();
+                    const text = data.candidates?.[0]?.content?.parts?.[0]?.text;
+                    if (text) return { answer: text, model };
+                    continue; // resposta vazia, tenta de novo
+                }
+
+                if (res.status === 429) {
+                    if (attempt === 0) {
+                        await sleep(3000);
+                        continue;
+                    }
+                    break; // pula pro próximo modelo
+                }
+
+                if (res.status === 404) {
+                    break; // modelo não existe, pula pro próximo
+                }
+
+                const errText = await res.text();
+                console.error(`Modelo ${model} erro ${res.status}: ${errText.substring(0, 200)}`);
+                break;
+
+            } catch (err) {
+                console.error(`Modelo ${model} exceção: ${err.message}`);
+                break;
+            }
+        }
+    }
+
+    throw new Error('Todos os modelos falharam. Tente novamente em alguns segundos.');
 }
 
-// ── Handler ───────────────────────────────────────────────────────────────────
+// ── Handler principal ───────────────────────────────────────────────────────
 
 Deno.serve(async (req) => {
     if (req.method === 'OPTIONS') {
@@ -105,12 +164,12 @@ Deno.serve(async (req) => {
         // 1. Embedding da pergunta
         const queryEmbedding = await embedQuery(query.trim());
 
-        // 2. Busca vetorial — top 6 chunks mais relevantes
+        // 2. Busca vetorial — top 8 chunks mais relevantes (mais contexto = resposta melhor)
         const supabase = createClient(SUPABASE_URL, SUPABASE_SERVICE_KEY);
         const { data: chunks, error } = await supabase.rpc('match_rag_chunks', {
             query_embedding: `[${queryEmbedding.join(',')}]`,
-            match_threshold: 0.35,
-            match_count: 6,
+            match_threshold: 0.30,
+            match_count: 8,
         });
 
         if (error) throw new Error(`RPC match_rag_chunks falhou: ${error.message}`);
@@ -119,7 +178,7 @@ Deno.serve(async (req) => {
         const context = (chunks || [])
             .map((c: any, i: number) => {
                 const src = [c.module, c.lesson].filter(Boolean).join(' > ');
-                return `[Trecho ${i + 1}${src ? ` — ${src}` : ''}]\n${c.content}`;
+                return `[Documento ${i + 1}${src ? ` — ${src}` : ''}]\n${c.content}`;
             })
             .join('\n\n---\n\n');
 
@@ -132,8 +191,8 @@ Deno.serve(async (req) => {
             });
         }
 
-        // 4. Gerar resposta com Gemini
-        const answer = await generateAnswer(context, query.trim(), history);
+        // 4. Gerar resposta (com fallback automático de modelos)
+        const { answer, model } = await generateAnswer(context, query.trim(), history);
 
         // 5. Montar fontes únicas
         const sources = [...new Set(
@@ -142,7 +201,7 @@ Deno.serve(async (req) => {
                 .filter(Boolean)
         )];
 
-        return new Response(JSON.stringify({ answer, sources }), {
+        return new Response(JSON.stringify({ answer, sources, model }), {
             headers: { ...CORS_HEADERS, 'Content-Type': 'application/json' },
         });
 
