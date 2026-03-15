@@ -12,6 +12,7 @@ import { renderDecisionTree } from './decision-tree.js';
 import { renderNotes }        from './notes.js';
 import { renderGraph }        from './graph.js';
 import { renderCourseSearch } from './course-search.js';
+import { renderChat }         from './chat.js';
 import { runCourseMapper }    from './course-mapper.js';
 
 window.__runCourseMapper = runCourseMapper;
@@ -127,6 +128,11 @@ function renderApp(state) {
             break;
         case 'course-search':
             renderCourseSearch(viewContainer, state);
+            break;
+        case 'chat':
+            if (currentViewType !== 'chat') {
+                renderChat(viewContainer);
+            }
             break;
         default:
             viewContainer.innerHTML = `<div class="p-6 text-zinc-500">Página não encontrada.</div>`;
