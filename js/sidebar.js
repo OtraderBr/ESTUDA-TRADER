@@ -2,23 +2,24 @@
 import { store } from './state.js';
 
 const NAV_ITEMS = [
-  { id: 'dashboard',     label: 'Início',           icon: 'layout-dashboard' },
-  { id: 'course-search', label: 'Buscar Aulas',      icon: 'library-big'      },
-  { id: 'roadmap',       label: 'Trilha de Estudo',  icon: 'target'           },
-  { id: 'concepts',      label: 'Conceitos',         icon: 'library'          },
-  { id: 'notes',         label: 'Notas',             icon: 'notebook-pen'     },
-  { id: 'graph',         label: 'Grafo',             icon: 'network'          },
-  { id: 'decision-tree', label: 'Árvore de Decisão', icon: 'git-merge'        },
-  { id: 'sessions',      label: 'Sessões',           icon: 'calendar-days'    },
+  { id: 'dashboard',     label: 'Início',           icon: 'layout-dashboard'  },
+  { id: 'chat',          label: 'Pergunte à IA',    icon: 'bot-message-square'},
+  { id: 'course-search', label: 'Buscar Aulas',     icon: 'library-big'       },
+  { id: 'roadmap',       label: 'Trilha de Estudo', icon: 'target'            },
+  { id: 'concepts',      label: 'Conceitos',        icon: 'library'           },
+  { id: 'notes',         label: 'Notas',            icon: 'notebook-pen'      },
+  { id: 'graph',         label: 'Grafo',            icon: 'network'           },
+  { id: 'decision-tree', label: 'Árvore de Decisão',icon: 'git-merge'         },
+  { id: 'sessions',      label: 'Sessões',          icon: 'calendar-days'     },
 ];
 
 // ── Itens exibidos no bottom nav mobile (máx 5) ────────────────────────────
 const BOTTOM_NAV = [
-  { id: 'dashboard',     label: 'Início',    icon: 'layout-dashboard' },
-  { id: 'course-search', label: 'Aulas',     icon: 'library-big'      },
-  { id: 'concepts',      label: 'Conceitos', icon: 'library'          },
-  { id: 'notes',         label: 'Notas',     icon: 'notebook-pen'     },
-  { id: '__menu__',      label: 'Menu',      icon: 'menu'             },
+  { id: 'dashboard',     label: 'Início',    icon: 'layout-dashboard'   },
+  { id: 'chat',          label: 'IA',        icon: 'bot-message-square' },
+  { id: 'course-search', label: 'Aulas',     icon: 'library-big'        },
+  { id: 'concepts',      label: 'Conceitos', icon: 'library'            },
+  { id: '__menu__',      label: 'Menu',      icon: 'menu'               },
 ];
 
 export function initSidebar() {
