@@ -5,6 +5,151 @@ import { upsertConceptDescription } from './dataService.js';
 import { renderTagPills, attachTagListeners } from './tags.js';
 import { createRichEditor, attachFloatingToolbar } from './rich-editor.js';
 import { renderImageGallery } from './image-gallery.js';
+import { supabase } from './supabaseClient.js';
+
+// ── Modal: Gerar Conhecimento com IA ────────────────────────────────────────
+
+function showAIKnowledgeModal({ conceptName, onKeep }) {
+    // Remove modal anterior se existir
+    document.getElementById('ai-knowledge-modal')?.remove();
+
+    const modal = document.createElement('div');
+    modal.id = 'ai-knowledge-modal';
+    modal.className = 'fixed inset-0 z-50 flex items-center justify-center p-4';
+    modal.innerHTML = `
+      <div class="absolute inset-0 bg-black/40 backdrop-blur-sm" id="ai-modal-backdrop"></div>
+      <div class="relative bg-white rounded-2xl shadow-2xl w-full max-w-2xl max-h-[85vh] flex flex-col">
+        <!-- Header -->
+        <div class="flex items-center justify-between px-5 pt-5 pb-4 border-b border-zinc-100 shrink-0">
+          <div class="flex items-center gap-2.5">
+            <div class="w-8 h-8 bg-violet-100 rounded-lg flex items-center justify-center shrink-0">
+              <i data-lucide="sparkles" class="w-4 h-4 text-violet-600"></i>
+            </div>
+            <div>
+              <h2 class="text-sm font-bold text-zinc-900">Conhecimento Gerado pela IA</h2>
+              <p class="text-[10px] text-zinc-400 mt-0.5">Baseado nos materiais do curso Al Brooks</p>
+            </div>
+          </div>
+          <button id="ai-modal-close" class="p-1.5 rounded-lg text-zinc-400 hover:text-zinc-700 hover:bg-zinc-100 transition-colors">
+            <i data-lucide="x" class="w-4 h-4"></i>
+          </button>
+        </div>
+
+        <!-- Loading state -->
+        <div id="ai-modal-loading" class="flex-1 flex flex-col items-center justify-center py-12 gap-4">
+          <div class="flex gap-1.5">
+            <span class="w-2 h-2 bg-violet-400 rounded-full animate-bounce" style="animation-delay:0ms"></span>
+            <span class="w-2 h-2 bg-violet-400 rounded-full animate-bounce" style="animation-delay:150ms"></span>
+            <span class="w-2 h-2 bg-violet-400 rounded-full animate-bounce" style="animation-delay:300ms"></span>
+          </div>
+          <p class="text-sm text-zinc-400">Gerando conhecimento sobre <strong class="text-zinc-600">${conceptName}</strong>…</p>
+          <p class="text-[11px] text-zinc-300">Consultando todos os materiais do curso</p>
+        </div>
+
+        <!-- Content (hidden until loaded) -->
+        <div id="ai-modal-content" class="flex-1 overflow-y-auto px-5 py-4 hidden">
+          <div id="ai-modal-text" class="text-sm text-zinc-700 leading-relaxed tiptap-render chat-answer"></div>
+          <!-- Sources -->
+          <div id="ai-modal-sources" class="mt-4 pt-4 border-t border-zinc-100 hidden">
+            <span class="text-[10px] text-zinc-400 font-medium">Fontes:</span>
+            <div id="ai-modal-sources-list" class="flex flex-wrap gap-1.5 mt-1.5"></div>
+          </div>
+        </div>
+
+        <!-- Error state -->
+        <div id="ai-modal-error" class="flex-1 flex flex-col items-center justify-center py-10 gap-3 hidden">
+          <i data-lucide="alert-circle" class="w-8 h-8 text-red-400"></i>
+          <p id="ai-modal-error-msg" class="text-sm text-zinc-500 text-center max-w-xs"></p>
+          <button id="ai-modal-retry" class="text-xs text-violet-600 hover:text-violet-800 font-medium underline">Tentar novamente</button>
+        </div>
+
+        <!-- Footer -->
+        <div id="ai-modal-footer" class="px-5 py-4 border-t border-zinc-100 flex items-center justify-between gap-3 shrink-0 hidden">
+          <p class="text-[11px] text-zinc-400 leading-relaxed max-w-xs">
+            O texto será <strong>anexado</strong> ao final da descrição atual do conceito.
+          </p>
+          <div class="flex gap-2 shrink-0">
+            <button id="ai-modal-discard" class="px-4 py-2 rounded-lg border border-zinc-200 text-xs font-medium text-zinc-600 hover:bg-zinc-50 transition-colors">
+              Descartar
+            </button>
+            <button id="ai-modal-keep" class="flex items-center gap-1.5 px-4 py-2 rounded-lg bg-violet-600 hover:bg-violet-700 text-white text-xs font-semibold transition-colors">
+              <i data-lucide="check" class="w-3.5 h-3.5"></i>
+              Manter na Nota
+            </button>
+          </div>
+        </div>
+      </div>`;
+
+    document.body.appendChild(modal);
+    if (window.lucide) window.lucide.createIcons({ nodes: modal.querySelectorAll('[data-lucide]') });
+
+    const close = () => modal.remove();
+    modal.querySelector('#ai-modal-backdrop').addEventListener('click', close);
+    modal.querySelector('#ai-modal-close').addEventListener('click', close);
+    modal.querySelector('#ai-modal-discard')?.addEventListener('click', close);
+    modal.querySelector('#ai-modal-keep')?.addEventListener('click', () => {
+        const textEl = modal.querySelector('#ai-modal-text');
+        const rawText = textEl?.innerText || textEl?.textContent || '';
+        onKeep(rawText);
+        close();
+    });
+
+    let generatedText = '';
+
+    async function generate() {
+        modal.querySelector('#ai-modal-loading').classList.remove('hidden');
+        modal.querySelector('#ai-modal-content').classList.add('hidden');
+        modal.querySelector('#ai-modal-error').classList.add('hidden');
+        modal.querySelector('#ai-modal-footer').classList.add('hidden');
+
+        try {
+            const { data, error } = await supabase.functions.invoke('chat-with-notes', {
+                body: {
+                    query: `Gere um conhecimento completo sobre o conceito: ${conceptName}`,
+                    mode: 'generate',
+                    conceptName,
+                    history: [],
+                }
+            });
+
+            if (error) throw new Error(error.message || 'Erro na IA');
+
+            generatedText = data?.answer || '';
+            const sources = data?.sources || [];
+
+            // Renderiza markdown
+            const textEl = modal.querySelector('#ai-modal-text');
+            if (window.marked) {
+                textEl.innerHTML = window.marked.parse(generatedText, { gfm: true, breaks: true })
+                    .replace(/<li>\s*<p>([\s\S]*?)<\/p>\s*<\/li>/g, '<li>$1</li>');
+            } else {
+                textEl.textContent = generatedText;
+            }
+
+            // Fontes
+            if (sources.length > 0) {
+                const sourcesDiv = modal.querySelector('#ai-modal-sources');
+                const sourcesList = modal.querySelector('#ai-modal-sources-list');
+                sourcesDiv.classList.remove('hidden');
+                sourcesList.innerHTML = sources.map(s =>
+                    `<span class="text-[10px] bg-violet-50 text-violet-700 px-2 py-0.5 rounded-md font-medium border border-violet-100">${s}</span>`
+                ).join('');
+            }
+
+            modal.querySelector('#ai-modal-loading').classList.add('hidden');
+            modal.querySelector('#ai-modal-content').classList.remove('hidden');
+            modal.querySelector('#ai-modal-footer').classList.remove('hidden');
+
+        } catch (err) {
+            modal.querySelector('#ai-modal-loading').classList.add('hidden');
+            modal.querySelector('#ai-modal-error').classList.remove('hidden');
+            modal.querySelector('#ai-modal-error-msg').textContent = err.message || 'Erro ao gerar conhecimento.';
+        }
+    }
+
+    modal.querySelector('#ai-modal-retry')?.addEventListener('click', generate);
+    generate();
+}
 
 let activeTab = 'descricao';
 
@@ -64,6 +209,11 @@ export function renderConceptDetail(container, concept) {
         <h3 class="text-xs font-semibold text-zinc-400 uppercase tracking-wider">Descrição do Conceito</h3>
         <div class="flex items-center gap-2">
           <span id="save-indicator" class="text-[10px] text-emerald-600 font-medium opacity-0 transition-opacity duration-300">Salvo</span>
+          <button id="ai-generate-btn" title="Gerar conhecimento completo com IA"
+            class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-violet-50 hover:bg-violet-100 border border-violet-200 text-violet-700 text-[11px] font-semibold transition-colors">
+            <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+            Gerar com IA
+          </button>
           <button id="desc-focus-btn" title="Modo foco"
             class="p-1 rounded hover:bg-zinc-100 text-zinc-400 hover:text-zinc-700 transition-colors">
             <i data-lucide="maximize-2" class="w-3.5 h-3.5"></i>
@@ -404,67 +554,85 @@ export function renderConceptDetail(container, concept) {
     }
 
     // ── Editor Rico (Tab Descrição) ──
-    // Sempre inicializa: a aba Descrição é sempre renderizada no HTML inicial
     const editorContainer = document.getElementById('rich-editor-container');
     if (editorContainer) {
-            const initialHtml = concept.description?.content_html || '';
-            const toolbarEl = document.getElementById('rich-toolbar');
+        const initialHtml = concept.description?.content_html || '';
+        const toolbarEl = document.getElementById('rich-toolbar');
 
-            (async () => {
-                const editor = await createRichEditor('rich-editor-container', initialHtml, async (html, text) => {
-                    await upsertConceptDescription(concept.name, html, text);
-                    const indicator = document.getElementById('save-indicator');
-                    if (indicator) {
-                        indicator.style.opacity = '1';
-                        setTimeout(() => { indicator.style.opacity = '0'; }, 2000);
-                    }
-                });
-
-                document.getElementById('desc-focus-btn')?.addEventListener('click', () => {
-                    const editorContainer = document.getElementById('rich-editor-container');
-                    const isFocus = editorContainer?.classList.toggle('desc-focus-mode');
-                    if (isFocus) {
-                        editorContainer.style.cssText = [
-                            'position:fixed', 'inset:0', 'z-index:50',
-                            'background:white', 'padding:2rem',
-                            'overflow-y:auto', 'max-width:100%',
-                            'border-radius:0', 'border:none', 'box-shadow:none'
-                        ].join(';');
-                        const btn = document.getElementById('desc-focus-btn');
-                        btn?.querySelector('[data-lucide]')?.setAttribute('data-lucide', 'minimize-2');
-                        if (window.lucide) window.lucide.createIcons({ nodes: btn?.querySelectorAll('[data-lucide]') });
-                    } else {
-                        editorContainer.style.cssText = '';
-                        const btn = document.getElementById('desc-focus-btn');
-                        btn?.querySelector('[data-lucide]')?.setAttribute('data-lucide', 'maximize-2');
-                        if (window.lucide) window.lucide.createIcons({ nodes: btn?.querySelectorAll('[data-lucide]') });
-                    }
-                    editor?.commands.focus();
-                });
-
-                if (editor && toolbarEl) {
-                    attachFloatingToolbar(editor, toolbarEl);
-                    if (window.lucide) window.lucide.createIcons({ nodes: toolbarEl.querySelectorAll('[data-lucide]') });
-
-                    toolbarEl.querySelectorAll('button[data-action]').forEach(btn => {
-                        btn.addEventListener('mousedown', (e) => {
-                            e.preventDefault();
-                            const action = btn.getAttribute('data-action');
-                            switch (action) {
-                                case 'bold':        editor.chain().focus().toggleBold().run(); break;
-                                case 'italic':      editor.chain().focus().toggleItalic().run(); break;
-                                case 'strike':      editor.chain().focus().toggleStrike().run(); break;
-                                case 'h1':          editor.chain().focus().toggleHeading({ level: 1 }).run(); break;
-                                case 'h2':          editor.chain().focus().toggleHeading({ level: 2 }).run(); break;
-                                case 'highlight':   editor.chain().focus().toggleHighlight().run(); break;
-                                case 'bulletList':  editor.chain().focus().toggleBulletList().run(); break;
-                                case 'orderedList': editor.chain().focus().toggleOrderedList().run(); break;
-                            }
-                        });
-                    });
+        (async () => {
+            const editor = await createRichEditor('rich-editor-container', initialHtml, async (html, text) => {
+                await upsertConceptDescription(concept.name, html, text);
+                const indicator = document.getElementById('save-indicator');
+                if (indicator) {
+                    indicator.style.opacity = '1';
+                    setTimeout(() => { indicator.style.opacity = '0'; }, 2000);
                 }
+            });
 
-            })();
+            // ── Botão "Gerar com IA" ──
+            document.getElementById('ai-generate-btn')?.addEventListener('click', () => {
+                showAIKnowledgeModal({
+                    conceptName: concept.name,
+                    onKeep: (text) => {
+                        // Insere o texto gerado no final do editor
+                        if (editor) {
+                            editor.chain()
+                                .focus()
+                                .insertContentAt(editor.state.doc.content.size, [
+                                    { type: 'horizontalRule' },
+                                    { type: 'heading', attrs: { level: 2 }, content: [{ type: 'text', text: `Conhecimento IA — ${concept.name}` }] },
+                                    { type: 'paragraph', content: [{ type: 'text', text }] },
+                                ])
+                                .run();
+                        }
+                    },
+                });
+            });
+
+            document.getElementById('desc-focus-btn')?.addEventListener('click', () => {
+                const editorContainer = document.getElementById('rich-editor-container');
+                const isFocus = editorContainer?.classList.toggle('desc-focus-mode');
+                if (isFocus) {
+                    editorContainer.style.cssText = [
+                        'position:fixed', 'inset:0', 'z-index:50',
+                        'background:white', 'padding:2rem',
+                        'overflow-y:auto', 'max-width:100%',
+                        'border-radius:0', 'border:none', 'box-shadow:none'
+                    ].join(';');
+                    const btn = document.getElementById('desc-focus-btn');
+                    btn?.querySelector('[data-lucide]')?.setAttribute('data-lucide', 'minimize-2');
+                    if (window.lucide) window.lucide.createIcons({ nodes: btn?.querySelectorAll('[data-lucide]') });
+                } else {
+                    editorContainer.style.cssText = '';
+                    const btn = document.getElementById('desc-focus-btn');
+                    btn?.querySelector('[data-lucide]')?.setAttribute('data-lucide', 'maximize-2');
+                    if (window.lucide) window.lucide.createIcons({ nodes: btn?.querySelectorAll('[data-lucide]') });
+                }
+                editor?.commands.focus();
+            });
+
+            if (editor && toolbarEl) {
+                attachFloatingToolbar(editor, toolbarEl);
+                if (window.lucide) window.lucide.createIcons({ nodes: toolbarEl.querySelectorAll('[data-lucide]') });
+
+                toolbarEl.querySelectorAll('button[data-action]').forEach(btn => {
+                    btn.addEventListener('mousedown', (e) => {
+                        e.preventDefault();
+                        const action = btn.getAttribute('data-action');
+                        switch (action) {
+                            case 'bold':        editor.chain().focus().toggleBold().run(); break;
+                            case 'italic':      editor.chain().focus().toggleItalic().run(); break;
+                            case 'strike':      editor.chain().focus().toggleStrike().run(); break;
+                            case 'h1':          editor.chain().focus().toggleHeading({ level: 1 }).run(); break;
+                            case 'h2':          editor.chain().focus().toggleHeading({ level: 2 }).run(); break;
+                            case 'highlight':   editor.chain().focus().toggleHighlight().run(); break;
+                            case 'bulletList':  editor.chain().focus().toggleBulletList().run(); break;
+                            case 'orderedList': editor.chain().focus().toggleOrderedList().run(); break;
+                        }
+                    });
+                });
+            }
+        })();
     }
 
     // ── Tab Switching in-place (sem re-render) ──
