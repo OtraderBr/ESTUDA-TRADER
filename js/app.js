@@ -170,4 +170,22 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('panel-overlay')?.addEventListener('click', () => {
         store.setState({ selectedConceptId: null });
     });
+
+    // ── Botão voltar do celular — navega internamente em vez de fechar o app ──
+    window.history.pushState({ motor: true }, '');
+    window.addEventListener('popstate', () => {
+        const s = store.getState();
+        if (s.conceptPanelOpen === false && s.selectedConceptId) {
+            // Tela cheia de conceito → volta ao painel lateral
+            store.setState({ conceptPanelOpen: true });
+        } else if (s.selectedConceptId) {
+            // Painel aberto → fecha o painel
+            store.setState({ selectedConceptId: null });
+        } else if (s.currentPage !== 'dashboard') {
+            // Em outra página → volta ao dashboard
+            store.setState({ currentPage: 'dashboard' });
+        }
+        // Re-empurra estado para o próximo "voltar" continuar funcionando
+        window.history.pushState({ motor: true }, '');
+    });
 });
