@@ -13,6 +13,7 @@ import { renderNotes }        from './notes.js';
 import { renderGraph }        from './graph.js';
 import { renderCourseSearch } from './course-search.js';
 import { renderChat }         from './chat.js';
+import { renderSettings }     from './settings.js';
 import { runCourseMapper }    from './course-mapper.js';
 
 window.__runCourseMapper = runCourseMapper;
@@ -133,6 +134,9 @@ function renderApp(state) {
             if (currentViewType !== 'chat') {
                 renderChat(viewContainer);
             }
+            break;
+        case 'settings':
+            renderSettings(viewContainer);
             break;
         default:
             viewContainer.innerHTML = `<div class="p-6 text-zinc-500">Página não encontrada.</div>`;

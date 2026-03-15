@@ -1,35 +1,30 @@
 #!/usr/bin/env node
 // scripts/ingest-rag.mjs
-// Ingere os arquivos de estudo (.txt) do "MATERIAL AL BROOKS" no banco rag_chunks
-// via Gemini text-embedding-004 + Supabase REST API.
+// Ingere arquivos de estudo (.txt) do "MATERIAL AL BROOKS" no banco rag_chunks
+// usando Cohere embed-multilingual-v3.0 (1024 dims, otimizado para PT-BR/RAG).
 //
 // Uso:
-//   GEMINI_API_KEY=xxx SUPABASE_SERVICE_KEY=xxx node scripts/ingest-rag.mjs
+//   COHERE_API_KEY=xxx node scripts/ingest-rag.mjs
 //
-// Requisitos: Node.js 18+ (fetch nativo, sem npm install)
+// Requisitos: Node.js 18+ (fetch nativo)
 
-import { readdir, readFile, stat } from 'node:fs/promises';
-import { join, relative, basename, extname } from 'node:path';
+import { readdir, readFile } from 'node:fs/promises';
+import { join, relative, extname } from 'node:path';
 
 // ── Config ────────────────────────────────────────────────────────────────────
-const GEMINI_KEY       = process.env.GEMINI_API_KEY;
-const SUPABASE_KEY     = process.env.SUPABASE_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImplYmJrbGFjbXJ4cmhiYWp3ZXVnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzMyMzgwOTcsImV4cCI6MjA4ODgxNDA5N30.-41Xg5zhF2hHiTJ3BUoT3TiL5LYwkhwzKfUUhTTUJks';
-const SUPABASE_URL     = 'https://jebbklacmrxrhbajweug.supabase.co';
-const EMBED_MODEL      = 'text-embedding-004';
-const CHUNK_WORDS      = 800;   // ~1000 tokens
-const OVERLAP_WORDS    = 100;
-const BATCH_SIZE       = 20;    // chunks por lote de insert
-const EMBED_DELAY_MS   = 220;   // respeitar rate limit Gemini free (300 RPM)
-const MATERIAL_DIR     = join(import.meta.dirname, '..', 'MATERIAL AL BROOKS');
+const COHERE_KEY   = process.env.COHERE_API_KEY || 'YEO4tvrKQ4aTx1tohiF3DEPcA2d5JAoHRlccEWuk';
+const SUPABASE_KEY = process.env.SUPABASE_KEY   || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImplYmJrbGFjbXJ4cmhiYWp3ZXVnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzMyMzgwOTcsImV4cCI6MjA4ODgxNDA5N30.-41Xg5zhF2hHiTJ3BUoT3TiL5LYwkhwzKfUUhTTUJks';
+const SUPABASE_URL = 'https://jebbklacmrxrhbajweug.supabase.co';
 
-if (!GEMINI_KEY) {
-    console.error('❌  Defina GEMINI_API_KEY como variável de ambiente.');
-    process.exit(1);
-}
+const CHUNK_WORDS    = 800;  // ~1000 tokens por chunk
+const OVERLAP_WORDS  = 100;  // sobreposição para não perder contexto
+const BATCH_SIZE     = 10;   // chunks por insert (menor para Cohere)
+const EMBED_DELAY_MS = 500;  // delay entre chamadas à API Cohere (trial)
+const EMBED_BATCH    = 96;   // Cohere suporta até 96 textos por chamada
+const MATERIAL_DIR   = join(import.meta.dirname, '..', 'MATERIAL AL BROOKS');
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
 
-/** Percorre recursivamente o diretório e retorna todos os .txt */
 async function walk(dir) {
     const entries = await readdir(dir, { withFileTypes: true });
     const files = [];
@@ -41,25 +36,18 @@ async function walk(dir) {
     return files;
 }
 
-/** Extrai módulo e aula do caminho do arquivo */
 function extractMeta(filePath) {
-    const rel = relative(MATERIAL_DIR, filePath);
+    const rel   = relative(MATERIAL_DIR, filePath);
     const parts = rel.split('/');
-
-    // Formato: CURSO AL BROOK / 1 - Analise de Graficos (08-11) / 8 / 8a.txt
     if (parts[0] === 'CURSO AL BROOK' && parts.length >= 3) {
         return { module: parts[1], lesson: parts[2], source: rel };
     }
-    // Arquivos na raiz do material
     return { module: '', lesson: '', source: rel };
 }
 
-/** Divide texto em chunks com overlap */
 function chunkText(text) {
-    // Normaliza espaços e quebras
     const clean = text.replace(/\r\n/g, '\n').replace(/\n{3,}/g, '\n\n').trim();
     const words = clean.split(/\s+/);
-
     if (words.length <= CHUNK_WORDS) return [clean];
 
     const chunks = [];
@@ -73,41 +61,41 @@ function chunkText(text) {
     return chunks;
 }
 
-/** Chama Gemini text-embedding-004 para gerar vetor 768d */
-async function embedText(text) {
-    const url = `https://generativelanguage.googleapis.com/v1beta/models/${EMBED_MODEL}:embedContent?key=${GEMINI_KEY}`;
-    const body = {
-        model: `models/${EMBED_MODEL}`,
-        content: { parts: [{ text }] }
-    };
-
-    const res = await fetch(url, {
+/** Cohere embed-multilingual-v3.0 — batch de até 96 textos */
+async function embedBatch(texts) {
+    const res = await fetch('https://api.cohere.com/v1/embed', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(body)
+        headers: {
+            'Authorization': `Bearer ${COHERE_KEY}`,
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            texts,
+            model: 'embed-multilingual-v3.0',
+            input_type: 'search_document',
+            embedding_types: ['float'],
+        }),
     });
 
     if (!res.ok) {
         const err = await res.text();
-        throw new Error(`Gemini embed erro ${res.status}: ${err}`);
+        throw new Error(`Cohere embed erro ${res.status}: ${err}`);
     }
 
     const data = await res.json();
-    return data.embedding.values; // float[]
+    return data.embeddings.float; // float[][] — um vetor de 1024 por texto
 }
 
-/** Insere um lote de chunks no Supabase via REST */
 async function insertBatch(rows) {
-    const url = `${SUPABASE_URL}/rest/v1/rag_chunks`;
-    const res = await fetch(url, {
+    const res = await fetch(`${SUPABASE_URL}/rest/v1/rag_chunks`, {
         method: 'POST',
         headers: {
             'apikey': SUPABASE_KEY,
             'Authorization': `Bearer ${SUPABASE_KEY}`,
             'Content-Type': 'application/json',
-            'Prefer': 'return=minimal'
+            'Prefer': 'return=minimal',
         },
-        body: JSON.stringify(rows)
+        body: JSON.stringify(rows),
     });
 
     if (!res.ok) {
@@ -125,61 +113,74 @@ async function main() {
     const files = await walk(MATERIAL_DIR);
     console.log(`📄  ${files.length} arquivos .txt encontrados\n`);
 
-    let totalChunks = 0;
-    let totalEmbedded = 0;
-    const batch = [];
-
+    // Coleta todos os chunks primeiro
+    const allChunks = [];
     for (const filePath of files) {
         const content = await readFile(filePath, 'utf-8');
-        if (content.trim().length < 50) continue; // pular arquivos muito pequenos
+        if (content.trim().length < 50) continue;
 
-        const meta = extractMeta(filePath);
+        const meta   = extractMeta(filePath);
         const chunks = chunkText(content);
-
-        console.log(`  ⚙️  ${meta.source} → ${chunks.length} chunk(s)`);
+        console.log(`  📝  ${meta.source} → ${chunks.length} chunk(s)`);
 
         for (let i = 0; i < chunks.length; i++) {
-            totalChunks++;
+            allChunks.push({ text: chunks[i], meta, index: i });
+        }
+    }
 
-            try {
-                const embedding = await embedText(chunks[i]);
-                totalEmbedded++;
+    console.log(`\n🔢  Total: ${allChunks.length} chunks para embedar\n`);
 
-                batch.push({
-                    content: chunks[i],
-                    embedding: `[${embedding.join(',')}]`, // formato pgvector
-                    source: meta.source,
-                    module: meta.module,
-                    lesson: meta.lesson,
-                    chunk_index: i
+    let totalEmbedded = 0;
+    const insertRows  = [];
+
+    // Processa em lotes para o Cohere
+    for (let i = 0; i < allChunks.length; i += EMBED_BATCH) {
+        const batch = allChunks.slice(i, i + EMBED_BATCH);
+        const texts = batch.map(c => c.text);
+
+        try {
+            const embeddings = await embedBatch(texts);
+
+            for (let j = 0; j < batch.length; j++) {
+                const { text, meta, index } = batch[j];
+                insertRows.push({
+                    content:     text,
+                    embedding:   `[${embeddings[j].join(',')}]`,
+                    source:      meta.source,
+                    module:      meta.module,
+                    lesson:      meta.lesson,
+                    chunk_index: index,
                 });
-
-                // Flush batch
-                if (batch.length >= BATCH_SIZE) {
-                    await insertBatch(batch.splice(0));
-                    process.stdout.write(`     ✅ ${totalEmbedded}/${totalChunks} chunks inseridos\r`);
-                }
-
-                await sleep(EMBED_DELAY_MS); // rate limit
-            } catch (err) {
-                console.error(`\n  ❌ Chunk ${i} de ${meta.source}: ${err.message}`);
-                // Retry após 5s
-                await sleep(5000);
-                i--; // re-tentar mesmo chunk
+                totalEmbedded++;
             }
+
+            process.stdout.write(`  ✅  ${totalEmbedded}/${allChunks.length} chunks embedados\r`);
+
+            // Flush se atingiu batch de insert
+            while (insertRows.length >= BATCH_SIZE) {
+                await insertBatch(insertRows.splice(0, BATCH_SIZE));
+            }
+
+            await sleep(EMBED_DELAY_MS);
+
+        } catch (err) {
+            console.error(`\n  ❌  Lote ${i}–${i + batch.length}: ${err.message}`);
+            console.log('  ⏳  Aguardando 10s e tentando novamente...');
+            await sleep(10000);
+            i -= EMBED_BATCH; // retry
         }
     }
 
     // Flush restante
-    if (batch.length > 0) {
-        await insertBatch(batch);
+    if (insertRows.length > 0) {
+        await insertBatch(insertRows);
     }
 
-    console.log(`\n\n🎉  Ingestão completa! ${totalEmbedded} chunks embedados e inseridos.`);
-    console.log('💡  Execute agora a Edge Function chat-with-notes para perguntas ao material.');
+    console.log(`\n\n🎉  Ingestão completa! ${totalEmbedded} chunks inseridos com embeddings Cohere.`);
+    console.log('💡  Acesse o chat e faça sua primeira pergunta!');
 }
 
 main().catch(err => {
-    console.error('💥  Erro fatal:', err);
+    console.error('\n💥  Erro fatal:', err.message);
     process.exit(1);
 });
