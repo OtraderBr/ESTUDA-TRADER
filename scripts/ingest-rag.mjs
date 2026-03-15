@@ -13,7 +13,7 @@ import { join, relative, basename, extname } from 'node:path';
 
 // ── Config ────────────────────────────────────────────────────────────────────
 const GEMINI_KEY       = process.env.GEMINI_API_KEY;
-const SUPABASE_KEY     = process.env.SUPABASE_SERVICE_KEY;
+const SUPABASE_KEY     = process.env.SUPABASE_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImplYmJrbGFjbXJ4cmhiYWp3ZXVnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzMyMzgwOTcsImV4cCI6MjA4ODgxNDA5N30.-41Xg5zhF2hHiTJ3BUoT3TiL5LYwkhwzKfUUhTTUJks';
 const SUPABASE_URL     = 'https://jebbklacmrxrhbajweug.supabase.co';
 const EMBED_MODEL      = 'text-embedding-004';
 const CHUNK_WORDS      = 800;   // ~1000 tokens
@@ -22,8 +22,8 @@ const BATCH_SIZE       = 20;    // chunks por lote de insert
 const EMBED_DELAY_MS   = 220;   // respeitar rate limit Gemini free (300 RPM)
 const MATERIAL_DIR     = join(import.meta.dirname, '..', 'MATERIAL AL BROOKS');
 
-if (!GEMINI_KEY || !SUPABASE_KEY) {
-    console.error('❌  Defina GEMINI_API_KEY e SUPABASE_SERVICE_KEY como variáveis de ambiente.');
+if (!GEMINI_KEY) {
+    console.error('❌  Defina GEMINI_API_KEY como variável de ambiente.');
     process.exit(1);
 }
 
