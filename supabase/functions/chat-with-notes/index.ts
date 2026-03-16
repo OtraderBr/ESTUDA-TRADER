@@ -99,20 +99,30 @@ Deno.serve(async (req) => {
       message: m.text,
     }));
 
-    // 6. Chama Cohere command-r com RAG nativo
+    // 6. Chama Cohere command-r via API v2
+    const messages: any[] = [
+      { role: 'system', content: preamble },
+      ...chatHistory.map((m: any) => ({
+        role: m.role === 'USER' ? 'user' : 'assistant',
+        content: m.message,
+      })),
+      { role: 'user', content: query.trim() },
+    ];
+
     const cohereBody: any = {
       model: 'command-r',
-      message: query.trim(),
-      preamble,
+      messages,
       temperature: 0.3,
-      chat_history: chatHistory,
     };
 
     if (documents.length > 0) {
-      cohereBody.documents = documents;
+      cohereBody.documents = documents.map((d: any) => ({
+        id: d.id,
+        data: { title: d.title, text: d.snippet },
+      }));
     }
 
-    const chatRes = await fetch('https://api.cohere.com/v1/chat', {
+    const chatRes = await fetch('https://api.cohere.com/v2/chat', {
       method: 'POST',
       headers: {
         'Authorization': `Bearer ${COHERE_API_KEY}`,
@@ -127,7 +137,7 @@ Deno.serve(async (req) => {
     }
 
     const chatData = await chatRes.json();
-    const answer = chatData.text || '';
+    const answer = chatData.message?.content?.[0]?.text || chatData.text || '';
 
     // Extrai fontes únicas dos chunks retornados
     const sources = [...new Set(
