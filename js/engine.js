@@ -6,7 +6,8 @@ import { loadConcepts, getAllProgress, getAllNotes, getAllEvaluations,
          getAllSessions, upsertProgress, addNote as dbAddNote,
          addEvaluation as dbAddEvaluation, upsertConceptDescription,
          createSession, setSessionCompleted, deleteSessionById,
-         hasAnyProgress, deleteNoteById, deleteEvaluationById } from './dataService.js';
+         hasAnyProgress, deleteNoteById, deleteEvaluationById,
+         updateSessionTimer, updateSessionNotes as dbUpdateSessionNotes } from './dataService.js';
 import { buildGraphDataFromConcepts } from './graph.js';
 import { applySM2, calculateQuality, calculateMastery } from './sm2.js';
 import { bustPlanCache } from './daily-plan.js';
@@ -315,6 +316,90 @@ export async function deleteSession(sessionId) {
     await deleteSessionById(sessionId);
     const { sessions } = store.getState();
     store.setState({ sessions: sessions.filter(s => s.id !== sessionId) });
+}
+
+export async function startTimer(sessionId) {
+    const { sessions } = store.getState();
+    const session = sessions.find(s => s.id === sessionId);
+    if (!session) return;
+
+    const now = new Date().toISOString();
+    await updateSessionTimer(sessionId, session.elapsedSeconds || 0, 'playing', now);
+    store.setState({
+        sessions: sessions.map(s => s.id === sessionId
+            ? { ...s, timerState: 'playing', timerStartedAt: now }
+            : s
+        )
+    });
+}
+
+export async function pauseTimer(sessionId) {
+    const { sessions } = store.getState();
+    const session = sessions.find(s => s.id === sessionId);
+    if (!session || session.timerState !== 'playing') return;
+
+    const nowMs = Date.now();
+    const startedMs = new Date(session.timerStartedAt).getTime();
+    const newElapsed = (session.elapsedSeconds || 0) + Math.floor((nowMs - startedMs) / 1000);
+
+    await updateSessionTimer(sessionId, newElapsed, 'paused', null);
+    store.setState({
+        sessions: sessions.map(s => s.id === sessionId
+            ? { ...s, timerState: 'paused', elapsedSeconds: newElapsed, timerStartedAt: null }
+            : s
+        )
+    });
+}
+
+export async function stopTimer(sessionId) {
+    const { sessions } = store.getState();
+    const session = sessions.find(s => s.id === sessionId);
+    if (!session) return;
+
+    const nowMs = Date.now();
+    let newElapsed = session.elapsedSeconds || 0;
+    if (session.timerState === 'playing' && session.timerStartedAt) {
+        const startedMs = new Date(session.timerStartedAt).getTime();
+        newElapsed += Math.floor((nowMs - startedMs) / 1000);
+    }
+
+    await updateSessionTimer(sessionId, newElapsed, 'stopped', null);
+    await setSessionCompleted(sessionId, true);
+    bustPlanCache();
+
+    store.setState({
+        sessions: sessions.map(s => s.id === sessionId
+            ? { ...s, timerState: 'stopped', elapsedSeconds: newElapsed, timerStartedAt: null, completed: true, completedAt: new Date().toISOString() }
+            : s
+        )
+    });
+}
+
+export async function saveTimerProgress(sessionId) {
+    const { sessions } = store.getState();
+    const session = sessions.find(s => s.id === sessionId);
+    if (!session || session.timerState !== 'playing') return;
+
+    const now = new Date();
+    const startedMs = new Date(session.timerStartedAt).getTime();
+    const newElapsed = (session.elapsedSeconds || 0) + Math.floor((now.getTime() - startedMs) / 1000);
+    const nowIso = now.toISOString();
+
+    await updateSessionTimer(sessionId, newElapsed, 'playing', nowIso);
+    store.setState({
+        sessions: sessions.map(s => s.id === sessionId
+            ? { ...s, elapsedSeconds: newElapsed, timerStartedAt: nowIso }
+            : s
+        )
+    });
+}
+
+export async function saveSessionNotes(sessionId, notes) {
+    await dbUpdateSessionNotes(sessionId, notes);
+    const { sessions } = store.getState();
+    store.setState({
+        sessions: sessions.map(s => s.id === sessionId ? { ...s, notes } : s)
+    });
 }
 
 // ─── Seletores ────────────────────────────────────────────────────────────────

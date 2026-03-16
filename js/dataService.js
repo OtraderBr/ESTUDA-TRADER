@@ -174,7 +174,7 @@ export async function getAllSessions() {
     const { data: sessions, error: sErr } = await supabase
         .from('study_sessions')
         .select('*')
-        .order('scheduled_date', { ascending: true });
+        .order('scheduled_date', { ascending: false });
     if (sErr) { console.error('getAllSessions:', sErr); return []; }
 
     const { data: links, error: lErr } = await supabase
@@ -195,8 +195,40 @@ export async function getAllSessions() {
         date: s.scheduled_date,
         completed: !!s.completed_at,
         completedAt: s.completed_at,
-        conceptIds: linkMap[s.id] || []
+        conceptIds: linkMap[s.id] || [],
+        elapsedSeconds: s.elapsed_seconds || 0,
+        timerState: s.timer_state || 'stopped',
+        timerStartedAt: s.timer_started_at || null,
+        notes: s.notes || ''
     }));
+}
+
+/**
+ * Atualiza o estado do timer de uma sessão.
+ * @param {string} sessionId
+ * @param {number} elapsedSeconds
+ * @param {string} timerState - 'playing' | 'paused' | 'stopped'
+ * @param {string|null} timerStartedAt - ISO timestamp ou null
+ */
+export async function updateSessionTimer(sessionId, elapsedSeconds, timerState, timerStartedAt) {
+    const { error } = await supabase
+        .from('study_sessions')
+        .update({ elapsed_seconds: elapsedSeconds, timer_state: timerState, timer_started_at: timerStartedAt })
+        .eq('id', sessionId);
+    if (error) console.error('updateSessionTimer:', error);
+}
+
+/**
+ * Atualiza as notas de uma sessão.
+ * @param {string} sessionId
+ * @param {string} notes
+ */
+export async function updateSessionNotes(sessionId, notes) {
+    const { error } = await supabase
+        .from('study_sessions')
+        .update({ notes })
+        .eq('id', sessionId);
+    if (error) console.error('updateSessionNotes:', error);
 }
 
 /**
