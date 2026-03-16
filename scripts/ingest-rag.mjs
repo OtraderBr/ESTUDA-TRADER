@@ -1,12 +1,14 @@
 #!/usr/bin/env node
 // scripts/ingest-rag.mjs
-// Ingere arquivos de estudo (.txt) do "MATERIAL AL BROOKS" no banco rag_chunks
-// usando Cohere embed-multilingual-v3.0 (1024 dims, otimizado para PT-BR/RAG).
+// Ingere arquivos .txt do "MATERIAL AL BROOKS" no banco rag_chunks.
+// Modelo: Cohere embed-multilingual-v3.0 (1024 dims, otimizado para PT-BR/RAG).
 //
 // Uso:
-//   COHERE_API_KEY=xxx node scripts/ingest-rag.mjs
+//   node scripts/ingest-rag.mjs
 //
-// Requisitos: Node.js 18+ (fetch nativo)
+// Requisitos: Node.js 18+
+// Limite Trial Cohere: 100.000 tokens/min → batch 20 chunks × ~1000 tokens = 20k tokens/lote
+// Com delay de 12s entre lotes: ~100k tokens/min no máximo (seguro)
 
 import { readdir, readFile } from 'node:fs/promises';
 import { join, relative, extname } from 'node:path';
@@ -18,9 +20,9 @@ const SUPABASE_URL = 'https://jebbklacmrxrhbajweug.supabase.co';
 
 const CHUNK_WORDS    = 800;  // ~1000 tokens por chunk
 const OVERLAP_WORDS  = 100;  // sobreposição para não perder contexto
-const BATCH_SIZE     = 10;   // chunks por insert (menor para Cohere)
-const EMBED_DELAY_MS = 500;  // delay entre chamadas à API Cohere (trial)
-const EMBED_BATCH    = 96;   // Cohere suporta até 96 textos por chamada
+const EMBED_BATCH    = 20;   // ← reduzido de 96 para respeitar limite Trial (100k tokens/min)
+const DB_BATCH       = 20;   // chunks por insert no Supabase
+const EMBED_DELAY_MS = 12000; // 12s entre lotes → máx ~100k tokens/min
 const MATERIAL_DIR   = join(import.meta.dirname, '..', 'MATERIAL AL BROOKS');
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
@@ -38,7 +40,7 @@ async function walk(dir) {
 
 function extractMeta(filePath) {
     const rel   = relative(MATERIAL_DIR, filePath);
-    const parts = rel.split('/');
+    const parts = rel.split(/[\\/]/);
     if (parts[0] === 'CURSO AL BROOK' && parts.length >= 3) {
         return { module: parts[1], lesson: parts[2], source: rel };
     }
@@ -61,7 +63,28 @@ function chunkText(text) {
     return chunks;
 }
 
-/** Cohere embed-multilingual-v3.0 — batch de até 96 textos */
+/** Busca no banco quais (source, chunk_index) já estão inseridos para retomar */
+async function fetchExistingKeys() {
+    let page = 0;
+    const pageSize = 1000;
+    const existing = new Set();
+
+    while (true) {
+        const res = await fetch(
+            `${SUPABASE_URL}/rest/v1/rag_chunks?select=source,chunk_index&limit=${pageSize}&offset=${page * pageSize}`,
+            { headers: { 'apikey': SUPABASE_KEY, 'Authorization': `Bearer ${SUPABASE_KEY}` } }
+        );
+        if (!res.ok) break;
+        const rows = await res.json();
+        if (!rows.length) break;
+        rows.forEach(r => existing.add(`${r.source}|${r.chunk_index}`));
+        if (rows.length < pageSize) break;
+        page++;
+    }
+    return existing;
+}
+
+/** Cohere embed-multilingual-v3.0 — batch de até 96 textos, usamos 20 */
 async function embedBatch(texts) {
     const res = await fetch('https://api.cohere.com/v1/embed', {
         method: 'POST',
@@ -79,11 +102,13 @@ async function embedBatch(texts) {
 
     if (!res.ok) {
         const err = await res.text();
-        throw new Error(`Cohere embed erro ${res.status}: ${err}`);
+        const error = new Error(`Cohere embed erro ${res.status}: ${err}`);
+        error.status = res.status;
+        throw error;
     }
 
     const data = await res.json();
-    return data.embeddings.float; // float[][] — um vetor de 1024 por texto
+    return data.embeddings.float;
 }
 
 async function insertBatch(rows) {
@@ -106,6 +131,12 @@ async function insertBatch(rows) {
 
 function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
 
+function formatTime(ms) {
+    const s = Math.round(ms / 1000);
+    if (s < 60) return `${s}s`;
+    return `${Math.floor(s / 60)}m${s % 60}s`;
+}
+
 // ── Main ──────────────────────────────────────────────────────────────────────
 
 async function main() {
@@ -113,7 +144,7 @@ async function main() {
     const files = await walk(MATERIAL_DIR);
     console.log(`📄  ${files.length} arquivos .txt encontrados\n`);
 
-    // Coleta todos os chunks primeiro
+    // Coleta todos os chunks
     const allChunks = [];
     for (const filePath of files) {
         const content = await readFile(filePath, 'utf-8');
@@ -128,14 +159,37 @@ async function main() {
         }
     }
 
-    console.log(`\n🔢  Total: ${allChunks.length} chunks para embedar\n`);
+    console.log(`\n🔢  Total: ${allChunks.length} chunks gerados`);
+
+    // Verifica o que já está no banco (suporte a retomada)
+    console.log('🔍  Verificando chunks já inseridos no banco...');
+    const existing = await fetchExistingKeys();
+    if (existing.size > 0) {
+        console.log(`⏭️   ${existing.size} chunks já existem — serão pulados\n`);
+    } else {
+        console.log(`📭  Banco vazio — inserindo tudo\n`);
+    }
+
+    // Filtra apenas os que faltam
+    const pending = allChunks.filter(c => !existing.has(`${c.meta.source}|${c.index}`));
+    console.log(`🚀  ${pending.length} chunks para inserir\n`);
+
+    if (pending.length === 0) {
+        console.log('✅  Tudo já está no banco! Nada a fazer.');
+        return;
+    }
+
+    // Estimativa de tempo
+    const totalBatches = Math.ceil(pending.length / EMBED_BATCH);
+    const estimatedMs  = totalBatches * EMBED_DELAY_MS;
+    console.log(`⏱️   Estimativa: ${formatTime(estimatedMs)} (${totalBatches} lotes × ${EMBED_DELAY_MS / 1000}s)\n`);
 
     let totalEmbedded = 0;
     const insertRows  = [];
+    let retryDelay    = EMBED_DELAY_MS;
 
-    // Processa em lotes para o Cohere
-    for (let i = 0; i < allChunks.length; i += EMBED_BATCH) {
-        const batch = allChunks.slice(i, i + EMBED_BATCH);
+    for (let i = 0; i < pending.length; i += EMBED_BATCH) {
+        const batch = pending.slice(i, i + EMBED_BATCH);
         const texts = batch.map(c => c.text);
 
         try {
@@ -154,29 +208,40 @@ async function main() {
                 totalEmbedded++;
             }
 
-            process.stdout.write(`  ✅  ${totalEmbedded}/${allChunks.length} chunks embedados\r`);
+            retryDelay = EMBED_DELAY_MS; // reset após sucesso
 
-            // Flush se atingiu batch de insert
-            while (insertRows.length >= BATCH_SIZE) {
-                await insertBatch(insertRows.splice(0, BATCH_SIZE));
+            // Flush insert batch
+            while (insertRows.length >= DB_BATCH) {
+                await insertBatch(insertRows.splice(0, DB_BATCH));
             }
+
+            const pct = Math.round((totalEmbedded / pending.length) * 100);
+            process.stdout.write(`  ✅  ${totalEmbedded}/${pending.length} (${pct}%) — aguardando ${EMBED_DELAY_MS / 1000}s...\r`);
 
             await sleep(EMBED_DELAY_MS);
 
         } catch (err) {
-            console.error(`\n  ❌  Lote ${i}–${i + batch.length}: ${err.message}`);
-            console.log('  ⏳  Aguardando 10s e tentando novamente...');
-            await sleep(10000);
-            i -= EMBED_BATCH; // retry
+            if (err.status === 429) {
+                // Rate limit — espera 65s para o janela de 1 minuto resetar
+                retryDelay = Math.min(retryDelay * 2, 120000);
+                console.log(`\n  ⏳  Rate limit atingido. Aguardando ${formatTime(retryDelay)}...`);
+                await sleep(retryDelay);
+                i -= EMBED_BATCH; // retry mesmo lote
+            } else {
+                console.error(`\n  ❌  Lote ${i}–${i + batch.length}: ${err.message}`);
+                console.log('  ⏳  Erro inesperado. Aguardando 15s e tentando novamente...');
+                await sleep(15000);
+                i -= EMBED_BATCH;
+            }
         }
     }
 
-    // Flush restante
+    // Flush final
     if (insertRows.length > 0) {
         await insertBatch(insertRows);
     }
 
-    console.log(`\n\n🎉  Ingestão completa! ${totalEmbedded} chunks inseridos com embeddings Cohere.`);
+    console.log(`\n\n🎉  Ingestão completa! ${totalEmbedded} chunks inseridos com Cohere.`);
     console.log('💡  Acesse o chat e faça sua primeira pergunta!');
 }
 
