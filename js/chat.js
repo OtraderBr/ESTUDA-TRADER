@@ -5,6 +5,7 @@
 
 import { supabase } from './supabaseClient.js';
 import { getCustomPreamble } from './settings.js';
+import { createFreeNote, saveFreeNoteContent } from './dataService.js';
 
 let chatHistory = [];
 
@@ -167,6 +168,9 @@ export function renderChat(container) {
       appendMessage('assistant', answer, sources, model);
       chatHistory.push({ role: 'assistant', text: answer });
 
+      // Exibe barra de salvar nota logo após a resposta
+      appendSaveNoteBar(answer, query);
+
     } catch (err) {
       loadingEl.remove();
       const msg = err?.message || err?.error || 'Falha na comunicação com a IA.';
@@ -205,12 +209,6 @@ export function renderChat(container) {
            </div>`
         : '';
 
-      const modelTag = model
-        ? `<div class="mt-2">
-             <span class="text-[9px] text-zinc-300 font-mono">${escapeHtml(model)}</span>
-           </div>`
-        : '';
-
       div.className = 'flex justify-start';
       div.innerHTML = `
         <div class="bg-white border border-zinc-200 rounded-2xl rounded-bl-sm
@@ -219,7 +217,6 @@ export function renderChat(container) {
             ${htmlContent}
           </div>
           ${srcHtml}
-          ${modelTag}
         </div>`;
 
     } else {
@@ -235,6 +232,146 @@ export function renderChat(container) {
     innerEl.appendChild(div);
     scrollToBottom();
   }
+
+  // ── Barra de salvar nota
+
+  function appendSaveNoteBar(markdownText, userQuery) {
+    const suggestedTitle = extractNoteTitle(markdownText, userQuery);
+    const barId = 'snb-' + Date.now();
+
+    const wrap = document.createElement('div');
+    wrap.id = barId;
+    wrap.className = 'flex justify-start pl-0.5';
+    wrap.innerHTML = `
+      <!-- Prompt inicial -->
+      <div class="save-note-prompt flex items-center gap-1.5">
+        <button class="save-note-open-btn flex items-center gap-1.5 text-[11px] text-zinc-400
+                       hover:text-emerald-600 px-2.5 py-1.5 rounded-lg
+                       hover:bg-emerald-50 border border-transparent hover:border-emerald-100
+                       transition-all select-none">
+          <i data-lucide="bookmark-plus" class="w-3.5 h-3.5 shrink-0"></i>
+          Salvar como nota
+        </button>
+      </div>
+
+      <!-- Formulário inline -->
+      <div class="save-note-form hidden items-center gap-2 flex-wrap">
+        <input type="text"
+          class="save-note-title text-xs bg-white border border-zinc-200 rounded-lg
+                 px-3 py-1.5 min-w-[180px] flex-1
+                 focus:outline-none focus:border-emerald-400 focus:ring-1 focus:ring-emerald-100
+                 text-zinc-700 placeholder:text-zinc-400"
+          placeholder="Título da nota…"
+          value="${escapeAttr(suggestedTitle)}">
+        <button class="save-note-confirm-btn text-xs bg-emerald-500 hover:bg-emerald-600
+                       disabled:bg-zinc-200 disabled:cursor-not-allowed
+                       text-white px-3 py-1.5 rounded-lg transition-colors font-medium shrink-0">
+          Salvar
+        </button>
+        <button class="save-note-cancel-btn text-xs text-zinc-400 hover:text-zinc-600
+                       px-2 py-1.5 rounded-lg transition-colors shrink-0">
+          Cancelar
+        </button>
+      </div>
+
+      <!-- Sucesso -->
+      <div class="save-note-success hidden items-center gap-1.5 text-[11px] text-emerald-600 font-medium">
+        <i data-lucide="check-circle" class="w-3.5 h-3.5 shrink-0"></i>
+        Nota salva
+        <a class="save-note-link underline underline-offset-2 cursor-pointer hover:text-emerald-700">
+          Ver nas notas
+        </a>
+      </div>`;
+
+    innerEl.appendChild(wrap);
+    if (window.lucide) window.lucide.createIcons();
+
+    const promptEl  = wrap.querySelector('.save-note-prompt');
+    const formEl    = wrap.querySelector('.save-note-form');
+    const successEl = wrap.querySelector('.save-note-success');
+    const titleInput = wrap.querySelector('.save-note-title');
+    const openBtn   = wrap.querySelector('.save-note-open-btn');
+    const confirmBtn = wrap.querySelector('.save-note-confirm-btn');
+    const cancelBtn = wrap.querySelector('.save-note-cancel-btn');
+    const noteLink  = wrap.querySelector('.save-note-link');
+
+    openBtn.addEventListener('click', () => {
+      promptEl.classList.add('hidden');
+      formEl.classList.remove('hidden');
+      formEl.classList.add('flex');
+      titleInput.focus();
+      titleInput.select();
+    });
+
+    cancelBtn.addEventListener('click', () => {
+      formEl.classList.add('hidden');
+      formEl.classList.remove('flex');
+      promptEl.classList.remove('hidden');
+    });
+
+    titleInput.addEventListener('keydown', e => {
+      if (e.key === 'Enter')  confirmBtn.click();
+      if (e.key === 'Escape') cancelBtn.click();
+    });
+
+    confirmBtn.addEventListener('click', async () => {
+      const title = titleInput.value.trim() || suggestedTitle || 'Nota sem título';
+      confirmBtn.disabled = true;
+      confirmBtn.textContent = 'Salvando…';
+
+      try {
+        const savedNote = await saveAnswerAsNote(title, markdownText);
+        formEl.classList.add('hidden');
+        formEl.classList.remove('flex');
+        successEl.classList.remove('hidden');
+        successEl.classList.add('flex');
+
+        if (savedNote?.id) {
+          noteLink.addEventListener('click', () => {
+            // Navega para a seção de notas
+            window.location.hash = '#notes';
+          });
+        } else {
+          noteLink.remove();
+        }
+      } catch (err) {
+        confirmBtn.disabled = false;
+        confirmBtn.textContent = 'Salvar';
+        console.error('Erro ao salvar nota:', err);
+      }
+    });
+  }
+
+  async function saveAnswerAsNote(title, markdownText) {
+    const contentHtml = renderMarkdown(markdownText);
+    const contentText = markdownText;
+
+    const note = await createFreeNote({ title, emoji: '📝' });
+    if (!note) throw new Error('Falha ao criar nota');
+
+    await saveFreeNoteContent(note.id, contentHtml, contentText);
+    return note;
+  }
+
+  // ── Extrai um título sugerido do markdown da resposta
+
+  function extractNoteTitle(markdownText, fallback) {
+    // Tenta o primeiro heading ##
+    const h = markdownText.match(/^#{1,3}\s+(.+)$/m);
+    if (h) return h[1].replace(/\*+/g, '').trim().substring(0, 80);
+
+    // Tenta o primeiro trecho em negrito
+    const b = markdownText.match(/\*\*([^*]{8,70})\*\*/);
+    if (b) return b[1].trim();
+
+    // Primeira linha com conteúdo real
+    const firstLine = markdownText.split('\n').find(l => l.trim().length > 5 && !l.startsWith('#'));
+    if (firstLine) return firstLine.replace(/\*+/g, '').trim().substring(0, 80);
+
+    return (fallback || 'Nota').substring(0, 80);
+  }
+
+  // ── Utilitários
 
   function appendLoading() {
     const div = document.createElement('div');
@@ -272,6 +409,15 @@ export function renderChat(container) {
   function escapeHtml(str) {
     return String(str)
       .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;');
+  }
+
+  function escapeAttr(str) {
+    return String(str)
+      .replace(/&/g, '&amp;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#39;')
       .replace(/</g, '&lt;')
       .replace(/>/g, '&gt;');
   }
