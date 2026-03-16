@@ -83,7 +83,7 @@ export async function createRichEditor(containerId, initialHtml, onUpdate) {
     // Mostrar loading enquanto espera
     el.innerHTML = `<p class="text-zinc-400 text-sm animate-pulse p-4">Carregando editor...</p>`;
 
-    const { Editor, StarterKit, Highlight, Placeholder } = await waitForExtensions();
+    const { Editor, StarterKit, Highlight, Placeholder, Image } = await waitForExtensions();
     if (!Editor) {
         el.innerHTML = `<p class="text-red-500 text-sm p-4">Editor não carregado. Verifique os scripts CDN do Tiptap.</p>`;
         return null;
@@ -105,7 +105,8 @@ export async function createRichEditor(containerId, initialHtml, onUpdate) {
             Highlight.configure({ multicolor: false }),
             Placeholder.configure({
                 placeholder: 'Escreva sua análise, regras e observações sobre este conceito...'
-            })
+            }),
+            ...(Image ? [Image.configure({ inline: false, allowBase64: false })] : [])
         ],
         content: processedContent,
         editorProps: {
@@ -195,11 +196,82 @@ export function attachFloatingToolbar(editor, toolbarEl) {
     });
 }
 
+/**
+ * Insere uma imagem no editor pela URL.
+ * @param {Object} editor - instância Tiptap
+ * @param {string} url - URL pública da imagem
+ */
+export function insertImageInEditor(editor, url) {
+    if (!editor || !url) return;
+    editor.chain().focus().setImage({ src: url, alt: 'imagem' }).run();
+}
+
+/**
+ * Insere um bloco de comentário anotando o texto selecionado.
+ * Destaca o trecho e insere um bloco de citação com o comentário abaixo.
+ * @param {Object} editor - instância Tiptap
+ * @param {number} from - início da seleção salva
+ * @param {number} to - fim da seleção salva
+ * @param {string} commentText - texto do comentário
+ */
+export function insertCommentBlock(editor, from, to, commentText) {
+    if (!editor || !commentText.trim()) return;
+    editor.chain()
+        .focus()
+        .setTextSelection({ from, to })
+        .toggleHighlight()
+        .setTextSelection(to)
+        .insertContent(`<blockquote><p>💬 ${commentText.trim()}</p></blockquote>`)
+        .run();
+}
+
+/**
+ * Abre popup de imagem em tela cheia (lightbox).
+ * @param {string} src - URL da imagem
+ */
+export function showEditorImagePopup(src) {
+    document.getElementById('note-img-popup-overlay')?.remove();
+    const overlay = document.createElement('div');
+    overlay.id = 'note-img-popup-overlay';
+    overlay.className = 'note-img-popup-overlay';
+    overlay.innerHTML = `
+      <div class="note-img-popup-inner" onclick="event.stopPropagation()">
+        <img src="${src}" alt="imagem">
+        <button class="note-img-popup-close" title="Fechar">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>`;
+    overlay.addEventListener('click', () => overlay.remove());
+    overlay.querySelector('.note-img-popup-close').addEventListener('click', (e) => {
+        e.stopPropagation();
+        overlay.remove();
+    });
+    document.addEventListener('keydown', function escHandler(e) {
+        if (e.key === 'Escape') { overlay.remove(); document.removeEventListener('keydown', escHandler); }
+    });
+    document.body.appendChild(overlay);
+}
+
+/**
+ * Ativa popup ao clicar em imagens dentro de um container do editor.
+ * @param {HTMLElement} containerEl - elemento do editor (ex: #notes-rich-editor)
+ */
+export function attachImagePopupHandler(containerEl) {
+    if (!containerEl) return;
+    containerEl.addEventListener('click', (e) => {
+        if (e.target.tagName === 'IMG') {
+            e.preventDefault();
+            showEditorImagePopup(e.target.src);
+        }
+    });
+}
+
 function getExtensions() {
     return {
         Editor: window.tiptapCore?.Editor,
         StarterKit: window.tiptapStarterKit?.StarterKit,
         Highlight: window.tiptapExtensionHighlight?.Highlight,
-        Placeholder: window.tiptapExtensionPlaceholder?.Placeholder
+        Placeholder: window.tiptapExtensionPlaceholder?.Placeholder,
+        Image: window.tiptapExtensionImage?.Image
     };
 }

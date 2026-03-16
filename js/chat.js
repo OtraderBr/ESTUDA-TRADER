@@ -7,7 +7,26 @@ import { supabase } from './supabaseClient.js';
 import { getCustomPreamble } from './settings.js';
 import { createFreeNote, saveFreeNoteContent } from './dataService.js';
 
+const CHAT_STORAGE_KEY = 'professor_brooks_chat_history_v1';
 let chatHistory = [];
+
+function loadChatHistory() {
+  try {
+    const raw = localStorage.getItem(CHAT_STORAGE_KEY);
+    return raw ? JSON.parse(raw) : [];
+  } catch { return []; }
+}
+
+function saveChatHistory() {
+  try {
+    localStorage.setItem(CHAT_STORAGE_KEY, JSON.stringify(chatHistory));
+  } catch {}
+}
+
+function clearChatHistory() {
+  chatHistory = [];
+  try { localStorage.removeItem(CHAT_STORAGE_KEY); } catch {}
+}
 
 export function renderChat(container) {
   container.innerHTML = `
@@ -25,9 +44,9 @@ export function renderChat(container) {
               <p id="custom-prompt-badge" class="text-[10px] text-zinc-400 leading-none mt-0.5"></p>
             </div>
           </div>
-          <button id="chat-clear-btn" title="Nova conversa"
-            class="p-2 rounded-lg text-zinc-400 hover:text-zinc-700 hover:bg-zinc-100 transition-colors">
-            <i data-lucide="square-pen" class="w-4 h-4"></i>
+          <button id="chat-clear-btn" title="Apagar conversa"
+            class="p-2 rounded-lg text-zinc-400 hover:text-red-500 hover:bg-red-50 transition-colors">
+            <i data-lucide="trash-2" class="w-4 h-4"></i>
           </button>
         </div>
       </div>
@@ -120,9 +139,22 @@ export function renderChat(container) {
     }
   });
 
-  // ── Nova conversa
+  // ── Restaurar histórico salvo
+  const savedHistory = loadChatHistory();
+  if (savedHistory.length > 0) {
+    chatHistory = savedHistory;
+    welcome.classList.add('hidden');
+    chatHistory.forEach(msg => {
+      if (msg.role === 'user') appendMessage('user', msg.text);
+      else if (msg.role === 'assistant') appendMessage('assistant', msg.text, msg.sources || [], msg.model || '');
+    });
+    scrollToBottom();
+  }
+
+  // ── Nova conversa / Apagar histórico
   clearBtn.addEventListener('click', () => {
-    chatHistory = [];
+    if (chatHistory.length > 0 && !confirm('Apagar todo o histórico da conversa?')) return;
+    clearChatHistory();
     innerEl.innerHTML = '';
     innerEl.appendChild(welcome);
     welcome.classList.remove('hidden');
@@ -143,6 +175,7 @@ export function renderChat(container) {
 
     appendMessage('user', query);
     chatHistory.push({ role: 'user', text: query });
+    saveChatHistory();
 
     const loadingEl = appendLoading();
     scrollToBottom();
@@ -166,7 +199,8 @@ export function renderChat(container) {
       const model   = data?.model   || '';
 
       appendMessage('assistant', answer, sources, model);
-      chatHistory.push({ role: 'assistant', text: answer });
+      chatHistory.push({ role: 'assistant', text: answer, sources, model });
+      saveChatHistory();
 
       // Exibe barra de salvar nota logo após a resposta
       appendSaveNoteBar(answer, query);

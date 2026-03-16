@@ -508,3 +508,178 @@ p.is-editor-empty:first-child::before {
 }
 .lightbox-tags { display: flex; flex-wrap: wrap; gap: 5px; align-items: center; justify-content: center; }
 .lightbox-counter { font-size: 11px; color: rgba(255,255,255,0.3); font-family: monospace; }
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   INLINE NOTE IMAGES — Editor
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.tiptap-editor img {
+  max-width: 100%;
+  border-radius: 8px;
+  cursor: pointer;
+  border: 1px solid #e4e4e7;
+  margin: 6px 0;
+  display: block;
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+}
+.tiptap-editor img:hover {
+  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+  border-color: #a1a1aa;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   NOTE IMAGE POPUP (Lightbox)
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.note-img-popup-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: zoom-out;
+  backdrop-filter: blur(4px);
+  animation: note-popup-fadein 0.15s ease;
+}
+@keyframes note-popup-fadein {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+.note-img-popup-inner {
+  position: relative;
+  cursor: default;
+  max-width: 92vw;
+  max-height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.note-img-popup-inner img {
+  max-width: 90vw;
+  max-height: 88vh;
+  border-radius: 10px;
+  object-fit: contain;
+  box-shadow: 0 24px 80px rgba(0,0,0,0.6);
+  border: none;
+  cursor: default;
+  display: block;
+}
+.note-img-popup-close {
+  position: absolute;
+  top: -14px;
+  right: -14px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.15);
+  border: 1px solid rgba(255,255,255,0.2);
+  color: white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s;
+  backdrop-filter: blur(4px);
+}
+.note-img-popup-close:hover { background: rgba(255,255,255,0.28); }
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   COMMENT POPUP — Inline comment input
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.note-comment-popup {
+  position: fixed;
+  z-index: 500;
+  background: #ffffff;
+  border: 1px solid #e4e4e7;
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.14);
+  padding: 12px;
+  width: 260px;
+  animation: note-popup-fadein 0.12s ease;
+}
+.note-comment-popup p {
+  font-size: 11px;
+  color: #71717a;
+  margin: 0 0 8px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+.note-comment-popup textarea {
+  width: 100%;
+  font-size: 12px;
+  border: 1px solid #e4e4e7;
+  border-radius: 8px;
+  padding: 8px;
+  height: 72px;
+  resize: none;
+  outline: none;
+  color: #3f3f46;
+  font-family: inherit;
+  transition: border-color 0.15s;
+}
+.note-comment-popup textarea:focus { border-color: #71717a; }
+.note-comment-popup .popup-actions {
+  display: flex;
+  gap: 6px;
+  margin-top: 8px;
+  justify-content: flex-end;
+}
+.note-comment-popup .btn-cancel {
+  font-size: 11px;
+  color: #a1a1aa;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 6px;
+  transition: color 0.12s, background 0.12s;
+}
+.note-comment-popup .btn-cancel:hover { color: #71717a; background: #f4f4f5; }
+.note-comment-popup .btn-save {
+  font-size: 11px;
+  background: #18181b;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 5px 14px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.12s;
+}
+.note-comment-popup .btn-save:hover { background: #3f3f46; }
+
+/* Comment blockquote styling in editor */
+.tiptap-editor blockquote {
+  border-left: 3px solid #10b981;
+  background: #f0fdf4;
+  margin: 6px 0;
+  padding: 8px 12px;
+  border-radius: 0 8px 8px 0;
+  color: #065f46;
+  font-size: 0.875em;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   AI GENERATION — Floating non-blocking panel
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.ai-gen-panel {
+  position: fixed;
+  bottom: 1.25rem;
+  right: 1.25rem;
+  z-index: 200;
+  width: 400px;
+  max-width: calc(100vw - 2rem);
+  max-height: 72vh;
+  background: #ffffff;
+  border: 1px solid #e4e4e7;
+  border-radius: 16px;
+  box-shadow: 0 16px 56px rgba(0,0,0,0.18);
+  display: flex;
+  flex-direction: column;
+  animation: note-popup-fadein 0.2s ease;
+  overflow: hidden;
+}

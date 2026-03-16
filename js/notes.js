@@ -7,12 +7,27 @@ import {
     updateFreeNoteMetadata, saveFreeNoteContent, deleteFreeNote
 } from './dataService.js';
 import { setConceptInitialTab } from './concept-detail.js';
-import { createRichEditor, attachFloatingToolbar } from './rich-editor.js';
+import { createRichEditor, attachFloatingToolbar, insertImageInEditor, insertCommentBlock, attachImagePopupHandler } from './rich-editor.js';
+import { supabase } from './supabaseClient.js';
+
+const BUCKET = 'concept-images';
+
+async function uploadNoteImage(file) {
+    if (!file || !file.type.startsWith('image/')) return null;
+    if (file.size > 5 * 1024 * 1024) { alert('Imagem muito grande. Limite: 5MB.'); return null; }
+    const ext = file.name.split('.').pop() || 'png';
+    const path = `note-images/${Date.now()}_${Math.random().toString(36).slice(2)}.${ext}`;
+    const { error } = await supabase.storage.from(BUCKET).upload(path, file, { cacheControl: '3600', upsert: false });
+    if (error) { console.error('uploadNoteImage:', error); alert('Falha ao enviar imagem.'); return null; }
+    const { data } = supabase.storage.from(BUCKET).getPublicUrl(path);
+    return data.publicUrl;
+}
 
 // ─── Estado local ──────────────────────────────────────────────────────────────
 let notesTree = [];
 let activeNoteId = null;
 let activeEditor = null;
+let _pendingCommentSel = null; // { from, to } saved selection for comment insertion
 
 // ─── Ponto de entrada ─────────────────────────────────────────────────────────
 
@@ -146,7 +161,12 @@ export async function renderNotes(container) {
               <button data-action="blockquote"><i data-lucide="quote" class="w-3.5 h-3.5 text-inherit"></i></button>
               <button data-action="codeBlock"><i data-lucide="code" class="w-3.5 h-3.5 text-inherit"></i></button>
               <button data-action="horizontalRule"><i data-lucide="minus" class="w-3.5 h-3.5 text-inherit"></i></button>
+              <div class="toolbar-sep"></div>
+              <button data-action="insertImage" title="Inserir imagem"><i data-lucide="image" class="w-3.5 h-3.5 text-inherit"></i></button>
+              <button data-action="insertComment" title="Adicionar comentário ao trecho"><i data-lucide="message-square" class="w-3.5 h-3.5 text-inherit"></i></button>
             </div>
+            <!-- Hidden file input for image upload -->
+            <input type="file" id="notes-img-file-input" accept="image/*" style="display:none">
 
             <!-- Editor Tiptap -->
             <div class="flex-1 overflow-y-auto">
@@ -186,6 +206,18 @@ export async function renderNotes(container) {
         ?.addEventListener('click', closeMobileDrawer);
     document.getElementById('notes-drawer-overlay')
         ?.addEventListener('click', closeMobileDrawer);
+
+    // ── Image file input handler (delegated from toolbar) ──
+    document.getElementById('notes-img-file-input')?.addEventListener('change', async (e) => {
+        const file = e.target.files?.[0];
+        e.target.value = '';
+        if (!file || !activeEditor) return;
+        const btn = document.querySelector('#notes-rich-toolbar [data-action="insertImage"]');
+        if (btn) { btn.disabled = true; btn.style.opacity = '0.5'; }
+        const url = await uploadNoteImage(file);
+        if (btn) { btn.disabled = false; btn.style.opacity = ''; }
+        if (url) insertImageInEditor(activeEditor, url);
+    });
 }
 
 function openMobileDrawer() {
@@ -429,10 +461,23 @@ async function openNote(id) {
                     case 'blockquote':     activeEditor.chain().focus().toggleBlockquote().run(); break;
                     case 'codeBlock':      activeEditor.chain().focus().toggleCodeBlock().run(); break;
                     case 'horizontalRule': activeEditor.chain().focus().setHorizontalRule().run(); break;
+                    case 'insertImage':
+                        document.getElementById('notes-img-file-input')?.click();
+                        break;
+                    case 'insertComment': {
+                        const { from, to } = activeEditor.state.selection;
+                        if (from === to) { alert('Selecione um trecho de texto para adicionar o comentário.'); return; }
+                        _pendingCommentSel = { from, to };
+                        showNoteCommentPopup(btn);
+                        break;
+                    }
                 }
             });
         });
     }
+
+    // Image popup on click inside editor
+    attachImagePopupHandler(document.getElementById('notes-rich-editor'));
 }
 
 // ─── Criar nota ───────────────────────────────────────────────────────────────
@@ -502,4 +547,61 @@ function toggleFocusMode() {
         document.getElementById('focus-exit-float')?.remove();
     }
     if (window.lucide) window.lucide.createIcons({ nodes: focusBtn?.querySelectorAll('[data-lucide]') });
+}
+
+// ─── Comment Popup ─────────────────────────────────────────────────────────────
+
+function showNoteCommentPopup(anchorBtn) {
+    document.getElementById('notes-comment-popup')?.remove();
+    const popup = document.createElement('div');
+    popup.id = 'notes-comment-popup';
+    popup.className = 'note-comment-popup';
+    popup.innerHTML = `
+      <p>Adicionar comentário ao trecho</p>
+      <textarea id="notes-comment-textarea" placeholder="Digite o comentário..."></textarea>
+      <div class="popup-actions">
+        <button class="btn-cancel">Cancelar</button>
+        <button class="btn-save">Salvar</button>
+      </div>`;
+
+    // Position near anchor button
+    const rect = anchorBtn.getBoundingClientRect();
+    popup.style.top = (rect.bottom + 8) + 'px';
+    popup.style.left = Math.min(rect.left, window.innerWidth - 276) + 'px';
+
+    document.body.appendChild(popup);
+
+    const textarea = popup.querySelector('#notes-comment-textarea');
+    const cancelBtn = popup.querySelector('.btn-cancel');
+    const saveBtn = popup.querySelector('.btn-save');
+
+    setTimeout(() => textarea?.focus(), 50);
+
+    cancelBtn.addEventListener('click', () => { popup.remove(); _pendingCommentSel = null; });
+
+    saveBtn.addEventListener('click', () => {
+        const text = textarea.value.trim();
+        if (!text) { textarea.focus(); return; }
+        if (_pendingCommentSel && activeEditor) {
+            insertCommentBlock(activeEditor, _pendingCommentSel.from, _pendingCommentSel.to, text);
+        }
+        popup.remove();
+        _pendingCommentSel = null;
+    });
+
+    textarea.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) saveBtn.click();
+        if (e.key === 'Escape') cancelBtn.click();
+    });
+
+    // Close on outside click
+    setTimeout(() => {
+        document.addEventListener('click', function outsideHandler(e) {
+            if (!popup.contains(e.target)) {
+                popup.remove();
+                _pendingCommentSel = null;
+                document.removeEventListener('click', outsideHandler);
+            }
+        });
+    }, 100);
 }
