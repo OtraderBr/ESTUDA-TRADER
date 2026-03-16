@@ -56,8 +56,6 @@ function getExtensions() {
     return {
         Editor: window.tiptapCore?.Editor,
         Extension: window.tiptapCore?.Extension,
-        Plugin: window.tiptapCore?.Plugin,
-        PluginKey: window.tiptapCore?.PluginKey,
         StarterKit: window.tiptapStarterKit?.StarterKit,
         Highlight: window.tiptapExtensionHighlight?.Highlight,
         Placeholder: window.tiptapExtensionPlaceholder?.Placeholder,
