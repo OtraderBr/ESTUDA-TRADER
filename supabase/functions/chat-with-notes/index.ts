@@ -110,7 +110,7 @@ Deno.serve(async (req) => {
     ];
 
     const cohereBody: any = {
-      model: 'command-r',
+      model: 'command-r-08-2024',
       messages,
       temperature: 0.3,
     };
@@ -149,7 +149,7 @@ Deno.serve(async (req) => {
     return new Response(JSON.stringify({
       answer,
       sources,
-      model: 'Cohere command-r',
+      model: 'Cohere command-r-08-2024',
       citations: chatData.citations || [],
     }), {
       headers: { ...CORS_HEADERS, 'Content-Type': 'application/json' },
