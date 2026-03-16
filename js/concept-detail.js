@@ -6,7 +6,6 @@ import { renderTagPills, attachTagListeners } from './tags.js';
 import { createRichEditor, attachFloatingToolbar, insertImageInEditor, insertCommentBlock, attachImagePopupHandler } from './rich-editor.js';
 import { supabase } from './supabaseClient.js';
 import { renderImageGallery } from './image-gallery.js';
-import { supabase } from './supabaseClient.js';
 
 // ── Painel Flutuante (não-bloqueante): Gerar Conhecimento com IA ─────────────
 
