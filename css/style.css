@@ -663,6 +663,88 @@ p.is-editor-empty:first-child::before {
 }
 
 /* ═══════════════════════════════════════════════════════════════════════════
+   INLINE MEDIA & COMMENTS — Ocultos por padrão, revelados no hover/clique
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* Imagem: colapsada por padrão */
+.tiptap-editor .ProseMirror p:has(> img) {
+  position: relative;
+  max-height: 40px;
+  overflow: hidden;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: max-height 0.35s ease;
+}
+.tiptap-editor .ProseMirror p:has(> img)::after {
+  content: '🖼  ver imagem';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  background: linear-gradient(transparent, rgba(0,0,0,0.55));
+  color: #fff;
+  font-size: 0.65rem;
+  text-align: center;
+  padding: 6px 4px 3px;
+  pointer-events: none;
+  border-radius: 0 0 6px 6px;
+}
+.tiptap-editor .ProseMirror p:has(> img):hover,
+.tiptap-editor .ProseMirror p:has(> img).img-expanded {
+  max-height: 600px;
+}
+.tiptap-editor .ProseMirror p:has(> img):hover::after,
+.tiptap-editor .ProseMirror p:has(> img).img-expanded::after {
+  display: none;
+}
+
+/* Comentário (blockquote): colapsado por padrão */
+.tiptap-editor .ProseMirror blockquote {
+  max-height: 40px;
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+  transition: max-height 0.3s ease;
+}
+.tiptap-editor .ProseMirror blockquote p {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin: 0;
+}
+.tiptap-editor .ProseMirror blockquote:hover,
+.tiptap-editor .ProseMirror blockquote.bq-expanded {
+  max-height: 400px;
+}
+.tiptap-editor .ProseMirror blockquote:hover p,
+.tiptap-editor .ProseMirror blockquote.bq-expanded p {
+  white-space: normal;
+  overflow: visible;
+  text-overflow: initial;
+}
+
+/* Botão flutuante de exclusão */
+.editor-inline-delete-btn {
+  position: fixed;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #ef4444;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 500;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+  transition: background 0.15s, transform 0.1s;
+  padding: 0;
+}
+.editor-inline-delete-btn:hover {
+  background: #dc2626;
+  transform: scale(1.15);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
    AI GENERATION — Floating non-blocking panel
    ═══════════════════════════════════════════════════════════════════════════ */
 
