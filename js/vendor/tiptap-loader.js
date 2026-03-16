@@ -19,10 +19,9 @@ import TableCell from 'https://esm.sh/@tiptap/extension-table-cell@2.1.13?bundle
 import TableHeader from 'https://esm.sh/@tiptap/extension-table-header@2.1.13?bundle';
 import Typography from 'https://esm.sh/@tiptap/extension-typography@2.1.13?bundle';
 import { Extension } from 'https://esm.sh/@tiptap/core@2.1.13?bundle';
-import { Plugin, PluginKey } from 'https://esm.sh/@tiptap/pm/state@2.1.13?bundle';
 
 // Expor como globais para uso pelo sistema existente
-window.tiptapCore = { Editor, Extension, Plugin, PluginKey };
+window.tiptapCore = { Editor, Extension };
 window.tiptapStarterKit = { StarterKit };
 window.tiptapExtensionHighlight = { Highlight };
 window.tiptapExtensionPlaceholder = { Placeholder };
