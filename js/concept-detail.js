@@ -3,104 +3,96 @@ import { store } from './state.js';
 import { addNote, deleteNote, addEvaluation, deleteEvaluation, updateImportance, updateABC, updateMacroCategory } from './engine.js';
 import { upsertConceptDescription } from './dataService.js';
 import { renderTagPills, attachTagListeners } from './tags.js';
-import { createRichEditor, attachFloatingToolbar } from './rich-editor.js';
+import { createRichEditor, attachFloatingToolbar, insertImageInEditor, insertCommentBlock, attachImagePopupHandler } from './rich-editor.js';
+import { supabase } from './supabaseClient.js';
 import { renderImageGallery } from './image-gallery.js';
 import { supabase } from './supabaseClient.js';
 
-// ── Modal: Gerar Conhecimento com IA ────────────────────────────────────────
+// ── Painel Flutuante (não-bloqueante): Gerar Conhecimento com IA ─────────────
 
 function showAIKnowledgeModal({ conceptName, onKeep }) {
-    // Remove modal anterior se existir
-    document.getElementById('ai-knowledge-modal')?.remove();
+    // Remove painel anterior se existir
+    document.getElementById('ai-knowledge-panel')?.remove();
 
-    const modal = document.createElement('div');
-    modal.id = 'ai-knowledge-modal';
-    modal.className = 'fixed inset-0 z-50 flex items-center justify-center p-4';
-    modal.innerHTML = `
-      <div class="absolute inset-0 bg-black/40 backdrop-blur-sm" id="ai-modal-backdrop"></div>
-      <div class="relative bg-white rounded-2xl shadow-2xl w-full max-w-2xl max-h-[85vh] flex flex-col">
-        <!-- Header -->
-        <div class="flex items-center justify-between px-5 pt-5 pb-4 border-b border-zinc-100 shrink-0">
-          <div class="flex items-center gap-2.5">
-            <div class="w-8 h-8 bg-violet-100 rounded-lg flex items-center justify-center shrink-0">
-              <i data-lucide="sparkles" class="w-4 h-4 text-violet-600"></i>
-            </div>
-            <div>
-              <h2 class="text-sm font-bold text-zinc-900">Conhecimento Gerado pela IA</h2>
-              <p class="text-[10px] text-zinc-400 mt-0.5">Baseado nos materiais do curso Al Brooks</p>
-            </div>
+    const panel = document.createElement('div');
+    panel.id = 'ai-knowledge-panel';
+    panel.className = 'ai-gen-panel';
+    panel.innerHTML = `
+      <!-- Header -->
+      <div class="flex items-center justify-between px-4 pt-4 pb-3 border-b border-zinc-100 shrink-0">
+        <div class="flex items-center gap-2">
+          <div class="w-7 h-7 bg-violet-100 rounded-lg flex items-center justify-center shrink-0">
+            <i data-lucide="sparkles" class="w-3.5 h-3.5 text-violet-600"></i>
           </div>
-          <button id="ai-modal-close" class="p-1.5 rounded-lg text-zinc-400 hover:text-zinc-700 hover:bg-zinc-100 transition-colors">
-            <i data-lucide="x" class="w-4 h-4"></i>
+          <div>
+            <h2 class="text-xs font-bold text-zinc-900 leading-tight">Gerar com IA</h2>
+            <p class="text-[10px] text-zinc-400">${conceptName}</p>
+          </div>
+        </div>
+        <button id="ai-panel-close" class="p-1.5 rounded-lg text-zinc-400 hover:text-zinc-700 hover:bg-zinc-100 transition-colors">
+          <i data-lucide="x" class="w-4 h-4"></i>
+        </button>
+      </div>
+
+      <!-- Loading state -->
+      <div id="ai-panel-loading" class="flex flex-col items-center justify-center py-10 gap-3">
+        <div class="flex gap-1.5">
+          <span class="w-2 h-2 bg-violet-400 rounded-full animate-bounce" style="animation-delay:0ms"></span>
+          <span class="w-2 h-2 bg-violet-400 rounded-full animate-bounce" style="animation-delay:150ms"></span>
+          <span class="w-2 h-2 bg-violet-400 rounded-full animate-bounce" style="animation-delay:300ms"></span>
+        </div>
+        <p class="text-xs text-zinc-400">Gerando em segundo plano…</p>
+        <p class="text-[11px] text-zinc-300">Você pode continuar usando o app</p>
+      </div>
+
+      <!-- Content -->
+      <div id="ai-panel-content" class="flex-1 overflow-y-auto px-4 py-3 hidden">
+        <div id="ai-panel-text" class="text-sm text-zinc-700 leading-relaxed tiptap-render chat-answer"></div>
+        <div id="ai-panel-sources" class="mt-3 pt-3 border-t border-zinc-100 hidden">
+          <span class="text-[10px] text-zinc-400 font-medium">Fontes:</span>
+          <div id="ai-panel-sources-list" class="flex flex-wrap gap-1.5 mt-1.5"></div>
+        </div>
+      </div>
+
+      <!-- Error state -->
+      <div id="ai-panel-error" class="flex flex-col items-center justify-center py-8 gap-3 hidden">
+        <i data-lucide="alert-circle" class="w-6 h-6 text-red-400"></i>
+        <p id="ai-panel-error-msg" class="text-xs text-zinc-500 text-center max-w-xs px-4"></p>
+        <button id="ai-panel-retry" class="text-xs text-violet-600 hover:text-violet-800 font-medium underline">Tentar novamente</button>
+      </div>
+
+      <!-- Footer -->
+      <div id="ai-panel-footer" class="px-4 py-3 border-t border-zinc-100 flex items-center justify-between gap-3 shrink-0 hidden">
+        <p class="text-[10px] text-zinc-400 leading-relaxed">Texto será <strong>anexado</strong> à descrição.</p>
+        <div class="flex gap-2 shrink-0">
+          <button id="ai-panel-discard" class="px-3 py-1.5 rounded-lg border border-zinc-200 text-xs font-medium text-zinc-600 hover:bg-zinc-50 transition-colors">
+            Descartar
           </button>
-        </div>
-
-        <!-- Loading state -->
-        <div id="ai-modal-loading" class="flex-1 flex flex-col items-center justify-center py-12 gap-4">
-          <div class="flex gap-1.5">
-            <span class="w-2 h-2 bg-violet-400 rounded-full animate-bounce" style="animation-delay:0ms"></span>
-            <span class="w-2 h-2 bg-violet-400 rounded-full animate-bounce" style="animation-delay:150ms"></span>
-            <span class="w-2 h-2 bg-violet-400 rounded-full animate-bounce" style="animation-delay:300ms"></span>
-          </div>
-          <p class="text-sm text-zinc-400">Gerando conhecimento sobre <strong class="text-zinc-600">${conceptName}</strong>…</p>
-          <p class="text-[11px] text-zinc-300">Consultando todos os materiais do curso</p>
-        </div>
-
-        <!-- Content (hidden until loaded) -->
-        <div id="ai-modal-content" class="flex-1 overflow-y-auto px-5 py-4 hidden">
-          <div id="ai-modal-text" class="text-sm text-zinc-700 leading-relaxed tiptap-render chat-answer"></div>
-          <!-- Sources -->
-          <div id="ai-modal-sources" class="mt-4 pt-4 border-t border-zinc-100 hidden">
-            <span class="text-[10px] text-zinc-400 font-medium">Fontes:</span>
-            <div id="ai-modal-sources-list" class="flex flex-wrap gap-1.5 mt-1.5"></div>
-          </div>
-        </div>
-
-        <!-- Error state -->
-        <div id="ai-modal-error" class="flex-1 flex flex-col items-center justify-center py-10 gap-3 hidden">
-          <i data-lucide="alert-circle" class="w-8 h-8 text-red-400"></i>
-          <p id="ai-modal-error-msg" class="text-sm text-zinc-500 text-center max-w-xs"></p>
-          <button id="ai-modal-retry" class="text-xs text-violet-600 hover:text-violet-800 font-medium underline">Tentar novamente</button>
-        </div>
-
-        <!-- Footer -->
-        <div id="ai-modal-footer" class="px-5 py-4 border-t border-zinc-100 flex items-center justify-between gap-3 shrink-0 hidden">
-          <p class="text-[11px] text-zinc-400 leading-relaxed max-w-xs">
-            O texto será <strong>anexado</strong> ao final da descrição atual do conceito.
-          </p>
-          <div class="flex gap-2 shrink-0">
-            <button id="ai-modal-discard" class="px-4 py-2 rounded-lg border border-zinc-200 text-xs font-medium text-zinc-600 hover:bg-zinc-50 transition-colors">
-              Descartar
-            </button>
-            <button id="ai-modal-keep" class="flex items-center gap-1.5 px-4 py-2 rounded-lg bg-violet-600 hover:bg-violet-700 text-white text-xs font-semibold transition-colors">
-              <i data-lucide="check" class="w-3.5 h-3.5"></i>
-              Manter na Nota
-            </button>
-          </div>
+          <button id="ai-panel-keep" class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-violet-600 hover:bg-violet-700 text-white text-xs font-semibold transition-colors">
+            <i data-lucide="check" class="w-3.5 h-3.5"></i>
+            Manter
+          </button>
         </div>
       </div>`;
 
-    document.body.appendChild(modal);
-    if (window.lucide) window.lucide.createIcons({ nodes: modal.querySelectorAll('[data-lucide]') });
+    document.body.appendChild(panel);
+    if (window.lucide) window.lucide.createIcons({ nodes: panel.querySelectorAll('[data-lucide]') });
 
-    const close = () => modal.remove();
-    modal.querySelector('#ai-modal-backdrop').addEventListener('click', close);
-    modal.querySelector('#ai-modal-close').addEventListener('click', close);
-    modal.querySelector('#ai-modal-discard')?.addEventListener('click', close);
-    modal.querySelector('#ai-modal-keep')?.addEventListener('click', () => {
-        const textEl = modal.querySelector('#ai-modal-text');
+    const close = () => panel.remove();
+    panel.querySelector('#ai-panel-close').addEventListener('click', close);
+    panel.querySelector('#ai-panel-discard')?.addEventListener('click', close);
+    panel.querySelector('#ai-panel-keep')?.addEventListener('click', () => {
+        const textEl = panel.querySelector('#ai-panel-text');
         const rawText = textEl?.innerText || textEl?.textContent || '';
         onKeep(rawText);
         close();
     });
 
-    let generatedText = '';
-
     async function generate() {
-        modal.querySelector('#ai-modal-loading').classList.remove('hidden');
-        modal.querySelector('#ai-modal-content').classList.add('hidden');
-        modal.querySelector('#ai-modal-error').classList.add('hidden');
-        modal.querySelector('#ai-modal-footer').classList.add('hidden');
+        panel.querySelector('#ai-panel-loading').classList.remove('hidden');
+        panel.querySelector('#ai-panel-content').classList.add('hidden');
+        panel.querySelector('#ai-panel-error').classList.add('hidden');
+        panel.querySelector('#ai-panel-footer').classList.add('hidden');
 
         try {
             const { data, error } = await supabase.functions.invoke('chat-with-notes', {
@@ -114,11 +106,10 @@ function showAIKnowledgeModal({ conceptName, onKeep }) {
 
             if (error) throw new Error(error.message || 'Erro na IA');
 
-            generatedText = data?.answer || '';
+            const generatedText = data?.answer || '';
             const sources = data?.sources || [];
 
-            // Renderiza markdown
-            const textEl = modal.querySelector('#ai-modal-text');
+            const textEl = panel.querySelector('#ai-panel-text');
             if (window.marked) {
                 textEl.innerHTML = window.marked.parse(generatedText, { gfm: true, breaks: true })
                     .replace(/<li>\s*<p>([\s\S]*?)<\/p>\s*<\/li>/g, '<li>$1</li>');
@@ -126,28 +117,28 @@ function showAIKnowledgeModal({ conceptName, onKeep }) {
                 textEl.textContent = generatedText;
             }
 
-            // Fontes
             if (sources.length > 0) {
-                const sourcesDiv = modal.querySelector('#ai-modal-sources');
-                const sourcesList = modal.querySelector('#ai-modal-sources-list');
+                const sourcesDiv = panel.querySelector('#ai-panel-sources');
+                const sourcesList = panel.querySelector('#ai-panel-sources-list');
                 sourcesDiv.classList.remove('hidden');
                 sourcesList.innerHTML = sources.map(s =>
                     `<span class="text-[10px] bg-violet-50 text-violet-700 px-2 py-0.5 rounded-md font-medium border border-violet-100">${s}</span>`
                 ).join('');
             }
 
-            modal.querySelector('#ai-modal-loading').classList.add('hidden');
-            modal.querySelector('#ai-modal-content').classList.remove('hidden');
-            modal.querySelector('#ai-modal-footer').classList.remove('hidden');
+            panel.querySelector('#ai-panel-loading').classList.add('hidden');
+            panel.querySelector('#ai-panel-content').classList.remove('hidden');
+            panel.querySelector('#ai-panel-footer').classList.remove('hidden');
 
         } catch (err) {
-            modal.querySelector('#ai-modal-loading').classList.add('hidden');
-            modal.querySelector('#ai-modal-error').classList.remove('hidden');
-            modal.querySelector('#ai-modal-error-msg').textContent = err.message || 'Erro ao gerar conhecimento.';
+            panel.querySelector('#ai-panel-loading').classList.add('hidden');
+            panel.querySelector('#ai-panel-error').classList.remove('hidden');
+            panel.querySelector('#ai-panel-error-msg').textContent = err.message || 'Erro ao gerar conhecimento.';
         }
     }
 
-    modal.querySelector('#ai-modal-retry')?.addEventListener('click', generate);
+    panel.querySelector('#ai-panel-retry')?.addEventListener('click', generate);
+    // Start generation in background (non-blocking)
     generate();
 }
 
@@ -233,7 +224,11 @@ export function renderConceptDetail(container, concept) {
           <button data-action="highlight" title="Destaque"><i data-lucide="highlighter" class="w-3.5 h-3.5 text-inherit"></i></button>
           <button data-action="bulletList" title="Lista"><i data-lucide="list" class="w-3.5 h-3.5 text-inherit"></i></button>
           <button data-action="orderedList" title="Lista numerada"><i data-lucide="list-ordered" class="w-3.5 h-3.5 text-inherit"></i></button>
+          <div class="toolbar-sep"></div>
+          <button data-action="insertImage" title="Inserir imagem"><i data-lucide="image" class="w-3.5 h-3.5 text-inherit"></i></button>
+          <button data-action="insertComment" title="Adicionar comentário ao trecho"><i data-lucide="message-square" class="w-3.5 h-3.5 text-inherit"></i></button>
         </div>
+        <input type="file" id="desc-img-file-input" accept="image/*" style="display:none">
         <div id="rich-editor-container" class="min-h-[200px] bg-zinc-50 border border-zinc-200 rounded-lg p-4"></div>
       </div>
 
@@ -615,6 +610,8 @@ export function renderConceptDetail(container, concept) {
                 attachFloatingToolbar(editor, toolbarEl);
                 if (window.lucide) window.lucide.createIcons({ nodes: toolbarEl.querySelectorAll('[data-lucide]') });
 
+                let _descCommentSel = null;
+
                 toolbarEl.querySelectorAll('button[data-action]').forEach(btn => {
                     btn.addEventListener('mousedown', (e) => {
                         e.preventDefault();
@@ -628,10 +625,40 @@ export function renderConceptDetail(container, concept) {
                             case 'highlight':   editor.chain().focus().toggleHighlight().run(); break;
                             case 'bulletList':  editor.chain().focus().toggleBulletList().run(); break;
                             case 'orderedList': editor.chain().focus().toggleOrderedList().run(); break;
+                            case 'insertImage':
+                                document.getElementById('desc-img-file-input')?.click();
+                                break;
+                            case 'insertComment': {
+                                const { from, to } = editor.state.selection;
+                                if (from === to) { alert('Selecione um trecho de texto para adicionar o comentário.'); return; }
+                                _descCommentSel = { from, to };
+                                showDescCommentPopup(btn, editor, _descCommentSel, () => { _descCommentSel = null; });
+                                break;
+                            }
                         }
                     });
                 });
+
+                // Image file input handler
+                const imgInput = document.getElementById('desc-img-file-input');
+                if (imgInput) {
+                    imgInput.addEventListener('change', async (ev) => {
+                        const file = ev.target.files?.[0];
+                        ev.target.value = '';
+                        if (!file || !editor) return;
+                        const BUCKET = 'concept-images';
+                        const ext = file.name.split('.').pop() || 'png';
+                        const path = `note-images/${Date.now()}_${Math.random().toString(36).slice(2)}.${ext}`;
+                        const { error: upErr } = await supabase.storage.from(BUCKET).upload(path, file, { cacheControl: '3600', upsert: false });
+                        if (upErr) { alert('Falha ao enviar imagem.'); return; }
+                        const { data: urlData } = supabase.storage.from(BUCKET).getPublicUrl(path);
+                        insertImageInEditor(editor, urlData.publicUrl);
+                    });
+                }
             }
+
+            // Image popup on click inside editor
+            attachImagePopupHandler(document.getElementById('rich-editor-container'));
         })();
     }
 
@@ -760,4 +787,56 @@ export function renderConceptDetail(container, concept) {
             if (!isNaN(fs) && !isNaN(qs) && expl) addEvaluation(concept.name, fs, qs, expl);
         });
     }
+}
+
+// ── Comment Popup helper for description editor ───────────────────────────────
+
+function showDescCommentPopup(anchorBtn, editor, selRange, onDone) {
+    document.getElementById('desc-comment-popup')?.remove();
+    const popup = document.createElement('div');
+    popup.id = 'desc-comment-popup';
+    popup.className = 'note-comment-popup';
+    popup.innerHTML = `
+      <p>Adicionar comentário ao trecho</p>
+      <textarea id="desc-comment-textarea" placeholder="Digite o comentário..."></textarea>
+      <div class="popup-actions">
+        <button class="btn-cancel">Cancelar</button>
+        <button class="btn-save">Salvar</button>
+      </div>`;
+
+    const rect = anchorBtn.getBoundingClientRect();
+    popup.style.top = (rect.bottom + 8) + 'px';
+    popup.style.left = Math.min(rect.left, window.innerWidth - 276) + 'px';
+    document.body.appendChild(popup);
+
+    const textarea = popup.querySelector('#desc-comment-textarea');
+    const cancelBtn = popup.querySelector('.btn-cancel');
+    const saveBtn = popup.querySelector('.btn-save');
+
+    setTimeout(() => textarea?.focus(), 50);
+
+    cancelBtn.addEventListener('click', () => { popup.remove(); onDone(); });
+
+    saveBtn.addEventListener('click', () => {
+        const text = textarea.value.trim();
+        if (!text) { textarea.focus(); return; }
+        insertCommentBlock(editor, selRange.from, selRange.to, text);
+        popup.remove();
+        onDone();
+    });
+
+    textarea.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) saveBtn.click();
+        if (e.key === 'Escape') cancelBtn.click();
+    });
+
+    setTimeout(() => {
+        document.addEventListener('click', function outsideHandler(e) {
+            if (!popup.contains(e.target)) {
+                popup.remove();
+                onDone();
+                document.removeEventListener('click', outsideHandler);
+            }
+        });
+    }, 100);
 }
