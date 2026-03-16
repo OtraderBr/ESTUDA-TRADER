@@ -9,20 +9,20 @@ import { supabase } from './supabaseClient.js';
 
 const CDN_SCRIPTS = [
   'https://cdn.jsdelivr.net/npm/@editorjs/editorjs@2.30.6/dist/editorjs.umd.min.js',
-  'https://cdn.jsdelivr.net/npm/@editorjs/header@2.8.7/dist/bundle.js',
-  'https://cdn.jsdelivr.net/npm/@editorjs/list@1.9.0/dist/bundle.js',
-  'https://cdn.jsdelivr.net/npm/@editorjs/image@2.9.0/dist/bundle.js',
-  'https://cdn.jsdelivr.net/npm/@editorjs/quote@2.6.0/dist/bundle.js',
-  'https://cdn.jsdelivr.net/npm/@editorjs/code@2.9.0/dist/bundle.js',
-  'https://cdn.jsdelivr.net/npm/@editorjs/table@2.3.0/dist/bundle.js',
-  'https://cdn.jsdelivr.net/npm/@editorjs/delimiter@1.3.0/dist/bundle.js',
-  'https://cdn.jsdelivr.net/npm/@editorjs/underline@1.1.0/dist/bundle.js',
-  'https://cdn.jsdelivr.net/npm/@editorjs/marker@1.3.0/dist/bundle.js',
-  'https://cdn.jsdelivr.net/npm/@editorjs/checklist@1.6.0/dist/bundle.js',
-  'https://cdn.jsdelivr.net/npm/@editorjs/inline-code@1.5.0/dist/bundle.js',
-  'https://cdn.jsdelivr.net/npm/@editorjs/warning@1.3.0/dist/bundle.js',
-  'https://cdn.jsdelivr.net/npm/@editorjs/link@2.6.2/dist/bundle.js',
-  'https://cdn.jsdelivr.net/npm/@editorjs/paragraph@2.11.3/dist/bundle.js',
+  // Plugins (parallel after core loads)
+  'https://cdn.jsdelivr.net/npm/@editorjs/header@2.8.7/dist/header.umd.min.js',
+  'https://cdn.jsdelivr.net/npm/@editorjs/list@1.10.0/dist/list.umd.min.js',
+  'https://cdn.jsdelivr.net/npm/@editorjs/image@2.9.3/dist/image.umd.min.js',
+  'https://cdn.jsdelivr.net/npm/@editorjs/quote@2.7.6/dist/quote.umd.min.js',
+  'https://cdn.jsdelivr.net/npm/@editorjs/code@2.9.3/dist/code.umd.min.js',
+  'https://cdn.jsdelivr.net/npm/@editorjs/table@2.4.3/dist/table.umd.min.js',
+  'https://cdn.jsdelivr.net/npm/@editorjs/delimiter@1.4.2/dist/delimiter.umd.min.js',
+  'https://cdn.jsdelivr.net/npm/@editorjs/marker@1.4.0/dist/marker.umd.min.js',
+  'https://cdn.jsdelivr.net/npm/@editorjs/checklist@1.6.0/dist/checklist.umd.min.js',
+  'https://cdn.jsdelivr.net/npm/@editorjs/inline-code@1.5.1/dist/inline-code.umd.min.js',
+  'https://cdn.jsdelivr.net/npm/@editorjs/warning@1.4.0/dist/warning.umd.min.js',
+  'https://cdn.jsdelivr.net/npm/@editorjs/link@2.6.2/dist/link.umd.min.js',
+  'https://cdn.jsdelivr.net/npm/@editorjs/paragraph@2.11.6/dist/paragraph.umd.min.js',
 ];
 
 function loadScript(src) {
@@ -39,7 +39,9 @@ function loadScript(src) {
 let _scriptsLoaded = false;
 async function loadEditorScripts() {
   if (_scriptsLoaded) return;
-  for (const src of CDN_SCRIPTS) await loadScript(src);
+  // Load EditorJS core first, then all plugins in parallel
+  await loadScript(CDN_SCRIPTS[0]);
+  await Promise.all(CDN_SCRIPTS.slice(1).map(loadScript));
   _scriptsLoaded = true;
 }
 
@@ -425,7 +427,6 @@ export async function createRichEditor(containerId, initialHtml, onUpdate) {
       config: { endpoint: '' }, // não precisa de endpoint para inserção manual
     },
     // Inline tools
-    underline: { class: window.Underline },
     marker: { class: window.Marker, shortcut: 'CMD+SHIFT+M' },
     inlineCode: { class: window.InlineCode, shortcut: 'CMD+SHIFT+`' },
     // Custom blocks
@@ -444,7 +445,7 @@ export async function createRichEditor(containerId, initialHtml, onUpdate) {
     placeholder: 'Digite "/" para inserir blocos, ou comece a escrever...',
     autofocus: false,
     tools,
-    inlineToolbar: ['bold', 'italic', 'underline', 'link', 'marker', 'inlineCode'],
+    inlineToolbar: ['bold', 'italic', 'link', 'marker', 'inlineCode'],
     onChange: async (api) => {
       clearTimeout(saveTimer);
       saveTimer = setTimeout(async () => {
