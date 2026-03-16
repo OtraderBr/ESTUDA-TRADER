@@ -1,5 +1,6 @@
 // js/notes.js
-// View principal /notes: sidebar de notas livres + árvore de conceitos por categoria
+// View principal /notes — Editor profissional de notas livres
+// Inspirado em Notion, Obsidian, Typora
 
 import { store } from './state.js';
 import {
@@ -7,7 +8,11 @@ import {
     updateFreeNoteMetadata, saveFreeNoteContent, deleteFreeNote
 } from './dataService.js';
 import { setConceptInitialTab } from './concept-detail.js';
-import { createRichEditor, attachFloatingToolbar, insertImageInEditor, insertCommentBlock, attachImagePopupHandler } from './rich-editor.js';
+import {
+    createRichEditor, buildFixedToolbarHTML, attachFixedToolbar,
+    insertImageInEditor, insertCommentBlock,
+    attachImagePopupHandler, attachInlineDeleteHandlers
+} from './rich-editor.js';
 import { supabase } from './supabaseClient.js';
 
 const BUCKET = 'concept-images';
@@ -27,7 +32,6 @@ async function uploadNoteImage(file) {
 let notesTree = [];
 let activeNoteId = null;
 let activeEditor = null;
-let _pendingCommentSel = null; // { from, to } saved selection for comment insertion
 
 // ─── Ponto de entrada ─────────────────────────────────────────────────────────
 
@@ -37,19 +41,31 @@ export async function renderNotes(container) {
 
         <!-- Sidebar de hierarquia -->
         <aside id="notes-sidebar"
-          class="w-60 shrink-0 border-r border-zinc-200 bg-white flex-col h-full overflow-hidden hidden md:flex">
+          class="w-64 shrink-0 border-r border-zinc-200 bg-white flex-col h-full overflow-hidden hidden md:flex">
 
           <!-- Header notas livres -->
           <div class="flex items-center justify-between px-4 py-3 border-b border-zinc-100 shrink-0">
-            <span class="text-xs font-semibold text-zinc-500 uppercase tracking-wider">Notas Livres</span>
+            <div class="flex items-center gap-2">
+              <i data-lucide="notebook-pen" class="w-4 h-4 text-zinc-400"></i>
+              <span class="text-xs font-semibold text-zinc-500 uppercase tracking-wider">Notas Livres</span>
+            </div>
             <button id="new-root-note-btn" title="Nova nota"
-              class="p-1 rounded hover:bg-zinc-100 text-zinc-400 hover:text-zinc-700 transition-colors">
+              class="p-1.5 rounded-lg hover:bg-emerald-50 text-zinc-400 hover:text-emerald-600 transition-colors">
               <i data-lucide="plus" class="w-4 h-4"></i>
             </button>
           </div>
 
+          <!-- Search -->
+          <div class="px-3 py-2 border-b border-zinc-100 shrink-0">
+            <div class="relative">
+              <i data-lucide="search" class="w-3.5 h-3.5 text-zinc-300 absolute left-2.5 top-1/2 -translate-y-1/2 pointer-events-none"></i>
+              <input id="notes-search" type="text" placeholder="Buscar notas..."
+                class="w-full text-xs bg-zinc-50 border border-zinc-200 rounded-lg pl-8 pr-3 py-2 outline-none focus:border-zinc-400 transition-colors" />
+            </div>
+          </div>
+
           <!-- Árvore de notas livres -->
-          <div id="notes-tree" class="overflow-y-auto py-2 px-2 space-y-0.5" style="max-height: 40%"></div>
+          <div id="notes-tree" class="overflow-y-auto py-2 px-2 space-y-0.5 flex-1" style="max-height: 45%"></div>
 
           <!-- Separador -->
           <div class="border-t border-zinc-100 mx-3"></div>
@@ -71,8 +87,7 @@ export async function renderNotes(container) {
         </button>
 
         <!-- Drawer mobile -->
-        <div id="notes-mobile-drawer"
-          class="md:hidden fixed inset-0 z-30 hidden">
+        <div id="notes-mobile-drawer" class="md:hidden fixed inset-0 z-30 hidden">
           <div class="absolute inset-0 bg-black/40" id="notes-drawer-overlay"></div>
           <aside class="absolute left-0 top-0 h-full w-72 bg-white shadow-2xl flex flex-col">
             <div class="flex items-center justify-between px-4 py-3 border-b border-zinc-100">
@@ -102,11 +117,17 @@ export async function renderNotes(container) {
 
           <!-- Placeholder -->
           <div id="notes-editor-placeholder"
-            class="flex-1 flex flex-col items-center justify-center text-zinc-400 select-none gap-3 p-8">
-            <i data-lucide="notebook-pen" class="w-12 h-12 opacity-20"></i>
-            <p class="text-sm font-medium text-center">Selecione uma nota ou crie uma nova</p>
+            class="flex-1 flex flex-col items-center justify-center text-zinc-400 select-none gap-4 p-8">
+            <div class="w-20 h-20 rounded-2xl bg-zinc-100 flex items-center justify-center">
+              <i data-lucide="notebook-pen" class="w-10 h-10 text-zinc-300"></i>
+            </div>
+            <div class="text-center">
+              <p class="text-sm font-semibold text-zinc-500 mb-1">Nenhuma nota selecionada</p>
+              <p class="text-xs text-zinc-400">Selecione uma nota na sidebar ou crie uma nova</p>
+            </div>
             <button id="new-note-from-placeholder-btn"
-              class="mt-1 px-4 py-2 bg-zinc-900 text-white text-xs font-medium rounded-lg hover:bg-zinc-800 transition-colors">
+              class="mt-2 px-5 py-2.5 bg-zinc-900 text-white text-xs font-semibold rounded-xl hover:bg-zinc-800 transition-colors flex items-center gap-2">
+              <i data-lucide="plus" class="w-3.5 h-3.5"></i>
               Nova Nota
             </button>
           </div>
@@ -116,9 +137,9 @@ export async function renderNotes(container) {
 
             <!-- Header da nota -->
             <div id="notes-editor-header"
-              class="flex items-center gap-3 px-6 py-4 border-b border-zinc-100 bg-white shrink-0">
+              class="flex items-center gap-3 px-6 py-3 border-b border-zinc-100 bg-white shrink-0">
               <button id="notes-emoji-btn"
-                class="text-2xl hover:opacity-70 transition-opacity leading-none select-none"
+                class="text-2xl hover:scale-110 transition-transform leading-none select-none"
                 title="Mudar emoji">📄</button>
               <input id="notes-title-input" type="text"
                 placeholder="Sem título"
@@ -126,51 +147,50 @@ export async function renderNotes(container) {
               />
               <div class="flex items-center gap-1 shrink-0">
                 <span id="notes-save-indicator"
-                  class="text-[10px] text-emerald-600 font-medium opacity-0 transition-opacity duration-300 mr-1">
-                  Salvo
+                  class="text-[10px] text-emerald-600 font-medium opacity-0 transition-opacity duration-300 mr-1 flex items-center gap-1">
+                  <i data-lucide="check-circle" class="w-3 h-3"></i> Salvo
                 </span>
                 <button id="notes-focus-btn" title="Modo foco"
-                  class="p-1.5 rounded hover:bg-zinc-100 text-zinc-400 hover:text-zinc-700 transition-colors">
+                  class="p-1.5 rounded-lg hover:bg-zinc-100 text-zinc-400 hover:text-zinc-700 transition-colors">
                   <i data-lucide="maximize-2" class="w-4 h-4"></i>
                 </button>
                 <button id="notes-add-child-btn" title="Nova sub-nota"
-                  class="p-1.5 rounded hover:bg-zinc-100 text-zinc-400 hover:text-zinc-700 transition-colors">
+                  class="p-1.5 rounded-lg hover:bg-zinc-100 text-zinc-400 hover:text-zinc-700 transition-colors">
                   <i data-lucide="file-plus" class="w-4 h-4"></i>
                 </button>
                 <button id="notes-delete-btn" title="Deletar nota"
-                  class="p-1.5 rounded hover:bg-red-50 text-zinc-400 hover:text-red-500 transition-colors">
+                  class="p-1.5 rounded-lg hover:bg-red-50 text-zinc-400 hover:text-red-500 transition-colors">
                   <i data-lucide="trash-2" class="w-4 h-4"></i>
                 </button>
               </div>
             </div>
 
-            <!-- Toolbar Tiptap flutuante -->
-            <div class="rich-toolbar" id="notes-rich-toolbar" style="display:none;position:relative;">
-              <button data-action="bold"><i data-lucide="bold" class="w-3.5 h-3.5 text-inherit"></i></button>
-              <button data-action="italic"><i data-lucide="italic" class="w-3.5 h-3.5 text-inherit"></i></button>
-              <button data-action="strike"><i data-lucide="strikethrough" class="w-3.5 h-3.5 text-inherit"></i></button>
-              <div class="toolbar-sep"></div>
-              <button data-action="h1"><i data-lucide="heading-1" class="w-4 h-4 text-inherit"></i></button>
-              <button data-action="h2"><i data-lucide="heading-2" class="w-4 h-4 text-inherit"></i></button>
-              <button data-action="h3"><i data-lucide="heading-3" class="w-4 h-4 text-inherit"></i></button>
-              <div class="toolbar-sep"></div>
-              <button data-action="highlight"><i data-lucide="highlighter" class="w-3.5 h-3.5 text-inherit"></i></button>
-              <button data-action="bulletList"><i data-lucide="list" class="w-3.5 h-3.5 text-inherit"></i></button>
-              <button data-action="orderedList"><i data-lucide="list-ordered" class="w-3.5 h-3.5 text-inherit"></i></button>
-              <div class="toolbar-sep"></div>
-              <button data-action="blockquote"><i data-lucide="quote" class="w-3.5 h-3.5 text-inherit"></i></button>
-              <button data-action="codeBlock"><i data-lucide="code" class="w-3.5 h-3.5 text-inherit"></i></button>
-              <button data-action="horizontalRule"><i data-lucide="minus" class="w-3.5 h-3.5 text-inherit"></i></button>
-              <div class="toolbar-sep"></div>
-              <button data-action="insertImage" title="Inserir imagem"><i data-lucide="image" class="w-3.5 h-3.5 text-inherit"></i></button>
-              <button data-action="insertComment" title="Adicionar comentário ao trecho"><i data-lucide="message-square" class="w-3.5 h-3.5 text-inherit"></i></button>
-            </div>
+            <!-- Toolbar fixa profissional -->
+            ${buildFixedToolbarHTML()}
+
             <!-- Hidden file input for image upload -->
             <input type="file" id="notes-img-file-input" accept="image/*" style="display:none">
 
             <!-- Editor Tiptap -->
-            <div class="flex-1 overflow-y-auto">
-              <div id="notes-rich-editor" class="min-h-full max-w-3xl mx-auto px-6 md:px-8 py-6"></div>
+            <div class="flex-1 overflow-y-auto notes-editor-scroll bg-white">
+              <div id="notes-rich-editor" class="min-h-full max-w-3xl mx-auto px-6 md:px-10 py-8"></div>
+            </div>
+
+            <!-- Footer com estatísticas -->
+            <div id="notes-footer" class="flex items-center justify-between px-6 py-2 border-t border-zinc-100 bg-zinc-50/80 shrink-0">
+              <div class="flex items-center gap-4 text-[10px] text-zinc-400 font-medium">
+                <span id="notes-word-count">0 palavras</span>
+                <span id="notes-char-count">0 caracteres</span>
+              </div>
+              <div class="flex items-center gap-3 text-[10px] text-zinc-400">
+                <span class="flex items-center gap-1">
+                  <i data-lucide="keyboard" class="w-3 h-3"></i>
+                  <kbd class="bg-zinc-200 px-1 rounded text-[9px]">/</kbd> para blocos
+                </span>
+                <span class="flex items-center gap-1">
+                  <kbd class="bg-zinc-200 px-1 rounded text-[9px]">Ctrl+S</kbd> salva
+                </span>
+              </div>
             </div>
           </div>
         </main>
@@ -191,8 +211,6 @@ export async function renderNotes(container) {
         ?.addEventListener('click', () => createAndOpenNote(null));
     document.getElementById('notes-focus-btn')
         ?.addEventListener('click', toggleFocusMode);
-
-    // ESC sai do modo foco
     document.addEventListener('keydown', _escFocusHandler);
     document.getElementById('notes-delete-btn')
         ?.addEventListener('click', handleDeleteNote);
@@ -207,16 +225,42 @@ export async function renderNotes(container) {
     document.getElementById('notes-drawer-overlay')
         ?.addEventListener('click', closeMobileDrawer);
 
-    // ── Image file input handler (delegated from toolbar) ──
+    // Image file input handler
     document.getElementById('notes-img-file-input')?.addEventListener('change', async (e) => {
         const file = e.target.files?.[0];
         e.target.value = '';
         if (!file || !activeEditor) return;
-        const btn = document.querySelector('#notes-rich-toolbar [data-action="insertImage"]');
-        if (btn) { btn.disabled = true; btn.style.opacity = '0.5'; }
         const url = await uploadNoteImage(file);
-        if (btn) { btn.disabled = false; btn.style.opacity = ''; }
         if (url) insertImageInEditor(activeEditor, url);
+    });
+
+    // Search notes
+    document.getElementById('notes-search')?.addEventListener('input', (e) => {
+        const q = e.target.value.toLowerCase().trim();
+        filterTreeBySearch(q);
+    });
+
+    // Word count listener
+    window.addEventListener('editor-stats', (e) => {
+        const { words, chars } = e.detail;
+        const wc = document.getElementById('notes-word-count');
+        const cc = document.getElementById('notes-char-count');
+        if (wc) wc.textContent = `${words} palavra${words !== 1 ? 's' : ''}`;
+        if (cc) cc.textContent = `${chars} caractere${chars !== 1 ? 's' : ''}`;
+    });
+
+    // Ctrl+S to force save
+    document.addEventListener('keydown', (e) => {
+        if ((e.ctrlKey || e.metaKey) && e.key === 's') {
+            e.preventDefault();
+            if (activeEditor) {
+                const html = activeEditor.getHTML();
+                const text = activeEditor.getText();
+                if (activeNoteId) saveFreeNoteContent(activeNoteId, html, text);
+                const indicator = document.getElementById('notes-save-indicator');
+                if (indicator) { indicator.style.opacity = '1'; setTimeout(() => indicator.style.opacity = '0', 2000); }
+            }
+        }
     });
 }
 
@@ -227,11 +271,24 @@ function closeMobileDrawer() {
     document.getElementById('notes-mobile-drawer')?.classList.add('hidden');
 }
 
-// ─── Handler ESC para sair do modo foco ───────────────────────────────────────
 function _escFocusHandler(e) {
     if (e.key === 'Escape' && document.getElementById('notes-root')?.classList.contains('notes-focus-mode')) {
         toggleFocusMode();
     }
+}
+
+// ─── Busca na árvore ──────────────────────────────────────────────────────────
+
+function filterTreeBySearch(query) {
+    ['notes-tree', 'notes-tree-mobile'].forEach(id => {
+        const container = document.getElementById(id);
+        if (!container) return;
+        container.querySelectorAll('[data-note-id]').forEach(btn => {
+            const title = btn.querySelector('.note-title-text')?.textContent?.toLowerCase() || '';
+            const match = !query || title.includes(query);
+            btn.closest('.note-tree-item')?.classList.toggle('hidden', !match);
+        });
+    });
 }
 
 // ─── Árvore de notas livres ───────────────────────────────────────────────────
@@ -255,7 +312,10 @@ function renderTree() {
         const tree = buildTree(notesTree);
         container.innerHTML = tree.length > 0
             ? tree.map(n => renderTreeNode(n, 0)).join('')
-            : `<p class="text-xs text-zinc-400 px-2 py-2">Nenhuma nota ainda.</p>`;
+            : `<div class="flex flex-col items-center py-6 text-center">
+                <i data-lucide="file-text" class="w-8 h-8 text-zinc-200 mb-2"></i>
+                <p class="text-xs text-zinc-400">Nenhuma nota ainda</p>
+               </div>`;
         if (window.lucide) window.lucide.createIcons();
 
         container.querySelectorAll('[data-note-id]').forEach(btn => {
@@ -274,20 +334,20 @@ function renderTree() {
 }
 
 function renderTreeNode(node, depth) {
-    const pl = 8 + depth * 12;
+    const pl = 8 + depth * 14;
     const isActive = node.id === activeNoteId;
     const activeClass = isActive
-        ? 'bg-zinc-100 text-zinc-900 font-semibold'
-        : 'text-zinc-600 hover:bg-zinc-50 hover:text-zinc-900';
+        ? 'bg-emerald-50 text-emerald-800 font-semibold border-l-2 border-emerald-500'
+        : 'text-zinc-600 hover:bg-zinc-50 hover:text-zinc-900 border-l-2 border-transparent';
     const emoji = node.emoji || '📄';
     const children = (node.children || []).map(c => renderTreeNode(c, depth + 1)).join('');
     return `
-      <div>
+      <div class="note-tree-item">
         <button data-note-id="${node.id}"
-          class="w-full flex items-center gap-1.5 py-1 px-2 rounded-md text-[13px] transition-colors group ${activeClass}"
+          class="w-full flex items-center gap-2 py-1.5 px-2 rounded-lg text-[13px] transition-all group ${activeClass}"
           style="padding-left:${pl}px">
           <span class="shrink-0 text-sm leading-none">${emoji}</span>
-          <span class="flex-1 truncate text-left">${node.title || 'Sem título'}</span>
+          <span class="flex-1 truncate text-left note-title-text">${node.title || 'Sem título'}</span>
           <button data-new-child-id="${node.id}"
             class="opacity-0 group-hover:opacity-100 p-0.5 rounded hover:bg-zinc-200 transition-all shrink-0"
             title="Nova sub-nota">
@@ -305,7 +365,6 @@ function renderConceptNotesTree() {
     const { concepts } = store.getState();
     if (!concepts || concepts.length === 0) return;
 
-    // Agrupar por categoria
     const byCategory = {};
     concepts.forEach(c => {
         const cat = c.category || 'Outros';
@@ -329,9 +388,7 @@ function renderConceptNotesTree() {
             const abcStyle = abcColors[abc] || abcColors.B;
             return `
               <button class="concept-note-item w-full flex items-center gap-2 py-1.5 px-2 rounded-lg text-[12px] text-zinc-600 hover:bg-zinc-50 hover:text-zinc-900 transition-colors group"
-                style="padding-left:20px"
-                data-concept-id="${c.id}"
-              >
+                style="padding-left:20px" data-concept-id="${c.id}">
                 <i data-lucide="file-text" class="w-3.5 h-3.5 shrink-0 text-zinc-300 group-hover:text-zinc-500"></i>
                 <span class="flex-1 text-left truncate leading-snug">${c.name}</span>
                 <span class="text-[9px] font-bold px-1 py-0.5 rounded border shrink-0 ${abcStyle}">${abc}</span>
@@ -358,11 +415,9 @@ function renderConceptNotesTree() {
     ['concept-notes-tree', 'concept-notes-tree-mobile'].forEach(id => {
         const container = document.getElementById(id);
         if (!container) return;
-
         container.innerHTML = treeHTML;
         if (window.lucide) window.lucide.createIcons();
 
-        // Toggle de pasta
         container.querySelectorAll('.cat-folder-btn').forEach(btn => {
             btn.addEventListener('click', () => {
                 const wrapper = btn.closest('.cat-folder-wrapper');
@@ -379,7 +434,6 @@ function renderConceptNotesTree() {
             });
         });
 
-        // Click em conceito → abre painel com aba Anotações
         container.querySelectorAll('.concept-note-item').forEach(btn => {
             btn.addEventListener('click', () => {
                 const conceptId = btn.getAttribute('data-concept-id');
@@ -430,7 +484,6 @@ async function openNote(id) {
     const editorEl = document.getElementById('notes-rich-editor');
     if (editorEl) editorEl.innerHTML = '';
 
-    const toolbar = document.getElementById('notes-rich-toolbar');
     activeEditor = await createRichEditor('notes-rich-editor', note.content_html || '', async (html, text) => {
         await saveFreeNoteContent(id, html, text);
         const indicator = document.getElementById('notes-save-indicator');
@@ -440,44 +493,18 @@ async function openNote(id) {
         }
     });
 
-    if (activeEditor && toolbar) {
-        attachFloatingToolbar(activeEditor, toolbar);
-        if (window.lucide) window.lucide.createIcons({ nodes: toolbar.querySelectorAll('[data-lucide]') });
+    if (activeEditor) {
+        // Attach fixed toolbar
+        attachFixedToolbar(activeEditor);
 
-        toolbar.querySelectorAll('button[data-action]').forEach(btn => {
-            btn.addEventListener('mousedown', (e) => {
-                e.preventDefault();
-                const action = btn.getAttribute('data-action');
-                switch (action) {
-                    case 'bold':           activeEditor.chain().focus().toggleBold().run(); break;
-                    case 'italic':         activeEditor.chain().focus().toggleItalic().run(); break;
-                    case 'strike':         activeEditor.chain().focus().toggleStrike().run(); break;
-                    case 'h1':             activeEditor.chain().focus().toggleHeading({ level: 1 }).run(); break;
-                    case 'h2':             activeEditor.chain().focus().toggleHeading({ level: 2 }).run(); break;
-                    case 'h3':             activeEditor.chain().focus().toggleHeading({ level: 3 }).run(); break;
-                    case 'highlight':      activeEditor.chain().focus().toggleHighlight().run(); break;
-                    case 'bulletList':     activeEditor.chain().focus().toggleBulletList().run(); break;
-                    case 'orderedList':    activeEditor.chain().focus().toggleOrderedList().run(); break;
-                    case 'blockquote':     activeEditor.chain().focus().toggleBlockquote().run(); break;
-                    case 'codeBlock':      activeEditor.chain().focus().toggleCodeBlock().run(); break;
-                    case 'horizontalRule': activeEditor.chain().focus().setHorizontalRule().run(); break;
-                    case 'insertImage':
-                        document.getElementById('notes-img-file-input')?.click();
-                        break;
-                    case 'insertComment': {
-                        const { from, to } = activeEditor.state.selection;
-                        if (from === to) { alert('Selecione um trecho de texto para adicionar o comentário.'); return; }
-                        _pendingCommentSel = { from, to };
-                        showNoteCommentPopup(btn);
-                        break;
-                    }
-                }
-            });
-        });
+        // Image popup on click inside editor
+        attachImagePopupHandler(document.getElementById('notes-rich-editor'));
+
+        // Inline delete handlers for images/blockquotes
+        attachInlineDeleteHandlers(document.getElementById('notes-rich-editor'), activeEditor);
+
+        if (window.lucide) window.lucide.createIcons();
     }
-
-    // Image popup on click inside editor
-    attachImagePopupHandler(document.getElementById('notes-rich-editor'));
 }
 
 // ─── Criar nota ───────────────────────────────────────────────────────────────
@@ -532,7 +559,6 @@ function toggleFocusMode() {
         sidebar?.classList.add('!hidden');
         focusBtn?.querySelector('[data-lucide]')?.setAttribute('data-lucide', 'minimize-2');
         focusBtn?.setAttribute('title', 'Sair do modo foco');
-        // Botão flutuante visível para fechar o modo foco
         const btn = document.createElement('button');
         btn.id = 'focus-exit-float';
         btn.className = 'fixed top-4 right-4 z-[60] flex items-center gap-1.5 px-3 py-2 bg-zinc-900/90 text-white text-xs font-semibold rounded-xl hover:bg-zinc-900 transition-colors shadow-lg backdrop-blur-sm';
@@ -547,61 +573,4 @@ function toggleFocusMode() {
         document.getElementById('focus-exit-float')?.remove();
     }
     if (window.lucide) window.lucide.createIcons({ nodes: focusBtn?.querySelectorAll('[data-lucide]') });
-}
-
-// ─── Comment Popup ─────────────────────────────────────────────────────────────
-
-function showNoteCommentPopup(anchorBtn) {
-    document.getElementById('notes-comment-popup')?.remove();
-    const popup = document.createElement('div');
-    popup.id = 'notes-comment-popup';
-    popup.className = 'note-comment-popup';
-    popup.innerHTML = `
-      <p>Adicionar comentário ao trecho</p>
-      <textarea id="notes-comment-textarea" placeholder="Digite o comentário..."></textarea>
-      <div class="popup-actions">
-        <button class="btn-cancel">Cancelar</button>
-        <button class="btn-save">Salvar</button>
-      </div>`;
-
-    // Position near anchor button
-    const rect = anchorBtn.getBoundingClientRect();
-    popup.style.top = (rect.bottom + 8) + 'px';
-    popup.style.left = Math.min(rect.left, window.innerWidth - 276) + 'px';
-
-    document.body.appendChild(popup);
-
-    const textarea = popup.querySelector('#notes-comment-textarea');
-    const cancelBtn = popup.querySelector('.btn-cancel');
-    const saveBtn = popup.querySelector('.btn-save');
-
-    setTimeout(() => textarea?.focus(), 50);
-
-    cancelBtn.addEventListener('click', () => { popup.remove(); _pendingCommentSel = null; });
-
-    saveBtn.addEventListener('click', () => {
-        const text = textarea.value.trim();
-        if (!text) { textarea.focus(); return; }
-        if (_pendingCommentSel && activeEditor) {
-            insertCommentBlock(activeEditor, _pendingCommentSel.from, _pendingCommentSel.to, text);
-        }
-        popup.remove();
-        _pendingCommentSel = null;
-    });
-
-    textarea.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) saveBtn.click();
-        if (e.key === 'Escape') cancelBtn.click();
-    });
-
-    // Close on outside click
-    setTimeout(() => {
-        document.addEventListener('click', function outsideHandler(e) {
-            if (!popup.contains(e.target)) {
-                popup.remove();
-                _pendingCommentSel = null;
-                document.removeEventListener('click', outsideHandler);
-            }
-        });
-    }, 100);
 }
