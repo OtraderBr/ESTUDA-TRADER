@@ -8,7 +8,7 @@ import { supabase } from './supabaseClient.js';
    ════════════════════════════════════════════════════════════════════════════ */
 
 const CDN_SCRIPTS = [
-  'https://cdn.jsdelivr.net/npm/@editorjs/editorjs@2.30.6/dist/editorjs.umd.min.js',
+  'https://cdn.jsdelivr.net/npm/@editorjs/editorjs@2.28.2/dist/editorjs.umd.min.js',
   // Plugins (parallel after core loads)
   'https://cdn.jsdelivr.net/npm/@editorjs/header@2.8.7/dist/header.umd.min.js',
   'https://cdn.jsdelivr.net/npm/@editorjs/list@1.10.0/dist/list.umd.min.js',
@@ -55,7 +55,10 @@ class CommentBlock {
     return { title: 'Comentário', icon: '<b style="font-size:14px">💬</b>' };
   }
   static get sanitize() {
-    return { text: { br: true, b: true, i: true, u: true, s: true, mark: true, code: true } };
+    return {
+      text: { br: true, b: true, i: true, u: true, s: true, mark: true, code: true },
+      collapsed: false,
+    };
   }
 
   constructor({ data, api, readOnly }) {
@@ -109,7 +112,10 @@ class CalloutBlock {
     return { title: 'Callout', icon: '<b>📢</b>' };
   }
   static get sanitize() {
-    return { text: { br: true, b: true, i: true } };
+    return {
+      variant: false,
+      text: { br: true, b: true, i: true },
+    };
   }
 
   constructor({ data, readOnly }) {
@@ -383,8 +389,7 @@ export async function createRichEditor(containerId, initialHtml, onUpdate) {
   let saveTimer = null;
 
   // Build tools config
-  const tools = {
-    paragraph: { class: window.Paragraph || EJS.Tools?.Paragraph, inlineToolbar: true },
+  const toolCandidates = {
     header: {
       class: window.Header,
       config: { placeholder: 'Título...', levels: [1,2,3,4], defaultLevel: 2 },
@@ -422,10 +427,6 @@ export async function createRichEditor(containerId, initialHtml, onUpdate) {
       class: window.Warning,
       config: { titlePlaceholder: 'Título', messagePlaceholder: 'Mensagem...' },
     },
-    linkTool: {
-      class: window.LinkTool,
-      config: { endpoint: '' }, // não precisa de endpoint para inserção manual
-    },
     // Inline tools
     marker: { class: window.Marker, shortcut: 'CMD+SHIFT+M' },
     inlineCode: { class: window.InlineCode, shortcut: 'CMD+SHIFT+`' },
@@ -434,10 +435,11 @@ export async function createRichEditor(containerId, initialHtml, onUpdate) {
     comment: { class: CommentBlock },
   };
 
-  // Remove tools that didn't load
-  Object.keys(tools).forEach(key => {
-    if (!tools[key]?.class) delete tools[key];
-  });
+  // Only keep tools whose class loaded successfully
+  const tools = {};
+  for (const [key, cfg] of Object.entries(toolCandidates)) {
+    if (cfg?.class) tools[key] = cfg;
+  }
 
   const editor = new EJS({
     holder: el,
