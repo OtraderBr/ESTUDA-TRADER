@@ -266,6 +266,100 @@ export function attachImagePopupHandler(containerEl) {
     });
 }
 
+/**
+ * Ativa comportamento colapso/expansão e botão flutuante de exclusão
+ * para imagens e blockquotes de comentário dentro do editor.
+ * @param {HTMLElement} containerEl - elemento container do editor
+ * @param {Object} editor - instância Tiptap
+ */
+export function attachInlineDeleteHandlers(containerEl, editor) {
+    if (!containerEl || !editor) return;
+
+    let deleteBtn = null;
+    let hideTimer = null;
+
+    function removeBtn() {
+        deleteBtn?.remove();
+        deleteBtn = null;
+    }
+
+    function showDeleteBtn(targetEl) {
+        clearTimeout(hideTimer);
+        if (deleteBtn?._target === targetEl) return;
+        removeBtn();
+
+        const btn = document.createElement('button');
+        btn.className = 'editor-inline-delete-btn';
+        btn.title = 'Excluir';
+        btn.innerHTML = `<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/><path d="M9 6V4h6v2"/></svg>`;
+        btn._target = targetEl;
+
+        const rect = targetEl.getBoundingClientRect();
+        btn.style.top = `${rect.top + 4}px`;
+        btn.style.left = `${rect.right - 26}px`;
+        document.body.appendChild(btn);
+        deleteBtn = btn;
+
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            _deleteEditorNode(editor, targetEl);
+            removeBtn();
+        });
+        btn.addEventListener('mouseenter', () => clearTimeout(hideTimer));
+        btn.addEventListener('mouseleave', () => { hideTimer = setTimeout(removeBtn, 150); });
+    }
+
+    // Clique para fixar/desafixar expansão
+    containerEl.addEventListener('click', (e) => {
+        if (e.target.tagName !== 'IMG') {
+            const p = e.target.closest('p');
+            if (p && p.querySelector('img')) {
+                p.classList.toggle('img-expanded');
+                return;
+            }
+        }
+        const bq = e.target.closest('blockquote');
+        if (bq) bq.classList.toggle('bq-expanded');
+    });
+
+    // Hover: mostrar botão de exclusão
+    containerEl.addEventListener('mouseover', (e) => {
+        const img = e.target.tagName === 'IMG' ? e.target : null;
+        const bq = e.target.closest?.('blockquote');
+        if (img) {
+            const pWrapper = img.closest('p');
+            showDeleteBtn(pWrapper || img);
+        } else if (bq) {
+            showDeleteBtn(bq);
+        }
+    });
+
+    containerEl.addEventListener('mouseleave', () => {
+        hideTimer = setTimeout(removeBtn, 200);
+    });
+}
+
+function _deleteEditorNode(editor, domEl) {
+    try {
+        const pos = editor.view.posAtDOM(domEl, 0);
+        const $pos = editor.state.doc.resolve(pos);
+        for (let d = $pos.depth; d >= 1; d--) {
+            const node = $pos.node(d);
+            const name = node.type?.name;
+            if (name === 'blockquote' || name === 'paragraph') {
+                editor.chain().deleteRange({
+                    from: $pos.before(d),
+                    to: $pos.after(d)
+                }).run();
+                return;
+            }
+        }
+    } catch (e) {
+        console.warn('[editor] Não foi possível excluir o nó:', e);
+    }
+}
+
 function getExtensions() {
     return {
         Editor: window.tiptapCore?.Editor,

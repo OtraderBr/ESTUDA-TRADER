@@ -3,7 +3,7 @@ import { store } from './state.js';
 import { addNote, deleteNote, addEvaluation, deleteEvaluation, updateImportance, updateABC, updateMacroCategory } from './engine.js';
 import { upsertConceptDescription } from './dataService.js';
 import { renderTagPills, attachTagListeners } from './tags.js';
-import { createRichEditor, attachFloatingToolbar, insertImageInEditor, insertCommentBlock, attachImagePopupHandler } from './rich-editor.js';
+import { createRichEditor, attachFloatingToolbar, insertImageInEditor, insertCommentBlock, attachImagePopupHandler, attachInlineDeleteHandlers } from './rich-editor.js';
 import { supabase } from './supabaseClient.js';
 import { renderImageGallery } from './image-gallery.js';
 
@@ -658,6 +658,9 @@ export function renderConceptDetail(container, concept) {
 
             // Image popup on click inside editor
             attachImagePopupHandler(document.getElementById('rich-editor-container'));
+
+            // Collapse/expand + delete handlers for images and comments
+            attachInlineDeleteHandlers(document.getElementById('rich-editor-container'), editor);
         })();
     }
 
