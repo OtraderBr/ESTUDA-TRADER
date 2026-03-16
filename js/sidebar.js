@@ -29,9 +29,9 @@ export function initSidebar() {
   // ── Sidebar desktop / drawer mobile ────────────────────────────────────────
   sidebarContainer.innerHTML = `
     <aside id="sidebar-ui"
-      class="fixed md:static inset-y-0 left-0 z-50 w-56 flex flex-col
+      class="fixed md:static inset-y-0 left-0 z-50 w-56 flex flex-col h-[100dvh]
              bg-[#111827] transform transition-transform duration-200 ease-out
-             -translate-x-full md:translate-x-0 shrink-0">
+             -translate-x-full md:translate-x-0 shrink-0 shadow-2xl md:shadow-none pb-[calc(100px+env(safe-area-inset-bottom))] md:pb-0">
 
       <!-- Logo -->
       <div class="flex items-center justify-between px-4 py-4 border-b border-white/10 shrink-0">
@@ -51,10 +51,10 @@ export function initSidebar() {
       </div>
 
       <!-- Nav -->
-      <nav id="sidebar-nav" class="flex-1 overflow-y-auto py-3 px-3 space-y-0.5"></nav>
+      <nav id="sidebar-nav" class="flex-1 overflow-y-auto py-3 px-3 space-y-0.5 pb-[80px] md:pb-3"></nav>
 
       <!-- Footer -->
-      <div class="px-4 py-3 border-t border-white/10 shrink-0">
+      <div class="px-4 py-3 border-t border-white/10 shrink-0 bg-[#111827] mt-auto">
         <div class="text-[10px] text-white/25 font-medium">Al Brooks · Price Action</div>
       </div>
     </aside>`;
