@@ -15,6 +15,7 @@ import { renderCourseSearch } from './course-search.js';
 import { renderChat }         from './chat.js';
 import { renderSettings }     from './settings.js';
 import { runCourseMapper }    from './course-mapper.js';
+import { updateTopbarTimer }  from './topbar-timer.js';
 
 window.__runCourseMapper = runCourseMapper;
 
@@ -58,6 +59,7 @@ function renderApp(state) {
         loadingScreen.style.display = 'none';
         appContainer.style.display  = 'flex';
         mainHeader.style.display    = 'flex';
+        updateTopbarTimer(state);
     }
 
     // ── Modo tela cheia (conceptPanelOpen === false) ──

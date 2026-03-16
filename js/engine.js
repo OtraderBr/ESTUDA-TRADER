@@ -291,7 +291,7 @@ export async function addSessionAction(title, type, date, conceptNames) {
     const id = await createSession(title, type, date, conceptNames);
     if (!id) return;
 
-    const newSession = { id, title, type, date, completed: false, completedAt: null, conceptIds: conceptNames };
+    const newSession = { id, title, type, date, completed: false, completedAt: null, conceptIds: conceptNames, elapsedSeconds: 0, timerState: 'stopped', timerStartedAt: null, notes: '' };
     const { sessions } = store.getState();
     store.setState({ sessions: [newSession, ...sessions] });
 }

@@ -77,12 +77,16 @@
           Motor Brooks
         </h1>
 
-        <button id="header-back-btn"
-          class="ml-auto flex items-center gap-1.5 text-xs font-medium text-zinc-500
-                 hover:text-zinc-900 bg-zinc-100 hover:bg-zinc-200 px-3 py-1.5 rounded-full transition-colors"
-          style="display: none;">
-          <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i> Voltar
-        </button>
+        <!-- Topbar Timer Widget (sessão ativa) — alinhado à direita -->
+        <div class="ml-auto flex items-center gap-2">
+          <div id="topbar-timer" class="flex items-center"></div>
+          <button id="header-back-btn"
+            class="flex items-center gap-1.5 text-xs font-medium text-zinc-500
+                   hover:text-zinc-900 bg-zinc-100 hover:bg-zinc-200 px-3 py-1.5 rounded-full transition-colors"
+            style="display: none;">
+            <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i> Voltar
+          </button>
+        </div>
       </header>
 
       <!-- View content -->
