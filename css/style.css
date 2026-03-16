@@ -986,3 +986,116 @@ input[type="text"], input[type="number"], input[type="email"], textarea, select 
   animation: note-popup-fadein 0.2s ease;
   overflow: hidden;
 }
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   SLATE EDITOR — Overrides & additions
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* Slate editable area resets */
+[data-slate-editor] {
+  outline: none;
+  word-wrap: break-word;
+  white-space: pre-wrap;
+}
+[data-slate-editor]:focus { outline: none; }
+
+/* Cursor caret visible in Slate */
+[data-slate-node] { position: relative; }
+
+/* Slate placeholder */
+[data-slate-placeholder] {
+  position: absolute;
+  top: 0; left: 0;
+  pointer-events: none;
+  user-select: none;
+  color: #a1a1aa;
+  font-style: italic;
+  font-size: 15px;
+  line-height: 1.75;
+}
+
+/* ── Comment popup ──────────────────────────────────────────────────────── */
+.note-comment-popup {
+  position: fixed;
+  z-index: 700;
+  background: #ffffff;
+  border: 1px solid #e4e4e7;
+  border-radius: 12px;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.18);
+  padding: 14px;
+  width: 268px;
+}
+.note-comment-popup p {
+  font-size: 12px;
+  font-weight: 600;
+  color: #52525b;
+  margin-bottom: 8px;
+}
+.note-comment-popup textarea {
+  width: 100%;
+  min-height: 72px;
+  border: 1px solid #e4e4e7;
+  border-radius: 8px;
+  padding: 8px 10px;
+  font-size: 13px;
+  resize: vertical;
+  outline: none;
+  color: #18181b;
+  background: #fafafa;
+  box-sizing: border-box;
+}
+.note-comment-popup textarea:focus { border-color: #a1a1aa; }
+.note-comment-popup .popup-actions {
+  display: flex; gap: 6px; margin-top: 8px; justify-content: flex-end;
+}
+.note-comment-popup .btn-cancel {
+  padding: 5px 12px; border-radius: 6px; border: 1px solid #e4e4e7;
+  background: #f4f4f5; color: #52525b; font-size: 12px; cursor: pointer;
+}
+.note-comment-popup .btn-save {
+  padding: 5px 12px; border-radius: 6px; border: none;
+  background: #18181b; color: #fff; font-size: 12px; font-weight: 600; cursor: pointer;
+}
+.note-comment-popup .btn-cancel:hover { background: #e4e4e7; }
+.note-comment-popup .btn-save:hover { background: #27272a; }
+
+/* ── Note image popup overlay (for external callers) ───────────────────── */
+.note-img-popup-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.85);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: zoom-out;
+  animation: fade-in 0.15s ease;
+}
+.note-img-popup-inner {
+  position: relative;
+  max-width: 90vw;
+  max-height: 90vh;
+}
+.note-img-popup-inner img {
+  max-width: 90vw;
+  max-height: 88vh;
+  border-radius: 12px;
+  object-fit: contain;
+  box-shadow: 0 25px 80px rgba(0,0,0,0.5);
+}
+.note-img-popup-close {
+  position: absolute;
+  top: -12px;
+  right: -12px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #18181b;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+}
