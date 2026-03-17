@@ -11,8 +11,8 @@ const NAV_ITEMS = [
   { id: 'graph',         label: 'Grafo',            icon: 'network'           },
   { id: 'decision-tree', label: 'Árvore de Decisão',icon: 'git-merge'         },
   { id: 'sessions',      label: 'Sessões',          icon: 'calendar-days'     },
-  { id: 'lab',          label: 'Lab de Análise',   icon: 'flask-conical'     },
-  { id: 'settings',     label: 'Configurações',    icon: 'settings-2'        },
+  { id: 'lab',           label: 'Mapeamento Visual',icon: 'map'               },
+  { id: 'settings',      label: 'Configurações',    icon: 'settings-2'        },
 ];
 
 // ── Itens exibidos no bottom nav mobile (máx 5) ────────────────────────────

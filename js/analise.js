@@ -1,1018 +1,771 @@
 // js/analise.js
-// Lab de Análise — Registro estruturado de evoluções e operações
-// Persistência: localStorage key 'motor_analise_v1'
-// Tema: Evoluções = indigo · Operações = violet
+// Mapeamento Visual de Price Action — módulo nativo vanilla JS
+// Convertido de TypeScript (mapeamento-visual-de-price-action) para integração direta
 
-/* ═══════════════════════════════════════════════════════════════════
-   PERSISTÊNCIA
-   ═══════════════════════════════════════════════════════════════════ */
+import { PA_CONCEPTS } from '../data/pa-concepts.js';
 
-function db() {
-    try { return JSON.parse(localStorage.getItem('motor_analise_v1') || '[]'); }
-    catch { return []; }
-}
-function dbSave(records) {
-    localStorage.setItem('motor_analise_v1', JSON.stringify(records));
-}
-function dbAdd(record) {
-    const records = db();
-    records.unshift(record);
-    dbSave(records);
-    return record;
-}
-function dbDelete(id) {
-    dbSave(db().filter(r => r.id !== id));
-}
-
-/* ═══════════════════════════════════════════════════════════════════
-   STEP CONFIG — EVOLUÇÕES
-   ═══════════════════════════════════════════════════════════════════ */
-
-const EVOLUCAO_STEPS = [
-    {
-        id: 'foco',
-        label: 'Foco do Estudo',
-        icon: 'target',
-        type: 'chips_free',
-        required: true,
-        options: ['H1','H2','H3','L1','L2','L3','MTR','Canal Estreito','Canal Amplo','TR','TTR','Breakout','BO Fraco','Cunha','Duplo Topo','Duplo Fundo','OHO','Clímax','Bandeira Final','Micro Canal'],
-        placeholder: 'Outro padrão...',
-        hint: 'Qual padrão, setup ou conceito está analisando?'
-    },
-    {
-        id: 'timeframe',
-        label: 'Timeframe Analisado',
-        icon: 'clock',
-        type: 'chips',
-        required: true,
-        options: ['Mensal','Semanal','Diário','4h','1h','15min','5min','1min'],
-        hint: 'Em qual gráfico está observando a evolução?'
-    },
-    {
-        id: 'htf',
-        label: 'Contexto HTF (Always In)',
-        icon: 'layers',
-        type: 'themed_chips',
-        required: true,
-        options: [
-            { label: 'Alta (AIL)', theme: 'emerald' },
-            { label: 'Baixa (AIS)', theme: 'red' },
-            { label: 'TR', theme: 'amber' }
-        ],
-        hint: 'Qual a direção dominante no timeframe superior?'
-    },
-    {
-        id: 'ctf',
-        label: 'Fase do Mercado (CTF)',
-        icon: 'activity',
-        type: 'chips',
-        required: true,
-        options: ['Breakout','Canal Estreito Alta','Canal Estreito Baixa','Canal Amplo','TR','MTR em Formação','Correção','Micro Canal','Spike'],
-        hint: 'Em qual fase o mercado se encontra agora?'
-    },
-    {
-        id: 'qualidade',
-        label: 'Qualidade do Setup',
-        icon: 'bar-chart-2',
-        type: 'grade_chips',
-        required: true,
-        options: [
-            { label: 'A', desc: 'Excelente', theme: 'emerald' },
-            { label: 'B', desc: 'Boa', theme: 'blue' },
-            { label: 'C', desc: 'Média', theme: 'amber' },
-            { label: 'D', desc: 'Fraca', theme: 'red' }
-        ],
-        hint: 'Como avalia a clareza e qualidade deste setup?'
-    },
-    {
-        id: 'barra',
-        label: 'Barra de Sinal',
-        icon: 'signal',
-        type: 'chips',
-        required: false,
-        options: ['Forte','Média','Fraca','Doji','Outside Bar','Inside Bar','ii','ioi','Sem sinal'],
-        hint: 'Qual foi a qualidade da barra de sinal? (opcional)'
-    },
-    {
-        id: 'evolucao',
-        label: 'Como o Setup Evoluiu',
-        icon: 'git-branch',
-        type: 'outcome_chips',
-        required: true,
-        options: [
-            { label: 'Funcionou', theme: 'emerald' },
-            { label: 'Hesitação', theme: 'amber' },
-            { label: 'Em Desenvolvimento', theme: 'blue' },
-            { label: 'Falhou — Premissa', theme: 'red' },
-            { label: 'Falhou — Execução', theme: 'orange' },
-            { label: 'Stop 1ª Tentativa', theme: 'red' },
-            { label: 'Virou TR', theme: 'zinc' },
-            { label: 'Clímax', theme: 'purple' }
-        ],
-        hint: 'Qual foi o desfecho desta evolução?'
-    },
-    {
-        id: 'nota',
-        label: 'Observação / Lição',
-        icon: 'message-circle',
-        type: 'textarea',
-        required: false,
-        placeholder: 'O que observou? Qual a lição principal? O que confirmou ou refutou sua hipótese?',
-        hint: 'Registro livre de aprendizado (opcional)'
-    }
-];
-
-/* ═══════════════════════════════════════════════════════════════════
-   STEP CONFIG — OPERAÇÕES
-   ═══════════════════════════════════════════════════════════════════ */
-
-const OPERACAO_STEPS = [
-    {
-        id: 'tipo',
-        label: 'Tipo de Operação',
-        icon: 'zap',
-        type: 'chips',
-        required: true,
-        options: ['Swing','Scalp'],
-        hint: 'Qual o horizonte desta operação?'
-    },
-    {
-        id: 'htf',
-        label: 'Contexto HTF (Always In)',
-        icon: 'layers',
-        type: 'themed_chips',
-        required: true,
-        options: [
-            { label: 'Alta', theme: 'emerald' },
-            { label: 'Baixa', theme: 'red' },
-            { label: 'TR', theme: 'amber' }
-        ],
-        hint: 'Qual a direção dominante no timeframe superior?'
-    },
-    {
-        id: 'ctf',
-        label: 'Fase do Mercado (CTF)',
-        icon: 'activity',
-        type: 'chips',
-        required: true,
-        options: ['Breakout','Canal Estreito','Canal Amplo','TR','MTR','Micro Canal','Correção','Spike'],
-        hint: 'Em qual fase o mercado estava no momento da entrada?'
-    },
-    {
-        id: 'setup',
-        label: 'Setup de Entrada',
-        icon: 'crosshair',
-        type: 'chips',
-        required: true,
-        options: ['H1','H2','H3','L1','L2','L3','DT','DF','MTR','Fade BO','Cunha','Micro Canal','Segunda Entrada','Outro'],
-        hint: 'Qual padrão originou a entrada?'
-    },
-    {
-        id: 'direcao',
-        label: 'Direção',
-        icon: 'arrow-up-down',
-        type: 'direction_chips',
-        required: true,
-        options: [
-            { label: 'Compra', sublabel: 'Long', theme: 'emerald' },
-            { label: 'Venda', sublabel: 'Short', theme: 'red' }
-        ],
-        hint: 'Compra ou venda?'
-    },
-    {
-        id: 'racional',
-        label: 'Racional de Entrada',
-        icon: 'brain',
-        type: 'textarea',
-        required: false,
-        placeholder: 'Por que entrou? O que o mercado mostrou para justificar esta operação? Qual a premissa?',
-        hint: 'Raciocínio por trás da entrada (opcional)'
-    },
-    {
-        id: 'gestao',
-        label: 'Gestão / Forma de Saída',
-        icon: 'sliders-horizontal',
-        type: 'chips',
-        required: true,
-        options: ['No alvo','Stop','Antecipado','Parcial + Segurou','Swing → Scalp','Trailing','Saída Manual'],
-        hint: 'Como foi gerenciada e encerrada a operação?'
-    },
-    {
-        id: 'resultado',
-        label: 'Resultado',
-        icon: 'flag',
-        type: 'result_chips',
-        required: true,
-        options: [
-            { label: 'WIN', theme: 'emerald' },
-            { label: 'LOSS', theme: 'red' },
-            { label: 'BE', sublabel: 'Breakeven', theme: 'amber' }
-        ],
-        hint: 'Qual foi o resultado financeiro da operação?'
-    },
-    {
-        id: 'processo',
-        label: 'Qualidade do Processo',
-        icon: 'award',
-        type: 'grade_chips',
-        required: true,
-        options: [
-            { label: 'A', desc: 'Correto', theme: 'emerald' },
-            { label: 'B', desc: 'Razoável', theme: 'amber' },
-            { label: 'C', desc: 'Ruim', theme: 'red' }
-        ],
-        hint: 'Como foi o processo, independente do resultado?'
-    },
-    {
-        id: 'nota',
-        label: 'Reflexão Pós-Operação',
-        icon: 'message-circle',
-        type: 'textarea',
-        required: false,
-        placeholder: 'O que faria diferente? O que aprendeu? A premissa foi respeitada?',
-        hint: 'Diário de reflexão (opcional)'
-    }
-];
-
-/* ═══════════════════════════════════════════════════════════════════
-   TEMA POR MODO
-   ═══════════════════════════════════════════════════════════════════ */
-
-const THEME = {
-    evolucao: {
-        accent: 'indigo',
-        bg: 'bg-indigo-50',
-        bgCard: 'bg-indigo-50/40',
-        border: 'border-indigo-200',
-        text: 'text-indigo-700',
-        textMuted: 'text-indigo-500',
-        badge: 'bg-indigo-100 text-indigo-700 border-indigo-200',
-        btn: 'bg-indigo-600 hover:bg-indigo-700',
-        btnOutline: 'border-indigo-200 text-indigo-600 hover:bg-indigo-50',
-        tabActive: 'bg-indigo-600 text-white shadow-sm',
-        dot: 'bg-indigo-500',
-        progressBar: 'bg-indigo-500',
-        icon: 'flask-conical',
-        label: 'Evolução',
-        labelPlural: 'Evoluções'
-    },
-    operacao: {
-        accent: 'violet',
-        bg: 'bg-violet-50',
-        bgCard: 'bg-violet-50/40',
-        border: 'border-violet-200',
-        text: 'text-violet-700',
-        textMuted: 'text-violet-500',
-        badge: 'bg-violet-100 text-violet-700 border-violet-200',
-        btn: 'bg-violet-600 hover:bg-violet-700',
-        btnOutline: 'border-violet-200 text-violet-600 hover:bg-violet-50',
-        tabActive: 'bg-violet-600 text-white shadow-sm',
-        dot: 'bg-violet-500',
-        progressBar: 'bg-violet-500',
-        icon: 'trending-up',
-        label: 'Operação',
-        labelPlural: 'Operações'
-    }
+// ─── Estado interno do canvas ────────────────────────────────────────────────
+const paState = {
+  nodes: [],
+  edges: [],
+  scale: 1,
+  panX: 0,
+  panY: 0,
+  selectedNodeId: null,
+  onNodesChange: () => {},
+  onEdgesChange: () => {},
 };
 
-/* ═══════════════════════════════════════════════════════════════════
-   ESTADO LOCAL
-   ═══════════════════════════════════════════════════════════════════ */
+// ─── Interaction state ───────────────────────────────────────────────────────
+let isDraggingNode = false;
+let hasDragged = false;
+let draggedNodeId = null;
+let dragStartX = 0, dragStartY = 0, nodeStartX = 0, nodeStartY = 0;
+let isPanning = false;
+let panStartX = 0, panStartY = 0;
+let isConnecting = false;
+let connectionSourceNode = null;
+let connectionSourceHandle = null;
+let tempEdgePath = null;
 
-let _mode = 'evolucao';
-let _sel = {};
-let _detail = null;
-let _container = null;
+// ─── Refs ────────────────────────────────────────────────────────────────────
+let canvasContainer, transformLayer, nodesLayer, edgesLayer;
 
-/* ═══════════════════════════════════════════════════════════════════
-   PONTO DE ENTRADA
-   ═══════════════════════════════════════════════════════════════════ */
+// ─── Sidebar state ───────────────────────────────────────────────────────────
+let currentMode = 'evolucao';
+let searchQuery = '';
+let expandedCategories = {};
+
+// ─── Storage key ─────────────────────────────────────────────────────────────
+const STORAGE_KEY = 'motor-brooks-pa-canvas';
+
+// ─── UUID generator ──────────────────────────────────────────────────────────
+function uuid() {
+  return crypto.randomUUID ? crypto.randomUUID() : 'xxxx-xxxx-xxxx'.replace(/x/g, () => Math.floor(Math.random() * 16).toString(16));
+}
+
+// ─── Toast notification ──────────────────────────────────────────────────────
+function showToast(msg, type = 'success') {
+  const existing = document.getElementById('pa-toast');
+  if (existing) existing.remove();
+  const colors = type === 'success' ? 'bg-emerald-600' : type === 'error' ? 'bg-red-600' : 'bg-zinc-700';
+  const toast = document.createElement('div');
+  toast.id = 'pa-toast';
+  toast.className = `fixed bottom-6 left-1/2 -translate-x-1/2 ${colors} text-white text-sm font-medium px-5 py-2.5 rounded-xl shadow-lg z-[100] transition-all duration-300 opacity-0 translate-y-2`;
+  toast.textContent = msg;
+  document.body.appendChild(toast);
+  requestAnimationFrame(() => { toast.classList.remove('opacity-0', 'translate-y-2'); });
+  setTimeout(() => {
+    toast.classList.add('opacity-0', 'translate-y-2');
+    setTimeout(() => toast.remove(), 300);
+  }, 2200);
+}
+
+// ═════════════════════════════════════════════════════════════════════════════
+//  RENDER PRINCIPAL
+// ═════════════════════════════════════════════════════════════════════════════
 
 export function renderAnalise(container) {
-    _container = container;
-    _sel = {};
-    _detail = null;
-    repaint();
-}
+  if (!container) return;
 
-/* ═══════════════════════════════════════════════════════════════════
-   REPAINT
-   ═══════════════════════════════════════════════════════════════════ */
+  // Clean up previous event listeners
+  cleanupGlobalListeners();
 
-function repaint() {
-    if (!_container) return;
-    const records = db();
-    _container.innerHTML = shell(records);
-    if (window.lucide) window.lucide.createIcons();
-    bindAll();
-}
+  container.innerHTML = `
+    <div id="pa-root" class="flex h-full w-full bg-gray-50 overflow-hidden" style="font-family:'Inter',system-ui,sans-serif">
+      <!-- Sidebar -->
+      <aside id="pa-sidebar" class="w-72 bg-white border-r border-gray-200 flex flex-col h-full shadow-sm z-20 shrink-0
+                                    max-md:fixed max-md:inset-y-0 max-md:left-0 max-md:z-50 max-md:w-72 max-md:-translate-x-full max-md:transition-transform max-md:duration-200"></aside>
 
-/* ═══════════════════════════════════════════════════════════════════
-   SHELL
-   ═══════════════════════════════════════════════════════════════════ */
+      <!-- Canvas -->
+      <main id="pa-canvas-container" class="flex-1 h-full relative overflow-hidden bg-gray-50">
+        <!-- Grid Background -->
+        <div id="pa-canvas-bg" class="absolute inset-0 pointer-events-none" style="background-image:radial-gradient(#cbd5e1 1px,transparent 1px);background-size:24px 24px"></div>
 
-function shell(records) {
-    const mainContent = _detail ? detailView(_detail) : builderView();
-    return `
-<div class="flex h-full overflow-hidden" id="analise-root">
+        <!-- Transform Layer -->
+        <div id="pa-canvas-transform" class="absolute inset-0 origin-top-left will-change-transform">
+          <svg id="pa-edges-layer" class="absolute inset-0 overflow-visible pointer-events-none w-full h-full"></svg>
+          <div id="pa-nodes-layer" class="absolute inset-0 w-full h-full pointer-events-none"></div>
+        </div>
 
-  <!-- ── Sidebar desktop ─────────────────────────────────────────── -->
-  <aside class="hidden md:flex flex-col w-[17rem] shrink-0 border-r border-zinc-200 bg-white h-full overflow-hidden">
-    ${sidebarInner(records)}
-  </aside>
+        <!-- Mobile sidebar toggle -->
+        <button id="pa-mobile-toggle" class="md:hidden absolute top-3 left-3 z-30 p-2.5 bg-white border border-gray-200 rounded-xl shadow-sm hover:bg-gray-50 transition-colors">
+          <i data-lucide="panel-left" class="w-4 h-4 text-gray-600"></i>
+        </button>
 
-  <!-- ── Drawer mobile ───────────────────────────────────────────── -->
-  <div id="analise-drawer" class="md:hidden fixed inset-0 z-30 hidden">
-    <div class="absolute inset-0 bg-black/40 backdrop-blur-sm" id="analise-drawer-overlay"></div>
-    <aside class="absolute left-0 top-0 h-full w-[17rem] bg-white shadow-2xl flex flex-col overflow-hidden">
-      ${sidebarInner(records)}
-    </aside>
-  </div>
+        <!-- UI Controls -->
+        <div class="absolute top-3 right-3 flex gap-2 z-20">
+          <button id="pa-btn-save" class="flex items-center gap-2 px-3.5 py-2 bg-white border border-gray-200 rounded-xl shadow-sm hover:bg-gray-50 text-xs font-semibold text-gray-700 transition-colors pointer-events-auto">
+            <i data-lucide="save" class="w-3.5 h-3.5 text-blue-600"></i> Salvar
+          </button>
+          <button id="pa-btn-restore" class="flex items-center gap-2 px-3.5 py-2 bg-white border border-gray-200 rounded-xl shadow-sm hover:bg-gray-50 text-xs font-semibold text-gray-700 transition-colors pointer-events-auto">
+            <i data-lucide="upload" class="w-3.5 h-3.5 text-green-600"></i> Restaurar
+          </button>
+          <button id="pa-btn-clear" class="flex items-center gap-2 px-3.5 py-2 bg-white border border-red-200 rounded-xl shadow-sm hover:bg-red-50 text-xs font-semibold text-red-700 transition-colors pointer-events-auto">
+            <i data-lucide="trash-2" class="w-3.5 h-3.5"></i> Limpar
+          </button>
+        </div>
 
-  <!-- ── Main ────────────────────────────────────────────────────── -->
-  <main class="flex-1 min-w-0 flex flex-col h-full overflow-hidden bg-zinc-50/50">
-    <!-- Mobile top bar -->
-    <div class="md:hidden flex items-center gap-3 px-4 py-3 border-b border-zinc-200 bg-white shrink-0">
-      <button id="analise-sidebar-btn" class="p-2 rounded-lg hover:bg-zinc-100 text-zinc-500 transition-colors">
-        <i data-lucide="panel-left" class="w-4 h-4"></i>
-      </button>
-      <div class="flex items-center gap-2">
-        <i data-lucide="flask-conical" class="w-4 h-4 text-zinc-400"></i>
-        <span class="text-sm font-semibold text-zinc-800">Lab de Análise</span>
+        <!-- Zoom indicator -->
+        <div id="pa-zoom-indicator" class="absolute bottom-3 right-3 z-20 px-3 py-1.5 bg-white/90 border border-gray-200 rounded-lg text-[11px] font-medium text-gray-500 pointer-events-none backdrop-blur-sm">100%</div>
+      </main>
+
+      <!-- Modal -->
+      <div id="pa-modal" class="hidden fixed inset-0 z-[60] flex items-center justify-center bg-black/50 backdrop-blur-sm opacity-0 transition-opacity duration-200">
+        <div class="bg-white rounded-2xl shadow-xl w-full max-w-lg overflow-hidden transform scale-95 transition-transform duration-200 mx-4" id="pa-modal-content"></div>
       </div>
-    </div>
 
-    <!-- Scrollable content -->
-    <div class="flex-1 overflow-y-auto">
-      ${mainContent}
+      <!-- Mobile sidebar overlay -->
+      <div id="pa-sidebar-overlay" class="hidden md:hidden fixed inset-0 bg-black/40 z-40 backdrop-blur-sm"></div>
     </div>
-  </main>
+  `;
 
-</div>`;
+  if (window.lucide) window.lucide.createIcons();
+
+  // ── Refs
+  canvasContainer = document.getElementById('pa-canvas-container');
+  transformLayer = document.getElementById('pa-canvas-transform');
+  nodesLayer = document.getElementById('pa-nodes-layer');
+  edgesLayer = document.getElementById('pa-edges-layer');
+
+  // ── Auto-restore
+  restoreState();
+
+  // ── Init subsystems
+  paState.onNodesChange = renderNodes;
+  paState.onEdgesChange = renderEdges;
+  initCanvas();
+  initSidebar();
+  initButtons();
+  initMobileSidebar();
+
+  // Initial render
+  updateTransform();
+  renderNodes();
+  renderEdges();
 }
 
-/* ═══════════════════════════════════════════════════════════════════
-   SIDEBAR INNER
-   ═══════════════════════════════════════════════════════════════════ */
+// ═════════════════════════════════════════════════════════════════════════════
+//  PERSISTENCE
+// ═════════════════════════════════════════════════════════════════════════════
 
-function sidebarInner(records) {
-    const t = THEME[_mode];
-    const modeRecords = records.filter(r => r.mode === _mode);
+function saveState() {
+  const data = { nodes: paState.nodes, edges: paState.edges, panX: paState.panX, panY: paState.panY, scale: paState.scale };
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+}
 
-    // ── Stats block
-    let statsHTML = '';
-    if (_mode === 'operacao') {
-        const wins   = modeRecords.filter(r => r.resultado === 'WIN').length;
-        const losses = modeRecords.filter(r => r.resultado === 'LOSS').length;
-        const bes    = modeRecords.filter(r => r.resultado === 'BE').length;
-        const total  = wins + losses + bes;
-        const wr     = total > 0 ? Math.round((wins / total) * 100) : 0;
-        statsHTML = `
-        <div class="px-3 pb-3 space-y-2">
-          <div class="grid grid-cols-3 gap-1.5">
-            <div class="bg-emerald-50 border border-emerald-200 rounded-xl p-2 text-center">
-              <div class="text-xl font-black text-emerald-600 leading-tight">${wins}</div>
-              <div class="text-[9px] font-bold text-emerald-500 uppercase tracking-wider mt-0.5">Win</div>
-            </div>
-            <div class="bg-red-50 border border-red-200 rounded-xl p-2 text-center">
-              <div class="text-xl font-black text-red-600 leading-tight">${losses}</div>
-              <div class="text-[9px] font-bold text-red-500 uppercase tracking-wider mt-0.5">Loss</div>
-            </div>
-            <div class="bg-amber-50 border border-amber-200 rounded-xl p-2 text-center">
-              <div class="text-xl font-black text-amber-600 leading-tight">${bes}</div>
-              <div class="text-[9px] font-bold text-amber-500 uppercase tracking-wider mt-0.5">BE</div>
-            </div>
-          </div>
-          ${total > 0 ? `
-          <div class="bg-zinc-50 border border-zinc-200 rounded-xl px-3 py-2 flex items-center justify-between">
-            <span class="text-[10px] text-zinc-500 font-medium">${total} operações · WR</span>
-            <span class="text-sm font-black ${wr >= 50 ? 'text-emerald-600' : 'text-red-600'}">${wr}%</span>
-          </div>` : ''}
-        </div>`;
+function restoreState() {
+  const raw = localStorage.getItem(STORAGE_KEY);
+  if (!raw) return;
+  try {
+    const data = JSON.parse(raw);
+    paState.nodes = data.nodes || [];
+    paState.edges = data.edges || [];
+    paState.scale = data.scale || 1;
+    paState.panX = data.panX || 0;
+    paState.panY = data.panY || 0;
+  } catch (e) { console.error('PA: failed to restore state', e); }
+}
+
+function initButtons() {
+  document.getElementById('pa-btn-save')?.addEventListener('click', () => {
+    saveState();
+    showToast('Canvas salvo com sucesso!');
+  });
+
+  document.getElementById('pa-btn-restore')?.addEventListener('click', () => {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (raw) {
+      restoreState();
+      updateTransform();
+      paState.onNodesChange();
+      paState.onEdgesChange();
+      showToast('Canvas restaurado!');
     } else {
-        const focoCounts = {};
-        modeRecords.forEach(r => {
-            if (r.foco) focoCounts[r.foco] = (focoCounts[r.foco] || 0) + 1;
-        });
-        const topFocos = Object.entries(focoCounts).sort((a,b) => b[1]-a[1]).slice(0, 3);
-        if (topFocos.length > 0) {
-            statsHTML = `
-            <div class="px-3 pb-3 space-y-1.5">
-              ${topFocos.map(([foco, count]) => `
-              <div class="flex items-center gap-2 bg-indigo-50 border border-indigo-100 rounded-lg px-2.5 py-2">
-                <span class="text-[10px] font-black text-indigo-700 bg-indigo-200 px-1.5 py-0.5 rounded shrink-0">${count}x</span>
-                <span class="text-xs font-medium text-indigo-800 truncate">${foco}</span>
-              </div>`).join('')}
-            </div>`;
-        }
+      showToast('Nenhum canvas salvo encontrado.', 'info');
     }
+  });
 
-    return `
-    <!-- Header -->
-    <div class="shrink-0 px-4 pt-4 pb-3 border-b border-zinc-100">
-      <div class="flex items-center justify-between mb-3">
-        <div class="flex items-center gap-2">
-          <i data-lucide="flask-conical" class="w-4 h-4 text-zinc-400"></i>
-          <span class="text-[11px] font-bold text-zinc-500 uppercase tracking-wider">Lab de Análise</span>
-        </div>
-        <button id="new-analise-btn"
-          class="flex items-center gap-1 px-3 py-1.5 rounded-lg ${t.btn} text-white text-[11px] font-bold transition-colors">
-          <i data-lucide="plus" class="w-3 h-3"></i> Novo
-        </button>
-      </div>
-
-      <!-- Mode tabs -->
-      <div class="flex p-1 bg-zinc-100 rounded-xl gap-1">
-        <button id="mode-evolucao"
-          class="flex-1 py-1.5 rounded-lg text-xs font-bold transition-all ${_mode === 'evolucao' ? THEME.evolucao.tabActive : 'text-zinc-500 hover:text-zinc-800'}">
-          Evoluções
-        </button>
-        <button id="mode-operacao"
-          class="flex-1 py-1.5 rounded-lg text-xs font-bold transition-all ${_mode === 'operacao' ? THEME.operacao.tabActive : 'text-zinc-500 hover:text-zinc-800'}">
-          Operações
-        </button>
-      </div>
-    </div>
-
-    <!-- Stats -->
-    <div class="shrink-0 pt-3">${statsHTML}</div>
-
-    <!-- History label -->
-    <div class="shrink-0 px-4 pb-2">
-      <span class="text-[10px] font-semibold text-zinc-400 uppercase tracking-wider">
-        ${modeRecords.length} registro${modeRecords.length !== 1 ? 's' : ''}
-      </span>
-    </div>
-
-    <!-- History list -->
-    <div class="flex-1 overflow-y-auto px-2 pb-4 space-y-1">
-      ${modeRecords.length === 0
-        ? `<div class="flex flex-col items-center py-10 text-center px-4">
-            <div class="w-10 h-10 rounded-xl bg-zinc-100 flex items-center justify-center mb-3">
-              <i data-lucide="inbox" class="w-5 h-5 text-zinc-300"></i>
-            </div>
-            <p class="text-xs text-zinc-400 font-medium">Nenhum registro ainda.</p>
-            <p class="text-[10px] text-zinc-300 mt-1">Clique em "Novo" para começar.</p>
-           </div>`
-        : modeRecords.map(r => historyCard(r)).join('')}
-    </div>`;
+  document.getElementById('pa-btn-clear')?.addEventListener('click', () => {
+    if (confirm('Tem certeza que deseja limpar o canvas?')) {
+      paState.nodes = [];
+      paState.edges = [];
+      paState.scale = 1;
+      paState.panX = 0;
+      paState.panY = 0;
+      updateTransform();
+      paState.onNodesChange();
+      paState.onEdgesChange();
+      showToast('Canvas limpo!', 'info');
+    }
+  });
 }
 
-/* ═══════════════════════════════════════════════════════════════════
-   HISTORY CARD
-   ═══════════════════════════════════════════════════════════════════ */
+// ═════════════════════════════════════════════════════════════════════════════
+//  MOBILE SIDEBAR
+// ═════════════════════════════════════════════════════════════════════════════
 
-function historyCard(record) {
-    const isActive = _detail?.id === record.id;
-    const t = THEME[record.mode];
-    const d = new Date(record.createdAt);
-    const date = d.toLocaleDateString('pt-BR', { day:'2-digit', month:'2-digit' });
-    const time = d.toLocaleTimeString('pt-BR', { hour:'2-digit', minute:'2-digit' });
+function initMobileSidebar() {
+  const sidebar = document.getElementById('pa-sidebar');
+  const overlay = document.getElementById('pa-sidebar-overlay');
+  const toggle = document.getElementById('pa-mobile-toggle');
 
-    let badge = '';
-    if (record.mode === 'operacao' && record.resultado) {
-        const col = { WIN:'bg-emerald-100 text-emerald-700 border-emerald-300', LOSS:'bg-red-100 text-red-700 border-red-300', BE:'bg-amber-100 text-amber-700 border-amber-300' };
-        badge = `<span class="text-[10px] font-black px-1.5 py-0.5 rounded-md border shrink-0 ${col[record.resultado] || 'bg-zinc-100 text-zinc-600 border-zinc-200'}">${record.resultado}</span>`;
-    } else if (record.mode === 'evolucao' && record.evolucao) {
-        const good = record.evolucao === 'Funcionou';
-        const bad  = record.evolucao.includes('Falhou') || record.evolucao.includes('Stop');
-        const col  = good ? 'bg-emerald-100 text-emerald-700 border-emerald-200' : bad ? 'bg-red-100 text-red-700 border-red-200' : 'bg-zinc-100 text-zinc-600 border-zinc-200';
-        const short = record.evolucao.replace('Falhou — ','').replace('Em Desenvolvimento','Develop.');
-        badge = `<span class="text-[9px] font-bold px-1.5 py-0.5 rounded-md border ${col} truncate max-w-[72px] shrink-0">${short}</span>`;
-    }
+  function open() {
+    sidebar?.classList.remove('max-md:-translate-x-full');
+    sidebar?.classList.add('max-md:translate-x-0');
+    overlay?.classList.remove('hidden');
+  }
+  function close() {
+    sidebar?.classList.add('max-md:-translate-x-full');
+    sidebar?.classList.remove('max-md:translate-x-0');
+    overlay?.classList.add('hidden');
+  }
 
-    const title = record.mode === 'evolucao'
-        ? (record.foco || 'Evolução')
-        : (record.setup
-            ? `${record.setup}${record.direcao ? ' ' + (record.direcao === 'Compra' ? '↑' : '↓') : ''}`
-            : 'Operação');
-
-    const subline = record.mode === 'evolucao'
-        ? (record.ctf || record.timeframe || '')
-        : (record.ctf || '');
-
-    return `
-    <button data-history-id="${record.id}"
-      class="w-full text-left px-3 py-2.5 rounded-xl border transition-all group ${
-        isActive
-          ? (record.mode === 'evolucao' ? 'bg-indigo-50 border-indigo-200' : 'bg-violet-50 border-violet-200')
-          : 'bg-white border-zinc-200 hover:border-zinc-300 hover:shadow-sm'
-      }">
-      <div class="flex items-start justify-between gap-2 mb-1">
-        <span class="text-xs font-semibold text-zinc-800 truncate leading-snug flex-1">${title}</span>
-        ${badge}
-      </div>
-      <div class="flex items-center gap-1.5 text-[10px] text-zinc-400 flex-wrap">
-        <span>${date} ${time}</span>
-        ${subline ? `<span class="text-zinc-300">·</span><span class="truncate max-w-[80px]">${subline}</span>` : ''}
-        ${record.qualidade || record.processo ? `<span class="text-zinc-300">·</span><span class="font-bold">${record.processo || record.qualidade}</span>` : ''}
-      </div>
-    </button>`;
+  toggle?.addEventListener('click', open);
+  overlay?.addEventListener('click', close);
 }
 
-/* ═══════════════════════════════════════════════════════════════════
-   BUILDER VIEW
-   ═══════════════════════════════════════════════════════════════════ */
+// ═════════════════════════════════════════════════════════════════════════════
+//  CANVAS — Pan, Zoom, Transform
+// ═════════════════════════════════════════════════════════════════════════════
 
-function builderView() {
-    const steps = _mode === 'evolucao' ? EVOLUCAO_STEPS : OPERACAO_STEPS;
-    const t = THEME[_mode];
-
-    const required    = steps.filter(s => s.required);
-    const answered    = required.filter(s => _sel[s.id] && String(_sel[s.id]).trim());
-    const progress    = required.length > 0 ? Math.round((answered.length / required.length) * 100) : 0;
-    const remaining   = required.length - answered.length;
-    const canSave     = remaining === 0;
-
-    return `
-<div class="max-w-[680px] mx-auto px-4 py-6 pb-28">
-
-  <!-- Builder header -->
-  <div class="mb-6">
-    <div class="flex items-center gap-3 mb-4">
-      <div class="w-11 h-11 rounded-2xl ${t.bg} border ${t.border} flex items-center justify-center shrink-0 shadow-sm">
-        <i data-lucide="${t.icon}" class="w-5 h-5 ${t.text}"></i>
-      </div>
-      <div>
-        <h2 class="text-base font-bold text-zinc-900">Nova ${t.label}</h2>
-        <p class="text-[11px] text-zinc-400 mt-0.5">
-          ${answered.length} de ${required.length} obrigatórios preenchidos
-          ${remaining > 0 ? `· faltam ${remaining}` : ' · pronto!'}
-        </p>
-      </div>
-      <div class="ml-auto text-right">
-        <div class="text-2xl font-black ${t.text}">${progress}%</div>
-      </div>
-    </div>
-    <div class="h-1.5 bg-zinc-100 rounded-full overflow-hidden">
-      <div class="h-full rounded-full transition-all duration-500 ${t.progressBar}" style="width:${progress}%"></div>
-    </div>
-  </div>
-
-  <!-- Steps -->
-  <div class="space-y-2.5">
-    ${steps.map((step, idx) => stepCard(step, idx)).join('')}
-  </div>
-
-</div>
-
-<!-- Sticky save bar -->
-<div class="fixed bottom-0 left-0 right-0 md:left-[17rem] bg-white/95 backdrop-blur-sm border-t border-zinc-200 px-4 py-3 flex items-center gap-3 z-10 shadow-lg">
-  <div class="flex-1 min-w-0">
-    ${canSave
-      ? `<p class="text-xs text-emerald-600 font-semibold flex items-center gap-1.5">
-           <i data-lucide="check-circle" class="w-3.5 h-3.5 shrink-0"></i>
-           Tudo preenchido — pode salvar
-         </p>`
-      : `<p class="text-xs text-zinc-400">
-           ${remaining} campo${remaining !== 1 ? 's' : ''} obrigatório${remaining !== 1 ? 's' : ''} pendente${remaining !== 1 ? 's' : ''}
-         </p>`
-    }
-  </div>
-  <button id="save-analise-btn"
-    class="flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold transition-all duration-200 ${
-      canSave
-        ? `${t.btn} text-white shadow-sm`
-        : 'bg-zinc-200 text-zinc-400 cursor-not-allowed'
-    }"
-    ${canSave ? '' : 'disabled'}>
-    <i data-lucide="save" class="w-4 h-4"></i>
-    Salvar Registro
-  </button>
-</div>`;
+function updateTransform() {
+  if (!transformLayer) return;
+  transformLayer.style.transform = `translate(${paState.panX}px, ${paState.panY}px) scale(${paState.scale})`;
+  const bg = document.getElementById('pa-canvas-bg');
+  if (bg) {
+    bg.style.backgroundPosition = `${paState.panX}px ${paState.panY}px`;
+    bg.style.backgroundSize = `${24 * paState.scale}px ${24 * paState.scale}px`;
+  }
+  const zoom = document.getElementById('pa-zoom-indicator');
+  if (zoom) zoom.textContent = `${Math.round(paState.scale * 100)}%`;
 }
 
-/* ═══════════════════════════════════════════════════════════════════
-   STEP CARD
-   ═══════════════════════════════════════════════════════════════════ */
-
-function stepCard(step, idx) {
-    const t = THEME[_mode];
-    const val = _sel[step.id];
-    const isAnswered = val && String(val).trim();
-
-    // ── Render input por tipo ──────────────────────────────────────
-
-    let inputHTML = '';
-
-    if (step.type === 'chips' || step.type === 'chips_free') {
-        const chipsHTML = step.options.map(opt => {
-            const sel = val === opt;
-            return `<button class="lab-chip px-2.5 py-1.5 rounded-lg border text-xs font-medium transition-all ${
-                sel
-                    ? `${t.bg} ${t.border} ${t.text} font-semibold shadow-sm`
-                    : 'bg-white border-zinc-200 text-zinc-600 hover:border-zinc-300 hover:bg-zinc-50'
-            }" data-step="${step.id}" data-val="${opt}">${opt}</button>`;
-        }).join('');
-
-        const isCustom = val && !step.options.includes(val);
-        const freeHTML = step.type === 'chips_free' ? `
-            <input type="text" id="free-${step.id}"
-              class="mt-2 w-full text-xs bg-zinc-50 border border-zinc-200 rounded-lg px-3 py-2 focus:outline-none focus:border-${t.accent}-400 transition-colors"
-              placeholder="${step.placeholder || 'Outro...'}"
-              value="${isCustom ? val : ''}"
-              data-free="${step.id}" />` : '';
-
-        inputHTML = `<div class="flex flex-wrap gap-1.5">${chipsHTML}</div>${freeHTML}`;
-
-    } else if (step.type === 'themed_chips') {
-        const thMap = {
-            emerald: { sel:'bg-emerald-500 text-white border-emerald-500', neu:'bg-white border-emerald-200 text-emerald-700 hover:bg-emerald-50' },
-            red:     { sel:'bg-red-500 text-white border-red-500',         neu:'bg-white border-red-200 text-red-700 hover:bg-red-50' },
-            amber:   { sel:'bg-amber-500 text-white border-amber-500',     neu:'bg-white border-amber-200 text-amber-700 hover:bg-amber-50' }
-        };
-        inputHTML = `<div class="flex flex-wrap gap-2">
-            ${step.options.map(opt => {
-                const sel = val === opt.label;
-                const c = thMap[opt.theme] || thMap.amber;
-                return `<button class="lab-chip px-5 py-2.5 rounded-xl border-2 text-sm font-bold transition-all ${sel ? c.sel : c.neu}" data-step="${step.id}" data-val="${opt.label}">${opt.label}</button>`;
-            }).join('')}
-        </div>`;
-
-    } else if (step.type === 'grade_chips') {
-        const gMap = {
-            emerald:{ sel:'bg-emerald-500 text-white border-emerald-500', neu:'bg-white border-emerald-200 text-emerald-600 hover:bg-emerald-50' },
-            blue:   { sel:'bg-blue-500 text-white border-blue-500',       neu:'bg-white border-blue-200 text-blue-600 hover:bg-blue-50' },
-            amber:  { sel:'bg-amber-500 text-white border-amber-500',     neu:'bg-white border-amber-200 text-amber-600 hover:bg-amber-50' },
-            red:    { sel:'bg-red-500 text-white border-red-500',         neu:'bg-white border-red-200 text-red-600 hover:bg-red-50' }
-        };
-        inputHTML = `<div class="flex gap-2">
-            ${step.options.map(opt => {
-                const sel = val === opt.label;
-                const c = gMap[opt.theme] || gMap.amber;
-                return `<button class="lab-chip flex-1 flex flex-col items-center py-3.5 px-2 rounded-xl border-2 transition-all ${sel ? c.sel : c.neu}" data-step="${step.id}" data-val="${opt.label}">
-                    <span class="text-2xl font-black leading-none">${opt.label}</span>
-                    <span class="text-[10px] font-semibold opacity-75 mt-1">${opt.desc}</span>
-                </button>`;
-            }).join('')}
-        </div>`;
-
-    } else if (step.type === 'direction_chips') {
-        inputHTML = `<div class="flex gap-3">
-            ${step.options.map(opt => {
-                const sel = val === opt.label;
-                const c = opt.theme === 'emerald'
-                    ? { sel:'bg-emerald-500 text-white border-emerald-500', neu:'bg-white border-emerald-200 text-emerald-700 hover:bg-emerald-50' }
-                    : { sel:'bg-red-500 text-white border-red-500',         neu:'bg-white border-red-200 text-red-700 hover:bg-red-50' };
-                const arrow = opt.theme === 'emerald' ? '↑' : '↓';
-                return `<button class="lab-chip flex-1 flex flex-col items-center py-5 rounded-2xl border-2 font-bold transition-all ${sel ? c.sel : c.neu}" data-step="${step.id}" data-val="${opt.label}">
-                    <span class="text-3xl leading-none mb-1">${arrow}</span>
-                    <span class="text-sm">${opt.label}</span>
-                    <span class="text-[10px] opacity-60">${opt.sublabel}</span>
-                </button>`;
-            }).join('')}
-        </div>`;
-
-    } else if (step.type === 'outcome_chips') {
-        const oMap = {
-            emerald:{ sel:'bg-emerald-500 text-white border-emerald-500', neu:'bg-white border-zinc-200 text-zinc-700 hover:border-emerald-200 hover:bg-emerald-50 hover:text-emerald-700' },
-            amber:  { sel:'bg-amber-500 text-white border-amber-500',     neu:'bg-white border-zinc-200 text-zinc-700 hover:border-amber-200 hover:bg-amber-50 hover:text-amber-700' },
-            blue:   { sel:'bg-blue-500 text-white border-blue-500',       neu:'bg-white border-zinc-200 text-zinc-700 hover:border-blue-200 hover:bg-blue-50 hover:text-blue-700' },
-            red:    { sel:'bg-red-500 text-white border-red-500',         neu:'bg-white border-zinc-200 text-zinc-700 hover:border-red-200 hover:bg-red-50 hover:text-red-700' },
-            orange: { sel:'bg-orange-500 text-white border-orange-500',   neu:'bg-white border-zinc-200 text-zinc-700 hover:border-orange-200 hover:bg-orange-50 hover:text-orange-700' },
-            purple: { sel:'bg-purple-500 text-white border-purple-500',   neu:'bg-white border-zinc-200 text-zinc-700 hover:border-purple-200 hover:bg-purple-50 hover:text-purple-700' },
-            zinc:   { sel:'bg-zinc-600 text-white border-zinc-600',       neu:'bg-white border-zinc-200 text-zinc-700 hover:border-zinc-300 hover:bg-zinc-50' }
-        };
-        inputHTML = `<div class="flex flex-wrap gap-1.5">
-            ${step.options.map(opt => {
-                const sel = val === opt.label;
-                const c = oMap[opt.theme] || oMap.zinc;
-                return `<button class="lab-chip px-3 py-2 rounded-lg border text-xs font-semibold transition-all ${sel ? c.sel : c.neu}" data-step="${step.id}" data-val="${opt.label}">${opt.label}</button>`;
-            }).join('')}
-        </div>`;
-
-    } else if (step.type === 'result_chips') {
-        const rMap = {
-            WIN: { sel:'bg-emerald-500 text-white border-emerald-500', neu:'bg-white border-emerald-200 text-emerald-700 hover:bg-emerald-50' },
-            LOSS:{ sel:'bg-red-500 text-white border-red-500',         neu:'bg-white border-red-200 text-red-700 hover:bg-red-50' },
-            BE:  { sel:'bg-amber-500 text-white border-amber-500',     neu:'bg-white border-amber-200 text-amber-700 hover:bg-amber-50' }
-        };
-        inputHTML = `<div class="flex gap-3">
-            ${step.options.map(opt => {
-                const sel = val === opt.label;
-                const c = rMap[opt.label] || rMap.BE;
-                return `<button class="lab-chip flex-1 flex flex-col items-center py-4 rounded-2xl border-2 transition-all ${sel ? c.sel : c.neu}" data-step="${step.id}" data-val="${opt.label}">
-                    <span class="text-xl font-black">${opt.label}</span>
-                    ${opt.sublabel ? `<span class="text-[10px] font-medium opacity-70 mt-0.5">${opt.sublabel}</span>` : ''}
-                </button>`;
-            }).join('')}
-        </div>`;
-
-    } else if (step.type === 'textarea') {
-        inputHTML = `<textarea id="ta-${step.id}"
-            class="w-full text-xs bg-zinc-50 border border-zinc-200 rounded-xl px-3 py-2.5 resize-none focus:outline-none focus:border-${t.accent}-400 focus:bg-white transition-colors min-h-[88px] leading-relaxed"
-            placeholder="${step.placeholder || ''}"
-            data-ta="${step.id}">${val || ''}</textarea>`;
-    }
-
-    // ── Valor atual exibido no header ──────────────────────────────
-    let currentVal = '';
-    if (isAnswered && step.type !== 'textarea') {
-        currentVal = `<span class="text-[11px] font-semibold ${t.text} ${t.bg} border ${t.border} px-2.5 py-0.5 rounded-lg shrink-0 max-w-[120px] truncate block">${val}</span>`;
-    }
-
-    return `
-<div class="bg-white border ${isAnswered ? `${t.border}` : 'border-zinc-200'} rounded-xl overflow-hidden transition-colors shadow-sm">
-    <div class="flex items-center gap-3 px-4 py-3 ${isAnswered ? 'border-b ' + t.border : 'border-b border-zinc-100'}">
-        <div class="w-7 h-7 rounded-lg flex items-center justify-center shrink-0 transition-colors ${
-            isAnswered ? `${t.bg} border ${t.border}` : 'bg-zinc-100 border border-zinc-200'
-        }">
-            <i data-lucide="${isAnswered ? 'check' : step.icon}" class="w-3.5 h-3.5 ${isAnswered ? t.text : 'text-zinc-400'}"></i>
-        </div>
-        <div class="flex-1 min-w-0">
-            <div class="flex items-center gap-2 flex-wrap">
-                <span class="text-xs font-semibold text-zinc-700">${step.label}</span>
-                ${step.required
-                    ? `<span class="text-[9px] font-bold text-zinc-400 uppercase tracking-wider">obrigatório</span>`
-                    : `<span class="text-[9px] text-zinc-300 uppercase tracking-wider">opcional</span>`}
-            </div>
-            <p class="text-[10px] text-zinc-400 mt-0.5 leading-snug">${step.hint}</p>
-        </div>
-        ${currentVal}
-    </div>
-    <div class="px-4 py-3 ${isAnswered && step.type !== 'textarea' ? 'pb-3' : 'pb-3.5'}">
-        ${inputHTML}
-    </div>
-</div>`;
+// Global listeners collection for cleanup
+const globalListeners = [];
+function addGlobalListener(target, event, handler, opts) {
+  target.addEventListener(event, handler, opts);
+  globalListeners.push({ target, event, handler, opts });
+}
+function cleanupGlobalListeners() {
+  globalListeners.forEach(({ target, event, handler, opts }) => {
+    target.removeEventListener(event, handler, opts);
+  });
+  globalListeners.length = 0;
 }
 
-/* ═══════════════════════════════════════════════════════════════════
-   DETAIL VIEW
-   ═══════════════════════════════════════════════════════════════════ */
+function initCanvas() {
+  // Wheel zoom
+  canvasContainer.addEventListener('wheel', (e) => {
+    e.preventDefault();
+    let delta = e.deltaY;
+    if (e.deltaMode === 1) delta *= 16;
+    else if (e.deltaMode === 2) delta *= 800;
+    const zoomFactor = Math.exp(-delta * 0.002);
+    const newScale = Math.min(Math.max(0.1, paState.scale * zoomFactor), 3);
+    const rect = canvasContainer.getBoundingClientRect();
+    const mouseX = e.clientX - rect.left;
+    const mouseY = e.clientY - rect.top;
+    paState.panX = mouseX - (mouseX - paState.panX) * (newScale / paState.scale);
+    paState.panY = mouseY - (mouseY - paState.panY) * (newScale / paState.scale);
+    paState.scale = newScale;
+    updateTransform();
+  }, { passive: false });
 
-function detailView(record) {
-    const t = THEME[record.mode];
-    const steps = record.mode === 'evolucao' ? EVOLUCAO_STEPS : OPERACAO_STEPS;
-    const d = new Date(record.createdAt);
-    const dateStr = d.toLocaleString('pt-BR', {
-        day:'2-digit', month:'2-digit', year:'numeric',
-        hour:'2-digit', minute:'2-digit'
-    });
-
-    // ── Header badge
-    let headerBadge = '';
-    if (record.mode === 'operacao' && record.resultado) {
-        const col = {
-            WIN: 'bg-emerald-100 text-emerald-700 border-emerald-300',
-            LOSS:'bg-red-100 text-red-700 border-red-300',
-            BE:  'bg-amber-100 text-amber-700 border-amber-300'
-        };
-        headerBadge = `<div class="text-2xl font-black px-4 py-2 rounded-xl border-2 ${col[record.resultado] || 'bg-zinc-100 text-zinc-700 border-zinc-300'}">${record.resultado}</div>`;
-    } else if (record.mode === 'evolucao' && record.evolucao) {
-        const good = record.evolucao === 'Funcionou';
-        const bad  = record.evolucao.includes('Falhou') || record.evolucao.includes('Stop');
-        const col  = good ? 'bg-emerald-100 text-emerald-700 border-emerald-300' : bad ? 'bg-red-100 text-red-700 border-red-300' : 'bg-zinc-100 text-zinc-600 border-zinc-300';
-        headerBadge = `<div class="text-sm font-bold px-3 py-2 rounded-xl border ${col} text-center max-w-[140px]">${record.evolucao}</div>`;
+  // Pan start
+  canvasContainer.addEventListener('mousedown', (e) => {
+    const target = e.target;
+    const isBg = target === canvasContainer || target === transformLayer || target.id === 'pa-canvas-bg' || target.id === 'pa-nodes-layer' || target.id === 'pa-edges-layer';
+    if (e.button === 1 || (e.button === 0 && isBg)) {
+      isPanning = true;
+      panStartX = e.clientX - paState.panX;
+      panStartY = e.clientY - paState.panY;
+      canvasContainer.style.cursor = 'grabbing';
     }
+  });
 
-    // ── Main title
-    const title = record.mode === 'evolucao'
-        ? (record.foco || 'Evolução')
-        : (record.setup ? `${record.setup}${record.direcao ? ' · ' + record.direcao : ''}` : 'Operação');
+  // Global move
+  function onMouseMove(e) {
+    if (isPanning) {
+      paState.panX = e.clientX - panStartX;
+      paState.panY = e.clientY - panStartY;
+      updateTransform();
+    }
+    if (isDraggingNode && draggedNodeId) {
+      const dx = (e.clientX - dragStartX) / paState.scale;
+      const dy = (e.clientY - dragStartY) / paState.scale;
+      if (Math.abs(e.clientX - dragStartX) > 3 || Math.abs(e.clientY - dragStartY) > 3) hasDragged = true;
+      const node = paState.nodes.find(n => n.id === draggedNodeId);
+      if (node) {
+        node.x = nodeStartX + dx;
+        node.y = nodeStartY + dy;
+        const el = document.getElementById(`pa-node-${node.id}`);
+        if (el) el.style.transform = `translate(${node.x}px, ${node.y}px)`;
+        renderEdges();
+      }
+    }
+    if (isConnecting && connectionSourceNode && connectionSourceHandle) {
+      const rect = canvasContainer.getBoundingClientRect();
+      const mouseX = (e.clientX - rect.left - paState.panX) / paState.scale;
+      const mouseY = (e.clientY - rect.top - paState.panY) / paState.scale;
+      const srcPos = getHandlePosition(connectionSourceNode, connectionSourceHandle);
+      if (srcPos && tempEdgePath) {
+        tempEdgePath.setAttribute('d', getBezierPath(srcPos.x, srcPos.y, mouseX, mouseY, connectionSourceHandle, 'top'));
+      }
+    }
+  }
+  addGlobalListener(window, 'mousemove', onMouseMove);
 
-    // ── Fields (não-textarea)
-    const fieldSteps = steps.filter(s => s.type !== 'textarea' && record[s.id]);
-    const fieldsHTML = fieldSteps.map(s => {
-        let dispVal = record[s.id];
-        // Cor especial para campos temáticos
-        let valClass = 'text-zinc-800';
-        if (s.id === 'htf') {
-            if (dispVal.includes('Alta') || dispVal.includes('AIL')) valClass = 'text-emerald-700 font-bold';
-            else if (dispVal.includes('Baixa') || dispVal.includes('AIS')) valClass = 'text-red-700 font-bold';
-            else valClass = 'text-amber-700 font-bold';
+  // Global mouse up
+  function onMouseUp(e) {
+    if (isPanning) { isPanning = false; canvasContainer.style.cursor = 'default'; }
+    if (isDraggingNode) { isDraggingNode = false; draggedNodeId = null; }
+    if (isConnecting) {
+      const targetEl = e.target?.closest?.('.pa-handle');
+      if (targetEl) {
+        const targetNode = targetEl.getAttribute('data-node-id');
+        const targetHandle = targetEl.getAttribute('data-handle-id');
+        if (targetNode !== connectionSourceNode) {
+          const exists = paState.edges.some(ed =>
+            (ed.source === connectionSourceNode && ed.target === targetNode && ed.sourceHandle === connectionSourceHandle && ed.targetHandle === targetHandle) ||
+            (ed.source === targetNode && ed.target === connectionSourceNode && ed.sourceHandle === targetHandle && ed.targetHandle === connectionSourceHandle)
+          );
+          if (!exists) {
+            paState.edges.push({ id: uuid(), source: connectionSourceNode, sourceHandle: connectionSourceHandle, target: targetNode, targetHandle });
+            renderEdges();
+          }
         }
-        if (s.id === 'resultado') {
-            valClass = dispVal === 'WIN' ? 'text-emerald-700 font-black' : dispVal === 'LOSS' ? 'text-red-700 font-black' : 'text-amber-700 font-black';
-        }
-        if (s.id === 'direcao') {
-            valClass = dispVal === 'Compra' ? 'text-emerald-700 font-bold' : 'text-red-700 font-bold';
-            dispVal = dispVal === 'Compra' ? '↑ Compra (Long)' : '↓ Venda (Short)';
-        }
-        return `
-        <div class="flex items-start gap-3 py-3 border-b border-zinc-50 last:border-0">
-            <div class="w-7 h-7 rounded-lg ${t.bg} border ${t.border} flex items-center justify-center shrink-0 mt-0.5">
-                <i data-lucide="${s.icon}" class="w-3.5 h-3.5 ${t.text}"></i>
-            </div>
-            <div class="flex-1 min-w-0">
-                <div class="text-[10px] font-semibold text-zinc-400 uppercase tracking-wider mb-0.5">${s.label}</div>
-                <div class="text-sm ${valClass}">${dispVal}</div>
-            </div>
-        </div>`;
+      }
+      isConnecting = false; connectionSourceNode = null; connectionSourceHandle = null;
+      if (tempEdgePath) { tempEdgePath.remove(); tempEdgePath = null; }
+    }
+  }
+  addGlobalListener(window, 'mouseup', onMouseUp);
+
+  // Drag & Drop from sidebar
+  canvasContainer.addEventListener('dragover', (e) => { e.preventDefault(); e.dataTransfer.dropEffect = 'move'; });
+  canvasContainer.addEventListener('drop', (e) => {
+    e.preventDefault();
+    const conceptStr = e.dataTransfer.getData('application/json');
+    if (!conceptStr) return;
+    const concept = JSON.parse(conceptStr);
+    const rect = canvasContainer.getBoundingClientRect();
+    const x = (e.clientX - rect.left - paState.panX) / paState.scale;
+    const y = (e.clientY - rect.top - paState.panY) / paState.scale;
+    paState.nodes.push({ id: uuid(), x, y, concept, notes: concept.notes });
+    renderNodes();
+    // Close mobile sidebar after drop
+    const sidebar = document.getElementById('pa-sidebar');
+    sidebar?.classList.add('max-md:-translate-x-full');
+    sidebar?.classList.remove('max-md:translate-x-0');
+    document.getElementById('pa-sidebar-overlay')?.classList.add('hidden');
+  });
+}
+
+// ═════════════════════════════════════════════════════════════════════════════
+//  NODES
+// ═════════════════════════════════════════════════════════════════════════════
+
+function renderNodes() {
+  if (!nodesLayer) return;
+  nodesLayer.innerHTML = '';
+
+  paState.nodes.forEach(node => {
+    const isEvo = node.concept.mode === 'evolucao';
+    const bgClass = isEvo ? 'bg-blue-50 border-blue-200 text-blue-900' : 'bg-emerald-50 border-emerald-200 text-emerald-900';
+    const iconColor = isEvo ? 'text-blue-600' : 'text-emerald-600';
+    const iconName = isEvo ? 'book-open' : 'activity';
+
+    const el = document.createElement('div');
+    el.id = `pa-node-${node.id}`;
+    el.className = `absolute rounded-xl border-2 shadow-sm transition-shadow duration-200 min-w-[200px] max-w-[260px] ${bgClass} cursor-pointer pointer-events-auto hover:shadow-md`;
+    el.style.transform = `translate(${node.x}px, ${node.y}px)`;
+
+    const handles = ['top', 'right', 'bottom', 'left'].map(pos => {
+      let posClass = '';
+      if (pos === 'top') posClass = 'top-0 left-1/2 -translate-x-1/2 -translate-y-1/2';
+      if (pos === 'bottom') posClass = 'bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2';
+      if (pos === 'left') posClass = 'left-0 top-1/2 -translate-x-1/2 -translate-y-1/2';
+      if (pos === 'right') posClass = 'right-0 top-1/2 translate-x-1/2 -translate-y-1/2';
+      return `<div data-node-id="${node.id}" data-handle-id="${pos}" class="pa-handle absolute w-3 h-3 bg-slate-400 border-2 border-white rounded-full cursor-crosshair z-10 hover:bg-blue-500 hover:scale-125 transition-all ${posClass}"></div>`;
     }).join('');
 
-    // ── Textarea fields
-    const taFields = steps.filter(s => s.type === 'textarea' && record[s.id]);
-    const taHTML = taFields.map(s => `
-    <div class="mt-3 bg-zinc-50 border border-zinc-200 rounded-xl p-4">
-        <div class="flex items-center gap-2 mb-2">
-            <i data-lucide="${s.icon}" class="w-3.5 h-3.5 text-zinc-400"></i>
-            <span class="text-[10px] font-bold text-zinc-400 uppercase tracking-wider">${s.label}</span>
-        </div>
-        <p class="text-sm text-zinc-700 leading-relaxed whitespace-pre-wrap">${record[s.id]}</p>
-    </div>`).join('');
+    let extras = '';
+    if (node.notes) extras += `<div class="mt-2 text-xs opacity-80 italic border-l-2 border-black/10 pl-2 line-clamp-2">${node.notes}</div>`;
+    if (node.comments || node.imageUrl) {
+      extras += `<div class="mt-2.5 pt-2.5 border-t border-black/10 flex gap-3 text-xs font-medium opacity-80">`;
+      if (node.comments) extras += `<div class="flex items-center gap-1"><i data-lucide="message-square" class="w-3.5 h-3.5"></i><span>Anotações</span></div>`;
+      if (node.imageUrl) extras += `<div class="flex items-center gap-1"><i data-lucide="image" class="w-3.5 h-3.5"></i><span>Imagem</span></div>`;
+      extras += `</div>`;
+    }
 
-    return `
-<div class="max-w-[680px] mx-auto px-4 py-6 pb-24">
-
-    <!-- Header -->
-    <div class="flex items-start gap-4 mb-6">
-        <div class="flex-1 min-w-0">
-            <div class="flex items-center gap-2 flex-wrap mb-1.5">
-                <span class="text-[10px] font-bold ${t.text} ${t.bg} border ${t.border} px-2 py-0.5 rounded-md uppercase tracking-wider">
-                    ${t.label}
-                </span>
-                <span class="text-[10px] text-zinc-400">${dateStr}</span>
-            </div>
-            <h2 class="text-xl font-bold text-zinc-900 leading-tight">${title}</h2>
+    el.innerHTML = `
+      ${handles}
+      <div class="p-3.5">
+        <div class="flex items-start gap-2.5 mb-1">
+          <div class="p-1.5 bg-white rounded-lg shadow-sm shrink-0">
+            <i data-lucide="${iconName}" class="w-4 h-4 ${iconColor}"></i>
+          </div>
+          <div class="flex-1 min-w-0">
+            <h3 class="font-bold text-[13px] leading-tight mb-0.5">${node.concept.title}</h3>
+            <p class="text-[10px] font-bold uppercase tracking-wider opacity-60 truncate">${node.concept.category} &bull; ${node.concept.subcategory}</p>
+          </div>
         </div>
-        <div class="shrink-0">${headerBadge}</div>
+        ${extras}
+      </div>
+    `;
+
+    // Node mousedown — drag or connect
+    el.addEventListener('mousedown', (e) => {
+      const target = e.target;
+      if (target.classList.contains('pa-handle')) {
+        isConnecting = true;
+        connectionSourceNode = target.getAttribute('data-node-id');
+        connectionSourceHandle = target.getAttribute('data-handle-id');
+        tempEdgePath = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+        tempEdgePath.setAttribute('stroke', '#94a3b8');
+        tempEdgePath.setAttribute('stroke-width', '2');
+        tempEdgePath.setAttribute('fill', 'none');
+        tempEdgePath.setAttribute('stroke-dasharray', '5,5');
+        edgesLayer.appendChild(tempEdgePath);
+        e.stopPropagation();
+        return;
+      }
+      isDraggingNode = true;
+      hasDragged = false;
+      draggedNodeId = node.id;
+      dragStartX = e.clientX; dragStartY = e.clientY;
+      nodeStartX = node.x; nodeStartY = node.y;
+      const idx = paState.nodes.findIndex(n => n.id === node.id);
+      if (idx > -1) { paState.nodes.push(paState.nodes.splice(idx, 1)[0]); nodesLayer.appendChild(el); }
+      e.stopPropagation();
+    });
+
+    // Click → modal
+    el.addEventListener('click', (e) => {
+      if (!hasDragged && !e.target.classList.contains('pa-handle')) openModal(node.id);
+    });
+
+    nodesLayer.appendChild(el);
+  });
+
+  if (window.lucide) window.lucide.createIcons();
+  renderEdges();
+}
+
+// ═════════════════════════════════════════════════════════════════════════════
+//  EDGES — Bezier
+// ═════════════════════════════════════════════════════════════════════════════
+
+function getHandlePosition(nodeId, handleId) {
+  const node = paState.nodes.find(n => n.id === nodeId);
+  const el = document.getElementById(`pa-node-${nodeId}`);
+  if (!node || !el) return null;
+  const w = el.offsetWidth, h = el.offsetHeight;
+  if (handleId === 'top') return { x: node.x + w / 2, y: node.y };
+  if (handleId === 'bottom') return { x: node.x + w / 2, y: node.y + h };
+  if (handleId === 'left') return { x: node.x, y: node.y + h / 2 };
+  if (handleId === 'right') return { x: node.x + w, y: node.y + h / 2 };
+  return { x: node.x, y: node.y };
+}
+
+function getBezierPath(x1, y1, x2, y2, pos1, pos2) {
+  const dx = Math.abs(x2 - x1) * 0.5;
+  const dy = Math.abs(y2 - y1) * 0.5;
+  const offset = Math.max(dx, dy, 50);
+  let cp1x = x1, cp1y = y1;
+  if (pos1 === 'top') cp1y -= offset;
+  if (pos1 === 'bottom') cp1y += offset;
+  if (pos1 === 'left') cp1x -= offset;
+  if (pos1 === 'right') cp1x += offset;
+  let cp2x = x2, cp2y = y2;
+  if (pos2 === 'top') cp2y -= offset;
+  if (pos2 === 'bottom') cp2y += offset;
+  if (pos2 === 'left') cp2x -= offset;
+  if (pos2 === 'right') cp2x += offset;
+  return `M ${x1} ${y1} C ${cp1x} ${cp1y}, ${cp2x} ${cp2y}, ${x2} ${y2}`;
+}
+
+function renderEdges() {
+  if (!edgesLayer) return;
+  const tmpEdge = tempEdgePath;
+  edgesLayer.innerHTML = '';
+  if (tmpEdge) edgesLayer.appendChild(tmpEdge);
+
+  paState.edges.forEach(edge => {
+    const srcPos = getHandlePosition(edge.source, edge.sourceHandle);
+    const tgtPos = getHandlePosition(edge.target, edge.targetHandle);
+    if (!srcPos || !tgtPos) return;
+
+    const d = getBezierPath(srcPos.x, srcPos.y, tgtPos.x, tgtPos.y, edge.sourceHandle, edge.targetHandle);
+
+    const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+    path.setAttribute('d', d);
+    path.setAttribute('stroke', '#94a3b8');
+    path.setAttribute('stroke-width', '2');
+    path.setAttribute('fill', 'none');
+    path.style.transition = 'stroke 0.2s, stroke-width 0.2s';
+    path.style.pointerEvents = 'none';
+
+    const hitPath = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+    hitPath.setAttribute('d', d);
+    hitPath.setAttribute('stroke', 'transparent');
+    hitPath.setAttribute('stroke-width', '15');
+    hitPath.setAttribute('fill', 'none');
+    hitPath.style.pointerEvents = 'stroke';
+    hitPath.style.cursor = 'pointer';
+
+    hitPath.addEventListener('mouseenter', () => { path.setAttribute('stroke', '#ef4444'); path.setAttribute('stroke-width', '4'); });
+    hitPath.addEventListener('mouseleave', () => { path.setAttribute('stroke', '#94a3b8'); path.setAttribute('stroke-width', '2'); });
+    hitPath.addEventListener('dblclick', () => { paState.edges = paState.edges.filter(ed => ed.id !== edge.id); renderEdges(); });
+
+    edgesLayer.appendChild(path);
+    edgesLayer.appendChild(hitPath);
+  });
+}
+
+// ═════════════════════════════════════════════════════════════════════════════
+//  MODAL
+// ═════════════════════════════════════════════════════════════════════════════
+
+let closeTimeout = null;
+
+function openModal(nodeId) {
+  if (closeTimeout) { clearTimeout(closeTimeout); closeTimeout = null; }
+  const node = paState.nodes.find(n => n.id === nodeId);
+  if (!node) return;
+  const modal = document.getElementById('pa-modal');
+  const content = document.getElementById('pa-modal-content');
+  if (!modal || !content) return;
+
+  content.innerHTML = `
+    <div class="flex justify-between items-center p-5 border-b border-gray-100">
+      <div class="flex-1 min-w-0">
+        <h2 class="text-xl font-bold text-gray-900 truncate">${node.concept.title}</h2>
+        <p class="text-xs font-medium text-gray-500 uppercase tracking-wider mt-1">${node.concept.category} &bull; ${node.concept.subcategory}</p>
+      </div>
+      <button id="pa-modal-close" class="text-gray-400 hover:text-gray-600 transition-colors p-2 rounded-full hover:bg-gray-100 shrink-0 ml-3">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
     </div>
-
-    <!-- Fields card -->
-    <div class="bg-white border border-zinc-200 rounded-2xl overflow-hidden shadow-sm mb-3">
-        <div class="divide-y divide-zinc-50 px-4">
-            ${fieldsHTML || `<p class="py-4 text-xs text-zinc-400 text-center">Sem campos para exibir.</p>`}
+    <div class="p-5 space-y-5">
+      <div class="space-y-2">
+        <label class="flex items-center gap-2 text-sm font-semibold text-gray-700">
+          <i data-lucide="message-square" class="w-4 h-4 text-blue-500"></i> Comentários e Anotações
+        </label>
+        <textarea id="pa-modal-comments" class="w-full h-28 p-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none transition-all text-sm" placeholder="Adicione suas anotações sobre este conceito...">${node.comments || ''}</textarea>
+      </div>
+      <div class="space-y-2">
+        <label class="flex items-center gap-2 text-sm font-semibold text-gray-700">
+          <i data-lucide="image" class="w-4 h-4 text-green-500"></i> URL da Imagem de Exemplo
+        </label>
+        <input id="pa-modal-image-url" type="text" class="w-full p-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all text-sm" placeholder="https://exemplo.com/imagem.png" value="${node.imageUrl || ''}" />
+        <div id="pa-modal-image-preview" class="mt-3 rounded-xl overflow-hidden border border-gray-200 bg-gray-50 aspect-video flex items-center justify-center ${node.imageUrl ? '' : 'hidden'}">
+          <img src="${node.imageUrl || ''}" alt="Exemplo" class="max-w-full max-h-full object-contain" onerror="this.style.display='none'" />
         </div>
+      </div>
     </div>
-
-    ${taHTML}
-
-    <!-- Actions -->
-    <div class="mt-6 flex items-center justify-between gap-3">
-        <button id="back-to-new-btn"
-            class="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-zinc-900 hover:bg-zinc-800 text-white text-sm font-semibold transition-colors">
-            <i data-lucide="plus" class="w-4 h-4"></i>
-            Novo Registro
+    <div class="p-5 border-t border-gray-100 bg-gray-50 flex justify-between gap-3">
+      <button id="pa-modal-delete" class="px-4 py-2 text-sm font-medium text-red-700 bg-red-50 border border-red-200 rounded-xl hover:bg-red-100 transition-colors flex items-center gap-2">
+        <i data-lucide="trash-2" class="w-4 h-4"></i> Excluir Nó
+      </button>
+      <div class="flex gap-2">
+        <button id="pa-modal-cancel" class="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-xl hover:bg-gray-50 transition-colors">Cancelar</button>
+        <button id="pa-modal-save" class="px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-xl hover:bg-blue-700 transition-colors flex items-center gap-2 shadow-sm">
+          <i data-lucide="save" class="w-4 h-4"></i> Salvar
         </button>
-        <button id="delete-analise-btn" data-id="${record.id}"
-            class="flex items-center gap-1.5 px-4 py-2.5 rounded-xl text-zinc-400 hover:text-red-600 hover:bg-red-50 border border-transparent hover:border-red-200 text-sm font-semibold transition-all">
-            <i data-lucide="trash-2" class="w-4 h-4"></i>
-            Excluir
-        </button>
+      </div>
     </div>
+  `;
 
-</div>`;
+  if (window.lucide) window.lucide.createIcons();
+
+  document.getElementById('pa-modal-close')?.addEventListener('click', closeModal);
+  document.getElementById('pa-modal-cancel')?.addEventListener('click', closeModal);
+
+  document.getElementById('pa-modal-delete')?.addEventListener('click', () => {
+    if (confirm('Excluir este conceito do canvas?')) {
+      paState.nodes = paState.nodes.filter(n => n.id !== nodeId);
+      paState.edges = paState.edges.filter(ed => ed.source !== nodeId && ed.target !== nodeId);
+      paState.onNodesChange();
+      closeModal();
+    }
+  });
+
+  const imgInput = document.getElementById('pa-modal-image-url');
+  const imgPreview = document.getElementById('pa-modal-image-preview');
+  const imgEl = imgPreview?.querySelector('img');
+  imgInput?.addEventListener('input', (e) => {
+    const v = e.target.value;
+    if (v && imgPreview && imgEl) { imgPreview.classList.remove('hidden'); imgEl.src = v; imgEl.style.display = 'block'; }
+    else if (imgPreview) imgPreview.classList.add('hidden');
+  });
+
+  document.getElementById('pa-modal-save')?.addEventListener('click', () => {
+    node.comments = document.getElementById('pa-modal-comments')?.value || '';
+    node.imageUrl = document.getElementById('pa-modal-image-url')?.value || '';
+    paState.onNodesChange();
+    closeModal();
+    showToast('Alterações salvas!');
+  });
+
+  modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
+  modal.classList.remove('hidden');
+  setTimeout(() => { modal.classList.remove('opacity-0'); content.classList.remove('scale-95'); }, 10);
 }
 
-/* ═══════════════════════════════════════════════════════════════════
-   BIND ALL
-   ═══════════════════════════════════════════════════════════════════ */
-
-function bindAll() {
-    // ── Mode tabs
-    document.getElementById('mode-evolucao')?.addEventListener('click', () => {
-        if (_mode === 'evolucao') return;
-        _mode = 'evolucao'; _sel = {}; _detail = null;
-        repaint();
-    });
-    document.getElementById('mode-operacao')?.addEventListener('click', () => {
-        if (_mode === 'operacao') return;
-        _mode = 'operacao'; _sel = {}; _detail = null;
-        repaint();
-    });
-
-    // ── New button
-    document.getElementById('new-analise-btn')?.addEventListener('click', () => {
-        _detail = null; _sel = {};
-        repaint();
-    });
-
-    // ── Mobile drawer
-    document.getElementById('analise-sidebar-btn')?.addEventListener('click', () => {
-        document.getElementById('analise-drawer')?.classList.remove('hidden');
-    });
-    document.getElementById('analise-drawer-overlay')?.addEventListener('click', () => {
-        document.getElementById('analise-drawer')?.classList.add('hidden');
-    });
-
-    // ── History items
-    document.querySelectorAll('[data-history-id]').forEach(btn => {
-        btn.addEventListener('click', () => {
-            const id = btn.getAttribute('data-history-id');
-            const records = db();
-            _detail = records.find(r => r.id === id) || null;
-            repaint();
-            document.getElementById('analise-drawer')?.classList.add('hidden');
-        });
-    });
-
-    // ── Chips (toggle: re-click deselects)
-    document.querySelectorAll('.lab-chip').forEach(chip => {
-        chip.addEventListener('click', () => {
-            const stepId = chip.getAttribute('data-step');
-            const val    = chip.getAttribute('data-val');
-            if (_sel[stepId] === val) {
-                delete _sel[stepId];
-            } else {
-                _sel[stepId] = val;
-                // Clear free input for this step if chip selected
-                const freeEl = document.getElementById(`free-${stepId}`);
-                if (freeEl) freeEl.value = '';
-            }
-            repaint();
-        });
-    });
-
-    // ── Free text inputs (chips_free) — debounced, no repaint
-    document.querySelectorAll('[data-free]').forEach(input => {
-        // Restore value if chip not selected
-        const stepId = input.getAttribute('data-free');
-        const steps = _mode === 'evolucao' ? EVOLUCAO_STEPS : OPERACAO_STEPS;
-        const step = steps.find(s => s.id === stepId);
-        if (step && _sel[stepId] && step.options && !step.options.includes(_sel[stepId])) {
-            input.value = _sel[stepId];
-        }
-
-        input.addEventListener('input', () => {
-            const v = input.value.trim();
-            if (v) {
-                _sel[stepId] = v;
-                // Unselect any chip for this step visually (chip handles are already in DOM)
-            } else {
-                delete _sel[stepId];
-            }
-            updateSaveBtn();
-        });
-    });
-
-    // ── Textareas — no repaint, just update state + save btn
-    document.querySelectorAll('[data-ta]').forEach(ta => {
-        ta.addEventListener('input', () => {
-            const stepId = ta.getAttribute('data-ta');
-            const v = ta.value;
-            _sel[stepId] = v;
-            updateSaveBtn();
-        });
-    });
-
-    // ── Save
-    document.getElementById('save-analise-btn')?.addEventListener('click', () => {
-        saveRecord();
-    });
-
-    // ── Back to new
-    document.getElementById('back-to-new-btn')?.addEventListener('click', () => {
-        _detail = null; _sel = {};
-        repaint();
-    });
-
-    // ── Delete
-    document.getElementById('delete-analise-btn')?.addEventListener('click', e => {
-        const id = e.currentTarget.getAttribute('data-id');
-        if (!confirm('Excluir este registro permanentemente?')) return;
-        dbDelete(id);
-        _detail = null;
-        repaint();
-    });
+function closeModal() {
+  const modal = document.getElementById('pa-modal');
+  const content = document.getElementById('pa-modal-content');
+  if (!modal || !content) return;
+  modal.classList.add('opacity-0');
+  content.classList.add('scale-95');
+  closeTimeout = setTimeout(() => { modal.classList.add('hidden'); closeTimeout = null; }, 200);
 }
 
-/* ═══════════════════════════════════════════════════════════════════
-   UPDATE SAVE BTN (sem repaint completo)
-   ═══════════════════════════════════════════════════════════════════ */
+// ═════════════════════════════════════════════════════════════════════════════
+//  SIDEBAR — Repositório de Conceitos
+// ═════════════════════════════════════════════════════════════════════════════
 
-function updateSaveBtn() {
-    const steps = _mode === 'evolucao' ? EVOLUCAO_STEPS : OPERACAO_STEPS;
-    const required = steps.filter(s => s.required);
-    const answered = required.filter(s => _sel[s.id] && String(_sel[s.id]).trim());
-    const canSave  = answered.length === required.length;
-    const t = THEME[_mode];
+function initSidebar() {
+  const sidebar = document.getElementById('pa-sidebar');
+  if (!sidebar) return;
+  renderSidebarContent(sidebar);
 
-    const btn = document.getElementById('save-analise-btn');
-    if (!btn) return;
+  sidebar.addEventListener('click', (e) => {
+    const modeBtn = e.target.closest('[data-pa-mode]');
+    if (modeBtn) { currentMode = modeBtn.getAttribute('data-pa-mode'); renderSidebarContent(sidebar); }
+    const catBtn = e.target.closest('[data-pa-category]');
+    if (catBtn) { const cat = catBtn.getAttribute('data-pa-category'); expandedCategories[cat] = !expandedCategories[cat]; renderSidebarContent(sidebar); }
+  });
 
-    btn.disabled = !canSave;
-    btn.className = `flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold transition-all duration-200 ${
-        canSave
-            ? `${t.btn} text-white shadow-sm`
-            : 'bg-zinc-200 text-zinc-400 cursor-not-allowed'
-    }`;
+  sidebar.addEventListener('input', (e) => {
+    if (e.target.id === 'pa-search-input') {
+      searchQuery = e.target.value;
+      if (searchQuery) {
+        const groups = getGroupedConcepts();
+        Object.keys(groups).forEach(c => expandedCategories[c] = true);
+      }
+      renderSidebarContent(sidebar);
+    }
+  });
+
+  sidebar.addEventListener('dragstart', (e) => {
+    const item = e.target.closest('[data-pa-concept-id]');
+    if (item && e.dataTransfer) {
+      const cid = item.getAttribute('data-pa-concept-id');
+      const concept = PA_CONCEPTS.find(c => c.id === cid);
+      if (concept) { e.dataTransfer.setData('application/json', JSON.stringify(concept)); e.dataTransfer.effectAllowed = 'move'; }
+    }
+  });
 }
 
-/* ═══════════════════════════════════════════════════════════════════
-   SAVE RECORD
-   ═══════════════════════════════════════════════════════════════════ */
+function getFilteredConcepts() {
+  return PA_CONCEPTS.filter(c => {
+    if (c.mode !== currentMode) return false;
+    if (!searchQuery) return true;
+    const q = searchQuery.toLowerCase();
+    return c.title.toLowerCase().includes(q) || c.category.toLowerCase().includes(q) || c.subcategory.toLowerCase().includes(q) || (c.notes && c.notes.toLowerCase().includes(q));
+  });
+}
 
-function saveRecord() {
-    // Capture latest textarea values before save
-    document.querySelectorAll('[data-ta]').forEach(ta => {
-        const v = ta.value.trim();
-        if (v) _sel[ta.getAttribute('data-ta')] = v;
+function getGroupedConcepts() {
+  const filtered = getFilteredConcepts();
+  const groups = {};
+  filtered.forEach(c => {
+    if (!groups[c.category]) groups[c.category] = {};
+    if (!groups[c.category][c.subcategory]) groups[c.category][c.subcategory] = [];
+    groups[c.category][c.subcategory].push(c);
+  });
+  return groups;
+}
+
+function renderSidebarContent(sidebar) {
+  const wasFocused = document.activeElement?.id === 'pa-search-input';
+  const groups = getGroupedConcepts();
+  const hasConcepts = Object.keys(groups).length > 0;
+
+  Object.keys(groups).forEach(cat => { if (expandedCategories[cat] === undefined) expandedCategories[cat] = true; });
+
+  const evoActive = currentMode === 'evolucao';
+
+  let html = `
+    <div class="p-4 border-b border-gray-200 bg-gray-50/50 shrink-0">
+      <div class="flex items-center justify-between mb-1">
+        <h2 class="text-base font-bold text-gray-900">Repositório</h2>
+        <button id="pa-sidebar-close" class="md:hidden p-1.5 text-gray-400 hover:text-gray-700 hover:bg-gray-100 rounded-md transition-colors">
+          <i data-lucide="x" class="w-4 h-4"></i>
+        </button>
+      </div>
+      <p class="text-[11px] text-gray-500 mb-3">Arraste os conceitos para o canvas</p>
+      <div class="flex p-1 bg-gray-100 rounded-lg mb-3">
+        <button data-pa-mode="evolucao" class="flex-1 flex items-center justify-center gap-1.5 py-2 px-2 text-xs font-semibold rounded-md transition-all ${evoActive ? 'bg-white text-blue-700 shadow-sm' : 'text-gray-500 hover:text-gray-700'}">
+          <i data-lucide="book-open" class="w-3.5 h-3.5"></i> Evolução
+        </button>
+        <button data-pa-mode="operacao" class="flex-1 flex items-center justify-center gap-1.5 py-2 px-2 text-xs font-semibold rounded-md transition-all ${!evoActive ? 'bg-white text-emerald-700 shadow-sm' : 'text-gray-500 hover:text-gray-700'}">
+          <i data-lucide="activity" class="w-3.5 h-3.5"></i> Operações
+        </button>
+      </div>
+      <div class="relative">
+        <i data-lucide="search" class="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-gray-400"></i>
+        <input id="pa-search-input" type="text" placeholder="Buscar conceitos..." value="${searchQuery}" class="w-full pl-9 pr-3 py-2 bg-white border border-gray-200 rounded-lg text-xs focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all" />
+      </div>
+    </div>
+    <div class="flex-1 overflow-y-auto p-3 space-y-1">
+  `;
+
+  if (!hasConcepts) {
+    html += `<div class="text-center py-8 text-gray-500 text-xs">Nenhum conceito encontrado.</div>`;
+  } else {
+    Object.entries(groups).forEach(([category, subcategories]) => {
+      const isExp = expandedCategories[category];
+      html += `<div class="mb-1.5">
+        <button data-pa-category="${category}" class="w-full flex items-center justify-between p-2 hover:bg-gray-50 rounded-lg transition-colors group">
+          <span class="font-semibold text-gray-800 text-xs">${category}</span>
+          <i data-lucide="${isExp ? 'chevron-down' : 'chevron-right'}" class="w-3.5 h-3.5 text-gray-400 group-hover:text-gray-600"></i>
+        </button>`;
+      if (isExp) {
+        html += `<div class="pl-2 pr-1 mt-1 space-y-3 pb-1">`;
+        Object.entries(subcategories).forEach(([sub, concepts]) => {
+          html += `<div>
+            <h4 class="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-1.5 pl-2">${sub}</h4>
+            <div class="space-y-1">`;
+          concepts.forEach(concept => {
+            const bgCls = currentMode === 'evolucao' ? 'bg-blue-50/50 border-blue-100 hover:bg-blue-50 hover:border-blue-200' : 'bg-emerald-50/50 border-emerald-100 hover:bg-emerald-50 hover:border-emerald-200';
+            html += `<div data-pa-concept-id="${concept.id}" draggable="true" class="group relative flex flex-col p-2 rounded-lg border cursor-grab transition-all hover:shadow-sm ${bgCls}">
+              <div class="flex items-start">
+                <i data-lucide="grip-vertical" class="w-3.5 h-3.5 text-gray-400 mr-1.5 shrink-0 mt-0.5"></i>
+                <div class="flex-1 min-w-0">
+                  <span class="text-xs font-medium text-gray-800 block truncate">${concept.title}</span>
+                  ${concept.prerequisite ? `<span class="inline-block mt-0.5 px-1.5 py-0.5 bg-gray-200 text-gray-600 text-[9px] rounded font-medium">Pré: ${concept.prerequisite}</span>` : ''}
+                </div>
+                ${concept.notes ? `<div class="shrink-0 ml-1.5 text-gray-400 group-hover:text-gray-600" title="${concept.notes}"><i data-lucide="info" class="w-3.5 h-3.5"></i></div>` : ''}
+              </div>
+            </div>`;
+          });
+          html += `</div></div>`;
+        });
+        html += `</div>`;
+      }
+      html += `</div>`;
     });
-    document.querySelectorAll('[data-free]').forEach(inp => {
-        const v = inp.value.trim();
-        const stepId = inp.getAttribute('data-free');
-        if (v) _sel[stepId] = v;
-    });
+  }
 
-    const record = {
-        id: Date.now().toString(36) + Math.random().toString(36).slice(2, 7),
-        mode: _mode,
-        createdAt: new Date().toISOString(),
-        ..._sel
-    };
+  html += `</div>`;
+  sidebar.innerHTML = html;
 
-    dbAdd(record);
-    _detail = record;
-    _sel = {};
-    repaint();
+  if (window.lucide) window.lucide.createIcons();
+
+  // Re-focus search
+  if (wasFocused) {
+    const input = document.getElementById('pa-search-input');
+    if (input) { input.focus(); input.setSelectionRange(input.value.length, input.value.length); }
+  }
+
+  // Close button for mobile
+  document.getElementById('pa-sidebar-close')?.addEventListener('click', () => {
+    sidebar.classList.add('max-md:-translate-x-full');
+    sidebar.classList.remove('max-md:translate-x-0');
+    document.getElementById('pa-sidebar-overlay')?.classList.add('hidden');
+  });
 }
