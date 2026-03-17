@@ -7,12 +7,18 @@ import { supabase } from './supabaseClient.js';
    CDN LOADER — carrega Editor.js e plugins via jsdelivr
    ════════════════════════════════════════════════════════════════════════════ */
 
-// Scripts do Editor.js são carregados via <script> tags no index.html
-// Esta função apenas verifica se estão prontos (são síncronos no HTML head)
+// Aguarda window.EditorJS ficar disponível (scripts carregados via CDN no head)
 async function loadEditorScripts() {
-  // Noop — todos os scripts já foram carregados pelo index.html
-  // Aguarda um tick para garantir que o DOM está pronto
-  return Promise.resolve();
+  if (window.EditorJS) return;
+  return new Promise((resolve, reject) => {
+    const deadline = Date.now() + 15000; // 15s timeout
+    const check = () => {
+      if (window.EditorJS) return resolve();
+      if (Date.now() > deadline) return reject(new Error('timeout'));
+      setTimeout(check, 100);
+    };
+    check();
+  });
 }
 
 /* ════════════════════════════════════════════════════════════════════════════
@@ -459,11 +465,22 @@ export async function createRichEditor(containerId, initialHtml, onUpdate) {
 
   el.innerHTML = `<div style="padding:20px 0;color:#a1a1aa;font-size:13px;font-style:italic">Carregando editor...</div>`;
 
-  await loadEditorScripts();
+  try {
+    await loadEditorScripts();
+  } catch {
+    el.innerHTML = `<div style="padding:16px;text-align:center">
+      <p style="color:#dc2626;margin-bottom:8px">Editor não carregou. Verifique sua conexão.</p>
+      <button onclick="location.reload()" style="background:#059669;color:#fff;border:none;border-radius:6px;padding:8px 16px;cursor:pointer;font-size:14px">Recarregar</button>
+    </div>`;
+    return null;
+  }
 
   const EJS = window.EditorJS;
   if (!EJS) {
-    el.innerHTML = `<p style="color:red;padding:16px">Editor.js não carregou. Verifique sua conexão.</p>`;
+    el.innerHTML = `<div style="padding:16px;text-align:center">
+      <p style="color:#dc2626;margin-bottom:8px">Editor não carregou. Verifique sua conexão.</p>
+      <button onclick="location.reload()" style="background:#059669;color:#fff;border:none;border-radius:6px;padding:8px 16px;cursor:pointer;font-size:14px">Recarregar</button>
+    </div>`;
     return null;
   }
 
