@@ -1211,3 +1211,17 @@ h4.ce-header { font-size: 0.95rem !important; margin-top: 0.8rem !important; mar
 .ce-callout-select { font-size: 11px; background: transparent; border: none; color: #6b7280; cursor: pointer; margin-bottom: 4px; outline: none; }
 .ce-callout-body { font-size: 14px; color: #374151; outline: none; min-height: 22px; line-height: 1.6; }
 .ce-callout-body:empty::before { content: attr(data-placeholder); color: #a1a1aa; font-style: italic; pointer-events: none; }
+
+/* Video / Embed block */
+.ce-video-block { margin: 8px 0; }
+.ce-video-input-row { display: flex; align-items: center; }
+.ce-video-url-input {
+  width: 100%; padding: 10px 14px; border: 2px dashed #d4d4d8;
+  border-radius: 10px; font-size: 14px; color: #374151; outline: none;
+  background: #fafafa; transition: border-color .2s;
+}
+.ce-video-url-input:focus { border-color: #10b981; background: #fff; }
+.ce-video-embed { display: none; }
+.ce-video-iframe { width: 100%; aspect-ratio: 16/9; border: none; border-radius: 10px; }
+.ce-video-caption { font-size: 13px; color: #9ca3af; text-align: center; margin-top: 4px; min-height: 18px; outline: none; }
+.ce-video-caption:empty::before { content: attr(data-placeholder); color: #d4d4d8; font-style: italic; pointer-events: none; }

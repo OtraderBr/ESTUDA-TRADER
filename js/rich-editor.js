@@ -141,6 +141,116 @@ class CalloutBlock {
   }
 }
 
+/** Video / Embed block (YouTube + Vimeo) */
+class VideoBlock {
+  static get toolbox() {
+    return { title: 'Vídeo', icon: '<b style="font-size:14px">🎬</b>' };
+  }
+  static get sanitize() {
+    return { url: false, caption: { br: false } };
+  }
+
+  constructor({ data, readOnly }) {
+    this.data = { url: '', caption: '', ...(data || {}) };
+    this.readOnly = readOnly;
+    this._input = null;
+    this._caption = null;
+    this._embedArea = null;
+  }
+
+  _getEmbedSrc(url) {
+    const yt = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([a-zA-Z0-9_-]{11})/);
+    if (yt) return `https://www.youtube.com/embed/${yt[1]}?rel=0`;
+    const vi = url.match(/vimeo\.com\/(\d+)/);
+    if (vi) return `https://player.vimeo.com/video/${vi[1]}`;
+    return null;
+  }
+
+  _renderEmbed(url) {
+    this._embedArea.innerHTML = '';
+    const src = this._getEmbedSrc(url);
+    if (!src) return false;
+    const iframe = document.createElement('iframe');
+    iframe.src = src;
+    iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+    iframe.allowFullscreen = true;
+    iframe.className = 'ce-video-iframe';
+    this._embedArea.appendChild(iframe);
+    return true;
+  }
+
+  render() {
+    const wrapper = document.createElement('div');
+    wrapper.className = 'ce-video-block';
+
+    // URL input row
+    const inputRow = document.createElement('div');
+    inputRow.className = 'ce-video-input-row';
+    const input = document.createElement('input');
+    input.type = 'url';
+    input.className = 'ce-video-url-input';
+    input.placeholder = '🎬 Cole o link do YouTube ou Vimeo e pressione Enter…';
+    input.value = this.data.url || '';
+    input.readOnly = !!this.readOnly;
+    inputRow.appendChild(input);
+
+    // Embed area
+    const embedArea = document.createElement('div');
+    embedArea.className = 'ce-video-embed';
+
+    // Caption
+    const caption = document.createElement('div');
+    caption.className = 'ce-video-caption';
+    caption.contentEditable = String(!this.readOnly);
+    caption.innerHTML = this.data.caption || '';
+    caption.dataset.placeholder = 'Legenda do vídeo…';
+
+    const tryEmbed = () => {
+      const url = input.value.trim();
+      if (url && this._renderEmbed(url)) {
+        inputRow.style.display = 'none';
+        embedArea.style.display = '';
+      } else {
+        embedArea.innerHTML = '';
+        inputRow.style.display = '';
+      }
+    };
+
+    input.addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); tryEmbed(); } });
+    input.addEventListener('blur', tryEmbed);
+
+    // Click embed to re-edit URL
+    embedArea.addEventListener('dblclick', () => {
+      if (!this.readOnly) {
+        embedArea.innerHTML = '';
+        embedArea.style.display = 'none';
+        inputRow.style.display = '';
+        input.focus();
+      }
+    });
+
+    this._input = input;
+    this._caption = caption;
+    this._embedArea = embedArea;
+
+    wrapper.appendChild(inputRow);
+    wrapper.appendChild(embedArea);
+    wrapper.appendChild(caption);
+
+    // Initial render
+    if (this.data.url) tryEmbed();
+
+    return wrapper;
+  }
+
+  save() {
+    return {
+      url: this._input?.value?.trim() || this.data.url || '',
+      caption: this._caption?.innerHTML || '',
+    };
+  }
+}
+
 /* ════════════════════════════════════════════════════════════════════════════
    IMAGE UPLOAD — Supabase Storage
    ════════════════════════════════════════════════════════════════════════════ */
@@ -308,6 +418,11 @@ function blockToHtml(block) {
     }
     case 'comment':
       return `<blockquote class="comment-block">${d.text||''}</blockquote>`;
+    case 'video': {
+      const url = d.url || '';
+      const cap = d.caption ? `<p class="video-caption">${escHtml(d.caption)}</p>` : '';
+      return url ? `<div class="editor-video"><iframe src="${url}" allowfullscreen style="width:100%;aspect-ratio:16/9;border:none;border-radius:8px;"></iframe>${cap}</div>` : '';
+    }
     case 'linkTool':
       return d.link ? `<p><a href="${d.link}" class="editor-link">${d.meta?.title||d.link}</a></p>` : '';
     default:
@@ -400,9 +515,11 @@ export async function createRichEditor(containerId, initialHtml, onUpdate) {
     // Inline tools
     marker: { class: window.Marker, shortcut: 'CMD+SHIFT+M' },
     inlineCode: { class: window.InlineCode, shortcut: 'CMD+SHIFT+`' },
+    underline: { class: window.Underline, shortcut: 'CMD+U' },
     // Custom blocks
     callout: { class: CalloutBlock },
     comment: { class: CommentBlock },
+    video: { class: VideoBlock },
   };
 
   // Only keep tools whose class loaded successfully
@@ -417,7 +534,7 @@ export async function createRichEditor(containerId, initialHtml, onUpdate) {
     placeholder: 'Digite "/" para inserir blocos, ou comece a escrever...',
     autofocus: false,
     tools,
-    inlineToolbar: ['bold', 'italic', 'link', 'marker', 'inlineCode'],
+    inlineToolbar: ['bold', 'italic', 'underline', 'link', 'marker', 'inlineCode'],
     onChange: async (api) => {
       clearTimeout(saveTimer);
       saveTimer = setTimeout(async () => {

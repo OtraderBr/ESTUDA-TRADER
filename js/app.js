@@ -14,6 +14,7 @@ import { renderGraph }        from './graph.js';
 import { renderCourseSearch } from './course-search.js';
 import { renderChat }         from './chat.js';
 import { renderSettings }     from './settings.js';
+import { renderAnalise }      from './analise.js';
 import { runCourseMapper }    from './course-mapper.js';
 import { updateTopbarTimer }  from './topbar-timer.js';
 
@@ -139,6 +140,11 @@ function renderApp(state) {
             break;
         case 'settings':
             renderSettings(viewContainer);
+            break;
+        case 'lab':
+            if (currentViewType !== 'lab') {
+                renderAnalise(viewContainer);
+            }
             break;
         default:
             viewContainer.innerHTML = `<div class="p-6 text-zinc-500">Página não encontrada.</div>`;
