@@ -85,7 +85,7 @@ VALUES
 ('Gap Grande na Abertura','Operando por Tempo','Abertura','Gap','43-46','Gap de Abertura',0,10,NULL,NULL,'Livro/Video/Arvore','70-80%','Universal','Universal','Gap >10pts Emini: 70-80% será testado | NÃO entre a favor inicialmente | Aguarde fechamento do gap | Entre quando testar (limit)'),
 ('Gap Pequeno na Abertura','Operando por Tempo','Abertura','Gap','43-46','Gap de Abertura',0,10,NULL,NULL,'Livro/Video/Arvore',NULL,NULL,'Universal','Gap <5pts: trate como abertura normal'),
 ('TTR na Abertura','Operando por Tempo','Abertura','Padrão','43-46','TTR e Abertura',0,10,NULL,NULL,'Livro/Video/Arvore',NULL,NULL,'Universal','6+ barras sobrepostas: NÃO opere | Aguarde breakout | Fade se fraco'),
-('MTR na Abertura','Operando por Tempo','Abertura','Padrão','43-46','MTR e Abertura',0,10,NULL,NULL,'Livro/Video/Arvore',NULL,NULL,'Universal','Reversão de tendência comum na primeira hora'),
+('MTR na Abertura (Tempo)','Operando por Tempo','Abertura','Padrão','43-46','MTR e Abertura',0,10,NULL,NULL,'Livro/Video/Arvore',NULL,NULL,'Universal','Reversão de tendência comum na primeira hora'),
 ('BOM na Abertura','Operando por Tempo','Abertura','Padrão','43-46','BOM e Abertura',0,10,NULL,NULL,'Livro/Video/Arvore',NULL,NULL,'Universal','TR recém-formada - aguarda breakout'),
 ('Contexto do Dia Anterior','Operando por Tempo','Abertura','Análise','43-46','HTF',0,10,NULL,NULL,'Livro/Video/Arvore',NULL,NULL,'Universal','Como terminou ontem afeta abertura hoje'),
 ('Amplitude das 18 Primeiras Barras','Operando por Tempo','Abertura','Estatística','43-46','Abertura',0,10,NULL,NULL,'Livro/Video/Arvore',NULL,NULL,'Universal','Range das primeiras 18 barras = provável amplitude do dia'),

@@ -581,6 +581,8 @@ export async function createCanvasEdge(mapId, fields = {}) {
             map_id: mapId,
             source_id: fields.source_id,
             target_id: fields.target_id,
+            source_handle: fields.source_handle || 'right',
+            target_handle: fields.target_handle || 'left',
             edge_type: fields.edge_type || 'arrow',
             label: fields.label || '',
             color: fields.color || ''
@@ -665,6 +667,8 @@ export async function saveCanvasState(mapId, nodes, edges, viewport) {
             map_id: mapId,
             source_id: e.source_id,
             target_id: e.target_id,
+            source_handle: e.source_handle || 'right',
+            target_handle: e.target_handle || 'left',
             edge_type: e.edge_type || 'arrow',
             label: e.label || '',
             color: e.color || ''

@@ -6,9 +6,9 @@ import { supabase } from './supabaseClient.js';
 import {
   getAllCanvasMaps, createCanvasMap, updateCanvasMap, deleteCanvasMap,
   getCanvasNodes, createCanvasNode, updateCanvasNode, deleteCanvasNode,
-  getCanvasEdges, createCanvasEdge, deleteCanvasEdge, saveCanvasState
+  getCanvasEdges, createCanvasEdge, deleteCanvasEdge, saveCanvasState,
+  loadConcepts
 } from './dataService.js';
-import { PA_CONCEPTS } from '../data/pa-concepts.js';
 
 // ═════════════════════════════════════════════════════════════════════════════
 //  ESTADO
@@ -16,6 +16,7 @@ import { PA_CONCEPTS } from '../data/pa-concepts.js';
 
 const state = {
   currentMapId: null,
+  allConcepts: [],
   nodes: [],
   edges: [],
   scale: 1,
@@ -141,7 +142,7 @@ function showModal({ title, message, type = 'confirm', confirmText = 'Confirmar'
 //  RENDER PRINCIPAL
 // ═════════════════════════════════════════════════════════════════════════════
 
-export function renderAnalise(container) {
+export async function renderAnalise(container) {
   if (!container) return;
 
   // Limpa listeners anteriores
@@ -258,6 +259,7 @@ export function renderAnalise(container) {
   overlayEl = document.getElementById('pa-sidebar-overlay');
 
   // init
+  state.allConcepts = await loadConcepts();
   loadMaps();
   initCanvas();
   initSidebar();
@@ -326,6 +328,8 @@ async function loadMap(mapId) {
     id: e.id,
     source_id: e.source_id,
     target_id: e.target_id,
+    source_handle: e.source_handle || 'right',
+    target_handle: e.target_handle || 'left',
     edge_type: e.edge_type,
     label: e.label,
     color: e.color
@@ -1327,6 +1331,29 @@ function renderNodes() {
       return `<div data-node-id="${node.id}" data-handle-id="${pos}" class="pa-handle absolute w-3 h-3 bg-slate-400 border-2 border-white rounded-full cursor-crosshair z-10 hover:bg-blue-500 hover:scale-125 transition-all ${posClass}"></div>`;
     }).join('');
 
+    // Badge Timeline Stage
+    let stageHtml = '';
+    if (node.data?.timelineStage && node.data.timelineStage !== 'Nenhum') {
+       stageHtml = `
+         <div class="absolute -top-3 left-1/2 -translate-x-1/2 px-2 py-0.5 bg-blue-600 outline outline-2 outline-white text-white text-[9px] font-bold uppercase tracking-wider rounded-full shadow-sm z-10 whitespace-nowrap">
+            ${node.data.timelineStage}
+         </div>
+       `;
+    }
+
+    // Generate Tags HTML
+    let tagsHtml = '';
+    if (node.data?.tags && node.data.tags.length > 0) {
+      tagsHtml = '<div class="mt-2 flex flex-wrap gap-1">';
+      node.data.tags.forEach(tag => {
+         const colors = ['bg-red-100 text-red-700', 'bg-blue-100 text-blue-700', 'bg-emerald-100 text-emerald-700', 'bg-amber-100 text-amber-700', 'bg-purple-100 text-purple-700', 'bg-pink-100 text-pink-700', 'bg-indigo-100 text-indigo-700'];
+         const hash = [...tag].reduce((a, b) => a + b.charCodeAt(0), 0);
+         const color = colors[hash % colors.length];
+         tagsHtml += `<span class="px-1.5 py-0.5 rounded border border-black/5 text-[9px] font-bold uppercase tracking-wider ${color}">${tag}</span>`;
+      });
+      tagsHtml += '</div>';
+    }
+
     // Priority badge
     let priorityHtml = '';
     if (node.data?.priority && node.data.priority !== 'Normal') {
@@ -1340,28 +1367,7 @@ function renderNodes() {
       ? `<p class="text-[9px] font-semibold text-gray-400 uppercase tracking-widest mb-0.5">${node.data.parentProject}</p>`
       : '';
 
-    // Badge Timeline Stage
-    let stageHtml = '';
-    if (node.data?.timelineStage && node.data.timelineStage !== 'Nenhum') {
-      stageHtml = `<div class="absolute -top-3 left-1/2 -translate-x-1/2 px-2 py-0.5 bg-blue-600 outline outline-2 outline-white text-white text-[9px] font-bold uppercase tracking-wider rounded-full shadow-sm z-10 whitespace-nowrap">${node.data.timelineStage}</div>`;
-    }
-
-    // Tags HTML
-    let tagsHtml = '';
-    if (node.data?.tags && node.data.tags.length > 0) {
-      tagsHtml = '<div class="mt-2 flex flex-wrap gap-1">';
-      node.data.tags.forEach(tag => {
-        const colors = ['bg-red-100 text-red-700','bg-blue-100 text-blue-700','bg-emerald-100 text-emerald-700','bg-amber-100 text-amber-700','bg-purple-100 text-purple-700','bg-pink-100 text-pink-700','bg-indigo-100 text-indigo-700'];
-        const hash = [...tag].reduce((a, b) => a + b.charCodeAt(0), 0);
-        tagsHtml += `<span class="px-1.5 py-0.5 rounded border border-black/5 text-[9px] font-bold uppercase tracking-wider ${colors[hash % colors.length]}">${tag}</span>`;
-      });
-      tagsHtml += '</div>';
-    }
-
-    // Collapsed state — card shows just title when collapsed
-    const isCollapsed = node.data?.collapsed === true;
-
-    // Conteúdo do node com verificação de imagem
+    // Conteúdo do node com verificação de imagem - SEM ÍCONES
     if (isImage && node.imageUrl) {
       el.innerHTML = `
         ${handles}
@@ -2004,18 +2010,28 @@ function initSidebar() {
     const item = e.target.closest('[data-pa-concept-id]');
     if (item && e.dataTransfer) {
       const cid = item.getAttribute('data-pa-concept-id');
-      const concept = PA_CONCEPTS.find(c => c.id === cid);
+      const concept = state.allConcepts.find(c => c.id === cid);
       if (concept) { e.dataTransfer.setData('application/json', JSON.stringify(concept)); e.dataTransfer.effectAllowed = 'move'; }
     }
   });
 }
 
 function getFilteredConcepts() {
-  return PA_CONCEPTS.filter(c => {
-    if (c.mode !== state.currentMode) return false;
+  return state.allConcepts.filter(c => {
+    if (state.currentMode === 'evolucao') {
+      const allowedEvolucao = ['Fundamentos', 'Contexto', 'Padrões', 'Psicologia', 'Desenvolvimento'];
+      if (!allowedEvolucao.includes(c.macroCategoryStr)) return false;
+    } else if (state.currentMode === 'operacao') {
+      const allowedOperacao = ['Decisão e Operação', 'Operando por Contexto', 'Operando por Tempo', 'Gestão de Perdas', 'Habilidades Práticas'];
+      if (!allowedOperacao.includes(c.macroCategoryStr)) return false;
+    }
+
     if (!state.searchQuery) return true;
     const q = state.searchQuery.toLowerCase();
-    return c.title.toLowerCase().includes(q) || c.category.toLowerCase().includes(q) || c.subcategory.toLowerCase().includes(q) || (c.notes && c.notes.toLowerCase().includes(q));
+    return c.name.toLowerCase().includes(q) || 
+           c.category.toLowerCase().includes(q) || 
+           c.subcategory.toLowerCase().includes(q) || 
+           (c.notasBD && c.notasBD.toLowerCase().includes(q));
   });
 }
 
@@ -2139,10 +2155,10 @@ function renderSidebarContent(sidebar) {
                 <div class="flex items-start">
                   <svg class="w-3.5 h-3.5 text-gray-400 mr-1.5 shrink-0 mt-0.5" data-lucide="grip-vertical"></svg>
                   <div class="flex-1 min-w-0">
-                    <span class="text-xs font-medium text-gray-800 block truncate">${concept.title}</span>
-                    ${concept.prerequisite ? `<span class="inline-block mt-0.5 px-1.5 py-0.5 bg-gray-200 text-gray-600 text-[9px] rounded font-medium">Pré: ${concept.prerequisite}</span>` : ''}
+                    <span class="text-xs font-medium text-gray-800 block truncate">${concept.name}</span>
+                    ${concept.prerequisite && concept.prerequisite !== 'Nenhum' ? `<span class="inline-block mt-0.5 px-1.5 py-0.5 bg-gray-200 text-gray-600 text-[9px] rounded font-medium">Pré: ${concept.prerequisite}</span>` : ''}
                   </div>
-                  ${concept.notes ? `<div class="shrink-0 ml-1.5 text-gray-400 group-hover:text-gray-600" title="${concept.notes}"><svg class="w-3.5 h-3.5" data-lucide="info"></svg></div>` : ''}
+                  ${concept.notasBD ? `<div class="shrink-0 ml-1.5 text-gray-400 group-hover:text-gray-600" title="${concept.notasBD}"><svg class="w-3.5 h-3.5" data-lucide="info"></svg></div>` : ''}
                 </div>
               </div>`;
             });
