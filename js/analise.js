@@ -1340,7 +1340,28 @@ function renderNodes() {
       ? `<p class="text-[9px] font-semibold text-gray-400 uppercase tracking-widest mb-0.5">${node.data.parentProject}</p>`
       : '';
 
-    // Conteúdo do node com verificação de imagem - SEM ÍCONES
+    // Badge Timeline Stage
+    let stageHtml = '';
+    if (node.data?.timelineStage && node.data.timelineStage !== 'Nenhum') {
+      stageHtml = `<div class="absolute -top-3 left-1/2 -translate-x-1/2 px-2 py-0.5 bg-blue-600 outline outline-2 outline-white text-white text-[9px] font-bold uppercase tracking-wider rounded-full shadow-sm z-10 whitespace-nowrap">${node.data.timelineStage}</div>`;
+    }
+
+    // Tags HTML
+    let tagsHtml = '';
+    if (node.data?.tags && node.data.tags.length > 0) {
+      tagsHtml = '<div class="mt-2 flex flex-wrap gap-1">';
+      node.data.tags.forEach(tag => {
+        const colors = ['bg-red-100 text-red-700','bg-blue-100 text-blue-700','bg-emerald-100 text-emerald-700','bg-amber-100 text-amber-700','bg-purple-100 text-purple-700','bg-pink-100 text-pink-700','bg-indigo-100 text-indigo-700'];
+        const hash = [...tag].reduce((a, b) => a + b.charCodeAt(0), 0);
+        tagsHtml += `<span class="px-1.5 py-0.5 rounded border border-black/5 text-[9px] font-bold uppercase tracking-wider ${colors[hash % colors.length]}">${tag}</span>`;
+      });
+      tagsHtml += '</div>';
+    }
+
+    // Collapsed state — card shows just title when collapsed
+    const isCollapsed = node.data?.collapsed === true;
+
+    // Conteúdo do node com verificação de imagem
     if (isImage && node.imageUrl) {
       el.innerHTML = `
         ${handles}
