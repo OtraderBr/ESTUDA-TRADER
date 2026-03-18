@@ -10,6 +10,7 @@ class Store {
             graphEdges: [],
             loading: true,
             sidebarOpen: false,
+            sidebarHidden: false,
             currentPage: 'dashboard',
             selectedConceptId: null,
             conceptPanelOpen: true,

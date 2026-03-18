@@ -77,8 +77,13 @@ export function initSidebar() {
   overlayEl?.addEventListener('click', () => toggleSidebar(false));
   menuBtn?.addEventListener('click',   () => toggleSidebar(true));
 
+  // Toggle sidebar hidden (desktop)
+  document.getElementById('toggle-sidebar-btn')?.addEventListener('click', () => {
+    store.setState({ sidebarHidden: !store.getState().sidebarHidden });
+  });
+
   store.subscribe(state => {
-    // Sidebar drawer
+    // Sidebar drawer (mobile)
     if (state.sidebarOpen) {
       sidebarEl.classList.remove('-translate-x-full');
       sidebarEl.classList.add('translate-x-0');
@@ -87,6 +92,13 @@ export function initSidebar() {
       sidebarEl.classList.add('-translate-x-full');
       sidebarEl.classList.remove('translate-x-0');
       overlayEl?.classList.add('hidden');
+    }
+
+    // Sidebar hidden (desktop + mobile)
+    if (state.sidebarHidden) {
+      sidebarEl.classList.add('sidebar-hidden');
+    } else {
+      sidebarEl.classList.remove('sidebar-hidden');
     }
 
     renderNavItems(state.currentPage);

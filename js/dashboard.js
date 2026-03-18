@@ -175,8 +175,7 @@ export async function renderDashboard(container, state) {
             >
               <div class="flex justify-between items-start mb-3">
                 <div class="flex flex-wrap gap-1.5">
-                  <span class="text-[10px] font-semibold text-zinc-500 uppercase tracking-wider px-1.5 py-0.5 bg-zinc-100 rounded">${concept.macroCategory}</span>
-                  <span class="text-[10px] font-semibold text-zinc-400 uppercase tracking-wider px-1.5 py-0.5 bg-zinc-50 rounded">${concept.category}</span>
+                  <span class="text-[10px] font-semibold text-zinc-500 uppercase tracking-wider px-1.5 py-0.5 bg-zinc-100 rounded">${concept.category}</span>
                 </div>
                 <span class="text-[10px] font-bold px-2 py-0.5 rounded border ${getCategoryColor(concept.abcCategory || 'B')}">
                   ${concept.abcCategory || 'B'}

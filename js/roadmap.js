@@ -40,9 +40,6 @@ export function renderRoadmap(container, state) {
               
               <button class="macro-toggle-btn w-full px-5 py-4 flex items-center justify-between gap-4 hover:bg-zinc-50 transition-colors" data-macro="${macro.name}">
                 <div class="flex items-center gap-3 text-left">
-                  <div class="w-8 h-8 rounded-lg ${isExpanded ? 'bg-zinc-900 text-white' : 'bg-zinc-100 text-zinc-600'} flex items-center justify-center shrink-0 transition-colors">
-                    <i data-lucide="layers" class="w-4 h-4"></i>
-                  </div>
                   <div>
                     <h2 class="text-sm font-semibold text-zinc-900">${macro.name}</h2>
                     <p class="text-[10px] text-zinc-400 font-medium mt-0.5">

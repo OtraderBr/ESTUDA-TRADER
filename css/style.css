@@ -41,6 +41,11 @@ input[type="text"], input[type="number"], input[type="email"], textarea, select 
   will-change: transform;
 }
 
+/* Sidebar hidden state - esconde a sidebar principal */
+#sidebar-ui.sidebar-hidden {
+  display: none !important;
+}
+
 /* Hover state for dark sidebar items */
 .sidebar-item-hover:hover {
   background-color: rgba(255, 255, 255, 0.06);

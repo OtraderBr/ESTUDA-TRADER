@@ -425,3 +425,253 @@ export async function getConceptImages(conceitoName) {
     if (error) { console.error('getConceptImages:', error); return []; }
     return data;
 }
+
+// ─── CANVAS MAPS (Mapeamento Visual) ──────────────────────────────────────────
+
+/**
+ * Busca todos os canvas maps do usuário.
+ * @returns {Promise<Array>}
+ */
+export async function getAllCanvasMaps() {
+    const { data, error } = await supabase
+        .from('canvas_maps')
+        .select('*')
+        .order('updated_at', { ascending: false });
+    if (error) { console.error('getAllCanvasMaps:', error); return []; }
+    return data;
+}
+
+/**
+ * Cria um novo canvas map.
+ * @param {Object} fields - { title, tags, description, thumbnail, viewport_x, viewport_y, viewport_scale }
+ * @returns {Promise<Object|null>}
+ */
+export async function createCanvasMap(fields = {}) {
+    const { data, error } = await supabase
+        .from('canvas_maps')
+        .insert({
+            title: fields.title || 'Novo mapa',
+            tags: fields.tags || [],
+            description: fields.description || '',
+            thumbnail: fields.thumbnail || '',
+            viewport_x: fields.viewport_x ?? 0,
+            viewport_y: fields.viewport_y ?? 0,
+            viewport_scale: fields.viewport_scale ?? 1
+        })
+        .select()
+        .single();
+    if (error) { console.error('createCanvasMap:', error); return null; }
+    return data;
+}
+
+/**
+ * Atualiza um canvas map existente.
+ * @param {string} mapId
+ * @param {Object} fields
+ */
+export async function updateCanvasMap(mapId, fields) {
+    const { error } = await supabase
+        .from('canvas_maps')
+        .update({ ...fields, updated_at: new Date().toISOString() })
+        .eq('id', mapId);
+    if (error) console.error('updateCanvasMap:', error);
+}
+
+/**
+ * Deleta um canvas map (CASCADE apaga nodes e edges).
+ * @param {string} mapId
+ */
+export async function deleteCanvasMap(mapId) {
+    const { error } = await supabase
+        .from('canvas_maps')
+        .delete()
+        .eq('id', mapId);
+    if (error) console.error('deleteCanvasMap:', error);
+}
+
+/**
+ * Busca todos os nodes de um canvas map.
+ * @param {string} mapId
+ * @returns {Promise<Array>}
+ */
+export async function getCanvasNodes(mapId) {
+    const { data, error } = await supabase
+        .from('canvas_nodes')
+        .select('*')
+        .eq('map_id', mapId)
+        .order('z_index', { ascending: true });
+    if (error) { console.error('getCanvasNodes:', error); return []; }
+    return data;
+}
+
+/**
+ * Cria um novo node no canvas.
+ * @param {string} mapId
+ * @param {Object} fields - { type, x, y, width, height, z_index, data }
+ * @returns {Promise<Object|null>}
+ */
+export async function createCanvasNode(mapId, fields = {}) {
+    const { data, error } = await supabase
+        .from('canvas_nodes')
+        .insert({
+            map_id: mapId,
+            type: fields.type || 'concept',
+            x: fields.x ?? 100,
+            y: fields.y ?? 100,
+            width: fields.width ?? 160,
+            height: fields.height ?? 60,
+            z_index: fields.z_index ?? 0,
+            data: fields.data || {}
+        })
+        .select()
+        .single();
+    if (error) { console.error('createCanvasNode:', error); return null; }
+    return data;
+}
+
+/**
+ * Atualiza um node existente.
+ * @param {string} nodeId
+ * @param {Object} fields
+ */
+export async function updateCanvasNode(nodeId, fields) {
+    const { error } = await supabase
+        .from('canvas_nodes')
+        .update({ ...fields })
+        .eq('id', nodeId);
+    if (error) console.error('updateCanvasNode:', error);
+}
+
+/**
+ * Deleta um node.
+ * @param {string} nodeId
+ */
+export async function deleteCanvasNode(nodeId) {
+    const { error } = await supabase
+        .from('canvas_nodes')
+        .delete()
+        .eq('id', nodeId);
+    if (error) console.error('deleteCanvasNode:', error);
+}
+
+/**
+ * Busca todos os edges de um canvas map.
+ * @param {string} mapId
+ * @returns {Promise<Array>}
+ */
+export async function getCanvasEdges(mapId) {
+    const { data, error } = await supabase
+        .from('canvas_edges')
+        .select('*')
+        .eq('map_id', mapId);
+    if (error) { console.error('getCanvasEdges:', error); return []; }
+    return data;
+}
+
+/**
+ * Cria um novo edge no canvas.
+ * @param {string} mapId
+ * @param {Object} fields - { source_id, target_id, edge_type, label, color }
+ * @returns {Promise<Object|null>}
+ */
+export async function createCanvasEdge(mapId, fields = {}) {
+    const { data, error } = await supabase
+        .from('canvas_edges')
+        .insert({
+            map_id: mapId,
+            source_id: fields.source_id,
+            target_id: fields.target_id,
+            edge_type: fields.edge_type || 'arrow',
+            label: fields.label || '',
+            color: fields.color || ''
+        })
+        .select()
+        .single();
+    if (error) { console.error('createCanvasEdge:', error); return null; }
+    return data;
+}
+
+/**
+ * Atualiza um edge existente.
+ * @param {string} edgeId
+ * @param {Object} fields
+ */
+export async function updateCanvasEdge(edgeId, fields) {
+    const { error } = await supabase
+        .from('canvas_edges')
+        .update({ ...fields })
+        .eq('id', edgeId);
+    if (error) console.error('updateCanvasEdge:', error);
+}
+
+/**
+ * Deleta um edge.
+ * @param {string} edgeId
+ */
+export async function deleteCanvasEdge(edgeId) {
+    const { error } = await supabase
+        .from('canvas_edges')
+        .delete()
+        .eq('id', edgeId);
+    if (error) console.error('deleteCanvasEdge:', error);
+}
+
+/**
+ * Salva o estado completo de um canvas (map + nodes + edges).
+ * @param {string} mapId
+ * @param {Array} nodes
+ * @param {Array} edges
+ * @param {Object} viewport - { viewport_x, viewport_y, viewport_scale }
+ */
+export async function saveCanvasState(mapId, nodes, edges, viewport) {
+    // Atualiza viewport do map
+    await updateCanvasMap(mapId, viewport);
+
+    // Deleta nodes existentes e recria (simples e efetivo)
+    const { error: delNodes } = await supabase
+        .from('canvas_nodes')
+        .delete()
+        .eq('map_id', mapId);
+    if (delNodes) console.error('delNodes:', delNodes);
+
+    // Recria nodes
+    if (nodes && nodes.length > 0) {
+        const nodesToInsert = nodes.map(n => ({
+            map_id: mapId,
+            type: n.type || 'concept',
+            x: n.x ?? 100,
+            y: n.y ?? 100,
+            width: n.width ?? 160,
+            height: n.height ?? 60,
+            z_index: n.z_index ?? 0,
+            data: n.data || {}
+        }));
+        const { error: insNodes } = await supabase
+            .from('canvas_nodes')
+            .insert(nodesToInsert);
+        if (insNodes) console.error('insNodes:', insNodes);
+    }
+
+    // Deleta edges existentes e recria
+    const { error: delEdges } = await supabase
+        .from('canvas_edges')
+        .delete()
+        .eq('map_id', mapId);
+    if (delEdges) console.error('delEdges:', delEdges);
+
+    // Recria edges
+    if (edges && edges.length > 0) {
+        const edgesToInsert = edges.map(e => ({
+            map_id: mapId,
+            source_id: e.source_id,
+            target_id: e.target_id,
+            edge_type: e.edge_type || 'arrow',
+            label: e.label || '',
+            color: e.color || ''
+        }));
+        const { error: insEdges } = await supabase
+            .from('canvas_edges')
+            .insert(edgesToInsert);
+        if (insEdges) console.error('insEdges:', insEdges);
+    }
+}

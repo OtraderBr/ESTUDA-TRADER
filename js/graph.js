@@ -321,11 +321,7 @@ function renderCascadeCard(node, graphNodes, graphEdges) {
         <div class="flex items-center gap-3 px-4 py-3">
           <div class="flex-1 min-w-0">
             <div class="text-[10px] text-zinc-400 font-medium mb-0.5">${node.category}${node.subcategory ? ' · ' + node.subcategory : ''}</div>
-            <div class="flex items-center gap-1.5">
-              <h3 class="text-sm font-semibold text-zinc-900 leading-tight truncate">${node.name}</h3>
-              ${abc === 'D' ? '<i data-lucide="shield-check" class="w-3.5 h-3.5 text-violet-400 shrink-0"></i>' : ''}
-              ${abc === 'E' ? '<i data-lucide="eye-off" class="w-3.5 h-3.5 text-zinc-400 shrink-0"></i>' : ''}
-            </div>
+            <h3 class="text-sm font-semibold text-zinc-900 leading-tight">${node.name}</h3>
             <div class="mt-2 h-1 w-full bg-zinc-100 rounded-full overflow-hidden">
               <div class="h-full ${barColor} rounded-full" style="width:${node.mastery}%"></div>
             </div>
@@ -354,25 +350,19 @@ function renderCascadeCard(node, graphNodes, graphEdges) {
           <div class="cascade-connections hidden border-t border-zinc-100 px-4 pb-4 pt-3 space-y-3">
             ${connected.prerequisites.length > 0 ? `
               <div>
-                <p class="text-[10px] font-semibold text-indigo-500 uppercase tracking-wider mb-1.5 flex items-center gap-1">
-                  <i data-lucide="arrow-up-circle" class="w-3 h-3"></i> Pré-requisitos
-                </p>
+                <p class="text-[10px] font-semibold text-indigo-500 uppercase tracking-wider mb-1.5">Pré-requisitos</p>
                 <div class="flex flex-wrap gap-1.5">${connected.prerequisites.map(renderPill).join('')}</div>
               </div>
             ` : ''}
             ${connected.dependents.length > 0 ? `
               <div>
-                <p class="text-[10px] font-semibold text-emerald-600 uppercase tracking-wider mb-1.5 flex items-center gap-1">
-                  <i data-lucide="arrow-down-circle" class="w-3 h-3"></i> Dependentes
-                </p>
+                <p class="text-[10px] font-semibold text-emerald-600 uppercase tracking-wider mb-1.5">Dependentes</p>
                 <div class="flex flex-wrap gap-1.5">${connected.dependents.map(renderPill).join('')}</div>
               </div>
             ` : ''}
             ${connected.related.length > 0 ? `
               <div>
-                <p class="text-[10px] font-semibold text-zinc-400 uppercase tracking-wider mb-1.5 flex items-center gap-1">
-                  <i data-lucide="link-2" class="w-3 h-3"></i> Relacionados
-                </p>
+                <p class="text-[10px] font-semibold text-zinc-400 uppercase tracking-wider mb-1.5">Relacionados</p>
                 <div class="flex flex-wrap gap-1.5">
                   ${connected.related.slice(0, 8).map(renderPill).join('')}
                   ${connected.related.length > 8 ? `<span class="text-[10px] text-zinc-400 self-center">+${connected.related.length - 8} mais</span>` : ''}
