@@ -350,6 +350,8 @@ async function loadMap(mapId) {
   updateTransform();
   renderNodes();
   renderEdges();
+  
+  if (sidebarEl) renderSidebarContent(sidebarEl);
 }
 
 // ── AUTO-SAVE DEBOUNCE ─────────────────────────────────────────────────────
@@ -1974,6 +1976,17 @@ function initSidebar() {
   renderSidebarContent(sidebarEl);
 
   sidebarEl.addEventListener('click', (e) => {
+    if (e.target.id === 'pa-expand-all') {
+      Object.keys(state.expandedCategories).forEach(cat => state.expandedCategories[cat] = true);
+      renderSidebarContent(sidebarEl);
+      return;
+    }
+    if (e.target.id === 'pa-collapse-all') {
+      Object.keys(state.expandedCategories).forEach(cat => state.expandedCategories[cat] = false);
+      renderSidebarContent(sidebarEl);
+      return;
+    }
+
     const modeBtn = e.target.closest('[data-pa-mode]');
     if (modeBtn) { state.currentMode = modeBtn.getAttribute('data-pa-mode'); renderSidebarContent(sidebarEl); }
     
@@ -2110,7 +2123,7 @@ function renderSidebarContent(sidebar) {
     const groups = getGroupedConcepts();
     const hasConcepts = Object.keys(groups).length > 0;
 
-    Object.keys(groups).forEach(cat => { if (state.expandedCategories[cat] === undefined) state.expandedCategories[cat] = true; });
+    Object.keys(groups).forEach(cat => { if (state.expandedCategories[cat] === undefined) state.expandedCategories[cat] = false; });
 
     const evoActive = state.currentMode === 'evolucao';
 
@@ -2128,6 +2141,10 @@ function renderSidebarContent(sidebar) {
         <div class="relative">
           <svg class="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-gray-400" data-lucide="search"></svg>
           <input id="pa-search-input" type="text" placeholder="Buscar conceitos..." value="${state.searchQuery}" class="w-full pl-9 pr-3 py-2 bg-white border border-gray-200 rounded-lg text-xs focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all" />
+        </div>
+        <div class="flex items-center justify-between mt-2.5 px-1 border-t border-gray-200/50 pt-2">
+          <button id="pa-expand-all" class="text-[10px] font-bold text-blue-600 hover:text-blue-800 uppercase tracking-widest transition-colors shrink-0">Expandir Todos</button>
+          <button id="pa-collapse-all" class="text-[10px] font-bold text-gray-500 hover:text-gray-700 uppercase tracking-widest transition-colors shrink-0">Recolher Todos</button>
         </div>
       </div>
       <div class="flex-1 overflow-y-auto p-3 space-y-1">

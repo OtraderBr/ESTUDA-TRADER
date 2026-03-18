@@ -639,6 +639,7 @@ export async function saveCanvasState(mapId, nodes, edges, viewport) {
     // Recria nodes
     if (nodes && nodes.length > 0) {
         const nodesToInsert = nodes.map(n => ({
+            id: n.id,
             map_id: mapId,
             type: n.type || 'concept',
             x: n.x ?? 100,
@@ -664,6 +665,7 @@ export async function saveCanvasState(mapId, nodes, edges, viewport) {
     // Recria edges
     if (edges && edges.length > 0) {
         const edgesToInsert = edges.map(e => ({
+            id: e.id,
             map_id: mapId,
             source_id: e.source_id,
             target_id: e.target_id,
